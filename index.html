@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --main-bg: linear-gradient(120deg, #191919 0%, #262626 100%);
-      --accent: #ffd700;           /* Gold */
-      --accent-dark: #bfa046;      /* Deep gold */
-      --accent2: #fff8e1;          /* Soft gold for contrast */
-      --card-bg: #232323;          /* Dark card */
-      --text-main: #ffd700;        /* Gold text */
-      --text-light: #fffbe7;       /* Pale gold */
+      --main-bg: linear-gradient(120deg, #eafff2 0%, #b6ffc8 50%, #befc35 100%);
+      --accent: #70e000;           /* Lime green */
+      --accent-dark: #38b000;      /* Deeper lime */
+      --accent2: #ccffb6;          /* Mint highlight */
+      --card-bg: #f6fff6;          /* Very pale mint for cards */
+      --text-main: #244d24;        /* Deep green */
+      --text-light: #9ef01a;       /* Neon lime */
     }
     body {
       margin: 0;
@@ -28,8 +28,8 @@
     header {
       position: sticky; top: 0;
       width: 100%;
-      background: rgba(25, 25, 25, 0.97);
-      box-shadow: 0 2px 18px #bfa04644;
+      background: rgba(255,255,255,0.93);
+      box-shadow: 0 2px 18px #d9f99d56;
       z-index: 10;
       display: flex;
       justify-content: space-between;
@@ -38,14 +38,14 @@
     }
     .logo {
       height: 52px;
-      filter: drop-shadow(0 0 12px #ffd70099);
+      filter: drop-shadow(0 0 10px #ccffb6);
     }
     nav {
       display: flex;
       gap: 26px;
     }
     nav a {
-      color: var(--accent);
+      color: var(--accent-dark);
       font-weight: 600;
       text-decoration: none;
       font-size: 1.1rem;
@@ -54,8 +54,8 @@
       transition: background .19s, color .19s;
     }
     nav a:hover {
-      background: #33331c;
-      color: #fff8e1;
+      background: #eafff2;
+      color: var(--accent);
     }
     .hero {
       min-height: 70vh;
@@ -64,19 +64,18 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: linear-gradient(115deg, #232323 0%, #191919 60%, #44401c 100%);
+      background: linear-gradient(115deg, #eafff2 0%, #b6ffc8 60%, #befc35 100%);
       padding: 80px 8vw 40px 8vw;
     }
     .hero h1 {
       font-size: 2.6rem;
-      background: linear-gradient(90deg, #ffd700 30%, #bfa046 70%);
+      background: linear-gradient(90deg, #38b000 30%, #70e000 70%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-weight: 800;
       margin-bottom: 16px;
       line-height: 1.1;
-      letter-spacing: 1px;
     }
     .hero p {
       font-size: 1.32rem;
@@ -87,36 +86,33 @@
     .hero .cta-btn {
       font-size: 1.18rem;
       padding: 13px 38px;
-      background: linear-gradient(90deg, #bfa046 0%, #ffd700 100%);
-      color: #191919;
+      background: linear-gradient(90deg, #38b000 0%, #70e000 100%);
+      color: #fff;
       border: none;
       border-radius: 15px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 8px 30px #ffd70033;
-      transition: background .22s, color .15s, transform .17s;
+      box-shadow: 0 8px 30px #befc3530;
+      transition: background .22s, transform .17s;
       margin-top: 18px;
-      letter-spacing: 1px;
     }
     .hero .cta-btn:hover {
-      background: linear-gradient(90deg, #ffd700 10%, #bfa046 100%);
-      color: #fff;
+      background: linear-gradient(90deg, #70e000 10%, #38b000 100%);
       transform: translateY(-2px) scale(1.03);
     }
     section {
       max-width: 970px;
       margin: 56px auto;
-      background: rgba(30,30,30,0.85);
+      background: rgba(255,255,255,0.67);
       border-radius: 18px;
-      box-shadow: 0 4px 28px #bfa04633;
+      box-shadow: 0 4px 28px #b6ffc840;
       padding: 36px 20px 30px 20px;
     }
     h2 {
       text-align: center;
-      color: var(--accent);
+      color: var(--accent-dark);
       margin-bottom: 28px;
       font-size: 2rem;
-      letter-spacing: 1px;
     }
     .features {
       display: flex;
@@ -127,22 +123,22 @@
     .feature-card {
       background: var(--card-bg);
       border-radius: 15px;
-      box-shadow: 0 2px 10px #bfa04633;
+      box-shadow: 0 2px 10px #befc3529;
       padding: 28px 22px 19px 22px;
       text-align: center;
       width: 220px;
       min-width: 170px;
-      border: 1.5px solid #bfa04655;
+      border: 1.5px solid #ccffb644;
     }
     .feature-card i {
       color: var(--accent);
       font-size: 2.3rem;
       margin-bottom: 10px;
-      filter: drop-shadow(0 0 5px #bfa04699);
+      filter: drop-shadow(0 0 4px #b6ffc899);
     }
     .feature-card h3 {
       margin: 10px 0 8px 0;
-      color: var(--accent);
+      color: var(--accent-dark);
       font-size: 1.2em;
       font-weight: 700;
     }
@@ -154,14 +150,14 @@
       margin-top: 16px;
     }
     .roadmap-step {
-      background: #191919;
-      border-left: 4px solid var(--accent);
+      background: #eafff2;
+      border-left: 4px solid var(--accent-dark);
       border-radius: 11px;
       padding: 13px 19px;
       font-weight: 600;
       min-width: 180px;
-      box-shadow: 0 1px 8px #ffd7001a;
-      color: var(--accent);
+      box-shadow: 0 1px 8px #befc351a;
+      color: var(--accent-dark);
       margin-bottom: 4px;
       font-size: 1.06em;
       text-align: left;
@@ -182,13 +178,12 @@
     }
     footer {
       text-align: center;
-      color: var(--accent);
-      background: #191919;
+      color: var(--accent-dark);
+      background: #eafff2;
       padding: 24px 8px 19px 8px;
       font-size: 1.09em;
-      border-top: 1.5px solid #bfa04644;
+      border-top: 1.5px solid #b6ffc8;
       margin-top: 64px;
-      letter-spacing: 1px;
     }
     @media (max-width: 800px) {
       .features { flex-direction: column; align-items: center; gap: 19px;}
@@ -196,15 +191,15 @@
       .roadmap-list { flex-direction: column; gap: 7px;}
       .hero h1 { font-size: 1.25rem; }
     }
-    /* Optional subtle gold sparkle effect */
+    /* Optional: Mint sparkle pattern */
     body::before {
       content: "";
       position: fixed;
       left: 0; top: 0; right: 0; bottom: 0;
       pointer-events: none;
       z-index: 0;
-      background: url('https://www.transparenttextures.com/patterns/golden-squares.png');
-      opacity: 0.05;
+      background: url('https://www.transparenttextures.com/patterns/symphony.png');
+      opacity: 0.03;
       mix-blend-mode: lighten;
     }
   </style>
@@ -288,9 +283,9 @@
   <section id="contact">
     <h2>Contact & Socials</h2>
     <div class="about-content" style="text-align:center;">
-      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:#ffd700;">info@ra-atum.com</a><br>
-      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:#bfa046;">@ra_atum</a><br>
-      <b>Telegram:</b> <a href="#" target="_blank" style="color:#bfa046;">@ra_atum</a>
+      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:#38b000;">info@ra-atum.com</a><br>
+      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:#70e000;">@ra_atum</a><br>
+      <b>Telegram:</b> <a href="#" target="_blank" style="color:#70e000;">@ra_atum</a>
     </div>
   </section>
 
