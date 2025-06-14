@@ -1,272 +1,279 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RA Atum DApp</title>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RA Atum – Where Every Gift Creates Value</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-    html, body {
+    :root {
+      --main-bg: linear-gradient(120deg, #e0f7fa 0%, #80deea 100%);
+      --accent: #00bcd4;
+      --accent-dark: #1976d2;
+      --accent2: #80deea;
+      --card-bg: #fff;
+      --text-main: #12304a;
+      --text-light: #2196f3;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--main-bg);
+      color: var(--text-main);
       font-family: 'Segoe UI', sans-serif;
-      background: #000;
-      color: white;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 300%;
-      height: 300%;
-      background: radial-gradient(white 1.5px, transparent 1.5px);
-      background-size: 25px 25px;
-      opacity: 0.06;
-      animation: star-move 100s linear infinite;
-      z-index: 0;
-    }
-    @keyframes star-move {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-50%, -50%); }
     }
     header {
-      position: fixed;
-      top: 0;
+      position: sticky; top: 0;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.95);
+      background: rgba(255,255,255,0.93);
+      box-shadow: 0 2px 18px #b2ebf256;
+      z-index: 10;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-      padding: 10px;
-      z-index: 1000;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    }
-    header a {
-      color: gold;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-    header a:hover {
-      color: #ffd700;
-    }
-    section {
-      padding: 100px 16px 60px;
-      max-width: 960px;
-      margin: auto;
-      text-align: center;
-      position: relative;
-      z-index: 1;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 3vw;
     }
     .logo {
-      max-width: 150px;
-      margin: 20px auto;
+      height: 52px;
+      filter: drop-shadow(0 0 10px #b2ebf2);
     }
-    #connectBtn {
-      background: linear-gradient(to right, #d4af37, #ffd700);
-      color: #002b36;
-      font-size: 1rem;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      font-weight: bold;
+    nav {
       display: flex;
+      gap: 26px;
+    }
+    nav a {
+      color: var(--accent-dark);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      padding: 6px 14px;
+      transition: background .19s;
+    }
+    nav a:hover {
+      background: #e0f7fa;
+    }
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 8px;
-      margin: 20px auto;
-      box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      text-align: center;
+      background: linear-gradient(115deg, #e0f7fa 0%, #80deea 60%, #00bcd4 100%);
+      padding: 80px 8vw 40px 8vw;
     }
-    #connectBtn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 24px rgba(255, 215, 0, 0.6);
+    .hero h1 {
+      font-size: 2.6rem;
+      background: linear-gradient(90deg, #1976d2 30%, #00bcd4 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.1;
     }
-    .wallet-icon { font-size: 1.3rem; }
-    .info-box {
-      margin-top: 8px;
-      font-size: 1rem;
-      word-break: break-word;
+    .hero p {
+      font-size: 1.32rem;
+      max-width: 530px;
+      margin: 0 auto 28px auto;
+      color: var(--text-main);
+    }
+    .hero .cta-btn {
+      font-size: 1.18rem;
+      padding: 13px 38px;
+      background: linear-gradient(90deg, #1976d2 0%, #00bcd4 100%);
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 30px #00bcd420;
+      transition: background .22s, transform .17s;
+      margin-top: 18px;
+    }
+    .hero .cta-btn:hover {
+      background: linear-gradient(90deg, #00bcd4 10%, #1976d2 100%);
+      transform: translateY(-2px) scale(1.03);
+    }
+    section {
+      max-width: 970px;
+      margin: 56px auto;
+      background: rgba(255,255,255,0.67);
+      border-radius: 18px;
+      box-shadow: 0 4px 28px #b2ebf240;
+      padding: 36px 20px 30px 20px;
     }
     h2 {
-      color: #ffd700;
-      margin-bottom: 20px;
-      font-size: 1.5rem;
+      text-align: center;
+      color: var(--accent-dark);
+      margin-bottom: 28px;
+      font-size: 2rem;
     }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 10px auto;
-      font-size: 1rem;
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
     }
-
-    .nft-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 2px 10px #80deea29;
+      padding: 28px 22px 19px 22px;
+      text-align: center;
+      width: 220px;
+      min-width: 170px;
     }
-    .nft-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .feature-card i {
+      color: var(--accent);
+      font-size: 2.3rem;
+      margin-bottom: 10px;
     }
-    .nft-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 12px rgba(255,215,0,0.3);
+    .feature-card h3 {
+      margin: 10px 0 8px 0;
+      color: var(--accent-dark);
+      font-size: 1.2em;
+      font-weight: 700;
     }
-    .nft-card img {
-      width: 100%;
-      height: auto;
-      display: block;
+    .roadmap-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: center;
+      margin-top: 16px;
     }
-    .nft-card p {
-      padding: 10px;
-      color: #ffd700;
-      font-weight: bold;
+    .roadmap-step {
+      background: #e0f7fa;
+      border-left: 4px solid var(--accent-dark);
+      border-radius: 11px;
+      padding: 13px 19px;
+      font-weight: 600;
+      min-width: 180px;
+      box-shadow: 0 1px 8px #80deea1a;
+      color: var(--accent-dark);
+      margin-bottom: 4px;
+      font-size: 1.06em;
+      text-align: left;
     }
-
-    @media (max-width: 600px) {
-      header {
-        gap: 6px;
-        padding: 8px;
-      }
-      header a {
-        font-size: 0.9rem;
-      }
-      section {
-        padding-top: 90px;
-      }
-      .logo {
-        max-width: 120px;
-      }
+    .about-content {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--text-main);
+      line-height: 1.6;
+      font-size: 1.14rem;
     }
-  
-    header a {
-      margin: 0 10px;
-      font-size: 1.2rem;
-      color: #fff;
+    .about-content ul {
+      margin-top: 12px;
+      padding-left: 18px;
     }
-    header a:hover {
-      color: gold;
+    .about-content ul li {
+      margin-bottom: 7px;
     }
-    </style>
+    footer {
+      text-align: center;
+      color: var(--accent-dark);
+      background: #e0f7fa;
+      padding: 24px 8px 19px 8px;
+      font-size: 1.09em;
+      border-top: 1.5px solid #b2ebf2;
+      margin-top: 64px;
+    }
+    @media (max-width: 800px) {
+      .features { flex-direction: column; align-items: center; gap: 19px;}
+      section { padding: 18px 3vw 17px 3vw;}
+      .roadmap-list { flex-direction: column; gap: 7px;}
+      .hero h1 { font-size: 1.25rem; }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <a href="#home" title="Home"><i class="fas fa-home"></i></a>
-    <a href="#donate" title="Donate"><i class="fas fa-hand-holding-usd"></i></a>
-    <a href="#nfts" title="NFTs"><i class="fas fa-image"></i></a>
-    <a href="#roadmap" title="Roadmap"><i class="fas fa-map-signs"></i></a>
-    <a href="#claim" title="Claim"><i class="fas fa-gift"></i></a>
-    <a href="#transfer" title="Transfer"><i class="fas fa-exchange-alt"></i></a>
-    <a href="#about" title="About"><i class="fas fa-info-circle"></i></a>
-  </header>
-    <a href="#home">Home</a>
-    <a href="#donate">Donate</a>
-    <a href="#nfts">NFTs</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="#claim">Claim</a>
-    <a href="#transfer">Transfer</a>
-    <a href="#about">About</a>
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="logo" />
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+    </nav>
   </header>
 
-  <section id="home" data-aos="fade-up">
-    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="logo"/>
-    <button id="connectBtn"><i class="fas fa-cube wallet-icon"></i> Connect Wallet</button>
-    <p class="info-box" id="status">Not connected</p>
-    <p class="info-box" id="balanceText">RA Atum: --</p>
+  <section class="hero">
+    <h1>🌟 RA Atum<br>Where Every Gift Creates Value</h1>
+    <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
+    Donate, earn tokens, and help light the way!</p>
+    <a href="https://ra-wallet-dapp.vercel.app/" class="cta-btn" target="_blank"><i class="fas fa-cube"></i> Launch DApp</a>
   </section>
 
-  <!-- Placeholder for other sections (Donate, NFTs, etc.) -->
-
-  <script>
-    AOS.init();
-
-    const tokenAddress = "0x717259B29E2A27ED8306c59d4F15AD66208b2e27";
-    const tokenABI = [
-      { "constant": true, "inputs": [{ "name": "account", "type": "address" }],
-        "name": "balanceOf", "outputs": [{ "name": "", "type": "uint256" }],
-        "type": "function", "stateMutability": "view"
-      }
-    ];
-
-    const connectBtn = document.getElementById('connectBtn');
-    const status = document.getElementById('status');
-    const balanceText = document.getElementById('balanceText');
-
-    connectBtn.onclick = async () => {
-      if (!window.ethereum) {
-        status.innerText = '⚠️ MetaMask not detected.';
-        return;
-      }
-
-      try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-        const address = await signer.getAddress();
-        const shortAddress = address.slice(0, 6) + "..." + address.slice(-6);
-        status.innerText = `Connected: ${shortAddress}`;
-
-        const contract = new ethers.Contract(tokenAddress, tokenABI, provider);
-        const rawBalance = await contract.balanceOf(address);
-        const balance = ethers.utils.formatUnits(rawBalance, 18);
-        balanceText.innerText = `RA Atum: ${balance}`;
-      } catch (err) {
-        console.error("Error:", err);
-        status.innerText = '❌ Wallet connection failed.';
-      }
-    };
-  </script>
-
-  <section id="donate" data-aos="fade-up">
-    <h2>Donate</h2>
-    <p>Send donations to: <code>0xYourWalletAddressHere</code></p>
-  </section>
-
-  <section id="nfts" data-aos="fade-up">
-    <h2>NFT Gallery</h2>
-    <div class="nft-grid">
-      <div class="nft-card"><img src="https://via.placeholder.com/150" /><p>NFT #1</p></div>
-      <div class="nft-card"><img src="https://via.placeholder.com/150" /><p>NFT #2</p></div>
-      <div class="nft-card"><img src="https://via.placeholder.com/150" /><p>NFT #3</p></div>
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="feature-card">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h3>Accept Donations</h3>
+        <div>Toys, books, clothes for kids & families</div>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-tshirt"></i>
+        <h3>Kidswear & Toys</h3>
+        <div>Ethical, affordable shopping in our online store</div>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-gem"></i>
+        <h3>Token Rewards</h3>
+        <div>Get RA Atum Tokens for every donation</div>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-users"></i>
+        <h3>Community</h3>
+        <div>Build a network of compassion & crypto</div>
+      </div>
     </div>
   </section>
 
-  <section id="roadmap" data-aos="fade-up">
+  <section id="roadmap">
     <h2>Roadmap</h2>
-    <div class="card">✅ Launch</div>
-    <div class="card">🚀 Growth</div>
-    <div class="card">🌐 NFT Integration</div>
-    <div class="card">🎯 Rewards System</div>
+    <div class="roadmap-list">
+      <div class="roadmap-step">✅ Whitepaper Released</div>
+      <div class="roadmap-step">✅ Testnet Token Launched</div>
+      <div class="roadmap-step">✅ MetaMask Integration</div>
+      <div class="roadmap-step">✅ DApp Live</div>
+      <div class="roadmap-step">🟦 NFT Launch</div>
+      <div class="roadmap-step">🟦 Mainnet Launch</div>
+      <div class="roadmap-step">🟦 PancakeSwap Listing</div>
+      <div class="roadmap-step">🟦 Claim Rewards Feature</div>
+    </div>
   </section>
 
-  <section id="claim" data-aos="fade-up">
-    <h2>Claim Rewards</h2>
-    <p>Coming soon. Stay tuned for claiming RA tokens!</p>
+  <section id="about">
+    <h2>About RA Atum</h2>
+    <div class="about-content">
+      At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.<br><br>
+      <b>We are more than just a store. We are a movement.</b>  
+      We collect donated toys, clothes, and books from generous souls like you, and redistribute them to children and families who need them most.<br><br>
+      <b>But we don’t stop at giving.</b>  
+      We reward every donor with RA Atum Tokens, our unique digital token of appreciation — because your kindness deserves to be celebrated, shared, and remembered.<br>
+      <ul>
+        <li>💝 Accept Donations</li>
+        <li>👕 Kidswear & Toys Online</li>
+        <li>💎 Token Rewards for Donors</li>
+        <li>🪙 Building a Compassionate Community</li>
+      </ul>
+    </div>
   </section>
 
-  <section id="transfer" data-aos="fade-up">
-    <h2>Transfer RA Tokens</h2>
-    <p>Transfer RA tokens to friends or customers. (Feature coming soon)</p>
+  <section id="contact">
+    <h2>Contact & Socials</h2>
+    <div class="about-content" style="text-align:center;">
+      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:#00bcd4;">info@ra-atum.com</a><br>
+      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:#1976d2;">@ra_atum</a><br>
+      <b>Telegram:</b> <a href="#" target="_blank" style="color:#1976d2;">@ra_atum</a>
+    </div>
   </section>
 
-  <section id="about" data-aos="fade-up">
-    <h2>About Us</h2>
-    <p>RA Atum is a crypto-powered project focused on rewarding and growing community support through decentralized value.</p>
-  </section>
+  <footer>
+    &copy; 2025 RA Atum. All Rights Reserved.
+  </footer>
 </body>
 </html>
-
