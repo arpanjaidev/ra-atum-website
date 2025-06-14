@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --main-bg: linear-gradient(120deg, #eafff2 0%, #b6ffc8 50%, #befc35 100%);
-      --accent: #70e000;           /* Lime green */
-      --accent-dark: #38b000;      /* Deeper lime */
-      --accent2: #ccffb6;          /* Mint highlight */
-      --card-bg: #f6fff6;          /* Very pale mint for cards */
-      --text-main: #244d24;        /* Deep green */
-      --text-light: #9ef01a;       /* Neon lime */
+      --main-bg: linear-gradient(120deg, #171111 0%, #430606 60%, #ff1744 100%);
+      --accent: #ff1744;         /* Vivid fire red */
+      --accent-dark: #b2102f;    /* Deep red */
+      --accent2: #ffe1e5;        /* Soft rose for contrast */
+      --card-bg: #1a1517;        /* Charcoal black for cards */
+      --text-main: #ffe1e5;      /* Pale rose */
+      --text-light: #ff5252;     /* Light red accent */
     }
     body {
       margin: 0;
@@ -28,8 +28,8 @@
     header {
       position: sticky; top: 0;
       width: 100%;
-      background: rgba(255,255,255,0.93);
-      box-shadow: 0 2px 18px #d9f99d56;
+      background: rgba(23, 17, 17, 0.95);
+      box-shadow: 0 2px 18px #ff174433;
       z-index: 10;
       display: flex;
       justify-content: space-between;
@@ -38,14 +38,14 @@
     }
     .logo {
       height: 52px;
-      filter: drop-shadow(0 0 10px #ccffb6);
+      filter: drop-shadow(0 0 12px #ff174455);
     }
     nav {
       display: flex;
       gap: 26px;
     }
     nav a {
-      color: var(--accent-dark);
+      color: var(--accent);
       font-weight: 600;
       text-decoration: none;
       font-size: 1.1rem;
@@ -54,8 +54,8 @@
       transition: background .19s, color .19s;
     }
     nav a:hover {
-      background: #eafff2;
-      color: var(--accent);
+      background: #330f15;
+      color: #ffe1e5;
     }
     .hero {
       min-height: 70vh;
@@ -64,18 +64,19 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: linear-gradient(115deg, #eafff2 0%, #b6ffc8 60%, #befc35 100%);
+      background: linear-gradient(115deg, #1a1517 0%, #430606 60%, #ff1744 100%);
       padding: 80px 8vw 40px 8vw;
     }
     .hero h1 {
       font-size: 2.6rem;
-      background: linear-gradient(90deg, #38b000 30%, #70e000 70%);
+      background: linear-gradient(90deg, #ff1744 30%, #ff5252 80%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-weight: 800;
       margin-bottom: 16px;
       line-height: 1.1;
+      letter-spacing: 1px;
     }
     .hero p {
       font-size: 1.32rem;
@@ -86,33 +87,36 @@
     .hero .cta-btn {
       font-size: 1.18rem;
       padding: 13px 38px;
-      background: linear-gradient(90deg, #38b000 0%, #70e000 100%);
+      background: linear-gradient(90deg, #b2102f 0%, #ff1744 100%);
       color: #fff;
       border: none;
       border-radius: 15px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 8px 30px #befc3530;
-      transition: background .22s, transform .17s;
+      box-shadow: 0 8px 30px #ff174422;
+      transition: background .22s, color .15s, transform .17s;
       margin-top: 18px;
+      letter-spacing: 1px;
     }
     .hero .cta-btn:hover {
-      background: linear-gradient(90deg, #70e000 10%, #38b000 100%);
+      background: linear-gradient(90deg, #ff1744 10%, #b2102f 100%);
+      color: #ffe1e5;
       transform: translateY(-2px) scale(1.03);
     }
     section {
       max-width: 970px;
       margin: 56px auto;
-      background: rgba(255,255,255,0.67);
+      background: rgba(23, 17, 17, 0.92);
       border-radius: 18px;
-      box-shadow: 0 4px 28px #b6ffc840;
+      box-shadow: 0 4px 28px #ff174422;
       padding: 36px 20px 30px 20px;
     }
     h2 {
       text-align: center;
-      color: var(--accent-dark);
+      color: var(--accent);
       margin-bottom: 28px;
       font-size: 2rem;
+      letter-spacing: 1px;
     }
     .features {
       display: flex;
@@ -123,22 +127,22 @@
     .feature-card {
       background: var(--card-bg);
       border-radius: 15px;
-      box-shadow: 0 2px 10px #befc3529;
+      box-shadow: 0 2px 10px #b2102f55;
       padding: 28px 22px 19px 22px;
       text-align: center;
       width: 220px;
       min-width: 170px;
-      border: 1.5px solid #ccffb644;
+      border: 1.5px solid #ff174433;
     }
     .feature-card i {
       color: var(--accent);
       font-size: 2.3rem;
       margin-bottom: 10px;
-      filter: drop-shadow(0 0 4px #b6ffc899);
+      filter: drop-shadow(0 0 5px #ff525244);
     }
     .feature-card h3 {
       margin: 10px 0 8px 0;
-      color: var(--accent-dark);
+      color: var(--accent);
       font-size: 1.2em;
       font-weight: 700;
     }
@@ -150,14 +154,14 @@
       margin-top: 16px;
     }
     .roadmap-step {
-      background: #eafff2;
-      border-left: 4px solid var(--accent-dark);
+      background: #171111;
+      border-left: 4px solid var(--accent);
       border-radius: 11px;
       padding: 13px 19px;
       font-weight: 600;
       min-width: 180px;
-      box-shadow: 0 1px 8px #befc351a;
-      color: var(--accent-dark);
+      box-shadow: 0 1px 8px #ff52521a;
+      color: var(--accent);
       margin-bottom: 4px;
       font-size: 1.06em;
       text-align: left;
@@ -178,12 +182,13 @@
     }
     footer {
       text-align: center;
-      color: var(--accent-dark);
-      background: #eafff2;
+      color: var(--accent);
+      background: #171111;
       padding: 24px 8px 19px 8px;
       font-size: 1.09em;
-      border-top: 1.5px solid #b6ffc8;
+      border-top: 1.5px solid #ff174422;
       margin-top: 64px;
+      letter-spacing: 1px;
     }
     @media (max-width: 800px) {
       .features { flex-direction: column; align-items: center; gap: 19px;}
@@ -191,15 +196,15 @@
       .roadmap-list { flex-direction: column; gap: 7px;}
       .hero h1 { font-size: 1.25rem; }
     }
-    /* Optional: Mint sparkle pattern */
+    /* Optional: subtle fire pattern */
     body::before {
       content: "";
       position: fixed;
       left: 0; top: 0; right: 0; bottom: 0;
       pointer-events: none;
       z-index: 0;
-      background: url('https://www.transparenttextures.com/patterns/symphony.png');
-      opacity: 0.03;
+      background: url('https://www.transparenttextures.com/patterns/dark-fish-skin.png');
+      opacity: 0.05;
       mix-blend-mode: lighten;
     }
   </style>
@@ -283,9 +288,9 @@
   <section id="contact">
     <h2>Contact & Socials</h2>
     <div class="about-content" style="text-align:center;">
-      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:#38b000;">info@ra-atum.com</a><br>
-      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:#70e000;">@ra_atum</a><br>
-      <b>Telegram:</b> <a href="#" target="_blank" style="color:#70e000;">@ra_atum</a>
+      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:#ff1744;">info@ra-atum.com</a><br>
+      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:#ff5252;">@ra_atum</a><br>
+      <b>Telegram:</b> <a href="#" target="_blank" style="color:#ff5252;">@ra_atum</a>
     </div>
   </section>
 
