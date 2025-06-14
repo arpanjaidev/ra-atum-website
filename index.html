@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RA Atum DApp</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    html, body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300%;
+      height: 300%;
+      background: radial-gradient(white 1.5px, transparent 1.5px);
+      background-size: 25px 25px;
+      opacity: 0.06;
+      animation: star-move 100s linear infinite;
+      z-index: 0;
+    }
+    @keyframes star-move {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-50%, -50%); }
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 10px;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    header a {
+      color: gold;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    header a:hover {
+      color: #ffd700;
+    }
+    section {
+      padding: 100px 16px 60px;
+      max-width: 960px;
+      margin: auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .logo {
+      max-width: 150px;
+      margin: 20px auto;
+    }
+    #connectBtn {
+      background: linear-gradient(to right, #d4af37, #ffd700);
+      color: #002b36;
+      font-size: 1rem;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 20px auto;
+      box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    #connectBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(255, 215, 0, 0.6);
+    }
+    .wallet-icon { font-size: 1.3rem; }
+    .info-box {
+      margin-top: 8px;
+      font-size: 1rem;
+      word-break: break-word;
+    }
+    h2 {
+      color: #ffd700;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 10px auto;
+      font-size: 1rem;
+    }
+
+    .nft-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .nft-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nft-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(255,215,0,0.3);
+    }
+    .nft-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .nft-card p {
+      padding: 10px;
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        gap: 6px;
+        padding: 8px;
+      }
+      header a {
+        font-size: 0.9rem;
+      }
+      section {
+        padding-top: 90px;
+      }
+      .logo {
+        max-width: 120px;
+      }
+    }
+  
+    header a {
+      margin: 0 10px;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+    header a:hover {
+      color: gold;
+    }
+    </style>
+</head>
+<body>
+  <header>
+    <a href="#home" title="Home"><i class="fas fa-home"></i></a>
+    <a href="#donate" title="Donate"><i class="fas fa-hand-holding-usd"></i></a>
+    <a href="#nfts" title="NFTs"><i class="fas fa-image"></i></a>
+    <a href="#roadmap" title="Roadmap"><i class="fas fa-map-signs"></i></a>
+    <a href="#claim" title="Claim"><i class="fas fa-gift"></i></a>
+    <a href="#transfer" title="Transfer"><i class="fas fa-exchange-alt"></i></a>
+    <a href="#about" title="About"><i class="fas fa-info-circle"></i></a>
+  </header>
+    <a href="#home">Home</a>
+    <a href="#donate">Donate</a>
+    <a href="#nfts">NFTs</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#claim">Claim</a>
+    <a href="#transfer">Transfer</a>
+    <a href="#about">About</a>
+  </header>
+
+  <section id="home" data-aos="fade-up">
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="logo"/>
+    <button id="connectBtn"><i class="fas fa-cube wallet-icon"></i> Connect Wallet</button>
+    <p class="info-box" id="status">Not connected</p>
+    <p class="info-box" id="balanceText">RA Atum: --</p>
+  </section>
+
+  <!-- Placeholder for other sections (Donate, NFTs, etc.) -->
+
+  <script>
+    AOS.init();
+
+    const tokenAddress = "0x717259B29E2A27ED8306c59d4F15AD66208b2e27";
+    const tokenABI = [
+      { "constant": true, "inputs": [{ "name": "account", "type": "address" }],
+        "name": "balanceOf", "outputs": [{ "name": "", "type": "uint256" }],
+        "type": "function", "stateMutability": "view"
+      }
+    ];
+
+    const connectBtn = document.getElementById('connectBtn');
+    const status = document.getElementById('status');
+    const balanceText = document.getElementById('balanceText');
+
+    connectBtn.onclick = async () => {
+      if (!window.ethereum) {
+        status.innerText = '⚠️ MetaMask not detected.';
+        return;
+      }
+
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        const shortAddress = address.slice(0, 6) + "..." + address.slice(-6);
+        status.innerText = `Connected: ${shortAddress}`;
+
+        const contract = new ethers.Contract(tokenAddress, tokenABI, provider);
+        const rawBalance = await contract.balanceOf(address);
+        const balance = ethers.utils.formatUnits(rawBalance, 18);
+        balanceText.innerText = `RA Atum: ${balance}`;
+      } catch (err) {
+        console.error("Error:", err);
+        status.innerText = '❌ Wallet connection failed.';
+      }
+    };
+  </script>
+
+  <section id="donate" data-aos="fade-up">
+    <h2>Donate</h2>
+    <p>Send donations to: <code>0xYourWalletAddressHere</code></p>
+  </section>
+
+  <section id="nfts" data-aos="fade-up">
+    <h2>NFT Gallery</h2>
+    <div class="nft-grid">
+      <div class="nft-card"><img src="https://via.placeholder.com/150" /><p>NFT #1</p></div>
+      <div class="nft-card"><img src="https://via.placeholder.com/150" /><p>NFT #2</p></div>
+      <div class="nft-card"><img src="https://via.placeholder.com/150" /><p>NFT #3</p></div>
+    </div>
+  </section>
+
+  <section id="roadmap" data-aos="fade-up">
+    <h2>Roadmap</h2>
+    <div class="card">✅ Launch</div>
+    <div class="card">🚀 Growth</div>
+    <div class="card">🌐 NFT Integration</div>
+    <div class="card">🎯 Rewards System</div>
+  </section>
+
+  <section id="claim" data-aos="fade-up">
+    <h2>Claim Rewards</h2>
+    <p>Coming soon. Stay tuned for claiming RA tokens!</p>
+  </section>
+
+  <section id="transfer" data-aos="fade-up">
+    <h2>Transfer RA Tokens</h2>
+    <p>Transfer RA tokens to friends or customers. (Feature coming soon)</p>
+  </section>
+
+  <section id="about" data-aos="fade-up">
+    <h2>About Us</h2>
+    <p>RA Atum is a crypto-powered project focused on rewarding and growing community support through decentralized value.</p>
+  </section>
+</body>
+</html>
+
