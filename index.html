@@ -38,10 +38,9 @@
     }
     .eg-god {
       position: absolute;
-      top: 0; bottom: 0;
       width: 45vw;
       max-width: 700px;
-      opacity: 0.21;
+      opacity: 0.22;
       filter: drop-shadow(0 8px 60px #000b) saturate(1.2);
       object-fit: contain;
       transition: opacity .6s;
@@ -51,11 +50,13 @@
       left: -8vw;
       top: 5vh;
       transform: scaleX(-1) rotate(-4deg);
+      bottom: auto;
     }
     .eg-god.right {
       right: -8vw;
       bottom: 0;
       transform: rotate(3deg);
+      top: auto;
     }
     @media (max-width: 800px) {
       .eg-god { width: 80vw; max-width: 350px;}
@@ -251,12 +252,14 @@
   </style>
 </head>
 <body>
-  <!-- Egyptian Gods 3D Images -->
+  <!-- Egyptian Gods 3D Images - placeholder links, you can use your own -->
   <div class="eg-gods-bg">
-    <img src="https://cdna.artstation.com/p/assets/images/images/044/279/283/large/alexander-petrakov-ra.jpg"
-         alt="Egyptian God Ra"
+    <!-- Left: Horus statue (public domain Wikimedia, stylized) -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/HorusStatuette_Hermitage.jpg"
+         alt="Egyptian God Horus"
          class="eg-god left" />
-    <img src="https://cdnb.artstation.com/p/assets/images/images/034/233/495/large/harry-cheng-anubis.jpg"
+    <!-- Right: Anubis statue (public domain Wikimedia, stylized) -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Anubis_statuette_E_2452_Louvre_AOD_1.jpg"
          alt="Egyptian God Anubis"
          class="eg-god right" />
   </div>
