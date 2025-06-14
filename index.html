@@ -27,42 +27,15 @@
       position: relative;
       z-index: 1;
     }
-    /* Egyptian Gods BG */
-    .eg-gods-bg {
+    .bg-egypt-god {
       position: fixed;
-      left: 0; top: 0; right: 0; bottom: 0;
-      width: 100vw; height: 100vh;
+      top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: 0;
+      background: url('/mnt/data/a8837e09dd4782eea5f542166454191b.jpg') center center no-repeat;
+      background-size: cover;
+      opacity: 0.30;
       pointer-events: none;
-      overflow: hidden;
     }
-    .eg-god {
-      position: absolute;
-      width: 45vw;
-      max-width: 700px;
-      opacity: 0.22;
-      filter: drop-shadow(0 8px 60px #000b) saturate(1.2);
-      object-fit: contain;
-      transition: opacity .6s;
-      user-select: none;
-    }
-    .eg-god.left {
-      left: -8vw;
-      top: 5vh;
-      transform: scaleX(-1) rotate(-4deg);
-      bottom: auto;
-    }
-    .eg-god.right {
-      right: -8vw;
-      bottom: 0;
-      transform: rotate(3deg);
-      top: auto;
-    }
-    @media (max-width: 800px) {
-      .eg-god { width: 80vw; max-width: 350px;}
-      .eg-god.left, .eg-god.right { top: 20vh !important; }
-    }
-
     header {
       position: sticky; top: 0;
       width: 100%;
@@ -238,7 +211,6 @@
       .roadmap-list { flex-direction: column; gap: 7px;}
       .hero h1 { font-size: 1.25rem; }
     }
-    /* Optional: subtle fire pattern */
     body::after {
       content: "";
       position: fixed;
@@ -252,18 +224,7 @@
   </style>
 </head>
 <body>
-  <!-- Egyptian Gods 3D Images - placeholder links, you can use your own -->
-  <div class="eg-gods-bg">
-    <!-- Left: Horus statue (public domain Wikimedia, stylized) -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/HorusStatuette_Hermitage.jpg"
-         alt="Egyptian God Horus"
-         class="eg-god left" />
-    <!-- Right: Anubis statue (public domain Wikimedia, stylized) -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Anubis_statuette_E_2452_Louvre_AOD_1.jpg"
-         alt="Egyptian God Anubis"
-         class="eg-god right" />
-  </div>
-  
+  <div class="bg-egypt-god"></div>
   <header>
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="logo" />
     <nav>
