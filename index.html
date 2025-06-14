@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --main-bg: linear-gradient(120deg, #e0f7fa 0%, #80deea 100%);
-      --accent: #00bcd4;
-      --accent-dark: #1976d2;
-      --accent2: #80deea;
-      --card-bg: #fff;
-      --text-main: #12304a;
-      --text-light: #2196f3;
+      --main-bg: linear-gradient(120deg, #fffde4 0%, #fbb034 55%, #ff7c2a 100%);
+      --accent: #ff9800;           /* Sunrise orange */
+      --accent-dark: #f4511e;      /* Deeper orange/red */
+      --accent2: #ffd600;          /* Bright yellow */
+      --card-bg: #fffbe7;          /* Warm light card */
+      --text-main: #663c00;        /* Deep brown */
+      --text-light: #fbc02d;       /* Sun gold */
     }
     body {
       margin: 0;
@@ -21,12 +21,14 @@
       background: var(--main-bg);
       color: var(--text-main);
       font-family: 'Segoe UI', sans-serif;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
     header {
       position: sticky; top: 0;
       width: 100%;
       background: rgba(255,255,255,0.93);
-      box-shadow: 0 2px 18px #b2ebf256;
+      box-shadow: 0 2px 18px #ffe49b56;
       z-index: 10;
       display: flex;
       justify-content: space-between;
@@ -35,7 +37,7 @@
     }
     .logo {
       height: 52px;
-      filter: drop-shadow(0 0 10px #b2ebf2);
+      filter: drop-shadow(0 0 10px #ffe49b);
     }
     nav {
       display: flex;
@@ -51,7 +53,7 @@
       transition: background .19s;
     }
     nav a:hover {
-      background: #e0f7fa;
+      background: #fffde4;
     }
     .hero {
       min-height: 70vh;
@@ -60,12 +62,12 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: linear-gradient(115deg, #e0f7fa 0%, #80deea 60%, #00bcd4 100%);
+      background: linear-gradient(115deg, #fffde4 0%, #ffe49b 60%, #fbb034 100%);
       padding: 80px 8vw 40px 8vw;
     }
     .hero h1 {
       font-size: 2.6rem;
-      background: linear-gradient(90deg, #1976d2 30%, #00bcd4 70%);
+      background: linear-gradient(90deg, #f4511e 30%, #ff9800 70%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -82,18 +84,18 @@
     .hero .cta-btn {
       font-size: 1.18rem;
       padding: 13px 38px;
-      background: linear-gradient(90deg, #1976d2 0%, #00bcd4 100%);
+      background: linear-gradient(90deg, #f4511e 0%, #ff9800 100%);
       color: #fff;
       border: none;
       border-radius: 15px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 8px 30px #00bcd420;
+      box-shadow: 0 8px 30px #ff980020;
       transition: background .22s, transform .17s;
       margin-top: 18px;
     }
     .hero .cta-btn:hover {
-      background: linear-gradient(90deg, #00bcd4 10%, #1976d2 100%);
+      background: linear-gradient(90deg, #ff9800 10%, #f4511e 100%);
       transform: translateY(-2px) scale(1.03);
     }
     section {
@@ -101,7 +103,7 @@
       margin: 56px auto;
       background: rgba(255,255,255,0.67);
       border-radius: 18px;
-      box-shadow: 0 4px 28px #b2ebf240;
+      box-shadow: 0 4px 28px #ffe49b40;
       padding: 36px 20px 30px 20px;
     }
     h2 {
@@ -119,7 +121,7 @@
     .feature-card {
       background: var(--card-bg);
       border-radius: 15px;
-      box-shadow: 0 2px 10px #80deea29;
+      box-shadow: 0 2px 10px #fbb03429;
       padding: 28px 22px 19px 22px;
       text-align: center;
       width: 220px;
@@ -144,13 +146,13 @@
       margin-top: 16px;
     }
     .roadmap-step {
-      background: #e0f7fa;
+      background: #fffde4;
       border-left: 4px solid var(--accent-dark);
       border-radius: 11px;
       padding: 13px 19px;
       font-weight: 600;
       min-width: 180px;
-      box-shadow: 0 1px 8px #80deea1a;
+      box-shadow: 0 1px 8px #ffd6001a;
       color: var(--accent-dark);
       margin-bottom: 4px;
       font-size: 1.06em;
@@ -173,10 +175,10 @@
     footer {
       text-align: center;
       color: var(--accent-dark);
-      background: #e0f7fa;
+      background: #fffde4;
       padding: 24px 8px 19px 8px;
       font-size: 1.09em;
-      border-top: 1.5px solid #b2ebf2;
+      border-top: 1.5px solid #ffe49b;
       margin-top: 64px;
     }
     @media (max-width: 800px) {
@@ -250,10 +252,10 @@
     <h2>About RA Atum</h2>
     <div class="about-content">
       At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.<br><br>
-      <b>We are more than just a store. We are a movement.</b>  
-      We collect donated toys, clothes, and books from generous souls like you, and redistribute them to children and families who need them most.<br><br>
-      <b>But we don’t stop at giving.</b>  
-      We reward every donor with RA Atum Tokens, our unique digital token of appreciation — because your kindness deserves to be celebrated, shared, and remembered.<br>
+      <b>We are more than just a store. We are a movement.</b>
+        We collect donated toys, clothes, and books from generous souls like you, and redistribute them to children and families who need them most.<br><br>
+      <b>But we don’t stop at giving.</b>
+        We reward every donor with RA Atum Tokens, our unique digital token of appreciation — because your kindness deserves to be celebrated, shared, and remembered.<br>
       <ul>
         <li>💝 Accept Donations</li>
         <li>👕 Kidswear & Toys Online</li>
@@ -266,9 +268,9 @@
   <section id="contact">
     <h2>Contact & Socials</h2>
     <div class="about-content" style="text-align:center;">
-      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:#00bcd4;">info@ra-atum.com</a><br>
-      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:#1976d2;">@ra_atum</a><br>
-      <b>Telegram:</b> <a href="#" target="_blank" style="color:#1976d2;">@ra_atum</a>
+      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:#ff9800;">info@ra-atum.com</a><br>
+      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:#f4511e;">@ra_atum</a><br>
+      <b>Telegram:</b> <a href="#" target="_blank" style="color:#f4511e;">@ra_atum</a>
     </div>
   </section>
 
