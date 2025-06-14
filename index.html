@@ -41,26 +41,26 @@
       box-shadow: 0 2px 18px #ff174433;
       z-index: 10;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 8px 3vw;
     }
-    .logo {
-      height: 52px;
-      filter: drop-shadow(0 0 12px #ff174455);
-    }
     nav {
       display: flex;
-      gap: 26px;
+      gap: 36px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
     }
     nav a {
       color: var(--accent);
       font-weight: 600;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1.18rem;
       border-radius: 8px;
-      padding: 6px 14px;
+      padding: 8px 22px;
       transition: background .19s, color .19s;
+      letter-spacing: 0.5px;
     }
     nav a:hover {
       background: #330f15;
@@ -74,12 +74,32 @@
       align-items: center;
       text-align: center;
       background: linear-gradient(115deg, #1a1517 0%, #430606 60%, #ff1744 100%);
-      padding: 80px 8vw 40px 8vw;
+      padding: 90px 8vw 48px 8vw;
       position: relative;
       z-index: 1;
     }
+    .hero-logo-big {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 26px auto;
+      display: block;
+      animation: logo-spin 2.6s cubic-bezier(.54,.07,.36,1.03) infinite alternate;
+      /* Try pulse+spin for fun: */
+      /* animation: logo-pulse-spin 3s infinite alternate; */
+      filter: drop-shadow(0 0 28px #ff1744bb);
+    }
+    @keyframes logo-spin {
+      0% { transform: scale(1) rotate(-5deg);}
+      60% { transform: scale(1.10) rotate(5deg);}
+      100% { transform: scale(1.05) rotate(-3deg);}
+    }
+    @keyframes logo-pulse-spin {
+      0%   { transform: scale(1) rotate(0deg);}
+      50%  { transform: scale(1.10) rotate(7deg);}
+      100% { transform: scale(1) rotate(0deg);}
+    }
     .hero h1 {
-      font-size: 2.6rem;
+      font-size: 2.7rem;
       background: linear-gradient(90deg, #ff1744 30%, #ff5252 80%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -88,6 +108,7 @@
       margin-bottom: 16px;
       line-height: 1.1;
       letter-spacing: 1px;
+      display: block;
     }
     .hero p {
       font-size: 1.32rem;
@@ -137,7 +158,6 @@
       gap: 28px;
       justify-content: center;
     }
-    /* Animation for feature cards */
     @keyframes float {
       0%   { transform: translateY(0px) scale(1);}
       40%  { transform: translateY(-12px) scale(1.04);}
@@ -171,12 +191,12 @@
       font-size: 1.2em;
       font-weight: 700;
     }
-    .roadmap-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 22px;
-      justify-content: center;
-      margin-top: 16px;
+
+    /* Roadmap animation */
+    @keyframes roadmap-pulse {
+      0%,100% { box-shadow: 0 0 0px #ff174400; border-left-color: var(--accent);}
+      20% { box-shadow: 0 0 18px 2px #ff1744bb; border-left-color: #fff;}
+      50% { box-shadow: 0 0 0px #ff174400; border-left-color: var(--accent);}
     }
     .roadmap-step {
       background: #171111;
@@ -190,7 +210,17 @@
       margin-bottom: 4px;
       font-size: 1.06em;
       text-align: left;
+      animation: roadmap-pulse 2.4s infinite;
     }
+    .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
+    .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
+    .roadmap-list .roadmap-step:nth-child(3) { animation-delay: 0.8s;}
+    .roadmap-list .roadmap-step:nth-child(4) { animation-delay: 1.2s;}
+    .roadmap-list .roadmap-step:nth-child(5) { animation-delay: 1.6s;}
+    .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
+    .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
+    .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
+
     .about-content {
       max-width: 650px;
       margin: 0 auto;
@@ -220,6 +250,8 @@
       section { padding: 18px 3vw 17px 3vw;}
       .roadmap-list { flex-direction: column; gap: 7px;}
       .hero h1 { font-size: 1.25rem; }
+      nav { gap: 12px; }
+      .hero-logo-big { width: 64px; height: 64px; }
     }
     body::after {
       content: "";
@@ -236,7 +268,6 @@
 <body>
   <div class="bg-egypt-god"></div>
   <header>
-    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="logo" />
     <nav>
       <a href="#features">Features</a>
       <a href="#roadmap">Roadmap</a>
@@ -247,7 +278,8 @@
   </header>
 
   <section class="hero">
-    <h1>🌟 RA Atum<br>Where Every Gift Creates Value</h1>
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-big" />
+    <h1>RA Atum<br>Where Every Gift Creates Value</h1>
     <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
     Donate, earn tokens, and help light the way!</p>
     <a href="https://ra-wallet-dapp.vercel.app/" class="cta-btn" target="_blank"><i class="fas fa-cube"></i> Launch DApp</a>
