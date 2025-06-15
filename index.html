@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RA Atum – Where Every Gift Creates Value</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome with integrity for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+    integrity="sha512-8Jl6e76pH6MxXG/Tm9lgZXkP09lJQX8wSx1gXZJ2ck8gVFV6osQ7Hp4s2yZqAZHoRChh97E0lgQyZ8fU8sH5wA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Digital font for all text -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
@@ -25,20 +28,20 @@
     }
     html, body {
       height: 100%;
-    }
-    body {
       margin: 0;
       padding: 0;
-      background: var(--main-bg);
+    }
+    body {
+      min-height: 100vh;
+      width: 100vw;
+      position: relative;
       color: var(--text-main);
       font-family: var(--digital-font), monospace !important;
-      min-height: 100vh;
-      position: relative;
-      z-index: 1;
-      background-image: url('https://e1.pxfuel.com/desktop-wallpaper/767/930/desktop-wallpaper-printed-circuit-board-video-motherboard-blue-and-purple-digital-circuit-board-background.jpg');
+      /* FULL PAGE BACKGROUND FIXED! */
+      background: url('https://e1.pxfuel.com/desktop-wallpaper/767/930/desktop-wallpaper-printed-circuit-board-video-motherboard-blue-and-purple-digital-circuit-board-background.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
+      background-attachment: fixed;
+      overflow-x: hidden;
     }
     body::before {
       content: "";
@@ -177,7 +180,6 @@
       z-index: 1;
       overflow: visible;
     }
-    /* LOGO at top right of hero */
     .hero-logo-topright {
       position: absolute;
       top: 0;
@@ -192,9 +194,7 @@
       z-index: 10;
       padding: 0;
       margin: 0;
-      /* Black outline for contrast */
       filter: drop-shadow(0 0 0px #000) drop-shadow(0 0 6px #000);
-      /* For high-DPI screens: */
       image-rendering: auto;
     }
     @media (max-width: 900px) {
@@ -204,8 +204,6 @@
       .hero-logo-topright { width: 58px; height: 54px; right: 10px; top: 7px;}
       .hero { padding-top: 55px;}
     }
-
-    /* 4 floating images, responsive to mobile, never cut the frame */
     .hero-float-row {
       display: flex;
       align-items: center;
@@ -386,7 +384,8 @@
       color: var(--blue);
       font-size: 2.3rem;
       margin-bottom: 10px;
-      filter: drop-shadow(0 0 5px #00b4fa66);
+      filter: drop-shadow(0 0 8px #00b4fa);
+      transition: color 0.2s;
     }
     .feature-card h3 {
       margin: 10px 0 8px 0;
