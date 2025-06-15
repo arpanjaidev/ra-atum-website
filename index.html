@@ -161,6 +161,7 @@
         padding: 14px 14px;
       }
     }
+    /* Hero section with images at sides of logo */
     .hero {
       min-height: 75vh;
       display: flex;
@@ -174,16 +175,64 @@
       z-index: 1;
       overflow: visible;
     }
+    .hero-logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 10px;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+    .hero-side-images {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-side-images img {
+      width: 64px;
+      height: 92px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px #004aad66;
+      border: 2.5px solid var(--blue-dark);
+      background: #16192080;
+      transition: transform 0.2s;
+    }
+    .hero-side-images img:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 6px 32px #00b4fa66;
+      border-color: var(--blue);
+      z-index: 1;
+    }
     .hero-logo-big {
       width: 260px;
       height: 370px;
       max-width: 98vw;
       object-fit: fill;
-      margin: 52px auto 18px auto;
-      display: block;
       filter: drop-shadow(0 0 32px #00b4fa95);
       z-index: 10;
       background: transparent;
+      border-radius: 24px;
+      background: rgba(0,0,0,0.18);
+    }
+    @media (max-width: 900px) {
+      .hero-logo-row {
+        gap: 10px;
+      }
+      .hero-logo-big { width: 185px; height: 240px;}
+      .hero-side-images img { width: 48px; height: 70px;}
+    }
+    @media (max-width: 600px) {
+      .hero-logo-row {
+        flex-direction: row;
+        gap: 3vw;
+      }
+      .hero-logo-big { width: 125px; height: 120px;}
+      .hero-side-images img { width: 32px; height: 38px;}
+      .hero { padding-top: 38px;}
     }
     .hero h1 {
       font-size: 2.2rem;
@@ -441,7 +490,17 @@
   </header>
 
   <section class="hero">
-    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-big" />
+    <div class="hero-logo-row">
+      <div class="hero-side-images">
+        <img src="https://i.pinimg.com/736x/58/6b/b9/586bb9c98bd24b148842ddf8750a216b.jpg" alt="Side Image 1">
+        <img src="https://i.pinimg.com/736x/d7/4e/a6/d74ea623a277c47c47db455c7832a1cb.jpg" alt="Side Image 2">
+      </div>
+      <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-big" />
+      <div class="hero-side-images">
+        <img src="https://i.pinimg.com/736x/ba/50/c1/ba50c198f8a4e3d96f2536b22b2fe64a.jpg" alt="Side Image 3">
+        <img src="https://i.pinimg.com/736x/49/2f/bf/492fbf478edb0d0b80fa40068b02d093.jpg" alt="Side Image 4">
+      </div>
+    </div>
     <h1>RA Atum<br>Where Every Gift Creates Value</h1>
     <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
     Donate, earn tokens, and help light the way!</p>
