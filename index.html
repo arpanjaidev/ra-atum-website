@@ -331,7 +331,6 @@
       color: var(--black);
       transform: translateY(-2px) scale(1.03);
     }
-
     /* --- FEATURES VIDEO BG --- */
     #features {
       position: relative;
@@ -360,7 +359,6 @@
       z-index: 2;
     }
     /* --- END FEATURES VIDEO BG --- */
-
     /* --- ROADMAP VIDEO BG --- */
     #roadmap {
       position: relative;
@@ -390,7 +388,6 @@
       z-index: 2;
     }
     /* --- END ROADMAP VIDEO BG --- */
-
     /* --- ABOUT US VIDEO BG --- */
     #about {
       position: relative;
@@ -427,7 +424,6 @@
       min-height: 145px;
     }
     /* --- END ABOUT US VIDEO BG --- */
-
     .about-content ul {
       margin-top: 12px;
       padding-left: 18px;
@@ -443,7 +439,6 @@
       color: var(--sand);
       letter-spacing: 0.02em;
     }
-
     /* --- AUDITS SECTION --- */
     #audits {
       max-width: 970px;
@@ -506,7 +501,6 @@
       .audits-title { font-size: 1.22rem; }
     }
     /* --- END AUDITS SECTION --- */
-
     section {
       max-width: 970px;
       margin: 56px auto;
@@ -837,6 +831,56 @@
     </div>
   </section>
 
+  <!-- POWERED BY SECTION with video background -->
+  <section id="poweredby" style="position:relative;overflow:hidden;z-index:2;margin-bottom:42px;">
+    <div class="poweredby-video-bg" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden;border-radius:18px;">
+      <video autoplay loop muted playsinline style="width:100vw;min-width:100%;min-height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.35;pointer-events:none;">
+        <source src="https://videos.pexels.com/video-files/854322/854322-hd_1280_720_25fps.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div style="position:relative;z-index:2;text-align:center;padding:46px 8vw 32px 8vw;">
+      <h2 style="color:#00b4fa;margin-bottom:18px;letter-spacing:1.2px;">Powered By</h2>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:34px;margin-top:10px;">
+        <div style="font-size:2.4rem;display:flex;flex-direction:column;align-items:center;">
+          <i class="fa-brands fa-openai" title="OpenAI" style="color:#fff;margin-bottom:7px;"></i>
+          <span style="font-size:.97rem;">OpenAI</span>
+        </div>
+        <div style="font-size:2.4rem;display:flex;flex-direction:column;align-items:center;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Gemini_logo.svg" alt="Gemini" style="height:35px;width:auto;margin-bottom:4px;filter:invert(1);">
+          <span style="font-size:.97rem;">Gemini</span>
+        </div>
+        <div style="font-size:2.4rem;display:flex;flex-direction:column;align-items:center;">
+          <img src="https://seeklogo.com/images/D/deepseek-logo-09A3134372-seeklogo.com.png" alt="Deepseek" style="height:33px;width:auto;margin-bottom:6px;filter:invert(1);">
+          <span style="font-size:.97rem;">Deepseek</span>
+        </div>
+        <div style="font-size:2.4rem;display:flex;flex-direction:column;align-items:center;">
+          <i class="fa-brands fa-nfc-directional" title="NVIDIA" style="color:#7fffd4;margin-bottom:7px;"></i>
+          <span style="font-size:.97rem;">NVIDIA</span>
+        </div>
+        <div style="font-size:2.4rem;display:flex;flex-direction:column;align-items:center;">
+          <i class="fa-brands fa-meta" title="Meta" style="color:#4267B2;margin-bottom:7px;"></i>
+          <span style="font-size:.97rem;">Meta</span>
+        </div>
+        <div style="font-size:2.4rem;display:flex;flex-direction:column;align-items:center;">
+          <i class="fa-brands fa-google" title="Google" style="color:#fff700;margin-bottom:7px;"></i>
+          <span style="font-size:.97rem;">Google</span>
+        </div>
+        <div style="font-size:2.4rem;display:flex;flex-direction:column;align-items:center;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Google_Analytics_Logo.png" alt="Google Analytics" style="height:35px;width:auto;margin-bottom:6px;">
+          <span style="font-size:.97rem;">Analytics</span>
+        </div>
+        <div style="font-size:2.4rem;display:flex;flex-direction:column;align-items:center;">
+          <i class="fa-brands fa-github" title="GitHub" style="color:#fff;margin-bottom:7px;"></i>
+          <span style="font-size:.97rem;">GitHub</span>
+        </div>
+        <div style="font-size:2.4rem;display:flex;flex-direction:column;align-items:center;">
+          <i class="fa-brands fa-microsoft" title="Microsoft" style="color:#47a7f5;margin-bottom:7px;"></i>
+          <span style="font-size:.97rem;">Microsoft</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script>
     // Hamburger menu logic
     const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -866,7 +910,6 @@
       supportModal.classList.add('active');
       closeMobileNav();
     }
-
     // AUDITS image animation on scroll
     function auditsInView() {
       var img = document.getElementById('audits-img');
@@ -878,7 +921,6 @@
     window.addEventListener('scroll', auditsInView);
     window.addEventListener('resize', auditsInView);
     window.addEventListener('DOMContentLoaded', auditsInView);
-
     // Typing effect for About Us section
     const aboutTypingText = 
 `At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.
@@ -888,7 +930,6 @@ We collect donated toys, clothes, and books from generous souls like you, and re
 
 But we don’t stop at giving.
 We reward every donor with RA Atum Tokens, our unique digital token of appreciation — because your kindness deserves to be celebrated, shared, and remembered.`;
-
     function typeAboutText(text, el, i = 0) {
       if (i <= text.length) {
         el.innerHTML = text.slice(0, i)
