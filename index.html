@@ -390,6 +390,69 @@
     }
     /* --- END ROADMAP VIDEO BG --- */
 
+    /* --- AUDITS SECTION --- */
+    #audits {
+      max-width: 970px;
+      margin: 56px auto;
+      background: rgba(34, 34, 38, 0.88);
+      border-radius: 18px;
+      box-shadow: 0 4px 28px #00b4fa44;
+      padding: 36px 20px 30px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+      min-height: 290px;
+      z-index: 2;
+      font-family: var(--digital-font), monospace;
+    }
+    .audits-text {
+      flex: 2;
+      z-index: 2;
+      font-size: 1.11rem;
+      color: var(--sand);
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 0.5px;
+    }
+    .audits-title {
+      font-size: 2rem;
+      color: var(--blue);
+      margin-bottom: 18px;
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 2px;
+    }
+    .audits-img {
+      flex: 1.2;
+      max-width: 250px;
+      min-width: 120px;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(.6,1.5,.45,1.09), transform 0.9s cubic-bezier(.6,1.5,.45,1.09);
+      will-change: opacity, transform;
+      border-radius: 16px;
+      box-shadow: 0 10px 48px #00b4fa3d, 0 2px 0px #00b4fa22;
+      background: #222;
+      object-fit: cover;
+      height: 180px;
+      margin: 0 0 0 6px;
+      display: block;
+    }
+    .audits-img.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    @media (max-width: 800px) {
+      #audits { flex-direction: column-reverse; gap: 18px; min-height: 120px; }
+      .audits-img { margin: 0 auto; width: 75vw; max-width: 300px; height: 140px;}
+    }
+    @media (max-width: 480px) {
+      .audits-img { height: 90px; }
+      .audits-title { font-size: 1.22rem; }
+    }
+    /* --- END AUDITS SECTION --- */
+
     section {
       max-width: 970px;
       margin: 56px auto;
@@ -711,8 +774,17 @@
     </div>
   </section>
 
-  <!-- SUPPORT MODAL -->
-  <div id="support-modal" class="modal" aria-modal="true" role="dialog" tabindex="-1">
+  <!-- AUDITS COMING SOON SECTION -->
+  <section id="audits">
+    <div class="audits-text">
+      <div class="audits-title">AUDITS COMING SOON</div>
+      At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform. These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.<br><br>
+      The results and reports will be published here as soon as they are available. Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.
+    </div>
+    <img src="https://i.ibb.co/nQvW7jG/security-audit.png" alt="Audit Illustration" class="audits-img" id="audits-img">
+  </section>
+
+  <section id="support-modal" class="modal" aria-modal="true" role="dialog" tabindex="-1">
     <div class="modal-content">
       <button class="modal-close" id="close-modal" aria-label="Close">&times;</button>
       <div class="support-images">
@@ -727,7 +799,8 @@
         <li>Common Issues & Solutions</li>
       </ul>
     </div>
-  </div>
+  </section>
+
   <script>
     // Hamburger menu logic
     const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -757,6 +830,18 @@
       supportModal.classList.add('active');
       closeMobileNav();
     }
+
+    // AUDITS image animation on scroll
+    function auditsInView() {
+      var img = document.getElementById('audits-img');
+      if (!img) return;
+      var rect = img.getBoundingClientRect();
+      var inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) img.classList.add('visible');
+    }
+    window.addEventListener('scroll', auditsInView);
+    window.addEventListener('resize', auditsInView);
+    window.addEventListener('DOMContentLoaded', auditsInView);
   </script>
   <footer>
     &copy; 2025 RA Atum. All Rights Reserved.
