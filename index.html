@@ -45,7 +45,6 @@
       opacity: 0.85;
       mix-blend-mode: multiply;
     }
-    .bg-egypt-god { display: none; }
     header {
       position: sticky; top: 0;
       width: 100%;
@@ -95,7 +94,6 @@
       margin-right: 6px;
       margin-left: 0;
     }
-    /* Hamburger menu overlay styles for mobile */
     .mobile-nav-overlay {
       display: none;
       position: fixed;
@@ -145,7 +143,6 @@
       color: var(--blue);
       cursor: pointer;
     }
-    /* Hide desktop nav on mobile */
     @media (max-width: 800px) {
       nav { display: none; }
       .hamburger { display: block; }
@@ -161,7 +158,103 @@
         padding: 14px 14px;
       }
     }
-    /* Hero section with images at sides of logo */
+
+    /* Floating highlight images */
+    .hero-highlight-img {
+      position: absolute;
+      z-index: 3;
+      width: 240px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 8px 40px 0 #0084ff77, 0 0 0 4px #28244f99;
+      opacity: 0.98;
+      pointer-events: none;
+      transition: transform 0.9s cubic-bezier(0.57,1.38,0.23,0.9), opacity 0.45s;
+    }
+    .hero-highlight-img.left1 {
+      top: 140px; left: 1vw;
+      transform: translateX(-150%) rotate(-4deg);
+      animation: slideInLeft1 1.5s 0.4s forwards;
+    }
+    .hero-highlight-img.left2 {
+      top: 360px; left: 3vw;
+      transform: translateX(-140%) rotate(-7deg);
+      animation: slideInLeft2 1.6s 0.8s forwards;
+    }
+    .hero-highlight-img.right1 {
+      top: 140px; right: 1vw;
+      transform: translateX(150%) rotate(3deg);
+      animation: slideInRight1 1.5s 0.4s forwards;
+    }
+    .hero-highlight-img.right2 {
+      top: 360px; right: 3vw;
+      transform: translateX(140%) rotate(7deg);
+      animation: slideInRight2 1.6s 0.8s forwards;
+    }
+
+    @keyframes slideInLeft1 {
+      to { transform: translateX(0) rotate(-4deg); opacity: 1;}
+    }
+    @keyframes slideInLeft2 {
+      to { transform: translateX(0) rotate(-7deg); opacity: 1;}
+    }
+    @keyframes slideInRight1 {
+      to { transform: translateX(0) rotate(3deg); opacity: 1;}
+    }
+    @keyframes slideInRight2 {
+      to { transform: translateX(0) rotate(7deg); opacity: 1;}
+    }
+
+    @media (max-width: 1000px) {
+      .hero-highlight-img {
+        width: 130px;
+        height: 180px;
+        border-radius: 13px;
+      }
+      .hero-highlight-img.left1 { top: 110px; left: 1vw;}
+      .hero-highlight-img.left2 { top: 300px; left: 2vw;}
+      .hero-highlight-img.right1 { top: 110px; right: 1vw;}
+      .hero-highlight-img.right2 { top: 300px; right: 2vw;}
+    }
+    @media (max-width: 700px) {
+      .hero-highlight-img {
+        width: 72vw;
+        max-width: 340px;
+        height: 100px;
+        border-radius: 16px;
+        left: 50%!important; right: auto!important;
+        transform: translate(-50%, -110%) scale(1.07) rotate(0deg);
+      }
+      .hero-highlight-img.left1 {
+        top: 22vw; left: 50vw;
+        animation: slideInTop1 1.5s 0.2s forwards;
+      }
+      .hero-highlight-img.left2 {
+        top: 35vw; left: 50vw;
+        animation: slideInTop2 1.5s 0.5s forwards;
+      }
+      .hero-highlight-img.right1 {
+        top: auto; bottom: 18vw; left: 50vw;
+        animation: slideInBottom1 1.7s 0.2s forwards;
+      }
+      .hero-highlight-img.right2 {
+        top: auto; bottom: 6vw; left: 50vw;
+        animation: slideInBottom2 1.7s 0.5s forwards;
+      }
+      @keyframes slideInTop1 {
+        to { transform: translate(-50%, 0%) scale(1.07);}
+      }
+      @keyframes slideInTop2 {
+        to { transform: translate(-50%, 0%) scale(1.07);}
+      }
+      @keyframes slideInBottom1 {
+        to { transform: translate(-50%, 0%) scale(1.07);}
+      }
+      @keyframes slideInBottom2 {
+        to { transform: translate(-50%, 0%) scale(1.07);}
+      }
+    }
     .hero {
       min-height: 75vh;
       display: flex;
@@ -175,38 +268,6 @@
       z-index: 1;
       overflow: visible;
     }
-    .hero-logo-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 28px;
-      margin-bottom: 10px;
-      flex-wrap: nowrap;
-      width: 100%;
-    }
-    .hero-side-images {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-side-images img {
-      width: 64px;
-      height: 92px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 18px #004aad66;
-      border: 2.5px solid var(--blue-dark);
-      background: #16192080;
-      transition: transform 0.2s;
-    }
-    .hero-side-images img:hover {
-      transform: scale(1.08) rotate(-2deg);
-      box-shadow: 0 6px 32px #00b4fa66;
-      border-color: var(--blue);
-      z-index: 1;
-    }
     .hero-logo-big {
       width: 260px;
       height: 370px;
@@ -217,21 +278,13 @@
       background: transparent;
       border-radius: 24px;
       background: rgba(0,0,0,0.18);
+      margin-bottom: 6px;
     }
     @media (max-width: 900px) {
-      .hero-logo-row {
-        gap: 10px;
-      }
       .hero-logo-big { width: 185px; height: 240px;}
-      .hero-side-images img { width: 48px; height: 70px;}
     }
     @media (max-width: 600px) {
-      .hero-logo-row {
-        flex-direction: row;
-        gap: 3vw;
-      }
-      .hero-logo-big { width: 125px; height: 120px;}
-      .hero-side-images img { width: 32px; height: 38px;}
+      .hero-logo-big { width: 120px; height: 120px;}
       .hero { padding-top: 38px;}
     }
     .hero h1 {
@@ -464,6 +517,12 @@
   </style>
 </head>
 <body>
+  <!-- Floating hero highlight images -->
+  <img src="https://i.pinimg.com/736x/58/6b/b9/586bb9c98bd24b148842ddf8750a216b.jpg" class="hero-highlight-img left1" alt="Highlight 1" />
+  <img src="https://i.pinimg.com/736x/d7/4e/a6/d74ea623a277c47c47db455c7832a1cb.jpg" class="hero-highlight-img left2" alt="Highlight 2" />
+  <img src="https://i.pinimg.com/736x/ba/50/c1/ba50c198f8a4e3d96f2536b22b2fe64a.jpg" class="hero-highlight-img right1" alt="Highlight 3" />
+  <img src="https://i.pinimg.com/736x/49/2f/bf/492fbf478edb0d0b80fa40068b02d093.jpg" class="hero-highlight-img right2" alt="Highlight 4" />
+
   <header>
     <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
       <i class="fas fa-bars"></i>
@@ -490,17 +549,7 @@
   </header>
 
   <section class="hero">
-    <div class="hero-logo-row">
-      <div class="hero-side-images">
-        <img src="https://i.pinimg.com/736x/58/6b/b9/586bb9c98bd24b148842ddf8750a216b.jpg" alt="Side Image 1">
-        <img src="https://i.pinimg.com/736x/d7/4e/a6/d74ea623a277c47c47db455c7832a1cb.jpg" alt="Side Image 2">
-      </div>
-      <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-big" />
-      <div class="hero-side-images">
-        <img src="https://i.pinimg.com/736x/ba/50/c1/ba50c198f8a4e3d96f2536b22b2fe64a.jpg" alt="Side Image 3">
-        <img src="https://i.pinimg.com/736x/49/2f/bf/492fbf478edb0d0b80fa40068b02d093.jpg" alt="Side Image 4">
-      </div>
-    </div>
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-big" />
     <h1>RA Atum<br>Where Every Gift Creates Value</h1>
     <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
     Donate, earn tokens, and help light the way!</p>
