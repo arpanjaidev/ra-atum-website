@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RA Atum – Where Every Gift Creates Value</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Google Fonts: Share Tech Mono for digital effect -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
       --sand: #e7d7b6;
@@ -19,6 +21,7 @@
       --text-light: #00b4fa;
       --accent: #00b4fa;
       --accent2: #e7d7b6;
+      --digital-font: 'Share Tech Mono', monospace;
     }
     body {
       margin: 0;
@@ -34,7 +37,6 @@
       background-repeat: no-repeat;
       background-position: center center;
     }
-    /* Soft overlay for readability */
     body::before {
       content: "";
       position: fixed;
@@ -158,8 +160,6 @@
         padding: 14px 14px;
       }
     }
-
-    /* Hero floating image bar layout (no logo frame, no overlap, big and close to logo) */
     .hero {
       min-height: 75vh;
       display: flex;
@@ -172,6 +172,29 @@
       position: relative;
       z-index: 1;
       overflow: visible;
+    }
+    /* LOGO at top right of hero */
+    .hero-logo-topright {
+      position: absolute;
+      top: 0;
+      right: 3vw;
+      width: 180px;
+      height: 230px;
+      max-width: 40vw;
+      object-fit: contain;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      z-index: 10;
+      padding: 0;
+      margin: 0;
+    }
+    @media (max-width: 900px) {
+      .hero-logo-topright { width: 96px; height: 100px;}
+    }
+    @media (max-width: 600px) {
+      .hero-logo-topright { width: 70px; height: 60px; right: 10px; top: 7px;}
+      .hero { padding-top: 55px;}
     }
     .hero-float-row {
       display: flex;
@@ -216,46 +239,12 @@
       90% { opacity: 1;}
       100% { opacity: 1; transform: scale(1) translateX(0);}
     }
-    .hero-logo-big {
-      width: 260px;
-      height: 370px;
-      max-width: 98vw;
-      object-fit: contain;
-      filter: drop-shadow(0 0 32px #00b4fa95);
-      z-index: 10;
-      background: transparent !important;
-      border-radius: 0 !important;
-      margin: 0 0 0 0;
-      box-shadow: none !important;
-      border: none !important;
-      padding: 0;
-    }
-    @media (max-width: 1100px) {
-      .hero-float-row { gap: 9vw;}
-      .hero-float-img { width: 108px; height: 140px;}
-      .hero-logo-big { width: 135px; height: 150px;}
-    }
-    @media (max-width: 700px) {
-      .hero-float-row {
-        flex-direction: column;
-        gap: 14px;
-        margin-bottom: 0;
-      }
-      .hero-float-col, .hero-float-col.right {
-        flex-direction: row;
-        gap: 18px;
-        justify-content: center;
-        align-items: flex-end;
-        width: 100%;
-      }
-      .hero-logo-big {
-        width: 94px; height: 100px;
-        margin: 0 auto 0 auto;
-      }
-      .hero-float-img {
-        width: 75px;
-        height: 75px;
-      }
+    /* HERO TEXT DIGITAL FONT */
+    .hero h1,
+    .hero p {
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 2px;
+      word-spacing: 3px;
     }
     .hero h1 {
       font-size: 2.2rem;
@@ -266,17 +255,18 @@
       font-weight: 900;
       margin-bottom: 16px;
       line-height: 1.1;
-      letter-spacing: 1px;
       display: block;
       z-index: 10;
+      text-shadow: 0 4px 14px #004aad66;
     }
     .hero p {
-      font-size: 1.11rem;
+      font-size: 1.12rem;
       max-width: 650px;
       margin: 0 auto 28px auto;
       color: var(--sand);
       z-index: 10;
       text-shadow: 0 2px 8px #10101580;
+      font-family: var(--digital-font), monospace;
     }
     .hero .cta-btn {
       font-size: 1.08rem;
@@ -292,6 +282,7 @@
       margin-top: 18px;
       letter-spacing: 1px;
       z-index: 10;
+      font-family: var(--digital-font), monospace;
     }
     .hero .cta-btn:hover {
       background: linear-gradient(90deg, var(--sand-dark) 10%, var(--blue-dark) 100%);
@@ -395,7 +386,6 @@
     .about-content ul li {
       margin-bottom: 7px;
     }
-    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
@@ -513,12 +503,14 @@
   </header>
 
   <section class="hero">
+    <!-- Logo now at top right, transparent, no frame -->
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-topright" />
     <div class="hero-float-row">
       <div class="hero-float-col">
         <img src="https://i.pinimg.com/736x/58/6b/b9/586bb9c98bd24b148842ddf8750a216b.jpg" class="hero-float-img" alt="Highlight 1" />
         <img src="https://i.pinimg.com/736x/d7/4e/a6/d74ea623a277c47c47db455c7832a1cb.jpg" class="hero-float-img" alt="Highlight 2" />
       </div>
-      <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-big" />
+      <div style="width:0;height:0"></div><!-- spacer -->
       <div class="hero-float-col right">
         <img src="https://i.pinimg.com/736x/ba/50/c1/ba50c198f8a4e3d96f2536b22b2fe64a.jpg" class="hero-float-img" alt="Highlight 3" />
         <img src="https://i.pinimg.com/736x/49/2f/bf/492fbf478edb0d0b80fa40068b02d093.jpg" class="hero-float-img" alt="Highlight 4" />
