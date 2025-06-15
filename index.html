@@ -43,7 +43,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      padding: 16px 3vw; /* Default desktop padding */
+      padding: 16px 3vw;
       min-height: 62px;
       transition: padding 0.2s, min-height 0.2s;
     }
@@ -53,6 +53,7 @@
       justify-content: flex-start;
       align-items: center;
       width: 100%;
+      z-index: 102;
     }
     nav a {
       color: var(--accent);
@@ -70,6 +71,88 @@
       background: #330f15;
       color: #ffe1e5;
     }
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--accent);
+      z-index: 110;
+      margin-right: 6px;
+      margin-left: 0;
+    }
+    /* Hamburger menu overlay styles for mobile */
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(20,12,12,0.97);
+      z-index: 1200;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      transition: opacity 0.2s;
+    }
+    .mobile-nav-overlay.active {
+      display: flex;
+    }
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      margin-top: 60px;
+      gap: 6px;
+    }
+    .mobile-nav a {
+      color: var(--accent);
+      background: none;
+      text-align: left;
+      font-size: 1.55rem;
+      padding: 22px 24px;
+      border-radius: 0;
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid #330f15;
+      transition: background 0.14s, color 0.14s;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+    }
+    .mobile-nav a:last-child { border-bottom: none;}
+    .mobile-nav a:hover {
+      background: #330f15;
+      color: #ffe1e5;
+    }
+    .mobile-nav-close {
+      position: absolute;
+      right: 24px; top: 18px;
+      background: none;
+      border: none;
+      font-size: 2.6rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+    /* Hide desktop nav on mobile */
+    @media (max-width: 800px) {
+      nav {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      header {
+        min-height: 62px;
+        padding: 7px 2vw 7px 2vw;
+        justify-content: flex-start;
+      }
+    }
+    @media (max-width: 500px) {
+      .mobile-nav a {
+        font-size: 1.17rem;
+        padding: 14px 14px;
+      }
+    }
+    /* ... (rest of your styles unchanged) ... */
     .hero {
       min-height: 75vh;
       display: flex;
@@ -304,30 +387,11 @@
       font-weight: 500;
       letter-spacing: 0.5px;
     }
-    @media (max-width: 800px) {
-      header {
-        padding: 26px 2vw;
-        min-height: 86px;
-      }
-      nav {
-        gap: 10px;
-      }
-      nav a {
-        font-size: 1.34rem;
-        padding: 18px 10px;
-        border-radius: 11px;
-      }
-    }
     @media (max-width: 520px) {
       .modal-content {
         min-width: 0; width: 99vw; padding: 16px 3vw 10px 3vw;
       }
       .support-images img { height: 70px; }
-    }
-    @media (max-width: 500px) {
-      .hero-logo-big { width: 84px; height: 120px;}
-      .hero h1 { font-size: 1.02rem; }
-      nav { font-size: 1.19rem; }
     }
     footer {
       text-align: center;
@@ -354,6 +418,9 @@
 <body>
   <div class="bg-egypt-god"></div>
   <header>
+    <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
     <nav>
       <a href="#features">Features</a>
       <a href="#roadmap">Roadmap</a>
@@ -362,6 +429,18 @@
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
       <a id="support-link">Support</a>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
+      <div class="mobile-nav">
+        <a href="#features" onclick="closeMobileNav()">Features</a>
+        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>
+        <a href="#about" onclick="closeMobileNav()">About</a>
+        <a href="#contact" onclick="closeMobileNav()">Contact</a>
+        <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+        <a id="mobile-support-link" onclick="openSupportModalFromMobile()">Support</a>
+      </div>
+    </div>
   </header>
 
   <section class="hero">
@@ -456,17 +535,34 @@
     </div>
   </div>
   <script>
-    // Support Modal logic
+    // Hamburger menu logic
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+    const closeMobileNavBtn = document.getElementById('close-mobile-nav');
+    hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
+    closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
+    function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
+    window.onkeydown = e => {
+      if (e.key === "Escape") {
+        mobileNavOverlay.classList.remove('active');
+        supportModal.classList.remove('active');
+      }
+    }
+    window.onclick = e => {
+      if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active');
+      if (e.target === supportModal) supportModal.classList.remove('active');
+    }
+
+    // Support Modal logic (desktop + mobile)
     const supportLink = document.getElementById('support-link');
     const supportModal = document.getElementById('support-modal');
     const closeModal = document.getElementById('close-modal');
+    const mobileSupportLink = document.getElementById('mobile-support-link');
     supportLink.onclick = () => { supportModal.classList.add('active'); }
     closeModal.onclick = () => { supportModal.classList.remove('active'); }
-    window.onclick = e => {
-      if (e.target === supportModal) supportModal.classList.remove('active');
-    }
-    window.onkeydown = e => {
-      if (e.key === "Escape") supportModal.classList.remove('active');
+    function openSupportModalFromMobile() {
+      supportModal.classList.add('active');
+      closeMobileNav();
     }
   </script>
   <footer>
