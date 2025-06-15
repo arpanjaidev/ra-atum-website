@@ -1,11 +1,12 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RA Atum – Where Every Gift Creates Value</title>
   <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-8Jl6e76pH6MxXG/Tm9lgZXkP09lJQX8wSx1gXZJ2ck8gVFV6osQ7Hp4s2yZqAZHoRChh97E0lgQyZ8fU8sH5wA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Digital font for all text -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -330,40 +331,57 @@
       color: var(--black);
       transform: translateY(-2px) scale(1.03);
     }
-    /* --- FEATURES BG --- */
+
+    /* --- FEATURES VIDEO BG --- */
     #features {
       position: relative;
       overflow: hidden;
       z-index: 1;
     }
-    .features-img-bg {
+    .features-video-bg {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: 0;
       overflow: hidden;
       border-radius: 18px;
-      background: url('https://images.pexels.com/photos/18545039/pexels-photo-18545039/free-photo-of-a-red-glowing-city-with-neon-lights.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center center/cover no-repeat;
-      opacity: 0.2;
+    }
+    .features-video-bg video {
+      width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0.23;
       pointer-events: none;
     }
     .features {
       position: relative;
       z-index: 2;
     }
-    /* --- ROADMAP BG --- */
+    /* --- END FEATURES VIDEO BG --- */
+
+    /* --- ROADMAP VIDEO BG --- */
     #roadmap {
       position: relative;
       overflow: hidden;
       z-index: 1;
     }
-    .roadmap-img-bg {
+    .roadmap-video-bg {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: 0;
       overflow: hidden;
       border-radius: 18px;
-      background: url('https://images.pexels.com/photos/18545039/pexels-photo-18545039/free-photo-of-a-red-glowing-city-with-neon-lights.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center center/cover no-repeat;
-      opacity: 0.2;
+    }
+    .roadmap-video-bg video {
+      width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0.22;
       pointer-events: none;
     }
     .roadmap-list,
@@ -371,7 +389,9 @@
       position: relative;
       z-index: 2;
     }
-    /* --- ABOUT BG VIDEO --- */
+    /* --- END ROADMAP VIDEO BG --- */
+
+    /* --- ABOUT US VIDEO BG --- */
     #about {
       position: relative;
       overflow: hidden;
@@ -391,109 +411,284 @@
       object-fit: cover;
       position: absolute;
       top: 0; left: 0;
-      opacity: 0.18;
+      opacity: 0.17;
       pointer-events: none;
     }
     .about-content {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--sand);
+      line-height: 1.6;
+      font-size: 1.14rem;
+      font-family: var(--digital-font), monospace;
       position: relative;
       z-index: 2;
+      background: none;
+      min-height: 145px;
     }
-    /* --- POWERED BY VIDEO SECTION --- */
-    #powered-by {
+    /* --- END ABOUT US VIDEO BG --- */
+
+    .about-content ul {
+      margin-top: 12px;
+      padding-left: 18px;
+    }
+    .about-content ul li {
+      margin-bottom: 7px;
+    }
+    .about-typing {
+      min-height: 180px;
+      font-size: 1.14rem;
+      white-space: pre-line;
+      font-family: var(--digital-font), monospace;
+      color: var(--sand);
+      letter-spacing: 0.02em;
+    }
+
+    /* --- AUDITS SECTION --- */
+    #audits {
       max-width: 970px;
       margin: 56px auto;
-      background: rgba(34, 34, 38, 0.94);
+      background: rgba(34, 34, 38, 0.88);
+      border-radius: 18px;
+      box-shadow: 0 4px 28px #00b4fa44;
+      padding: 36px 20px 30px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+      min-height: 290px;
+      z-index: 2;
+      font-family: var(--digital-font), monospace;
+    }
+    .audits-text {
+      flex: 2;
+      z-index: 2;
+      font-size: 1.11rem;
+      color: var(--sand);
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 0.5px;
+    }
+    .audits-title {
+      font-size: 2rem;
+      color: var(--blue);
+      margin-bottom: 18px;
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 2px;
+    }
+    .audits-img {
+      flex: 1.2;
+      max-width: 250px;
+      min-width: 120px;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(.6,1.5,.45,1.09), transform 0.9s cubic-bezier(.6,1.5,.45,1.09);
+      will-change: opacity, transform;
+      border-radius: 16px;
+      box-shadow: 0 10px 48px #00b4fa3d, 0 2px 0px #00b4fa22;
+      background: #222;
+      object-fit: cover;
+      height: 180px;
+      margin: 0 0 0 6px;
+      display: block;
+    }
+    .audits-img.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    @media (max-width: 800px) {
+      #audits { flex-direction: column-reverse; gap: 18px; min-height: 120px; }
+      .audits-img { margin: 0 auto; width: 75vw; max-width: 300px; height: 140px;}
+    }
+    @media (max-width: 480px) {
+      .audits-img { height: 90px; }
+      .audits-title { font-size: 1.22rem; }
+    }
+    /* --- END AUDITS SECTION --- */
+
+    section {
+      max-width: 970px;
+      margin: 56px auto;
+      background: rgba(34, 34, 38, 0.88);
       border-radius: 18px;
       box-shadow: 0 4px 28px #00b4fa44;
       padding: 36px 20px 30px 20px;
       position: relative;
-      overflow: hidden;
       z-index: 2;
-      text-align: center;
-    }
-    .powered-video-bg {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 0;
-      overflow: hidden;
-      border-radius: 18px;
-    }
-    .powered-video-bg video {
-      width: 100vw;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0.19;
-      pointer-events: none;
-    }
-    .powered-content {
-      position: relative;
-      z-index: 2;
-      color: var(--sand);
-      font-size: 1.22rem;
-      letter-spacing: 1px;
-      margin-top: 6px;
-      margin-bottom: 6px;
       font-family: var(--digital-font), monospace;
     }
-    .powered-logos {
+    h2 {
+      text-align: center;
+      color: var(--blue);
+      margin-bottom: 28px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
+    }
+    .features {
       display: flex;
       flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+    }
+    @keyframes float {
+      0%   { transform: translateY(0px) scale(1);}
+      40%  { transform: translateY(-12px) scale(1.04);}
+      60%  { transform: translateY(-12px) scale(1.04);}
+      100% { transform: translateY(0px) scale(1);}
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 2px 10px #0077cc44;
+      padding: 28px 22px 19px 22px;
+      text-align: center;
+      width: 220px;
+      min-width: 170px;
+      border: 1.5px solid #00b4fa30;
+      animation: float 3.6s ease-in-out infinite;
+      font-family: var(--digital-font), monospace;
+    }
+    .features .feature-card:nth-child(1) { animation-delay: 0s; }
+    .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
+    .features .feature-card:nth-child(3) { animation-delay: 1.4s; }
+    .features .feature-card:nth-child(4) { animation-delay: 2.1s; }
+    .feature-card i {
+      color: var(--blue);
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 8px #00b4fa);
+      transition: color 0.2s;
+    }
+    .feature-card h3 {
+      margin: 10px 0 8px 0;
+      color: var(--blue-dark);
+      font-size: 1.2em;
+      font-weight: 700;
+      font-family: var(--digital-font), monospace;
+    }
+    @keyframes roadmap-pulse {
+      0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
+      20% { box-shadow: 0 0 18px 2px #00b4fa66; border-left-color: var(--sand);}
+      50% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
+    }
+    .roadmap-step {
+      background: #232224ee;
+      border-left: 4px solid var(--blue);
+      border-radius: 11px;
+      padding: 13px 19px;
+      font-weight: 600;
+      min-width: 180px;
+      box-shadow: 0 1px 8px #00b4fa1a;
+      color: var(--sand);
+      margin-bottom: 4px;
+      font-size: 1.06em;
+      text-align: left;
+      animation: roadmap-pulse 2.4s infinite;
+      font-family: var(--digital-font), monospace;
+    }
+    .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
+    .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
+    .roadmap-list .roadmap-step:nth-child(3) { animation-delay: 0.8s;}
+    .roadmap-list .roadmap-step:nth-child(4) { animation-delay: 1.2s;}
+    .roadmap-list .roadmap-step:nth-child(5) { animation-delay: 1.6s;}
+    .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
+    .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
+    .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
+    /* .about-content ul, .about-content ul li REMOVED ICONS */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 3000;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(20,20,20,0.97);
       justify-content: center;
       align-items: center;
-      gap: 24px;
-      margin: 18px 0 8px 0;
-      font-size: 2.2rem;
-    }
-    .powered-logos span {
-      font-size: 1.15rem;
-      background: var(--blue-dark);
-      color: #fff;
-      border-radius: 10px;
-      padding: 7px 18px;
-      font-weight: 600;
-      margin: 4px 7px;
-      letter-spacing: 0.6px;
-      opacity: 0.93;
-      display: inline-block;
+      transition: opacity 0.25s;
       font-family: var(--digital-font), monospace;
-      box-shadow: 0 2px 14px #004aad23;
-      border: 1px solid #00b4fa33;
     }
-    @media (max-width: 700px) {
-      .powered-logos { flex-direction: column; font-size: 1.2rem;}
-      .powered-logos span { font-size: 0.99rem; padding: 8px 12px;}
-    }
-    /* --- AUDITS SECTION, Modal, etc (no change) --- */
-    /* ...rest of your CSS unchanged... */
-    /* Typewriter effect for About Us text */
-    .about-content {
-      font-size: 1.14rem;
+    .modal.active { display: flex; }
+    .modal-content {
+      background: #232224ee;
       color: var(--sand);
-      line-height: 1.6;
+      border-radius: 18px;
+      box-shadow: 0 4px 38px #00b4fa55;
+      padding: 30px 20px 22px 20px;
+      min-width: 320px;
+      max-width: 95vw;
+      width: 480px;
+      text-align: center;
+      position: relative;
+      animation: modal-bounce 0.4s cubic-bezier(0.68,-0.55,0.27,1.55);
       font-family: var(--digital-font), monospace;
-      min-height: 200px;
-      letter-spacing: 0.03em;
-      white-space: pre-line;
-      border-right: 2px solid var(--blue);
-      overflow-wrap: break-word;
     }
-    .typewriter-cursor {
-      display: inline-block;
-      width: 1ch;
-      animation: blink 0.8s steps(1) infinite;
+    @keyframes modal-bounce {
+      0% { transform: scale(0.82); opacity: 0; }
+      75% { transform: scale(1.07);}
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 20px;
+      background: transparent;
+      border: none;
       color: var(--blue);
-      vertical-align: bottom;
-      font-weight: 900;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 20;
     }
-    @keyframes blink {
-      0%, 100% { opacity: 1;}
-      50% { opacity: 0;}
+    .support-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
     }
-    /* (Keep your modal and audits section CSS here, as previous) */
-    /* ... */
+    .support-images img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 3px 14px #004aad99;
+      object-fit: cover;
+      height: 110px;
+      background: #222;
+    }
+    .modal-content h3 {
+      margin: 16px 0 8px 0;
+      color: var(--blue);
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
+    }
+    .modal-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0 0;
+      color: var(--sand-dark);
+      font-size: 1.1rem;
+    }
+    .modal-content ul li {
+      margin-bottom: 4px;
+      font-size: 1.08rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 520px) {
+      .modal-content {
+        min-width: 0; width: 99vw; padding: 16px 3vw 10px 3vw;
+      }
+      .support-images img { height: 70px; }
+    }
+    footer {
+      text-align: center;
+      color: var(--blue-dark);
+      background: #181a1b;
+      padding: 24px 8px 19px 8px;
+      font-size: 1.09em;
+      border-top: 1.5px solid #00b4fa11;
+      margin-top: 64px;
+      letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
+    }
   </style>
 </head>
 <body>
@@ -541,9 +736,13 @@
     <a href="https://ra-wallet-dapp.vercel.app/" class="cta-btn" target="_blank"><i class="fas fa-cube"></i> Launch DApp</a>
   </section>
 
-  <!-- FEATURES SECTION with image background! -->
+  <!-- FEATURES SECTION with video background! -->
   <section id="features">
-    <div class="features-img-bg"></div>
+    <div class="features-video-bg">
+      <video autoplay loop muted playsinline>
+        <source src="https://videos.pexels.com/video-files/3129595/3129595-uhd_2560_1440_30fps.mp4" type="video/mp4">
+      </video>
+    </div>
     <h2>Features</h2>
     <div class="features">
       <div class="feature-card">
@@ -569,9 +768,13 @@
     </div>
   </section>
 
-  <!-- ROADMAP SECTION with image background! -->
+  <!-- ROADMAP SECTION with video background! -->
   <section id="roadmap">
-    <div class="roadmap-img-bg"></div>
+    <div class="roadmap-video-bg">
+      <video autoplay loop muted playsinline>
+        <source src="https://videos.pexels.com/video-files/3141208/3141208-uhd_2560_1440_25fps.mp4" type="video/mp4">
+      </video>
+    </div>
     <h2>Roadmap</h2>
     <div class="roadmap-list">
       <div class="roadmap-step">✅ Whitepaper Released</div>
@@ -585,7 +788,7 @@
     </div>
   </section>
 
-  <!-- ABOUT US SECTION with video background and typewriter text -->
+  <!-- ABOUT US SECTION with VIDEO background and typing effect! -->
   <section id="about">
     <div class="about-video-bg">
       <video autoplay loop muted playsinline>
@@ -593,7 +796,9 @@
       </video>
     </div>
     <h2>About RA Atum</h2>
-    <div class="about-content" id="about-typewriter"></div>
+    <div class="about-content">
+      <div class="about-typing" id="about-typing"></div>
+    </div>
   </section>
 
   <section id="contact">
@@ -612,30 +817,7 @@
       At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform. These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.<br><br>
       The results and reports will be published here as soon as they are available. Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.
     </div>
-    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
-  </section>
-
-  <!-- POWERED BY SECTION with video background -->
-  <section id="powered-by">
-    <div class="powered-video-bg">
-      <video autoplay loop muted playsinline>
-        <source src="https://videos.pexels.com/video-files/854322/854322-hd_1280_720_25fps.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="powered-content">
-      <b>Powered by:</b>
-      <div class="powered-logos">
-        <span>OpenAI</span>
-        <span>Gemini</span>
-        <span>Deepseek</span>
-        <span>Nvidia</span>
-        <span>Meta</span>
-        <span>Google</span>
-        <span>Google Analytics</span>
-        <span>GitHub</span>
-        <span>Microsoft</span>
-      </div>
-    </div>
+   <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
   </section>
 
   <section id="support-modal" class="modal" aria-modal="true" role="dialog" tabindex="-1">
@@ -697,8 +879,9 @@
     window.addEventListener('resize', auditsInView);
     window.addEventListener('DOMContentLoaded', auditsInView);
 
-    // Typewriter effect for About Us section
-    const aboutTypewriterText = `At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.
+    // Typing effect for About Us section
+    const aboutTypingText = 
+`At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.
 
 We are more than just a store. We are a movement.
 We collect donated toys, clothes, and books from generous souls like you, and redistribute them to children and families who need them most.
@@ -706,20 +889,16 @@ We collect donated toys, clothes, and books from generous souls like you, and re
 But we don’t stop at giving.
 We reward every donor with RA Atum Tokens, our unique digital token of appreciation — because your kindness deserves to be celebrated, shared, and remembered.`;
 
-    let atIndex = 0;
-    function typeAboutText() {
-      const el = document.getElementById('about-typewriter');
-      if (!el) return;
-      if (atIndex <= aboutTypewriterText.length) {
-        el.innerHTML = aboutTypewriterText.slice(0, atIndex) + '<span class="typewriter-cursor">|</span>';
-        atIndex++;
-        setTimeout(typeAboutText, 18 + Math.random()*35);
-      } else {
-        el.innerHTML = aboutTypewriterText + '<span class="typewriter-cursor">&nbsp;</span>';
+    function typeAboutText(text, el, i = 0) {
+      if (i <= text.length) {
+        el.innerHTML = text.slice(0, i)
+          .replace(/\n/g, '<br>');
+        setTimeout(() => typeAboutText(text, el, i + 1), 13 + Math.random()*35);
       }
     }
-    document.addEventListener("DOMContentLoaded", function() {
-      typeAboutText();
+    document.addEventListener('DOMContentLoaded', () => {
+      const typingEl = document.getElementById('about-typing');
+      if (typingEl) typeAboutText(aboutTypingText, typingEl);
     });
   </script>
   <footer>
