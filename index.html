@@ -34,6 +34,26 @@
       opacity: 0.36;
       pointer-events: none;
     }
+    /* Fire animation at the top using animated PNG/GIF overlay */
+    .fire-top {
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 340px;
+      height: 120px;
+      max-width: 95vw;
+      pointer-events: none;
+      z-index: 5;
+      /* Free fire GIF by pngtree (replace URL for custom): */
+      background: url('https://i.ibb.co/7WYm3S7/fire-3d-top.gif') center center no-repeat;
+      background-size: contain;
+      opacity: 0.82;
+      filter: drop-shadow(0 12px 24px #ff890066);
+      animation: fire-bounce 4s ease-in-out infinite;
+    }
+    @keyframes fire-bounce {
+      0%,100% { transform: translateX(-50%) scale(1);}
+      50% { transform: translateX(-50%) scale(1.07);}
+    }
     header {
       position: sticky; top: 0;
       width: 100%;
@@ -75,18 +95,20 @@
       align-items: center;
       text-align: center;
       background: linear-gradient(115deg, #1a1517 0%, #430606 60%, #ff1744 100%);
-      padding: 60px 8vw 36px 8vw;
+      padding: 80px 8vw 36px 8vw;
       position: relative;
       z-index: 1;
+      overflow: visible;
     }
+    /* Stretched logo */
     .hero-logo-big {
       width: 140px;
-      height: 140px;
-      max-width: 80vw;
-      margin: 0 auto 28px auto;
+      height: 210px;     /* Vertically stretched! */
+      max-width: 90vw;
+      object-fit: fill;
+      margin: 32px auto 18px auto;
       display: block;
-      filter: drop-shadow(0 0 22px #ff1744bb);
-      /* No animation */
+      filter: drop-shadow(0 0 28px #ff1744bb);
     }
     .hero h1 {
       font-size: 2.1rem;
@@ -181,7 +203,6 @@
       font-size: 1.2em;
       font-weight: 700;
     }
-    /* Roadmap animation */
     @keyframes roadmap-pulse {
       0%,100% { box-shadow: 0 0 0px #ff174400; border-left-color: var(--accent);}
       20% { box-shadow: 0 0 18px 2px #ff1744bb; border-left-color: #fff;}
@@ -247,13 +268,15 @@
       section { padding: 14px 2vw 13px 2vw;}
       .roadmap-list { flex-direction: column; gap: 7px;}
       .hero h1 { font-size: 1.14rem; }
-      .hero-logo-big { width: 96px; height: 96px; }
+      .hero-logo-big { width: 88px; height: 140px; }
       .hero { padding: 24px 2vw 18px 2vw; }
+      .fire-top { width: 200px; height: 66px;}
     }
     @media (max-width: 500px) {
-      .hero-logo-big { width: 72px; height: 72px;}
+      .hero-logo-big { width: 58px; height: 100px;}
       .hero h1 { font-size: 1.02rem; }
       nav { font-size: 0.93rem; }
+      .fire-top { width: 110px; height: 37px;}
     }
     body::after {
       content: "";
@@ -280,6 +303,7 @@
   </header>
 
   <section class="hero">
+    <div class="fire-top"></div>
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-big" />
     <h1>RA Atum<br>Where Every Gift Creates Value</h1>
     <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
