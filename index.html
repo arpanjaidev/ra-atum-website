@@ -158,7 +158,6 @@
         padding: 7px 2vw 7px 2vw;
         justify-content: flex-start;
       }
-      .mobile-nav-overlay { display: flex !important; }
     }
     @media (max-width: 500px) {
       .mobile-nav a {
@@ -195,13 +194,18 @@
       margin: 0;
       filter: drop-shadow(0 0 0px #000) drop-shadow(0 0 6px #000);
       image-rendering: auto;
+      transition: width 0.25s, height 0.25s;
     }
     @media (max-width: 900px) {
-      .hero-logo-topright { width: 96px; height: 100px;}
+      .hero-logo-topright { width: 120px; height: 130px;}
     }
     @media (max-width: 600px) {
-      .hero-logo-topright { width: 58px; height: 54px; right: 10px; top: 7px;}
+      .hero-logo-topright { width: 140px; height: 135px; right: 10px; top: 7px;} /* Made bigger for mobile */
       .hero { padding-top: 55px;}
+    }
+    @media (max-width: 450px) {
+      .hero-logo-topright { width: 110px; height: 110px; }
+      .hero { padding-top: 42px; }
     }
     .hero-float-row {
       display: flex;
@@ -287,8 +291,6 @@
         min-width: 32px;
         min-height: 20px;
       }
-      .hero-logo-topright { width: 39px; height: 37px; }
-      .hero { padding-top: 42px; }
     }
     .hero h1 {
       font-size: 2.2rem;
@@ -551,13 +553,7 @@
     .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
     .features .feature-card:nth-child(3) { animation-delay: 1.4s; }
     .features .feature-card:nth-child(4) { animation-delay: 2.1s; }
-    .feature-card i {
-      color: var(--blue);
-      font-size: 2.3rem;
-      margin-bottom: 10px;
-      filter: drop-shadow(0 0 8px #00b4fa);
-      transition: color 0.2s;
-    }
+    /* .feature-card i { -- removed: no icons */ 
     .feature-card h3 {
       margin: 10px 0 8px 0;
       color: var(--blue-dark);
@@ -593,7 +589,6 @@
     .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
     .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
     .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
-    /* .about-content ul, .about-content ul li REMOVED ICONS */
     .modal {
       display: none;
       position: fixed;
@@ -809,7 +804,7 @@
     <h1>RA Atum<br>Where Every Gift Creates Value</h1>
     <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
     Donate, earn tokens, and help light the way!</p>
-    <a href="https://ra-wallet-dapp.vercel.app/" class="cta-btn" target="_blank"><i class="fas fa-cube"></i> Launch DApp</a>
+    <a href="https://ra-wallet-dapp.vercel.app/" class="cta-btn" target="_blank">Launch DApp</a>
   </section>
 
   <!-- FEATURES SECTION with video background! -->
@@ -822,22 +817,18 @@
     <h2>Features</h2>
     <div class="features">
       <div class="feature-card">
-        <i class="fas fa-hand-holding-heart"></i>
         <h3>Accept Donations</h3>
         <div>Toys, books, clothes for kids & families</div>
       </div>
       <div class="feature-card">
-        <i class="fas fa-tshirt"></i>
         <h3>Kidswear & Toys</h3>
         <div>Ethical, affordable shopping in our online store</div>
       </div>
       <div class="feature-card">
-        <i class="fas fa-gem"></i>
         <h3>Token Rewards</h3>
         <div>Get RA Atum Tokens for every donation</div>
       </div>
       <div class="feature-card">
-        <i class="fas fa-users"></i>
         <h3>Community</h3>
         <div>Build a network of compassion & crypto</div>
       </div>
