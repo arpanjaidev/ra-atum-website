@@ -34,24 +34,31 @@
       opacity: 0.36;
       pointer-events: none;
     }
-    /* FIRE EFFECT - big and at top */
-    .fire-top {
+    /* Fire SVG overlay at top of hero */
+    .fire-svg {
       position: absolute;
-      top: -60px; left: 50%; transform: translateX(-50%);
-      width: 800px;
-      height: 200px;
-      max-width: 98vw;
+      top: -40px; left: 50%; transform: translateX(-50%);
+      width: 480px;
+      max-width: 99vw;
+      height: 120px;
+      z-index: 22;
       pointer-events: none;
-      z-index: 20;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/2/2b/Animated_Fire.gif') center top no-repeat;
-      background-size: contain;
-      opacity: 0.92;
-      filter: drop-shadow(0 32px 48px #ff890099);
-      animation: fire-bounce 4s ease-in-out infinite;
+      opacity: 0.85;
     }
-    @keyframes fire-bounce {
-      0%,100% { transform: translateX(-50%) scale(1);}
-      50% { transform: translateX(-50%) scale(1.09);}
+    .fire-svg .flame {
+      transform-origin: 50% 100%;
+      animation: flame-flicker 1.7s infinite alternate cubic-bezier(0.7,0.2,0.2,0.9);
+    }
+    .fire-svg .flame2 {
+      animation-delay: 0.8s;
+    }
+    .fire-svg .flame3 {
+      animation-delay: 1.1s;
+    }
+    @keyframes flame-flicker {
+      0% { transform: scaleY(1) translateY(0); opacity: 1;}
+      60% { transform: scaleY(1.14) translateY(-7px) scaleX(0.97); opacity: 0.95;}
+      100% { transform: scaleY(1.22) translateY(-15px) scaleX(1.03); opacity: 0.8;}
     }
     header {
       position: sticky; top: 0;
@@ -99,7 +106,6 @@
       z-index: 1;
       overflow: visible;
     }
-    /* ULTRA TALL LOGO */
     .hero-logo-big {
       width: 260px;
       height: 370px;
@@ -258,10 +264,6 @@
       margin-top: 64px;
       letter-spacing: 1px;
     }
-    @media (max-width: 1100px) {
-      .fire-top { width: 90vw; height: 120px; top: -34px; }
-      .hero-logo-big { width: 40vw; height: 320px;}
-    }
     @media (max-width: 800px) {
       nav {
         gap: 5px;
@@ -278,13 +280,13 @@
       .hero h1 { font-size: 1.14rem; }
       .hero-logo-big { width: 150px; height: 220px;}
       .hero { padding: 24px 2vw 18px 2vw; }
-      .fire-top { width: 95vw; height: 80px; top: -20px;}
+      .fire-svg { width: 220px; height: 50px; top: -15px;}
     }
     @media (max-width: 500px) {
       .hero-logo-big { width: 84px; height: 120px;}
       .hero h1 { font-size: 1.02rem; }
       nav { font-size: 0.93rem; }
-      .fire-top { width: 90vw; height: 30px; top: -9px;}
+      .fire-svg { width: 100px; height: 20px; top: -7px;}
     }
     body::after {
       content: "";
@@ -311,7 +313,14 @@
   </header>
 
   <section class="hero">
-    <div class="fire-top"></div>
+    <!-- SVG Fire -->
+    <svg class="fire-svg" viewBox="0 0 480 120">
+      <g>
+        <path class="flame" fill="#FFD54F" d="M240 80 Q245 30 260 60 Q272 88 240 120 Q205 88 220 55 Q232 28 240 80Z"/>
+        <path class="flame flame2" fill="#FF9800" d="M240 90 Q250 58 260 80 Q267 104 240 120 Q214 98 225 70 Q234 50 240 90Z"/>
+        <path class="flame flame3" fill="#FF6D00" d="M240 105 Q247 87 255 105 Q260 120 240 120 Q220 120 225 105 Q234 85 240 105Z"/>
+      </g>
+    </svg>
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-big" />
     <h1>RA Atum<br>Where Every Gift Creates Value</h1>
     <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
