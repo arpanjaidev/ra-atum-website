@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RA Atum – Where Every Gift Creates Value</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Google Fonts: Share Tech Mono for digital effect -->
+  <!-- Digital font for all text -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -23,12 +23,15 @@
       --accent2: #e7d7b6;
       --digital-font: 'Share Tech Mono', monospace;
     }
+    html, body {
+      height: 100%;
+    }
     body {
       margin: 0;
       padding: 0;
       background: var(--main-bg);
       color: var(--text-main);
-      font-family: 'Segoe UI', sans-serif;
+      font-family: var(--digital-font), monospace !important;
       min-height: 100vh;
       position: relative;
       z-index: 1;
@@ -47,6 +50,7 @@
       opacity: 0.85;
       mix-blend-mode: multiply;
     }
+    * { font-family: var(--digital-font), monospace !important; }
     header {
       position: sticky; top: 0;
       width: 100%;
@@ -188,14 +192,20 @@
       z-index: 10;
       padding: 0;
       margin: 0;
+      /* Black outline for contrast */
+      filter: drop-shadow(0 0 0px #000) drop-shadow(0 0 6px #000);
+      /* For high-DPI screens: */
+      image-rendering: auto;
     }
     @media (max-width: 900px) {
       .hero-logo-topright { width: 96px; height: 100px;}
     }
     @media (max-width: 600px) {
-      .hero-logo-topright { width: 70px; height: 60px; right: 10px; top: 7px;}
+      .hero-logo-topright { width: 58px; height: 54px; right: 10px; top: 7px;}
       .hero { padding-top: 55px;}
     }
+
+    /* 4 floating images, responsive to mobile, never cut the frame */
     .hero-float-row {
       display: flex;
       align-items: center;
@@ -204,6 +214,7 @@
       width: 100%;
       margin-bottom: 10px;
       z-index: 2;
+      pointer-events: none;
     }
     .hero-float-col {
       display: flex;
@@ -212,6 +223,7 @@
       align-items: flex-end;
       justify-content: center;
       z-index: 2;
+      pointer-events: none;
     }
     .hero-float-col.right {
       align-items: flex-start;
@@ -223,7 +235,6 @@
       border-radius: 20px;
       box-shadow: 0 8px 36px #0084ff55, 0 0 0 4px #24224f44;
       opacity: 0.98;
-      pointer-events: none;
       margin: 0;
       background: #2221;
       border: none;
@@ -239,13 +250,47 @@
       90% { opacity: 1;}
       100% { opacity: 1; transform: scale(1) translateX(0);}
     }
-    /* HERO TEXT DIGITAL FONT */
-    .hero h1,
-    .hero p {
-      font-family: var(--digital-font), monospace;
-      letter-spacing: 2px;
-      word-spacing: 3px;
+    @media (max-width: 700px) {
+      .hero-float-row {
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 0;
+      }
+      .hero-float-col,
+      .hero-float-col.right {
+        flex-direction: column;
+        gap: 7px;
+        align-items: flex-end;
+        width: auto;
+      }
+      .hero-float-col.right {
+        align-items: flex-start;
+      }
+      .hero-float-img {
+        width: 54vw;
+        max-width: 140px;
+        min-width: 60px;
+        height: 77px;
+        max-height: 110px;
+        min-height: 38px;
+        border-radius: 13px;
+        margin: 0;
+        box-shadow: 0 4px 12px #0084ff55, 0 0 0 2px #24224f33;
+      }
+      .hero { padding-top: 60px; }
     }
+    @media (max-width: 450px) {
+      .hero-float-img {
+        width: 39vw;
+        height: 56px;
+        max-width: 90px;
+        min-width: 32px;
+        min-height: 20px;
+      }
+      .hero-logo-topright { width: 39px; height: 37px; }
+      .hero { padding-top: 42px; }
+    }
+
     .hero h1 {
       font-size: 2.2rem;
       background: linear-gradient(90deg, var(--blue) 30%, var(--sand) 90%);
@@ -258,6 +303,7 @@
       display: block;
       z-index: 10;
       text-shadow: 0 4px 14px #004aad66;
+      font-family: var(--digital-font), monospace;
     }
     .hero p {
       font-size: 1.12rem;
@@ -298,6 +344,7 @@
       padding: 36px 20px 30px 20px;
       position: relative;
       z-index: 2;
+      font-family: var(--digital-font), monospace;
     }
     h2 {
       text-align: center;
@@ -305,6 +352,7 @@
       margin-bottom: 28px;
       font-size: 2rem;
       letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
     }
     .features {
       display: flex;
@@ -328,6 +376,7 @@
       min-width: 170px;
       border: 1.5px solid #00b4fa30;
       animation: float 3.6s ease-in-out infinite;
+      font-family: var(--digital-font), monospace;
     }
     .features .feature-card:nth-child(1) { animation-delay: 0s; }
     .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
@@ -344,6 +393,7 @@
       color: var(--blue-dark);
       font-size: 1.2em;
       font-weight: 700;
+      font-family: var(--digital-font), monospace;
     }
     @keyframes roadmap-pulse {
       0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
@@ -363,6 +413,7 @@
       font-size: 1.06em;
       text-align: left;
       animation: roadmap-pulse 2.4s infinite;
+      font-family: var(--digital-font), monospace;
     }
     .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
     .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
@@ -378,6 +429,7 @@
       color: var(--sand);
       line-height: 1.6;
       font-size: 1.14rem;
+      font-family: var(--digital-font), monospace;
     }
     .about-content ul {
       margin-top: 12px;
@@ -395,6 +447,7 @@
       justify-content: center;
       align-items: center;
       transition: opacity 0.25s;
+      font-family: var(--digital-font), monospace;
     }
     .modal.active { display: flex; }
     .modal-content {
@@ -409,6 +462,7 @@
       text-align: center;
       position: relative;
       animation: modal-bounce 0.4s cubic-bezier(0.68,-0.55,0.27,1.55);
+      font-family: var(--digital-font), monospace;
     }
     @keyframes modal-bounce {
       0% { transform: scale(0.82); opacity: 0; }
@@ -444,6 +498,7 @@
       color: var(--blue);
       font-size: 1.2rem;
       letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
     }
     .modal-content ul {
       list-style: none;
@@ -473,6 +528,7 @@
       border-top: 1.5px solid #00b4fa11;
       margin-top: 64px;
       letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
     }
   </style>
 </head>
@@ -503,14 +559,13 @@
   </header>
 
   <section class="hero">
-    <!-- Logo now at top right, transparent, no frame -->
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-topright" />
     <div class="hero-float-row">
       <div class="hero-float-col">
         <img src="https://i.pinimg.com/736x/58/6b/b9/586bb9c98bd24b148842ddf8750a216b.jpg" class="hero-float-img" alt="Highlight 1" />
         <img src="https://i.pinimg.com/736x/d7/4e/a6/d74ea623a277c47c47db455c7832a1cb.jpg" class="hero-float-img" alt="Highlight 2" />
       </div>
-      <div style="width:0;height:0"></div><!-- spacer -->
+      <div style="width:0;height:0"></div>
       <div class="hero-float-col right">
         <img src="https://i.pinimg.com/736x/ba/50/c1/ba50c198f8a4e3d96f2536b22b2fe64a.jpg" class="hero-float-img" alt="Highlight 3" />
         <img src="https://i.pinimg.com/736x/49/2f/bf/492fbf478edb0d0b80fa40068b02d093.jpg" class="hero-float-img" alt="Highlight 4" />
