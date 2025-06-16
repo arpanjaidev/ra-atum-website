@@ -165,6 +165,30 @@
         padding: 14px 14px;
       }
     }
+    /* NFT SECTION VIDEO BG */
+    .nft-bg-video-container {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      border-radius: 18px;
+      pointer-events: none;
+    }
+    .nft-bg-video-container video {
+      width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    section.nft-gallery-section {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
     section {
       max-width: 970px;
       margin: 56px auto;
@@ -258,7 +282,7 @@
     @media (max-width: 700px) {
       .nft-gallery-grid {
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 14px;
+        gap: 12px;
       }
       .nft-card {
         width: 95vw;
@@ -267,123 +291,96 @@
         padding: 10px 4px 15px 4px;
       }
     }
-    /* --- Support Section --- */
+    /* SUPPORT SECTION */
     #support {
-      background: rgba(20, 29, 40, 0.92);
+      margin-top: 40px;
+      margin-bottom: 0;
+      background: rgba(34, 34, 38, 0.96);
+      box-shadow: 0 4px 16px #00b4fa1a;
       border-radius: 18px;
-      box-shadow: 0 4px 28px #00b4fa22;
-      padding: 36px 20px 32px 20px;
-      margin: 56px auto;
-      max-width: 970px;
-      text-align: center;
-      color: var(--sand);
-      z-index: 2;
+      padding: 36px 0 30px 0;
       position: relative;
+      max-width: 670px;
+    }
+    .support-intro-line {
+      color: var(--blue-dark);
+      font-size: 1.13rem;
+      margin: 0 0 14px 0;
+      text-align: center;
     }
     .support-images-zigzag {
       display: flex;
       flex-direction: column;
-      gap: 36px;
-      margin: 32px 0 12px 0;
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+      margin: 0 auto 22px auto;
+      max-width: 410px;
     }
     .support-img-row {
       display: flex;
-      align-items: center;
+      width: 100%;
       justify-content: flex-start;
-      gap: 24px;
-      min-height: 140px;
+      transition: transform .9s cubic-bezier(.5,1.6,.35,1.01), opacity .7s cubic-bezier(.5,1.6,.35,1.01);
       opacity: 0;
-      transform: translateX(0) scale(0.96);
-      transition: opacity 0.6s cubic-bezier(.66,1.35,.25,.82), transform 0.6s cubic-bezier(.66,1.35,.25,.82);
-      will-change: opacity, transform;
+      will-change: transform, opacity;
     }
-    .support-img-row.visible {
-      opacity: 1;
-      transform: translateX(0) scale(1.02);
-    }
-    .support-img-row.left {
-      flex-direction: row;
-    }
-    .support-img-row.left .support-img {
-      margin-right: auto;
-      margin-left: 0;
-      box-shadow: 0 8px 36px #0084ff55, 0 0 0 4px #24224f44;
-      transform: translateX(-80px) scale(0.96);
-    }
-    .support-img-row.left.visible .support-img {
-      transform: translateX(0) scale(1.05);
-    }
-    .support-img-row.right {
-      flex-direction: row-reverse;
-    }
-    .support-img-row.right .support-img {
-      margin-left: auto;
-      margin-right: 0;
-      box-shadow: 0 8px 36px #bda76a77, 0 0 0 4px #24224f44;
-      transform: translateX(80px) scale(0.96);
-    }
-    .support-img-row.right.visible .support-img {
-      transform: translateX(0) scale(1.05);
-    }
-    .support-img {
-      width: 220px;
-      height: 130px;
-      border-radius: 13px;
+    .support-img-row.right { justify-content: flex-end; }
+    .support-img-row .support-img {
+      width: 92%;
+      max-width: 222px;
+      min-width: 80px;
+      height: 88px;
       object-fit: cover;
-      background: #222;
-      transition: transform 0.6s cubic-bezier(.66,1.35,.25,.82), box-shadow 0.3s;
+      border-radius: 14px;
       box-shadow: 0 3px 14px #004aad99;
-      border: none;
-      opacity: 0.98;
+      margin: 0;
+      background: #222;
+      transition: box-shadow .2s;
     }
-    /* Fade-up for mobile */
-    @media (max-width: 640px) {
-      .support-images-zigzag {
-        gap: 14px;
-        margin: 18px 0 7px 0;
-      }
-      .support-img-row {
-        flex-direction: row !important;
-        justify-content: center !important;
-        align-items: center;
-        min-height: 70px;
-      }
-      .support-img {
-        width: 95vw;
-        max-width: 185px;
-        height: 70px;
-        border-radius: 8px;
-      }
-      .support-img-row.left .support-img,
-      .support-img-row.right .support-img {
-        margin: 0 auto !important;
-        transform: translateY(40px) scale(0.96);
-      }
-      .support-img-row.visible .support-img {
-        transform: translateY(0) scale(1.02);
-      }
-    }
+    /* Zig zag appear/disappear effect */
+    .support-img-row.left { transform: translateX(-90px);}
+    .support-img-row.right { transform: translateX(90px);}
+    .support-img-row.visible { opacity: 1; transform: translateX(0);}
+    .support-img-row { opacity: 0;}
+    /* Make rows closer together */
+    .support-img-row { margin-bottom: 6px; }
+    /* FAQ */
     #support h3 {
-      margin: 18px 0 8px 0;
       color: var(--blue);
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-      font-family: var(--digital-font), monospace;
+      font-size: 1.15rem;
+      margin: 20px 0 8px 0;
+      text-align: center;
+      letter-spacing: 0.8px;
     }
     #support ul {
-      list-style: none;
-      padding: 0;
-      margin: 12px 0 0 0;
+      list-style: disc;
+      padding-left: 26px;
       color: var(--sand-dark);
-      font-size: 1.1rem;
-      text-align: left;
-      display: inline-block;
+      font-size: 1.08rem;
+      margin-bottom: 0;
     }
     #support ul li {
-      margin-bottom: 4px;
-      font-size: 1.08rem;
-      font-weight: 500;
-      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+    /* Mobile: all support images slide up and fade in */
+    @media (max-width: 650px) {
+      .support-images-zigzag {
+        max-width: 99vw;
+        gap: 8px;
+      }
+      .support-img-row {
+        justify-content: center !important;
+        transform: translateY(48px) !important;
+      }
+      .support-img-row.visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+      .support-img-row .support-img {
+        height: 70px;
+        max-width: 94vw;
+      }
     }
     footer {
       text-align: center;
@@ -409,6 +406,7 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+      <a id="support-link" style="pointer-events:none;opacity:0.6;">Support</a>
     </nav>
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
@@ -418,14 +416,21 @@
         <a href="#about" onclick="closeMobileNav()">About</a>
         <a href="#contact" onclick="closeMobileNav()">Contact</a>
         <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+        <a id="mobile-support-link" style="pointer-events:none;opacity:0.6;">Support</a>
       </div>
     </div>
   </header>
 
-  <section>
+  <!-- NFT SECTION with video background -->
+  <section class="nft-gallery-section">
+    <div class="nft-bg-video-container">
+      <video autoplay loop muted playsinline>
+        <source src="https://videos.pexels.com/video-files/3191573/3191573-uhd_2560_1440_25fps.mp4" type="video/mp4">
+      </video>
+    </div>
     <h2>NFT Gallery</h2>
     <div class="nft-gallery-grid">
-      <!-- NFT Cards here, unchanged -->
+      <!-- NFT 1 -->
       <div class="nft-card">
         <img src="https://i.pinimg.com/736x/9d/92/93/9d9293c4b9b8e4d2f6de30d7672f49b3.jpg" alt="NFT Art 1" />
         <h3>Sunrise Guardian</h3>
@@ -433,6 +438,7 @@
         <div class="nft-desc">The first NFT in the RA Atum charity series, symbolizing hope and new beginnings.</div>
         <a href="#" class="nft-link" target="_blank">View Details</a>
       </div>
+      <!-- NFT 2 -->
       <div class="nft-card">
         <img src="https://i.pinimg.com/736x/f3/ae/5a/f3ae5accc97cc3dca9a67a9e2b3da5a7.jpg" alt="NFT Art 2" />
         <h3>Token of Kindness</h3>
@@ -440,6 +446,7 @@
         <div class="nft-desc">A digital token representing every act of giving and every child supported by our mission.</div>
         <a href="#" class="nft-link" target="_blank">View Details</a>
       </div>
+      <!-- NFT 3 -->
       <div class="nft-card">
         <img src="https://i.pinimg.com/736x/c6/cc/8a/c6cc8a4e9d9439c9e33dfac4e9f6a206.jpg" alt="NFT Art 3" />
         <h3>Light the Way</h3>
@@ -447,6 +454,7 @@
         <div class="nft-desc">A tribute to donors who help light up lives—one NFT at a time.</div>
         <a href="#" class="nft-link" target="_blank">View Details</a>
       </div>
+      <!-- NFT 4 -->
       <div class="nft-card">
         <img src="https://i.pinimg.com/736x/60/2c/1f/602c1f96810431545ce73f996edbef8a.jpg" alt="NFT Art 4" />
         <h3>Circle of Support</h3>
@@ -457,9 +465,12 @@
     </div>
   </section>
 
-  <!-- Support Section (Zig-Zag images, animated on scroll) -->
+  <!-- SUPPORT SECTION -->
   <section id="support">
     <h2>Support</h2>
+    <div class="support-intro-line">
+      Need support? We're always ready to help! Email: <a href="mailto:info@ra-atum.com" style="color:var(--blue);">info@ra-atum.com</a>
+    </div>
     <div class="support-images-zigzag" id="support-images-zigzag">
       <div class="support-img-row left">
         <img class="support-img" src="https://i.pinimg.com/736x/28/06/5d/28065dcf16a002eb06e58710d37471f3.jpg" alt="Support 1">
@@ -481,7 +492,7 @@
     </ul>
   </section>
 
-  <!-- (OPTIONAL: About and Contact anchors for in-page navigation compatibility) -->
+  <!-- About & Contact anchors for nav compatibility -->
   <section id="about" style="background:none;box-shadow:none;padding:0;margin:0;max-width:none;"></section>
   <section id="contact" style="background:none;box-shadow:none;padding:0;margin:0;max-width:none;"></section>
 
@@ -493,37 +504,36 @@
     hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
     closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
     function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
-    window.onkeydown = e => {
-      if (e.key === "Escape") {
-        mobileNavOverlay.classList.remove('active');
-      }
-    }
-    window.onclick = e => {
-      if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active');
-    };
-
-    // Support images scroll animation logic
-    function isInViewport(el) {
-      const rect = el.getBoundingClientRect();
-      return (
-        rect.top < window.innerHeight - 40 &&
-        rect.bottom > 60
-      );
-    }
-
-    function showSupportImagesOnScroll() {
-      const imgRows = document.querySelectorAll('.support-img-row');
-      imgRows.forEach(row => {
-        if (isInViewport(row)) {
+    // Zigzag support images scroll-in effect
+    function supportInView() {
+      const isMobile = window.innerWidth < 650;
+      const rows = document.querySelectorAll('.support-img-row');
+      rows.forEach((row, i) => {
+        const rect = row.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight * 0.87 && rect.bottom > 0;
+        if (inView) {
           row.classList.add('visible');
         } else {
           row.classList.remove('visible');
         }
       });
     }
-    window.addEventListener('scroll', showSupportImagesOnScroll);
-    window.addEventListener('resize', showSupportImagesOnScroll);
-    window.addEventListener('DOMContentLoaded', showSupportImagesOnScroll);
+    window.addEventListener('scroll', supportInView);
+    window.addEventListener('resize', supportInView);
+    window.addEventListener('DOMContentLoaded', supportInView);
+    // On mobile, always fade/slide up
+    function updateSupportRowsForMobile() {
+      const isMobile = window.innerWidth < 650;
+      const rows = document.querySelectorAll('.support-img-row');
+      rows.forEach(row => {
+        if (isMobile) {
+          row.classList.remove('left','right');
+        }
+      });
+      supportInView();
+    }
+    window.addEventListener('resize', updateSupportRowsForMobile);
+    window.addEventListener('DOMContentLoaded', updateSupportRowsForMobile);
   </script>
   <footer>
     &copy; 2025 RA Atum. All Rights Reserved.
