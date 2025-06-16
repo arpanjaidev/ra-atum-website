@@ -589,87 +589,6 @@
     .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
     .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
     .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 3000;
-      left: 0; top: 0; width: 100vw; height: 100vh;
-      background: rgba(20,20,20,0.97);
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.25s;
-      font-family: var(--digital-font), monospace;
-    }
-    .modal.active { display: flex; }
-    .modal-content {
-      background: #232224ee;
-      color: var(--sand);
-      border-radius: 18px;
-      box-shadow: 0 4px 38px #00b4fa55;
-      padding: 30px 20px 22px 20px;
-      min-width: 320px;
-      max-width: 95vw;
-      width: 480px;
-      text-align: center;
-      position: relative;
-      animation: modal-bounce 0.4s cubic-bezier(0.68,-0.55,0.27,1.55);
-      font-family: var(--digital-font), monospace;
-    }
-    @keyframes modal-bounce {
-      0% { transform: scale(0.82); opacity: 0; }
-      75% { transform: scale(1.07);}
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .modal-close {
-      position: absolute;
-      top: 12px; right: 20px;
-      background: transparent;
-      border: none;
-      color: var(--blue);
-      font-size: 2rem;
-      cursor: pointer;
-      z-index: 20;
-    }
-    .support-images {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-    .support-images img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 3px 14px #004aad99;
-      object-fit: cover;
-      height: 110px;
-      background: #222;
-    }
-    .modal-content h3 {
-      margin: 16px 0 8px 0;
-      color: var(--blue);
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-      font-family: var(--digital-font), monospace;
-    }
-    .modal-content ul {
-      list-style: none;
-      padding: 0;
-      margin: 12px 0 0 0;
-      color: var(--sand-dark);
-      font-size: 1.1rem;
-    }
-    .modal-content ul li {
-      margin-bottom: 4px;
-      font-size: 1.08rem;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-    @media (max-width: 520px) {
-      .modal-content {
-        min-width: 0; width: 99vw; padding: 16px 3vw 10px 3vw;
-      }
-      .support-images img { height: 70px; }
-    }
     footer {
       text-align: center;
       color: var(--blue-dark);
@@ -774,7 +693,6 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
-      <a id="support-link">Support</a>
     </nav>
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
@@ -785,7 +703,6 @@
         <a href="#about" onclick="closeMobileNav()">About</a>
         <a href="#contact" onclick="closeMobileNav()">Contact</a>
         <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
-        <a id="mobile-support-link" onclick="openSupportModalFromMobile()">Support</a>
       </div>
     </div>
   </header>
@@ -889,23 +806,6 @@
    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
   </section>
 
-  <section id="support-modal" class="modal" aria-modal="true" role="dialog" tabindex="-1">
-    <div class="modal-content">
-      <button class="modal-close" id="close-modal" aria-label="Close">&times;</button>
-      <div class="support-images">
-        <img src="https://i.pinimg.com/736x/28/06/5d/28065dcf16a002eb06e58710d37471f3.jpg" alt="Support 1">
-        <img src="https://i.pinimg.com/736x/dc/51/02/dc5102b6680502d579fafdb751437f46.jpg" alt="Support 2">
-        <img src="https://i.pinimg.com/736x/2b/da/43/2bda43c60948f02fe9142675eda42284.jpg" alt="Support 3">
-        <img src="https://i.pinimg.com/736x/1e/f7/15/1ef715518bfdfe0355a3f51b875b933d.jpg" alt="Support 4">
-      </div>
-      <h3>FAQ & Troubleshooting</h3>
-      <ul>
-        <li>Frequently Asked Questions</li>
-        <li>Common Issues & Solutions</li>
-      </ul>
-    </div>
-  </section>
-
   <!-- POWERED BY SECTION with video background, floating text only -->
   <section id="poweredby">
     <div class="poweredby-video-bg">
@@ -938,23 +838,10 @@
     window.onkeydown = e => {
       if (e.key === "Escape") {
         mobileNavOverlay.classList.remove('active');
-        supportModal.classList.remove('active');
       }
     }
     window.onclick = e => {
       if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active');
-      if (e.target === supportModal) supportModal.classList.remove('active');
-    }
-    // Support Modal logic (desktop + mobile)
-    const supportLink = document.getElementById('support-link');
-    const supportModal = document.getElementById('support-modal');
-    const closeModal = document.getElementById('close-modal');
-    const mobileSupportLink = document.getElementById('mobile-support-link');
-    supportLink.onclick = () => { supportModal.classList.add('active'); }
-    closeModal.onclick = () => { supportModal.classList.remove('active'); }
-    function openSupportModalFromMobile() {
-      supportModal.classList.add('active');
-      closeMobileNav();
     }
     // AUDITS image animation on scroll
     function auditsInView() {
