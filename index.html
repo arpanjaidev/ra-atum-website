@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RA Atum – Where Every Gift Creates Value</title>
   <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Digital font for all text -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
@@ -165,134 +164,96 @@
         padding: 14px 14px;
       }
     }
+    /* --- HERO SECTION --- */
     .hero {
       min-height: 75vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: flex-start;
       align-items: center;
-      text-align: center;
+      text-align: left;
       background: none;
-      padding: 110px 8vw 36px 8vw;
+      padding: 60px 6vw 36px 6vw;
       position: relative;
       z-index: 1;
       overflow: visible;
+      gap: 32px;
     }
-    .hero-logo-topright {
-      position: absolute;
-      top: 0;
-      right: 3vw;
+    .hero-logo {
+      flex: 0 0 auto;
+      height: 180px;
       width: 180px;
-      height: 230px;
-      max-width: 40vw;
+      min-width: 120px;
+      min-height: 120px;
+      max-width: 200px;
+      max-height: 200px;
       object-fit: contain;
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      z-index: 10;
-      padding: 0;
-      margin: 0;
-      filter: drop-shadow(0 0 0px #000) drop-shadow(0 0 6px #000);
-      image-rendering: auto;
-      transition: width 0.25s, height 0.25s;
+      border-radius: 24px;
+      box-shadow: 0 4px 34px #00b4fa70, 0 0 0 5px #191a2466;
+      background: #1119;
+      margin-right: 34px;
+      z-index: 3;
+      border: 3px solid #00b4fa44;
     }
-    @media (max-width: 900px) {
-      .hero-logo-topright { width: 120px; height: 130px;}
+    @media (max-width: 800px) {
+      .hero-logo {
+        height: 100px; width: 100px;
+        margin-right: 16px;
+      }
+      .hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 4vw 22px 4vw; min-height: 66vh;}
     }
-    @media (max-width: 600px) {
-      .hero-logo-topright { width: 140px; height: 135px; right: 10px; top: 7px;}
-      .hero { padding-top: 55px;}
-    }
-    @media (max-width: 450px) {
-      .hero-logo-topright { width: 110px; height: 110px; }
-      .hero { padding-top: 42px; }
-    }
-    .hero-float-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 36px;
-      width: 100%;
-      margin-bottom: 10px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .hero-float-col {
+    .hero-float-images {
+      flex: 1 1 auto;
       display: flex;
       flex-direction: column;
-      gap: 28px;
-      align-items: flex-end;
-      justify-content: center;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .hero-float-col.right {
+      gap: 16px;
+      width: 100%;
       align-items: flex-start;
+      position: relative;
+      z-index: 2;
     }
-    .hero-float-img {
-      width: 160px;
-      height: 220px;
+    .zigzag-row {
+      display: flex;
+      flex-direction: row;
+      gap: 18px;
+      width: 100%;
+      justify-content: flex-start;
+    }
+    .zigzag-img {
+      width: 150px;
+      height: 110px;
+      border-radius: 16px;
       object-fit: cover;
-      border-radius: 20px;
-      box-shadow: 0 8px 36px #0084ff55, 0 0 0 4px #24224f44;
+      box-shadow: 0 8px 28px #00b4fa55, 0 0 0 3px #24224f44;
+      background: #23222433;
       opacity: 0.98;
       margin: 0;
-      background: #2221;
       border: none;
-      transition: transform 0.6s cubic-bezier(.66,1.35,.25,.82), box-shadow 0.3s;
-      animation: float-loop 6s ease-in-out infinite alternate;
+      transform: translateX(140px);
+      opacity: 0;
+      transition: transform 0.7s cubic-bezier(.66,1.35,.25,.82), opacity 0.55s;
     }
-    .hero-float-col .hero-float-img:nth-child(1) { animation-delay: 0s; }
-    .hero-float-col .hero-float-img:nth-child(2) { animation-delay: 1.5s; }
-    .hero-float-col.right .hero-float-img:nth-child(1) { animation-delay: 0.75s; }
-    .hero-float-col.right .hero-float-img:nth-child(2) { animation-delay: 2.2s; }
-    @keyframes float-loop {
-      0%   { transform: translateY(0) scale(1);}
-      20%  { transform: translateY(-14px) scale(1.045);}
-      40%  { transform: translateY(-24px) scale(1.06);}
-      60%  { transform: translateY(-16px) scale(1.03);}
-      80%  { transform: translateY(7px) scale(0.99);}
-      100% { transform: translateY(0) scale(1);}
+    .zigzag-row:nth-child(1) .zigzag-img { margin-top: 0px; }
+    .zigzag-row:nth-child(2) .zigzag-img { margin-top: 30px; }
+    .zigzag-row:nth-child(3) .zigzag-img { margin-top: 0px; }
+    .zigzag-row:nth-child(4) .zigzag-img { margin-top: 30px; }
+    .zigzag-img.visible {
+      transform: translateX(0);
+      opacity: 1;
     }
-    @media (max-width: 700px) {
-      .hero-float-row {
-        flex-direction: row;
-        gap: 8px;
-        margin-bottom: 0;
-      }
-      .hero-float-col,
-      .hero-float-col.right {
-        flex-direction: column;
-        gap: 7px;
-        align-items: flex-end;
-        width: auto;
-      }
-      .hero-float-col.right {
-        align-items: flex-start;
-      }
-      .hero-float-img {
-        width: 54vw;
-        max-width: 140px;
-        min-width: 60px;
-        height: 77px;
-        max-height: 110px;
-        min-height: 38px;
-        border-radius: 13px;
-        margin: 0;
-        box-shadow: 0 4px 12px #0084ff55, 0 0 0 2px #24224f33;
-      }
-      .hero { padding-top: 60px; }
+    @media (max-width: 900px) {
+      .zigzag-img { width: 100px; height: 74px; border-radius: 9px;}
+      .hero { gap: 6px;}
     }
-    @media (max-width: 450px) {
-      .hero-float-img {
-        width: 39vw;
-        height: 56px;
-        max-width: 90px;
-        min-width: 32px;
-        min-height: 20px;
-      }
+    .hero-content {
+      padding-top: 30px;
+      width: 100%;
+      min-width: 230px;
+      max-width: 530px;
+      text-align: left;
+      z-index: 4;
     }
-    .hero h1 {
+    .hero-content h1 {
       font-size: 2.2rem;
       background: linear-gradient(90deg, var(--blue) 30%, var(--sand) 90%);
       -webkit-background-clip: text;
@@ -304,18 +265,16 @@
       display: block;
       z-index: 10;
       text-shadow: 0 4px 14px #004aad66;
-      font-family: var(--digital-font), monospace;
     }
-    .hero p {
+    .hero-content p {
       font-size: 1.12rem;
       max-width: 650px;
-      margin: 0 auto 28px auto;
+      margin: 0 auto 28px 0;
       color: var(--sand);
       z-index: 10;
       text-shadow: 0 2px 8px #10101580;
-      font-family: var(--digital-font), monospace;
     }
-    .hero .cta-btn {
+    .hero-content .cta-btn {
       font-size: 1.08rem;
       padding: 13px 38px;
       background: linear-gradient(90deg, var(--blue-dark) 0%, var(--blue) 100%);
@@ -329,13 +288,13 @@
       margin-top: 18px;
       letter-spacing: 1px;
       z-index: 10;
-      font-family: var(--digital-font), monospace;
     }
-    .hero .cta-btn:hover {
+    .hero-content .cta-btn:hover {
       background: linear-gradient(90deg, var(--sand-dark) 10%, var(--blue-dark) 100%);
       color: var(--black);
       transform: translateY(-2px) scale(1.03);
     }
+    /* (Rest of your original CSS for sections, features, roadmap, about, audits, poweredby, footer, etc) */
     /* --- FEATURES VIDEO BG --- */
     #features {
       position: relative;
@@ -428,7 +387,6 @@
       background: none;
       min-height: 145px;
     }
-    /* --- END ABOUT US VIDEO BG --- */
     .about-content ul {
       margin-top: 12px;
       padding-left: 18px;
@@ -505,7 +463,6 @@
       .audits-img { height: 90px; }
       .audits-title { font-size: 1.22rem; }
     }
-    /* --- END AUDITS SECTION --- */
     section {
       max-width: 970px;
       margin: 56px auto;
@@ -686,17 +643,18 @@
     </button>
     <nav>
       <a href="#features">Features</a>
-      <a href="#roadmap">Roadmap</a> 
+      <a href="#roadmap">Roadmap</a>
       <a href="nft-gallery.html">NFT Gallery</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
     </nav>
+    <!-- Mobile nav overlay -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
       <div class="mobile-nav">
         <a href="#features" onclick="closeMobileNav()">Features</a>
-        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>  
+        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>
         <a href="nft-gallery.html" onclick="closeMobileNav()">NFT Gallery</a>
         <a href="#about" onclick="closeMobileNav()">About</a>
         <a href="#contact" onclick="closeMobileNav()">Contact</a>
@@ -705,23 +663,29 @@
     </div>
   </header>
 
+  <!-- HERO SECTION -->
   <section class="hero">
-    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-topright" />
-    <div class="hero-float-row">
-      <div class="hero-float-col">
-        <img src="https://i.pinimg.com/736x/58/6b/b9/586bb9c98bd24b148842ddf8750a216b.jpg" class="hero-float-img" alt="Highlight 1" />
-        <img src="https://i.pinimg.com/736x/d7/4e/a6/d74ea623a277c47c47db455c7832a1cb.jpg" class="hero-float-img" alt="Highlight 2" />
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo" />
+    <div class="hero-float-images">
+      <div class="zigzag-row">
+        <img src="https://i.pinimg.com/736x/58/6b/b9/586bb9c98bd24b148842ddf8750a216b.jpg" class="zigzag-img" alt="Highlight 1" />
       </div>
-      <div style="width:0;height:0"></div>
-      <div class="hero-float-col right">
-        <img src="https://i.pinimg.com/736x/ba/50/c1/ba50c198f8a4e3d96f2536b22b2fe64a.jpg" class="hero-float-img" alt="Highlight 3" />
-        <img src="https://i.pinimg.com/736x/49/2f/bf/492fbf478edb0d0b80fa40068b02d093.jpg" class="hero-float-img" alt="Highlight 4" />
+      <div class="zigzag-row">
+        <img src="https://i.pinimg.com/736x/d7/4e/a6/d74ea623a277c47c47db455c7832a1cb.jpg" class="zigzag-img" alt="Highlight 2" />
+      </div>
+      <div class="zigzag-row">
+        <img src="https://i.pinimg.com/736x/ba/50/c1/ba50c198f8a4e3d96f2536b22b2fe64a.jpg" class="zigzag-img" alt="Highlight 3" />
+      </div>
+      <div class="zigzag-row">
+        <img src="https://i.pinimg.com/736x/49/2f/bf/492fbf478edb0d0b80fa40068b02d093.jpg" class="zigzag-img" alt="Highlight 4" />
       </div>
     </div>
-    <h1>RA Atum<br>Where Every Gift Creates Value</h1>
-    <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
-    Donate, earn tokens, and help light the way!</p>
-    <a href="https://ra-wallet-dapp.vercel.app/" class="cta-btn" target="_blank">Launch DApp</a>
+    <div class="hero-content">
+      <h1>RA Atum<br>Where Every Gift Creates Value</h1>
+      <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
+      Donate, earn tokens, and help light the way!</p>
+      <a href="https://ra-wallet-dapp.vercel.app/" class="cta-btn" target="_blank">Launch DApp</a>
+    </div>
   </section>
 
   <!-- FEATURES SECTION with video background! -->
@@ -841,6 +805,22 @@
     window.onclick = e => {
       if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active');
     }
+    // Zigzag animation logic
+    let lastScroll = window.scrollY;
+    function handleZigzagAnimation() {
+      const imgs = document.querySelectorAll('.zigzag-img');
+      if (window.scrollY > lastScroll) {
+        // Scrolling down: show images
+        imgs.forEach((img, i) => setTimeout(() => img.classList.add('visible'), i * 120));
+      } else {
+        // Scrolling up: hide images
+        imgs.forEach((img, i) => setTimeout(() => img.classList.remove('visible'), i * 60));
+      }
+      lastScroll = window.scrollY;
+    }
+    window.addEventListener('scroll', handleZigzagAnimation, {passive:true});
+    window.addEventListener('DOMContentLoaded', handleZigzagAnimation);
+
     // AUDITS image animation on scroll
     function auditsInView() {
       var img = document.getElementById('audits-img');
@@ -852,6 +832,7 @@
     window.addEventListener('scroll', auditsInView);
     window.addEventListener('resize', auditsInView);
     window.addEventListener('DOMContentLoaded', auditsInView);
+
     // Typing effect for About Us section
     const aboutTypingText =
 `At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.
