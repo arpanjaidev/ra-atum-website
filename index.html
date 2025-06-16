@@ -64,15 +64,21 @@
       min-height: 62px;
       transition: padding 0.2s, min-height 0.2s;
     }
-    /* Centered logo in header */
+    /* Right-aligned, larger logo in header */
     .header-logo {
       position: absolute;
-      left: 50%;
+      right: 3vw;
       top: 50%;
-      transform: translate(-50%, -50%);
-      height: 48px;
+      transform: translateY(-50%);
+      height: 72px;          /* larger logo */
       object-fit: contain;
       z-index: 101;
+    }
+    @media (max-width: 800px) {
+      .header-logo { height: 56px; }
+    }
+    @media (max-width: 500px) {
+      .header-logo { height: 48px; }
     }
     nav {
       display: flex;
@@ -229,12 +235,12 @@
     .hero-float-col.right .hero-float-img:nth-child(1) { animation-delay: 0.75s; }
     .hero-float-col.right .hero-float-img:nth-child(2) { animation-delay: 2.2s; }
     @keyframes float-loop {
-      0%   { transform: translateY(0) scale(1);}
-      20%  { transform: translateY(-14px) scale(1.045);}
-      40%  { transform: translateY(-24px) scale(1.06);}
-      60%  { transform: translateY(-16px) scale(1.03);}
-      80%  { transform: translateY(7px) scale(0.99);}
-      100% { transform: translateY(0) scale(1);}
+      0%   { transform: translateY(0) scale(1);}    
+      20%  { transform: translateY(-14px) scale(1.045);}  
+      40%  { transform: translateY(-24px) scale(1.06);}  
+      60%  { transform: translateY(-16px) scale(1.03);}  
+      80%  { transform: translateY(7px) scale(0.99);}   
+      100% { transform: translateY(0) scale(1);}       
     }
     @media (max-width: 700px) {
       .hero-float-row {
@@ -663,7 +669,7 @@
 </head>
 <body>
   <header>
-    <!-- Centered logo inside header -->
+    <!-- right-aligned logo -->
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="header-logo" />
 
     <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
@@ -849,7 +855,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     function typeAboutText(text, el, i = 0) {
       if (i <= text.length) {
         el.innerHTML = text.slice(0, i)
-          .replace(/\n/g, '<br>');
+          .replace(/\\n/g, '<br>');
         setTimeout(() => typeAboutText(text, el, i + 1), 13 + Math.random()*35);
       }
     }
