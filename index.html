@@ -231,7 +231,7 @@
       border: none;
       transform: translateX(140px);
       opacity: 0;
-      transition: transform 0.7s cubic-bezier(.66,1.35,.25,.82), opacity 0.55s;
+      transition: transform 1.5s cubic-bezier(.66,1.35,.25,.82), opacity 1s;
     }
     .zigzag-row:nth-child(1) .zigzag-img { margin-top: 0px; }
     .zigzag-row:nth-child(2) .zigzag-img { margin-top: 30px; }
@@ -294,7 +294,6 @@
       color: var(--black);
       transform: translateY(-2px) scale(1.03);
     }
-    /* (Rest of your original CSS for sections, features, roadmap, about, audits, poweredby, footer, etc) */
     /* --- FEATURES VIDEO BG --- */
     #features {
       position: relative;
@@ -351,6 +350,24 @@
       position: relative;
       z-index: 2;
     }
+    /* --- ROADMAP VERTICAL LINE --- */
+    .roadmap-list {
+      position: relative;
+      margin-left: 24px;
+    }
+    .roadmap-list::before {
+      content: '';
+      position: absolute;
+      left: -15px;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--blue) 10%, var(--sand) 60%, var(--blue-dark) 100%);
+      border-radius: 3px;
+      box-shadow: 0 0 24px #00b4fa99;
+      z-index: 1;
+      opacity: 0.7;
+    }
     /* --- END ROADMAP VIDEO BG --- */
     /* --- ABOUT US VIDEO BG --- */
     #about {
@@ -387,6 +404,7 @@
       background: none;
       min-height: 145px;
     }
+    /* --- END ABOUT US VIDEO BG --- */
     .about-content ul {
       margin-top: 12px;
       padding-left: 18px;
@@ -427,6 +445,7 @@
       color: var(--sand);
       font-family: var(--digital-font), monospace;
       letter-spacing: 0.5px;
+      min-height: 158px;
     }
     .audits-title {
       font-size: 2rem;
@@ -463,6 +482,7 @@
       .audits-img { height: 90px; }
       .audits-title { font-size: 1.22rem; }
     }
+    /* --- END AUDITS SECTION --- */
     section {
       max-width: 970px;
       margin: 56px auto;
@@ -536,6 +556,8 @@
       text-align: left;
       animation: roadmap-pulse 2.4s infinite;
       font-family: var(--digital-font), monospace;
+      position: relative;
+      z-index: 2;
     }
     .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
     .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
@@ -610,7 +632,7 @@
     .poweredby-logos span:nth-child(5) { animation-delay:1.6s; color:#00b4fa;}
     .poweredby-logos span:nth-child(6) { animation-delay:0.3s; color:#f4b400;}
     .poweredby-logos span:nth-child(7) { animation-delay:0.5s; color:#fa7b17;}
-    .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#232224;}
+    .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#fff;} /* GitHub is now white */
     .poweredby-logos span:nth-child(9) { animation-delay:1.9s; color:#47a7f5;}
     @keyframes pb-float {
       0%   { transform: translateY(0px);}
@@ -649,18 +671,6 @@
       <a href="#contact">Contact</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
     </nav>
-    <!-- Mobile nav overlay -->
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-      <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
-      <div class="mobile-nav">
-        <a href="#features" onclick="closeMobileNav()">Features</a>
-        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>
-        <a href="nft-gallery.html" onclick="closeMobileNav()">NFT Gallery</a>
-        <a href="#about" onclick="closeMobileNav()">About</a>
-        <a href="#contact" onclick="closeMobileNav()">Contact</a>
-        <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
-      </div>
-    </div>
   </header>
 
   <!-- HERO SECTION -->
@@ -758,12 +768,11 @@
     </div>
   </section>
 
-  <!-- AUDITS COMING SOON SECTION -->
+  <!-- AUDITS COMING SOON SECTION with live typing -->
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
-      At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform. These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.<br><br>
-      The results and reports will be published here as soon as they are available. Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.
+      <div class="audits-typing" id="audits-typing"></div>
     </div>
    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
   </section>
@@ -794,27 +803,24 @@
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
     const closeMobileNavBtn = document.getElementById('close-mobile-nav');
-    hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
-    closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
-    function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
-    window.onkeydown = e => {
-      if (e.key === "Escape") {
-        mobileNavOverlay.classList.remove('active');
-      }
+    if (hamburgerBtn && mobileNavOverlay && closeMobileNavBtn) {
+      hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
+      closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
+      function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
+      window.onkeydown = e => { if (e.key === "Escape") mobileNavOverlay.classList.remove('active'); }
+      window.onclick = e => { if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active'); }
     }
-    window.onclick = e => {
-      if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active');
-    }
-    // Zigzag animation logic
+
+    // Slow zigzag animation logic
     let lastScroll = window.scrollY;
     function handleZigzagAnimation() {
       const imgs = document.querySelectorAll('.zigzag-img');
       if (window.scrollY > lastScroll) {
-        // Scrolling down: show images
-        imgs.forEach((img, i) => setTimeout(() => img.classList.add('visible'), i * 120));
+        // Scrolling down: show images slowly
+        imgs.forEach((img, i) => setTimeout(() => img.classList.add('visible'), i * 450));
       } else {
-        // Scrolling up: hide images
-        imgs.forEach((img, i) => setTimeout(() => img.classList.remove('visible'), i * 60));
+        // Scrolling up: hide images slowly
+        imgs.forEach((img, i) => setTimeout(() => img.classList.remove('visible'), i * 270));
       }
       lastScroll = window.scrollY;
     }
@@ -853,6 +859,27 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       const typingEl = document.getElementById('about-typing');
       if (typingEl) typeAboutText(aboutTypingText, typingEl);
     });
+
+    // Typing effect for Audits section
+    const auditsTypingText =
+`At RA Atum, transparency and security are our top priorities.
+To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform.
+These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.
+
+The results and reports will be published here as soon as they are available.
+Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.`;
+    function typeAuditsText(text, el, i = 0) {
+      if (i <= text.length) {
+        el.innerHTML = text.slice(0, i)
+          .replace(/\n/g, '<br>');
+        setTimeout(() => typeAuditsText(text, el, i + 1), 13 + Math.random()*35);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const typingEl = document.getElementById('audits-typing');
+      if (typingEl) typeAuditsText(auditsTypingText, typingEl);
+    });
+
   </script>
   <footer>
     &copy; 2025 RA Atum. All Rights Reserved.
