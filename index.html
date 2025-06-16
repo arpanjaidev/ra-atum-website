@@ -109,7 +109,12 @@
         justify-content: flex-start;
       }
     }
-
+    @media (max-width: 500px) {
+      .mobile-nav a {
+        font-size: 1.17rem;
+        padding: 14px 14px;
+      }
+    }
     .mobile-nav-overlay {
       display: none;
       position: fixed;
@@ -159,12 +164,7 @@
       color: var(--blue);
       cursor: pointer;
     }
-    @media (max-width: 500px) {
-      .mobile-nav a {
-        font-size: 1.17rem;
-        padding: 14px 14px;
-      }
-    }
+    /* --- HERO SECTION --- */
     .hero {
       min-height: 75vh;
       display: flex;
@@ -197,14 +197,11 @@
     }
     @media (max-width: 800px) {
       .hero-logo {
-        height: 140px; width: 140px;
+        height: 100px; width: 100px;
         margin-right: 16px;
       }
       .hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 4vw 22px 4vw; min-height: 66vh;}
-    }
-    @media (max-width: 550px) {
-      .hero-logo { height: 95vw; width: 95vw; min-width: 170px; min-height: 170px; max-width: 260px; max-height: 260px; margin-right:0; margin-bottom:18px; }
-      .hero { flex-direction: column; align-items: center; gap: 9px; padding: 22px 2vw 10px 2vw; min-height: 52vh;}
+      .zigzag-img { width: 85vw !important; max-width: 260px !important; height: 140px !important;}
     }
     .hero-float-images {
       flex: 1 1 auto;
@@ -235,7 +232,7 @@
       border: none;
       transform: translateX(140px);
       opacity: 0;
-      transition: transform 1.3s cubic-bezier(.66,1.35,.25,.82), opacity 1s;
+      transition: transform 1.5s cubic-bezier(.66,1.35,.25,.82), opacity 1s;
     }
     .zigzag-row:nth-child(1) .zigzag-img { margin-top: 0px; }
     .zigzag-row:nth-child(2) .zigzag-img { margin-top: 30px; }
@@ -248,11 +245,6 @@
     @media (max-width: 900px) {
       .zigzag-img { width: 100px; height: 74px; border-radius: 9px;}
       .hero { gap: 6px;}
-    }
-    @media (max-width: 550px) {
-      .zigzag-img { width: 88vw; height: 32vw; min-width:140px; max-width:330px; min-height:62px; max-height:110px;}
-      .hero-float-images { gap:10px;}
-      .zigzag-row { gap:8px;}
     }
     .hero-content {
       padding-top: 30px;
@@ -303,7 +295,7 @@
       color: var(--black);
       transform: translateY(-2px) scale(1.03);
     }
-    /* FEATURES SECTION */
+    /* --- FEATURES VIDEO BG --- */
     #features {
       position: relative;
       overflow: hidden;
@@ -329,40 +321,9 @@
     .features {
       position: relative;
       z-index: 2;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 28px;
-      justify-content: center;
     }
-    .feature-card {
-      background: var(--card-bg);
-      border-radius: 15px;
-      box-shadow: 0 2px 10px #0077cc44;
-      padding: 28px 22px 19px 22px;
-      text-align: center;
-      width: 220px;
-      min-width: 170px;
-      border: 1.5px solid #00b4fa30;
-      animation: float 3.6s ease-in-out infinite;
-      font-family: var(--digital-font), monospace;
-    }
-    .features .feature-card:nth-child(1) { animation-delay: 0s; }
-    .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
-    .features .feature-card:nth-child(3) { animation-delay: 1.4s; }
-    .features .feature-card:nth-child(4) { animation-delay: 2.1s; }
-    .feature-card h3 {
-      margin: 10px 0 8px 0;
-      color: var(--blue-dark);
-      font-size: 1.2em;
-      font-weight: 700;
-    }
-    @keyframes float {
-      0%   { transform: translateY(0px) scale(1);}
-      40%  { transform: translateY(-12px) scale(1.04);}
-      60%  { transform: translateY(-12px) scale(1.04);}
-      100% { transform: translateY(0px) scale(1);}
-    }
-    /* ROADMAP SECTION */
+    /* --- END FEATURES VIDEO BG --- */
+    /* --- ROADMAP VIDEO BG --- */
     #roadmap {
       position: relative;
       overflow: hidden;
@@ -390,42 +351,26 @@
       position: relative;
       z-index: 2;
     }
+    /* --- ROADMAP VERTICAL LINE --- */
     .roadmap-list {
-      border-left: 4px solid var(--blue);
-      margin: 0 auto;
-      max-width: 650px;
-      padding-left: 34px;
       position: relative;
+      margin-left: 24px;
     }
-    .roadmap-step {
-      background: #232224ee;
-      border-left: 4px solid var(--blue);
-      border-radius: 11px;
-      padding: 13px 19px;
-      font-weight: 600;
-      min-width: 180px;
-      box-shadow: 0 1px 8px #00b4fa1a;
-      color: var(--sand);
-      margin-bottom: 14px;
-      font-size: 1.06em;
-      text-align: left;
-      animation: roadmap-pulse 2.4s infinite;
+    .roadmap-list::before {
+      content: '';
+      position: absolute;
+      left: -15px;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--blue) 10%, var(--sand) 60%, var(--blue-dark) 100%);
+      border-radius: 3px;
+      box-shadow: 0 0 24px #00b4fa99;
+      z-index: 1;
+      opacity: 0.7;
     }
-    @keyframes roadmap-pulse {
-      0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
-      20% { box-shadow: 0 0 18px 2px #00b4fa66; border-left-color: var(--sand);}
-      50% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
-    }
-    .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
-    .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
-    .roadmap-list .roadmap-step:nth-child(3) { animation-delay: 0.8s;}
-    .roadmap-list .roadmap-step:nth-child(4) { animation-delay: 1.2s;}
-    .roadmap-list .roadmap-step:nth-child(5) { animation-delay: 1.6s;}
-    .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
-    .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
-    .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
-    .roadmap-list .roadmap-step.andmore { border-left: 4px dashed var(--sand); color: var(--blue); font-weight: 900;}
-    /* ABOUT US SECTION */
+    /* --- END ROADMAP VIDEO BG --- */
+    /* --- ABOUT US VIDEO BG --- */
     #about {
       position: relative;
       overflow: hidden;
@@ -454,19 +399,29 @@
       color: var(--sand);
       line-height: 1.6;
       font-size: 1.14rem;
+      font-family: var(--digital-font), monospace;
       position: relative;
       z-index: 2;
       background: none;
       min-height: 145px;
     }
+    /* --- END ABOUT US VIDEO BG --- */
+    .about-content ul {
+      margin-top: 12px;
+      padding-left: 18px;
+    }
+    .about-content ul li {
+      margin-bottom: 7px;
+    }
     .about-typing {
       min-height: 180px;
       font-size: 1.14rem;
       white-space: pre-line;
+      font-family: var(--digital-font), monospace;
       color: var(--sand);
       letter-spacing: 0.02em;
     }
-    /* AUDITS SECTION */
+    /* --- AUDITS SECTION --- */
     #audits {
       max-width: 970px;
       margin: 56px auto;
@@ -482,20 +437,23 @@
       overflow: hidden;
       min-height: 290px;
       z-index: 2;
+      font-family: var(--digital-font), monospace;
     }
     .audits-text {
       flex: 2;
       z-index: 2;
       font-size: 1.11rem;
       color: var(--sand);
+      font-family: var(--digital-font), monospace;
       letter-spacing: 0.5px;
+      min-height: 158px;
     }
     .audits-title {
       font-size: 2rem;
       color: var(--blue);
       margin-bottom: 18px;
+      font-family: var(--digital-font), monospace;
       letter-spacing: 2px;
-      min-height: 35px;
     }
     .audits-img {
       flex: 1.2;
@@ -525,6 +483,7 @@
       .audits-img { height: 90px; }
       .audits-title { font-size: 1.22rem; }
     }
+    /* --- END AUDITS SECTION --- */
     section {
       max-width: 970px;
       margin: 56px auto;
@@ -534,6 +493,7 @@
       padding: 36px 20px 30px 20px;
       position: relative;
       z-index: 2;
+      font-family: var(--digital-font), monospace;
     }
     h2 {
       text-align: center;
@@ -541,8 +501,85 @@
       margin-bottom: 28px;
       font-size: 2rem;
       letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
     }
-    /* POWERED BY SECTION */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+    }
+    @keyframes float {
+      0%   { transform: translateY(0px) scale(1);}
+      40%  { transform: translateY(-12px) scale(1.04);}
+      60%  { transform: translateY(-12px) scale(1.04);}
+      100% { transform: translateY(0px) scale(1);}
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 2px 10px #0077cc44;
+      padding: 28px 22px 19px 22px;
+      text-align: center;
+      width: 220px;
+      min-width: 170px;
+      border: 1.5px solid #00b4fa30;
+      animation: float 3.6s ease-in-out infinite;
+      font-family: var(--digital-font), monospace;
+    }
+    .features .feature-card:nth-child(1) { animation-delay: 0s; }
+    .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
+    .features .feature-card:nth-child(3) { animation-delay: 1.4s; }
+    .features .feature-card:nth-child(4) { animation-delay: 2.1s; }
+    .feature-card h3 {
+      margin: 10px 0 8px 0;
+      color: var(--blue-dark);
+      font-size: 1.2em;
+      font-weight: 700;
+      font-family: var(--digital-font), monospace;
+    }
+    @keyframes roadmap-pulse {
+      0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
+      20% { box-shadow: 0 0 18px 2px #00b4fa66; border-left-color: var(--sand);}
+      50% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
+    }
+    .roadmap-step {
+      background: #232224ee;
+      border-left: 4px solid var(--blue);
+      border-radius: 11px;
+      padding: 13px 19px;
+      font-weight: 600;
+      min-width: 180px;
+      box-shadow: 0 1px 8px #00b4fa1a;
+      color: var(--sand);
+      margin-bottom: 4px;
+      font-size: 1.06em;
+      text-align: left;
+      animation: roadmap-pulse 2.4s infinite;
+      font-family: var(--digital-font), monospace;
+      position: relative;
+      z-index: 2;
+    }
+    .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
+    .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
+    .roadmap-list .roadmap-step:nth-child(3) { animation-delay: 0.8s;}
+    .roadmap-list .roadmap-step:nth-child(4) { animation-delay: 1.2s;}
+    .roadmap-list .roadmap-step:nth-child(5) { animation-delay: 1.6s;}
+    .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
+    .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
+    .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
+    footer {
+      text-align: center;
+      color: var(--blue-dark);
+      background: #181a1b;
+      padding: 24px 8px 19px 8px;
+      font-size: 1.09em;
+      border-top: 1.5px solid #00b4fa11;
+      margin-top: 64px;
+      letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
+    }
+    /* ------ Powered By Section Styles ------ */
     #poweredby {
       position:relative;
       overflow:hidden;
@@ -596,7 +633,7 @@
     .poweredby-logos span:nth-child(5) { animation-delay:1.6s; color:#00b4fa;}
     .poweredby-logos span:nth-child(6) { animation-delay:0.3s; color:#f4b400;}
     .poweredby-logos span:nth-child(7) { animation-delay:0.5s; color:#fa7b17;}
-    .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#fff;}
+    .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#fff;} /* GitHub is now white */
     .poweredby-logos span:nth-child(9) { animation-delay:1.9s; color:#47a7f5;}
     @keyframes pb-float {
       0%   { transform: translateY(0px);}
@@ -619,16 +656,6 @@
       position:relative;
       text-shadow:0 8px 30px #00b4fa22,0 0 6px #10101580;
       background:none;
-    }
-    footer {
-      text-align: center;
-      color: var(--blue-dark);
-      background: #181a1b;
-      padding: 24px 8px 19px 8px;
-      font-size: 1.09em;
-      border-top: 1.5px solid #00b4fa11;
-      margin-top: 64px;
-      letter-spacing: 1px;
     }
   </style>
 </head>
@@ -653,7 +680,7 @@
         <a href="nft-gallery.html" onclick="closeMobileNav()">NFT Gallery</a>
         <a href="#about" onclick="closeMobileNav()">About</a>
         <a href="#contact" onclick="closeMobileNav()">Contact</a>
-        <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+        <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" onclick="closeMobileNav()">DApp</a>
       </div>
     </div>
   </header>
@@ -727,7 +754,7 @@
       <div class="roadmap-step">🟦 NFT Launch</div>
       <div class="roadmap-step">🟦 Mainnet Launch</div>
       <div class="roadmap-step">🟦 PancakeSwap Listing</div>
-      <div class="roadmap-step andmore">And more…</div>
+      <div class="roadmap-step">🟦 Claim Rewards Feature</div>
     </div>
   </section>
 
@@ -753,13 +780,13 @@
     </div>
   </section>
 
-  <!-- AUDITS COMING SOON SECTION -->
+  <!-- AUDITS COMING SOON SECTION with live typing -->
   <section id="audits">
     <div class="audits-text">
-      <div class="audits-title" id="audits-title"></div>
-      <div id="audits-typing"></div>
+      <div class="audits-title">AUDITS COMING SOON</div>
+      <div class="audits-typing" id="audits-typing"></div>
     </div>
-    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
+   <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
   </section>
 
   <!-- POWERED BY SECTION with video background, floating text only -->
@@ -788,54 +815,31 @@
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
     const closeMobileNavBtn = document.getElementById('close-mobile-nav');
-    function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
     if (hamburgerBtn && mobileNavOverlay && closeMobileNavBtn) {
       hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
       closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
+      function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
       window.onkeydown = e => { if (e.key === "Escape") mobileNavOverlay.classList.remove('active'); }
       window.onclick = e => { if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active'); }
     }
-    // Zigzag animation logic (slow)
+
+    // Slow zigzag animation logic
     let lastScroll = window.scrollY;
     function handleZigzagAnimation() {
       const imgs = document.querySelectorAll('.zigzag-img');
       if (window.scrollY > lastScroll) {
-        imgs.forEach((img, i) => setTimeout(() => img.classList.add('visible'), i * 330));
+        // Scrolling down: show images slowly
+        imgs.forEach((img, i) => setTimeout(() => img.classList.add('visible'), i * 450));
       } else {
-        imgs.forEach((img, i) => setTimeout(() => img.classList.remove('visible'), i * 120));
+        // Scrolling up: hide images slowly
+        imgs.forEach((img, i) => setTimeout(() => img.classList.remove('visible'), i * 150));
       }
       lastScroll = window.scrollY;
     }
     window.addEventListener('scroll', handleZigzagAnimation, {passive:true});
     window.addEventListener('DOMContentLoaded', handleZigzagAnimation);
 
-    // Audits Section - live typing
-    const auditsTitle = "AUDITS COMING SOON";
-    const auditsText =
-`At RA Atum, transparency and security are our top priorities.
-
-To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform. These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.
-
-The results and reports will be published here as soon as they are available. Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.`;
-    function typeWriter(text, el, speed = 16, callback) {
-      let i = 0;
-      function typing() {
-        if (i <= text.length) {
-          el.innerHTML = text.slice(0, i).replace(/\n/g, '<br>');
-          i++;
-          setTimeout(typing, speed + Math.random() * 28);
-        } else if (callback) callback();
-      }
-      typing();
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      const auditsTitleEl = document.getElementById('audits-title');
-      const auditsTypingEl = document.getElementById('audits-typing');
-      typeWriter(auditsTitle, auditsTitleEl, 32, () => {
-        setTimeout(() => typeWriter(auditsText, auditsTypingEl, 10), 400);
-      });
-    });
-    // Audits image animation on scroll
+    // AUDITS image animation on scroll
     function auditsInView() {
       var img = document.getElementById('audits-img');
       if (!img) return;
@@ -847,7 +851,7 @@ The results and reports will be published here as soon as they are available. Th
     window.addEventListener('resize', auditsInView);
     window.addEventListener('DOMContentLoaded', auditsInView);
 
-    // About Us live typing
+    // About Us typing effect
     const aboutTypingText =
 `At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.
 
@@ -858,13 +862,34 @@ But we don’t stop at giving.
 We reward every donor with RA Atum Tokens, our unique digital token of appreciation — because your kindness deserves to be celebrated, shared, and remembered.`;
     function typeAboutText(text, el, i = 0) {
       if (i <= text.length) {
-        el.innerHTML = text.slice(0, i).replace(/\n/g, '<br>');
+        el.innerHTML = text.slice(0, i)
+          .replace(/\n/g, '<br>');
         setTimeout(() => typeAboutText(text, el, i + 1), 13 + Math.random()*35);
       }
     }
     document.addEventListener('DOMContentLoaded', () => {
       const typingEl = document.getElementById('about-typing');
       if (typingEl) typeAboutText(aboutTypingText, typingEl);
+    });
+
+    // Audits section typing effect
+    const auditsTypingText =
+`At RA Atum, transparency and security are our top priorities.
+To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform.
+These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.
+
+The results and reports will be published here as soon as they are available.
+Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.`;
+    function typeAuditsText(text, el, i = 0) {
+      if (i <= text.length) {
+        el.innerHTML = text.slice(0, i)
+          .replace(/\n/g, '<br>');
+        setTimeout(() => typeAuditsText(text, el, i + 1), 13 + Math.random()*28);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const auditsTypingEl = document.getElementById('audits-typing');
+      if (auditsTypingEl) typeAuditsText(auditsTypingText, auditsTypingEl);
     });
   </script>
   <footer>
