@@ -109,7 +109,6 @@
         justify-content: flex-start;
       }
     }
-
     .mobile-nav-overlay {
       display: none;
       position: fixed;
@@ -630,6 +629,27 @@
       margin-top: 64px;
       letter-spacing: 1px;
     }
+    /* --- TOP MESSAGE SECTION --- */
+    .top-message {
+      max-width: 950px;
+      margin: 34px auto 16px auto;
+      background: rgba(0, 180, 250, 0.13);
+      border-radius: 14px;
+      box-shadow: 0 3px 15px #00b4fa33;
+      padding: 21px 22px 18px 22px;
+      color: var(--sand);
+      font-size: 1.13rem;
+      line-height: 1.6;
+      text-align: center;
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 0.01em;
+    }
+    @media (max-width: 600px) {
+      .top-message {
+        padding: 14px 7vw 12px 7vw;
+        font-size: 0.99rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -657,6 +677,12 @@
       </div>
     </div>
   </header>
+
+  <!-- TOP MESSAGE SECTION (NEW) -->
+  <div class="top-message">
+    RA Atum is India’s first blockchain-powered evolution in donations and kindness. With a transparent supply of 1,000,000,000 RA tokens, we reward generosity and build real impact.<br>
+    Starting at 0.001, with a projected launch value of 0.1, RA Atum is designed to grow with trust. We're here to build a future where every act of giving is rewarded — transparently, securely, and proudly powered by blockchain.
+  </div>
 
   <!-- HERO SECTION -->
   <section class="hero">
@@ -791,7 +817,7 @@
     function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
     if (hamburgerBtn && mobileNavOverlay && closeMobileNavBtn) {
       hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
-      closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
+      closeMobileNavBtn.onclick = closeMobileNav;
       window.onkeydown = e => { if (e.key === "Escape") mobileNavOverlay.classList.remove('active'); }
       window.onclick = e => { if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active'); }
     }
@@ -800,42 +826,18 @@
     function handleZigzagAnimation() {
       const imgs = document.querySelectorAll('.zigzag-img');
       if (window.scrollY > lastScroll) {
-        imgs.forEach((img, i) => setTimeout(() => img.classList.add('visible'), i * 330));
+        // Scrolling down: show images
+        imgs.forEach((img, i) => setTimeout(() => img.classList.add('visible'), i * 390));
       } else {
-        imgs.forEach((img, i) => setTimeout(() => img.classList.remove('visible'), i * 120));
+        // Scrolling up: hide images
+        imgs.forEach((img, i) => setTimeout(() => img.classList.remove('visible'), i * 180));
       }
       lastScroll = window.scrollY;
     }
     window.addEventListener('scroll', handleZigzagAnimation, {passive:true});
     window.addEventListener('DOMContentLoaded', handleZigzagAnimation);
 
-    // Audits Section - live typing
-    const auditsTitle = "AUDITS COMING SOON";
-    const auditsText =
-`At RA Atum, transparency and security are our top priorities.
-
-To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform. These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.
-
-The results and reports will be published here as soon as they are available. Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.`;
-    function typeWriter(text, el, speed = 16, callback) {
-      let i = 0;
-      function typing() {
-        if (i <= text.length) {
-          el.innerHTML = text.slice(0, i).replace(/\n/g, '<br>');
-          i++;
-          setTimeout(typing, speed + Math.random() * 28);
-        } else if (callback) callback();
-      }
-      typing();
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      const auditsTitleEl = document.getElementById('audits-title');
-      const auditsTypingEl = document.getElementById('audits-typing');
-      typeWriter(auditsTitle, auditsTitleEl, 32, () => {
-        setTimeout(() => typeWriter(auditsText, auditsTypingEl, 10), 400);
-      });
-    });
-    // Audits image animation on scroll
+    // AUDITS image animation on scroll
     function auditsInView() {
       var img = document.getElementById('audits-img');
       if (!img) return;
@@ -847,7 +849,7 @@ The results and reports will be published here as soon as they are available. Th
     window.addEventListener('resize', auditsInView);
     window.addEventListener('DOMContentLoaded', auditsInView);
 
-    // About Us live typing
+    // Typing effect for About Us section
     const aboutTypingText =
 `At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.
 
@@ -858,13 +860,42 @@ But we don’t stop at giving.
 We reward every donor with RA Atum Tokens, our unique digital token of appreciation — because your kindness deserves to be celebrated, shared, and remembered.`;
     function typeAboutText(text, el, i = 0) {
       if (i <= text.length) {
-        el.innerHTML = text.slice(0, i).replace(/\n/g, '<br>');
+        el.innerHTML = text.slice(0, i)
+          .replace(/\n/g, '<br>');
         setTimeout(() => typeAboutText(text, el, i + 1), 13 + Math.random()*35);
       }
     }
     document.addEventListener('DOMContentLoaded', () => {
       const typingEl = document.getElementById('about-typing');
       if (typingEl) typeAboutText(aboutTypingText, typingEl);
+    });
+
+    // Typing effect for Audits section
+    const auditsTypingTitle = "AUDITS COMING SOON";
+    const auditsTypingText =
+`At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform.
+
+These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.
+
+The results and reports will be published here as soon as they are available. Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.`;
+
+    function typeAuditsText(title, text, titleEl, textEl, i = 0, t = 0) {
+      if (t <= title.length) {
+        titleEl.innerHTML = title.slice(0, t)
+          .replace(/\n/g, '<br>');
+        setTimeout(() => typeAuditsText(title, text, titleEl, textEl, i, t + 1), 22 + Math.random()*23);
+      } else if (i <= text.length) {
+        textEl.innerHTML = text.slice(0, i)
+          .replace(/\n/g, '<br>');
+        setTimeout(() => typeAuditsText(title, text, titleEl, textEl, i + 1, t), 12 + Math.random()*18);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const auditsTitleEl = document.getElementById('audits-title');
+      const auditsTypingEl = document.getElementById('audits-typing');
+      if (auditsTitleEl && auditsTypingEl) {
+        typeAuditsText(auditsTypingTitle, auditsTypingText, auditsTitleEl, auditsTypingEl);
+      }
     });
   </script>
   <footer>
