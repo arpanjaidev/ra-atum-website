@@ -179,33 +179,31 @@
       z-index: 1;
       overflow: visible;
     }
-.hero-logo-topright {
-  position: absolute;
-  top: 8px;
-  right: 14px;
-  width: 58px;
-  height: 62px;
-  max-width: 22vw;
-  object-fit: contain;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  z-index: 200;
-  padding: 0;
-  margin: 0;
-  filter: drop-shadow(0 0 0px #000) drop-shadow(0 0 6px #000);
-  transition: width 0.25s, height 0.25s;
-}
-
-header { position: relative; }
-
-@media (max-width: 900px) {
-  .hero-logo-topright { width: 38px; height: 44px; }
-}
-@media (max-width: 600px) {
-  .hero-logo-topright { width: 31px; height: 34px; right: 2vw; top: 6px; }
-}
-
+    .hero-logo-topright {
+      position: absolute;
+      top: 0;
+      right: 3vw;
+      width: 180px;
+      height: 230px;
+      max-width: 40vw;
+      object-fit: contain;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      z-index: 10;
+      padding: 0;
+      margin: 0;
+      filter: drop-shadow(0 0 0px #000) drop-shadow(0 0 6px #000);
+      image-rendering: auto;
+      transition: width 0.25s, height 0.25s;
+    }
+    @media (max-width: 900px) {
+      .hero-logo-topright { width: 120px; height: 130px;}
+    }
+    @media (max-width: 600px) {
+      .hero-logo-topright { width: 140px; height: 135px; right: 10px; top: 7px;} /* Made bigger for mobile */
+      .hero { padding-top: 55px;}
+    }
     @media (max-width: 450px) {
       .hero-logo-topright { width: 110px; height: 110px; }
       .hero { padding-top: 42px; }
@@ -685,39 +683,33 @@ header { position: relative; }
   </style>
 </head>
 <body>
- <header> 
-  <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
-    <i class="fas fa-bars"></i>
-  </button>
-  <nav>
-    <a href="#features">Features</a>
-    <a href="#roadmap">Roadmap</a> 
-    <a href="nft-gallery.html">NFT Gallery</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
-  </nav>
-  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-    <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
-    <div class="mobile-nav">
-      <a href="#features" onclick="closeMobileNav()">Features</a>
-      <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>  
-      <a href="nft-gallery.html" onclick="closeMobileNav()">NFT Gallery</a>
-      <a href="#about" onclick="closeMobileNav()">About</a>
-      <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  <header>
+    <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#roadmap">Roadmap</a> 
+      <a href="nft-gallery.html">NFT Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+    </nav>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
+      <div class="mobile-nav">
+        <a href="#features" onclick="closeMobileNav()">Features</a>
+        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>  
+        <a href="nft-gallery.html" onclick="closeMobileNav()">NFT Gallery</a>
+        <a href="#about" onclick="closeMobileNav()">About</a>
+        <a href="#contact" onclick="closeMobileNav()">Contact</a>
+        <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+      </div>
     </div>
-  </div>
-  <!-- Logo as the last element -->
-   <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-topright" />>
-
-
-
-</header>
-
+  </header>
 
   <section class="hero">
-   
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo-topright" />
     <div class="hero-float-row">
       <div class="hero-float-col">
         <img src="https://i.pinimg.com/736x/58/6b/b9/586bb9c98bd24b148842ddf8750a216b.jpg" class="hero-float-img" alt="Highlight 1" />
