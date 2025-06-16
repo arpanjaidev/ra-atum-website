@@ -231,7 +231,7 @@
       border: none;
       transform: translateX(140px);
       opacity: 0;
-      transition: transform 1.5s cubic-bezier(.66,1.35,.25,.82), opacity 1.3s; /* slower transition */
+      transition: transform 0.7s cubic-bezier(.66,1.35,.25,.82), opacity 0.55s;
     }
     .zigzag-row:nth-child(1) .zigzag-img { margin-top: 0px; }
     .zigzag-row:nth-child(2) .zigzag-img { margin-top: 30px; }
@@ -294,61 +294,132 @@
       color: var(--black);
       transform: translateY(-2px) scale(1.03);
     }
-    /* ----------- ROADMAP ANIMATED LINE ----------- */
-    .roadmap-container {
+    /* (Rest of your original CSS for sections, features, roadmap, about, audits, poweredby, footer, etc) */
+    /* --- FEATURES VIDEO BG --- */
+    #features {
       position: relative;
-      padding-top: 44px;
-      padding-bottom: 44px;
-      margin-bottom: 22px;
+      overflow: hidden;
+      z-index: 1;
     }
-    .roadmap-line {
+    .features-video-bg {
       position: absolute;
-      left: 35px;
-      top: 32px;
-      bottom: 32px;
-      width: 6px;
-      background: linear-gradient(to bottom, #00b4fa, #e7d7b6);
+      top: 0; left: 0; width: 100%; height: 100%;
       z-index: 0;
-      border-radius: 7px;
-      animation: roadmapGrow 2.8s cubic-bezier(.72,1.4,.24,.87);
-      box-shadow: 0 0 18px #00b4fa80;
+      overflow: hidden;
+      border-radius: 18px;
     }
-    @keyframes roadmapGrow {
-      from { height: 0; opacity: 0.1; }
-      to   { height: 95%; opacity: 1; }
+    .features-video-bg video {
+      width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0.23;
+      pointer-events: none;
     }
-    .roadmap-list {
+    .features {
       position: relative;
       z-index: 2;
-      margin-left: 32px;
     }
-    .roadmap-step {
-      background: #232224ee;
-      border-left: 4px solid var(--blue);
-      border-radius: 11px;
-      padding: 13px 19px;
-      font-weight: 600;
-      min-width: 180px;
-      box-shadow: 0 1px 8px #00b4fa1a;
+    /* --- END FEATURES VIDEO BG --- */
+    /* --- ROADMAP VIDEO BG --- */
+    #roadmap {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .roadmap-video-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+    .roadmap-video-bg video {
+      width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .roadmap-list,
+    #roadmap h2 {
+      position: relative;
+      z-index: 2;
+    }
+    /* --- END ROADMAP VIDEO BG --- */
+    /* --- ABOUT US VIDEO BG --- */
+    #about {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .about-video-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+    .about-video-bg video {
+      width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0.17;
+      pointer-events: none;
+    }
+    .about-content {
+      max-width: 650px;
+      margin: 0 auto;
       color: var(--sand);
-      margin-bottom: 28px;
-      font-size: 1.06em;
-      text-align: left;
-      animation: roadmap-pulse 2.4s infinite;
+      line-height: 1.6;
+      font-size: 1.14rem;
       font-family: var(--digital-font), monospace;
       position: relative;
+      z-index: 2;
+      background: none;
+      min-height: 145px;
     }
-    .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
-    .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
-    .roadmap-list .roadmap-step:nth-child(3) { animation-delay: 0.8s;}
-    .roadmap-list .roadmap-step:nth-child(4) { animation-delay: 1.2s;}
-    .roadmap-list .roadmap-step:nth-child(5) { animation-delay: 1.6s;}
-    .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
-    .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
-    .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
-    /* ------------- END ROADMAP LINE -------------- */
-    /* ---- Other sections CSS unchanged ---- */
-    /* ...Features, About, Audits, Powered By, etc... */
+    .about-content ul {
+      margin-top: 12px;
+      padding-left: 18px;
+    }
+    .about-content ul li {
+      margin-bottom: 7px;
+    }
+    .about-typing {
+      min-height: 180px;
+      font-size: 1.14rem;
+      white-space: pre-line;
+      font-family: var(--digital-font), monospace;
+      color: var(--sand);
+      letter-spacing: 0.02em;
+    }
+    /* --- AUDITS SECTION --- */
+    #audits {
+      max-width: 970px;
+      margin: 56px auto;
+      background: rgba(34, 34, 38, 0.88);
+      border-radius: 18px;
+      box-shadow: 0 4px 28px #00b4fa44;
+      padding: 36px 20px 30px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+      min-height: 290px;
+      z-index: 2;
+      font-family: var(--digital-font), monospace;
+    }
     .audits-text {
       flex: 2;
       z-index: 2;
@@ -385,6 +456,7 @@
       transform: translateX(0);
     }
     @media (max-width: 800px) {
+      #audits { flex-direction: column-reverse; gap: 18px; min-height: 120px; }
       .audits-img { margin: 0 auto; width: 75vw; max-width: 300px; height: 140px;}
     }
     @media (max-width: 480px) {
@@ -402,7 +474,126 @@
       z-index: 2;
       font-family: var(--digital-font), monospace;
     }
-    /* POWERED BY LOGOS - MAKE GITHUB WHITE */
+    h2 {
+      text-align: center;
+      color: var(--blue);
+      margin-bottom: 28px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+    }
+    @keyframes float {
+      0%   { transform: translateY(0px) scale(1);}
+      40%  { transform: translateY(-12px) scale(1.04);}
+      60%  { transform: translateY(-12px) scale(1.04);}
+      100% { transform: translateY(0px) scale(1);}
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 2px 10px #0077cc44;
+      padding: 28px 22px 19px 22px;
+      text-align: center;
+      width: 220px;
+      min-width: 170px;
+      border: 1.5px solid #00b4fa30;
+      animation: float 3.6s ease-in-out infinite;
+      font-family: var(--digital-font), monospace;
+    }
+    .features .feature-card:nth-child(1) { animation-delay: 0s; }
+    .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
+    .features .feature-card:nth-child(3) { animation-delay: 1.4s; }
+    .features .feature-card:nth-child(4) { animation-delay: 2.1s; }
+    .feature-card h3 {
+      margin: 10px 0 8px 0;
+      color: var(--blue-dark);
+      font-size: 1.2em;
+      font-weight: 700;
+      font-family: var(--digital-font), monospace;
+    }
+    @keyframes roadmap-pulse {
+      0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
+      20% { box-shadow: 0 0 18px 2px #00b4fa66; border-left-color: var(--sand);}
+      50% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
+    }
+    .roadmap-step {
+      background: #232224ee;
+      border-left: 4px solid var(--blue);
+      border-radius: 11px;
+      padding: 13px 19px;
+      font-weight: 600;
+      min-width: 180px;
+      box-shadow: 0 1px 8px #00b4fa1a;
+      color: var(--sand);
+      margin-bottom: 4px;
+      font-size: 1.06em;
+      text-align: left;
+      animation: roadmap-pulse 2.4s infinite;
+      font-family: var(--digital-font), monospace;
+    }
+    .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
+    .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
+    .roadmap-list .roadmap-step:nth-child(3) { animation-delay: 0.8s;}
+    .roadmap-list .roadmap-step:nth-child(4) { animation-delay: 1.2s;}
+    .roadmap-list .roadmap-step:nth-child(5) { animation-delay: 1.6s;}
+    .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
+    .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
+    .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
+    footer {
+      text-align: center;
+      color: var(--blue-dark);
+      background: #181a1b;
+      padding: 24px 8px 19px 8px;
+      font-size: 1.09em;
+      border-top: 1.5px solid #00b4fa11;
+      margin-top: 64px;
+      letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
+    }
+    /* ------ Powered By Section Styles ------ */
+    #poweredby {
+      position:relative;
+      overflow:hidden;
+      z-index:2;
+      margin-bottom:42px;
+      background:none;
+      box-shadow:none;
+      padding:0;
+    }
+    .poweredby-video-bg {
+      position:absolute;
+      top:0;left:0;width:100%;height:100%;
+      z-index:0;
+      overflow:hidden;
+      border-radius:18px;
+    }
+    .poweredby-video-bg video {
+      width:100vw;min-width:100%;min-height:100%;
+      object-fit:cover;
+      position:absolute;
+      top:0;left:0;
+      opacity:0.35;
+      pointer-events:none;
+    }
+    .poweredby-logos {
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:56px 8vw 40px 8vw;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      gap:38px;
+      margin-top:10px;
+      min-height:110px;
+    }
     .poweredby-logos span {
       font-size:2.75rem;
       color:var(--blue);
@@ -413,13 +604,36 @@
       display:inline-block;
       text-shadow:0 8px 30px #00b4fa44,0 0 6px #10101580;
     }
-    .poweredby-logos span.github {
-      color:#fff !important;
-      text-shadow: 0 0 16px #232224;
-      background: none;
-      font-weight: 900;
+    .poweredby-logos span:nth-child(2) { animation-delay:0.8s; color:#1cf0b9;}
+    .poweredby-logos span:nth-child(3) { animation-delay:1.3s; color:#ea6afb;}
+    .poweredby-logos span:nth-child(4) { animation-delay:2.1s; color:#e7d7b6;}
+    .poweredby-logos span:nth-child(5) { animation-delay:1.6s; color:#00b4fa;}
+    .poweredby-logos span:nth-child(6) { animation-delay:0.3s; color:#f4b400;}
+    .poweredby-logos span:nth-child(7) { animation-delay:0.5s; color:#fa7b17;}
+    .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#232224;}
+    .poweredby-logos span:nth-child(9) { animation-delay:1.9s; color:#47a7f5;}
+    @keyframes pb-float {
+      0%   { transform: translateY(0px);}
+      25%  { transform: translateY(-12px);}
+      60%  { transform: translateY(6px);}
+      100% { transform: translateY(0px);}
     }
-    /* ...rest remains unchanged... */
+    @media (max-width:640px){
+      .poweredby-logos {font-size:1.1rem;gap:18px;padding:30px 5vw 24px 5vw;}
+      .poweredby-logos span{font-size:1.37rem;}
+    }
+    #poweredby h2{
+      color:#00b4fa;
+      margin-bottom:18px;
+      letter-spacing:1.2px;
+      font-size:2.3rem;
+      font-weight:900;
+      text-align:center;
+      z-index:2;
+      position:relative;
+      text-shadow:0 8px 30px #00b4fa22,0 0 6px #10101580;
+      background:none;
+    }
   </style>
 </head>
 <body>
@@ -435,6 +649,18 @@
       <a href="#contact">Contact</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
     </nav>
+    <!-- Mobile nav overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
+      <div class="mobile-nav">
+        <a href="#features" onclick="closeMobileNav()">Features</a>
+        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>
+        <a href="nft-gallery.html" onclick="closeMobileNav()">NFT Gallery</a>
+        <a href="#about" onclick="closeMobileNav()">About</a>
+        <a href="#contact" onclick="closeMobileNav()">Contact</a>
+        <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+      </div>
+    </div>
   </header>
 
   <!-- HERO SECTION -->
@@ -490,7 +716,7 @@
     </div>
   </section>
 
-  <!-- ROADMAP SECTION with animated line and video background! -->
+  <!-- ROADMAP SECTION with video background! -->
   <section id="roadmap">
     <div class="roadmap-video-bg">
       <video autoplay loop muted playsinline>
@@ -498,18 +724,15 @@
       </video>
     </div>
     <h2>Roadmap</h2>
-    <div class="roadmap-container">
-      <div class="roadmap-line"></div>
-      <div class="roadmap-list">
-        <div class="roadmap-step">✅ Whitepaper Released</div>
-        <div class="roadmap-step">✅ Testnet Token Launched</div>
-        <div class="roadmap-step">✅ MetaMask Integration</div>
-        <div class="roadmap-step">✅ DApp Live</div>
-        <div class="roadmap-step">🟦 NFT Launch</div>
-        <div class="roadmap-step">🟦 Mainnet Launch</div>
-        <div class="roadmap-step">🟦 PancakeSwap Listing</div>
-        <div class="roadmap-step">🟦 Claim Rewards Feature</div>
-      </div>
+    <div class="roadmap-list">
+      <div class="roadmap-step">✅ Whitepaper Released</div>
+      <div class="roadmap-step">✅ Testnet Token Launched</div>
+      <div class="roadmap-step">✅ MetaMask Integration</div>
+      <div class="roadmap-step">✅ DApp Live</div>
+      <div class="roadmap-step">🟦 NFT Launch</div>
+      <div class="roadmap-step">🟦 Mainnet Launch</div>
+      <div class="roadmap-step">🟦 PancakeSwap Listing</div>
+      <div class="roadmap-step">🟦 Claim Rewards Feature</div>
     </div>
   </section>
 
@@ -539,7 +762,8 @@
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
-      <span class="audits-typing" id="audits-typing"></span>
+      At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform. These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.<br><br>
+      The results and reports will be published here as soon as they are available. Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.
     </div>
    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
   </section>
@@ -560,7 +784,7 @@
       <span>Meta</span>
       <span>Google</span>
       <span>Analytics</span>
-      <span class="github">GitHub</span>
+      <span>GitHub</span>
       <span>Microsoft</span>
     </div>
   </section>
@@ -570,12 +794,16 @@
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
     const closeMobileNavBtn = document.getElementById('close-mobile-nav');
-    if (hamburgerBtn && mobileNavOverlay && closeMobileNavBtn) {
-      hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
-      closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
-      function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
-      window.onkeydown = e => { if (e.key === "Escape") mobileNavOverlay.classList.remove('active'); }
-      window.onclick = e => { if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active'); }
+    hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
+    closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
+    function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
+    window.onkeydown = e => {
+      if (e.key === "Escape") {
+        mobileNavOverlay.classList.remove('active');
+      }
+    }
+    window.onclick = e => {
+      if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active');
     }
     // Zigzag animation logic
     let lastScroll = window.scrollY;
@@ -583,34 +811,15 @@
       const imgs = document.querySelectorAll('.zigzag-img');
       if (window.scrollY > lastScroll) {
         // Scrolling down: show images
-        imgs.forEach((img, i) => setTimeout(() => img.classList.add('visible'), i * 350)); // slower
+        imgs.forEach((img, i) => setTimeout(() => img.classList.add('visible'), i * 120));
       } else {
         // Scrolling up: hide images
-        imgs.forEach((img, i) => setTimeout(() => img.classList.remove('visible'), i * 180));
+        imgs.forEach((img, i) => setTimeout(() => img.classList.remove('visible'), i * 60));
       }
       lastScroll = window.scrollY;
     }
     window.addEventListener('scroll', handleZigzagAnimation, {passive:true});
     window.addEventListener('DOMContentLoaded', handleZigzagAnimation);
-
-    // Audits section live typing effect
-    const auditsTypingText = `At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform. These independent audits will thoroughly review our systems to identify and resolve any potential vulnerabilities, giving our users full confidence in our technology.
-
-The results and reports will be published here as soon as they are available. Thank you for your patience and continued support as we work to make RA Atum as secure and reliable as possible.`;
-    function typeAuditsText(text, el, i = 0) {
-      if (i <= text.length) {
-        el.innerHTML = text.slice(0, i)
-          .replace(/\n/g, '<br>');
-        setTimeout(() => typeAuditsText(text, el, i + 1), 12 + Math.random()*24);
-      }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      const typingEl = document.getElementById('about-typing');
-      if (typingEl) typeAboutText(aboutTypingText, typingEl);
-
-      const auditsEl = document.getElementById('audits-typing');
-      if (auditsEl) typeAuditsText(auditsTypingText, auditsEl);
-    });
 
     // AUDITS image animation on scroll
     function auditsInView() {
@@ -624,7 +833,7 @@ The results and reports will be published here as soon as they are available. Th
     window.addEventListener('resize', auditsInView);
     window.addEventListener('DOMContentLoaded', auditsInView);
 
-    // About Us typing effect text
+    // Typing effect for About Us section
     const aboutTypingText =
 `At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.
 
@@ -640,6 +849,10 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
         setTimeout(() => typeAboutText(text, el, i + 1), 13 + Math.random()*35);
       }
     }
+    document.addEventListener('DOMContentLoaded', () => {
+      const typingEl = document.getElementById('about-typing');
+      if (typingEl) typeAboutText(aboutTypingText, typingEl);
+    });
   </script>
   <footer>
     &copy; 2025 RA Atum. All Rights Reserved.
