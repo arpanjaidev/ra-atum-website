@@ -52,35 +52,36 @@
     }
     * { font-family: var(--digital-font), monospace !important; }
     header {
-      position: sticky; top: 0;
+      position: sticky;
+      top: 0;
       width: 100%;
       background: rgba(23, 22, 22, 0.99);
       box-shadow: 0 2px 18px #00b4fa44;
       z-index: 100;
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
       padding: 16px 3vw;
       min-height: 62px;
       transition: padding 0.2s, min-height 0.2s;
     }
-    /* Right‑aligned, extra big logo */
+    /* LOGO: always at right, visible, big */
     .header-logo {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 90px;          /* much larger logo */
+      display: block;
+      height: 70px;
+      max-height: 85px;
       width: auto;
-      object-fit: contain;
+      margin-left: 24px;
+      margin-right: 0;
+      background: transparent;
       z-index: 101;
-      padding-right: 16px;
+      max-width: 160px;
     }
-    @media (max-width: 1000px) {
-      .header-logo { height: 72px; }
+    @media (max-width: 900px) {
+      .header-logo { height: 56px; max-width:110px;}
     }
-    @media (max-width: 700px) {
-      .header-logo { height: 60px; padding-right: 8px; }
+    @media (max-width: 600px) {
+      .header-logo { height: 42px; max-width:70px;}
     }
     nav {
       display: flex;
@@ -173,7 +174,7 @@
       header {
         min-height: 62px;
         padding: 7px 2vw 7px 2vw;
-        justify-content: flex-start;
+        justify-content: space-between;
       }
     }
     @media (max-width: 500px) {
@@ -671,24 +672,24 @@
 </head>
 <body>
   <header>
-    <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
-      <i class="fas fa-bars"></i>
-    </button>
     <nav>
       <a href="#features">Features</a>
-      <a href="#roadmap">Roadmap</a>
+      <a href="#roadmap">Roadmap</a> 
       <a href="nft-gallery.html">NFT Gallery</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
     </nav>
-    <!-- Right side, big logo -->
+    <!-- LOGO always last, at right -->
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="header-logo" />
+    <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
       <div class="mobile-nav">
         <a href="#features" onclick="closeMobileNav()">Features</a>
-        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>
+        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>  
         <a href="nft-gallery.html" onclick="closeMobileNav()">NFT Gallery</a>
         <a href="#about" onclick="closeMobileNav()">About</a>
         <a href="#contact" onclick="closeMobileNav()">Contact</a>
@@ -845,7 +846,7 @@
     window.addEventListener('resize', auditsInView);
     window.addEventListener('DOMContentLoaded', auditsInView);
     // Typing effect for About Us section
-    const aboutTypingText =
+    const aboutTypingText = 
 `At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.
 
 We are more than just a store. We are a movement.
