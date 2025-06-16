@@ -64,21 +64,23 @@
       min-height: 62px;
       transition: padding 0.2s, min-height 0.2s;
     }
-    /* Right-aligned, larger logo in header */
+    /* Right‑aligned, extra big logo */
     .header-logo {
       position: absolute;
-      right: 3vw;
+      right: 0;
       top: 50%;
       transform: translateY(-50%);
-      height: 72px;          /* larger logo */
+      height: 90px;          /* much larger logo */
+      width: auto;
       object-fit: contain;
       z-index: 101;
+      padding-right: 16px;
     }
-    @media (max-width: 800px) {
-      .header-logo { height: 56px; }
+    @media (max-width: 1000px) {
+      .header-logo { height: 72px; }
     }
-    @media (max-width: 500px) {
-      .header-logo { height: 48px; }
+    @media (max-width: 700px) {
+      .header-logo { height: 60px; padding-right: 8px; }
     }
     nav {
       display: flex;
@@ -235,12 +237,12 @@
     .hero-float-col.right .hero-float-img:nth-child(1) { animation-delay: 0.75s; }
     .hero-float-col.right .hero-float-img:nth-child(2) { animation-delay: 2.2s; }
     @keyframes float-loop {
-      0%   { transform: translateY(0) scale(1);}    
-      20%  { transform: translateY(-14px) scale(1.045);}  
-      40%  { transform: translateY(-24px) scale(1.06);}  
-      60%  { transform: translateY(-16px) scale(1.03);}  
-      80%  { transform: translateY(7px) scale(0.99);}   
-      100% { transform: translateY(0) scale(1);}       
+      0%   { transform: translateY(0) scale(1);}
+      20%  { transform: translateY(-14px) scale(1.045);}
+      40%  { transform: translateY(-24px) scale(1.06);}
+      60%  { transform: translateY(-16px) scale(1.03);}
+      80%  { transform: translateY(7px) scale(0.99);}
+      100% { transform: translateY(0) scale(1);}
     }
     @media (max-width: 700px) {
       .hero-float-row {
@@ -520,10 +522,10 @@
       justify-content: center;
     }
     @keyframes float {
-      0%   { transform: translateY(0px) scale(1);}    
-      40%  { transform: translateY(-12px) scale(1.04);}   
-      60%  { transform: translateY(-12px) scale(1.04);}   
-      100% { transform: translateY(0px) scale(1);}  
+      0%   { transform: translateY(0px) scale(1);}
+      40%  { transform: translateY(-12px) scale(1.04);}
+      60%  { transform: translateY(-12px) scale(1.04);}
+      100% { transform: translateY(0px) scale(1);}
     }
     .feature-card {
       background: var(--card-bg);
@@ -549,9 +551,9 @@
       font-family: var(--digital-font), monospace;
     }
     @keyframes roadmap-pulse {
-      0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}   
-      20% { box-shadow: 0 0 18px 2px #00b4fa66; border-left-color: var(--sand);} 
-      50% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}      
+      0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
+      20% { box-shadow: 0 0 18px 2px #00b4fa66; border-left-color: var(--sand);}
+      50% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
     }
     .roadmap-step {
       background: #232224ee;
@@ -644,10 +646,10 @@
     .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#232224;}
     .poweredby-logos span:nth-child(9) { animation-delay:1.9s; color:#47a7f5;}
     @keyframes pb-float {
-      0%   { transform: translateY(0px);}  
-      25%  { transform: translateY(-12px);} 
-      60%  { transform: translateY(6px);}  
-      100% { transform: translateY(0px);} 
+      0%   { transform: translateY(0px);}
+      25%  { transform: translateY(-12px);}
+      60%  { transform: translateY(6px);}
+      100% { transform: translateY(0px);}
     }
     @media (max-width:640px){
       .poweredby-logos {font-size:1.1rem;gap:18px;padding:30px 5vw 24px 5vw;}
@@ -669,25 +671,24 @@
 </head>
 <body>
   <header>
-    <!-- right-aligned logo -->
-    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="header-logo" />
-
     <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
       <i class="fas fa-bars"></i>
     </button>
     <nav>
       <a href="#features">Features</a>
-      <a href="#roadmap">Roadmap</a> 
+      <a href="#roadmap">Roadmap</a>
       <a href="nft-gallery.html">NFT Gallery</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
     </nav>
+    <!-- Right side, big logo -->
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="header-logo" />
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
       <div class="mobile-nav">
         <a href="#features" onclick="closeMobileNav()">Features</a>
-        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>  
+        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>
         <a href="nft-gallery.html" onclick="closeMobileNav()">NFT Gallery</a>
         <a href="#about" onclick="closeMobileNav()">About</a>
         <a href="#contact" onclick="closeMobileNav()">Contact</a>
@@ -844,7 +845,7 @@
     window.addEventListener('resize', auditsInView);
     window.addEventListener('DOMContentLoaded', auditsInView);
     // Typing effect for About Us section
-    const aboutTypingText = 
+    const aboutTypingText =
 `At RA Atum, we believe in the power of giving — and the beauty of turning every act of kindness into a step toward a brighter future.
 
 We are more than just a store. We are a movement.
@@ -855,7 +856,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     function typeAboutText(text, el, i = 0) {
       if (i <= text.length) {
         el.innerHTML = text.slice(0, i)
-          .replace(/\\n/g, '<br>');
+          .replace(/\n/g, '<br>');
         setTimeout(() => typeAboutText(text, el, i + 1), 13 + Math.random()*35);
       }
     }
