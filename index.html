@@ -165,6 +165,27 @@
       }
     }
 
+    /* --- TOP INFO SECTION --- */
+    .top-info {
+      max-width: 960px;
+      margin: 26px auto 0 auto;
+      font-size: 1.11rem;
+      color: var(--sand-bg);
+      background: url('https://i.pinimg.com/736x/74/29/e2/7429e2f1931d41e4abb8600cd684c5a2.jpg') center center/cover no-repeat;
+      border-radius: 12px;
+      box-shadow: 0 2px 22px #00b4fa15;
+      padding: 18px 16px 12px 16px;
+      font-family: var(--digital-font), monospace;
+      line-height: 1.65;
+      text-align: center;
+      letter-spacing: .5px;
+      border: 1.5px solid #00b4fa22;
+      z-index: 8;
+      position: relative;
+      background-blend-mode: multiply;
+      background-color: rgba(20,21,30,0.77);
+    }
+
     /* --- HERO SECTION --- */
     .hero {
       min-height: 75vh;
@@ -373,8 +394,13 @@
       cursor: pointer;
       transition: background .22s, color .15s, transform .17s;
       font-family: var(--digital-font), monospace;
+      opacity: 1;
     }
-    .buy-form button:hover {
+    .buy-form button[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .buy-form button:hover:not([disabled]) {
       background: linear-gradient(90deg, var(--sand-dark) 10%, var(--blue-dark) 100%);
       color: var(--black);
       transform: translateY(-2px) scale(1.04);
@@ -450,10 +476,11 @@
       position: relative;
       padding-bottom: 36px;
     }
+    /* Removed .roadmap-line vertical line as requested */
     .roadmap-list {
       position: relative;
       z-index: 2;
-      margin-left: 0px;
+      margin-left: 0;
     }
     @keyframes roadmap-pulse {
       0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
@@ -536,77 +563,47 @@
       color: var(--sand);
       letter-spacing: 0.02em;
     }
-    .audits-flex {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 28px;
-      flex-wrap: wrap;
+
+    /* --- AUDITS COMING SOON HIGHLIGHT --- */
+    .audits-title {
+      font-size: 2.3rem;
+      color: #fff;
+      background: linear-gradient(90deg, var(--blue) 20%, var(--sand) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 3px;
+      font-family: var(--digital-font), monospace;
+      margin-bottom: 12px;
+      font-weight: 900;
+      text-shadow: 0 4px 18px #00b4fa70, 0 2px 4px #2224;
+      text-align: left;
+      border-left: 8px solid var(--blue);
+      padding-left: 16px;
     }
     .audits-img {
-      width: 140px;
-      max-width: 40vw;
-      min-width: 80px;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 10px 38px #00b4fa3d, 0 2px 0px #00b4fa22;
+      max-width: 390px;
+      min-width: 170px;
+      width: 45vw;
+      height: 110px;
+      border-radius: 18px;
+      box-shadow: 0 10px 48px #00b4fa3d, 0 2px 0px #00b4fa22;
       background: #222;
       object-fit: cover;
+      margin-left: 0;
+      margin-top: 38px;
       display: block;
       opacity: 0;
       transform: translateX(-70px);
-      transition: opacity 0.95s cubic-bezier(.6,1.5,.45,1.09), transform 0.85s cubic-bezier(.6,1.5,.45,1.09);
-      margin: 0 12px 0 0;
+      transition: opacity 0.85s, transform 0.8s;
     }
     .audits-img.visible {
       opacity: 1;
       transform: translateX(0);
     }
-    @media (max-width: 800px) {
-      .audits-flex { flex-direction: column; align-items: center; gap: 10px; }
-      .audits-img { margin: 0 auto 15px auto; max-width: 200px; }
-      .audits-text { max-width: 95vw; }
-    }
-    .poweredby-logos {
-      position:relative;
-      z-index:2;
-      text-align:center;
-      padding:56px 8vw 40px 8vw;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      align-items:center;
-      gap:38px;
-      margin-top:10px;
-      min-height:110px;
-    }
-    .poweredby-logos span {
-      font-size:2.75rem;
-      color:var(--blue);
-      letter-spacing:1.2px;
-      font-weight:700;
-      margin:0 13px;
-      animation: pb-float 3.6s ease-in-out infinite;
-      display:inline-block;
-      text-shadow:0 8px 30px #00b4fa44,0 0 6px #10101580;
-    }
-    .poweredby-logos span:nth-child(2) { animation-delay:0.8s; color:#1cf0b9;}
-    .poweredby-logos span:nth-child(3) { animation-delay:1.3s; color:#ea6afb;}
-    .poweredby-logos span:nth-child(4) { animation-delay:2.1s; color:#e7d7b6;}
-    .poweredby-logos span:nth-child(5) { animation-delay:1.6s; color:#00b4fa;}
-    .poweredby-logos span:nth-child(6) { animation-delay:0.3s; color:#f4b400;}
-    .poweredby-logos span:nth-child(7) { animation-delay:0.5s; color:#fa7b17;}
-    .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#fff;}
-    .poweredby-logos span:nth-child(9) { animation-delay:1.9s; color:#47a7f5;}
-    @keyframes pb-float {
-      0%   { transform: translateY(0px);}
-      25%  { transform: translateY(-12px);}
-      60%  { transform: translateY(6px);}
-      100% { transform: translateY(0px);}
-    }
-    @media (max-width:640px){
-      .poweredby-logos {font-size:1.1rem;gap:18px;padding:30px 5vw 24px 5vw;}
-      .poweredby-logos span{font-size:1.37rem;}
+    @media (max-width:800px) {
+      .audits-img { width: 95vw; max-width: 99vw; height: 66vw; margin-top: 18px;}
+      .audits-title { font-size: 1.42rem; }
     }
     /* ...keep all other sections as before... */
   </style>
@@ -636,7 +633,13 @@
       </div>
     </div>
   </header>
-
+  
+  <!-- TOP INFO SECTION -->
+  <section class="top-info">
+    RA Atum is India’s first blockchain-powered evolution in donations and kindness. With a transparent supply of 1,000,000,000 RA tokens, we reward generosity and build real impact.<br>
+    Starting at 0.001, with a projected launch value of 0.1, RA Atum is designed to grow with trust. We're here to build a future where every act of giving is rewarded — transparently, securely, and proudly powered by blockchain.
+  </section>
+  
   <!-- BUY RA TOKENS (PRESALE) SECTION -->
   <section id="buy-section">
     <h2>Buy RA Tokens – Presale LIVE!</h2>
@@ -709,7 +712,7 @@
     </div>
   </section>
 
-  <!-- ROADMAP SECTION with video background and NO vertical line -->
+  <!-- ROADMAP SECTION with video background and no vertical line -->
   <section id="roadmap">
     <div class="roadmap-video-bg">
       <video autoplay loop muted playsinline>
@@ -754,15 +757,13 @@
     </div>
   </section>
 
-  <!-- AUDITS COMING SOON SECTION with smaller left image, side-by-side, fade on scroll -->
+  <!-- AUDITS COMING SOON SECTION with highlight, horizontal image, left slide/fade -->
   <section id="audits">
-    <div class="audits-flex">
-      <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img" />
-      <div class="audits-text">
-        <div class="audits-title">AUDITS COMING SOON</div>
-        <div class="audits-typing" id="audits-typing"></div>
-      </div>
+    <div class="audits-text">
+      <div class="audits-title">AUDITS COMING SOON</div>
+      <div class="audits-typing" id="audits-typing"></div>
     </div>
+    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
   </section>
 
   <!-- POWERED BY SECTION with video background, floating text only -->
@@ -832,7 +833,7 @@ The results and reports will be published here as soon as they are available. Th
       if (typingEl) typeAuditsText(auditsTypingText, typingEl);
     });
 
-    // --- AUDITS IMAGE FADE-IN/OUT ON SCROLL ---
+    // --- AUDITS IMAGE FADE-IN/OUT from LEFT ---
     function auditsInView() {
       var img = document.getElementById('audits-img');
       if (!img) return;
@@ -865,24 +866,22 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       if (typingEl) typeAboutText(aboutTypingText, typingEl);
     });
 
-    // --- BUY TOKEN LOGIC (connect MetaMask, show presale info) ---
-    // Addresses (update if needed)
+    // --- BUY TOKEN LOGIC (connect MetaMask, show presale info, activate button) ---
     const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
     const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
     const treasuryWallet = "0x27a2C4F65fd4E3Ae249C061468342f9A5D7cb89D";
     const presaleStart = 1750178782 * 1000;
     const presaleEnd = 1765730782 * 1000;
-    let provider, signer;
+    let provider, signer, presaleLive = false;
 
     function updatePresaleInfo() {
-      // Status, timer
       let now = Date.now();
       let status = "NOT STARTED";
+      presaleLive = false;
       if (now < presaleStart) status = "Not Started";
       else if (now > presaleEnd) status = "Ended";
-      else status = "LIVE";
+      else { status = "LIVE"; presaleLive = true; }
       document.getElementById('presale-status').innerText = "Status: " + status;
-      // Time left
       let diff = Math.max(0, presaleEnd - now);
       let d = Math.floor(diff / (24*60*60*1000));
       let h = Math.floor((diff % (24*60*60*1000))/(60*60*1000));
@@ -890,13 +889,18 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       let s = Math.floor((diff % (60*1000))/1000);
       let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
       document.getElementById('presale-timer').innerText = timerText;
+      // Enable or disable buy button
+      document.getElementById('buy-btn').disabled = !presaleLive;
       setTimeout(updatePresaleInfo, 1000);
     }
     updatePresaleInfo();
 
-    // --- Buy Form Logic ---
     document.getElementById('buy-form').onsubmit = async function(e) {
       e.preventDefault();
+      if (!presaleLive) {
+        document.getElementById('buy-message').innerText = "Presale not live!";
+        return;
+      }
       if (!window.ethereum) return alert("MetaMask not found!");
       provider = new ethers.providers.Web3Provider(window.ethereum, "any");
       await provider.send("eth_requestAccounts", []);
