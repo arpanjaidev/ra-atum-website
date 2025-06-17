@@ -23,7 +23,6 @@
       --accent: #00b4fa;
       --accent2: #e7d7b6;
       --digital-font: 'Share Tech Mono', monospace;
-      --highlight: #14f1ff;
     }
     html, body {
       height: 100%;
@@ -165,52 +164,75 @@
         padding: 14px 14px;
       }
     }
-    /* --- PRESALE SECTION --- */
+
+    /* --- BUY RA TOKENS (PRESALE) SECTION --- */
     #buy-section {
       max-width: 980px;
       margin: 32px auto 0 auto;
-      padding: 32px 24px 26px 24px;
-      border-radius: 14px;
-      background: url('https://i.pinimg.com/736x/74/29/e2/7429e2f1931d41e4abb8600cd684c5a2.jpg') center center/cover no-repeat, rgba(34, 34, 38, 0.93);
-      box-shadow: 0 3px 32px #00b4fa22;
-      border: 1.7px solid #00b4fa22;
+      padding: 38px 24px 32px 24px;
+      border-radius: 20px;
+      background: url('https://i.pinimg.com/736x/74/29/e2/7429e2f1931d41e4abb8600cd684c5a2.jpg') center/cover no-repeat, rgba(34, 34, 38, 0.96);
+      box-shadow: 0 3px 32px #00b4fa33, 0 0 0 4px #191a2433;
+      border: 2.2px solid #00b4fa44;
       text-align: center;
-      color: var(--sand-bg);
-      font-size: 1.16rem;
       position: relative;
       z-index: 9;
-      overflow: hidden;
+      color: #fff;
+      font-size: 1.16rem;
+      font-family: var(--digital-font), monospace;
+      letter-spacing: .5px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      transition: box-shadow 0.2s;
+    }
+    #buy-section h2,
+    #buy-section span,
+    #buy-section .presale-info,
+    #buy-section .buy-message,
+    #buy-section a,
+    #buy-section input,
+    #buy-section button,
+    #buy-section form {
+      color: #fff !important;
+      font-weight: bold !important;
+      text-shadow: 0 2px 16px #10101560;
     }
     #buy-section h2 {
-      color: var(--blue);
-      margin-bottom: 13px;
-      font-size: 1.33rem;
+      color: #fff !important;
+      margin-bottom: 19px;
+      font-size: 2rem;
       font-family: var(--digital-font), monospace;
       font-weight: 900;
-      background: rgba(0,0,0,0.38);
-      padding: 0.15em 0.5em;
-      border-radius: 7px;
-      display: inline-block;
+      letter-spacing: 1.2px;
+      background: linear-gradient(90deg, #fff 80%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 18px #22213855,0 0 8px #00315570;
     }
     .presale-info {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 28px;
+      gap: 32px;
       margin-bottom: 14px;
-      font-size: 1.06rem;
+      font-size: 1.23rem;
     }
     .presale-info span {
       display: inline-block;
       min-width: 144px;
-      background: #22253c80;
-      border-radius: 8px;
-      padding: 8px 18px;
-      color: var(--blue);
+      background: #111b;
+      border-radius: 10px;
+      padding: 10px 18px;
+      color: #fff;
       font-weight: bold;
       letter-spacing: .6px;
-      margin: 3px 0;
-      box-shadow: 0 2px 8px #00b4fa15;
+      margin: 4px 0;
+      box-shadow: 0 2px 8px #00b4fa30;
+      border: 1px solid #00b4fa55;
+      font-size: 1.13rem;
+      transition: background .2s;
+      text-shadow: 0 1px 6px #000;
     }
     .buy-form {
       display: flex;
@@ -223,47 +245,63 @@
     .buy-form input[type='number'] {
       padding: 10px 18px;
       border-radius: 9px;
-      border: 1.3px solid #00b4fa44;
-      background: #23223ae6;
+      border: 1.7px solid #00b4fa;
+      background: #111b;
       color: #fff;
-      font-size: 1.15rem;
+      font-size: 1.18rem;
       width: 150px;
       max-width: 200px;
       outline: none;
       font-family: var(--digital-font), monospace;
       margin-right: 10px;
+      font-weight: bold;
+      letter-spacing: .5px;
     }
     .buy-form button {
       background: linear-gradient(90deg, var(--blue-dark) 0%, var(--blue) 100%);
       color: #fff;
       padding: 11px 38px;
-      font-size: 1.09rem;
+      font-size: 1.16rem;
       border: none;
       border-radius: 12px;
       font-weight: bold;
       cursor: pointer;
-      transition: background .22s, color .15s, transform .17s;
+      box-shadow: 0 8px 24px #00b4fa44;
       font-family: var(--digital-font), monospace;
-      opacity: 0.65;
-      pointer-events: none;
+      letter-spacing: 1.2px;
+      opacity: .89;
+      transition: background .22s, color .15s, transform .17s, opacity .19s;
     }
-    .buy-form button.active {
-      opacity: 1;
-      pointer-events: auto;
+    .buy-form button:disabled {
+      background: #333e;
+      color: #aaa;
+      opacity: 0.6;
+      cursor: not-allowed;
     }
     .buy-form button:hover:enabled {
       background: linear-gradient(90deg, var(--sand-dark) 10%, var(--blue-dark) 100%);
       color: var(--black);
       transform: translateY(-2px) scale(1.04);
+      opacity: 1;
     }
     .buy-message {
       margin-top: 7px;
       font-size: 1.07em;
-      color: var(--accent);
+      color: #fff;
       min-height: 24px;
       font-family: var(--digital-font), monospace;
       word-break: break-word;
+      text-shadow: 0 1px 7px #333;
     }
+    #buy-section a {
+      color: #fff !important;
+      text-decoration: underline;
+      font-weight: bold;
+      letter-spacing: .5px;
+      transition: color .19s;
+    }
+    #buy-section a:hover { color: var(--blue); }
+
     /* --- HERO SECTION --- */
     .hero {
       min-height: 75vh;
@@ -397,6 +435,7 @@
       color: var(--black);
       transform: translateY(-2px) scale(1.03);
     }
+
     /* --- FEATURES --- */
     section {
       max-width: 970px;
@@ -452,6 +491,7 @@
       font-weight: 700;
       font-family: var(--digital-font), monospace;
     }
+
     /* --- ROADMAP --- */
     #roadmap { overflow: visible; }
     .roadmap-container {
@@ -461,7 +501,7 @@
     .roadmap-list {
       position: relative;
       z-index: 2;
-      margin-left: 15px;
+      margin-left: 0;
     }
     @keyframes roadmap-pulse {
       0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
@@ -491,75 +531,26 @@
     .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
     .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
     .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
-    /* --- AUDITS COMING SOON --- */
-    #audits {
-      background: linear-gradient(95deg, #131a27 60%, #083b43 100%);
-      border: 2.5px solid var(--highlight);
-      box-shadow: 0 4px 54px #00b4fa70;
-      max-width: 980px;
-      margin: 56px auto 48px auto;
-      border-radius: 22px;
-      padding: 40px 20px 36px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 36px;
-      position: relative;
-      overflow: visible;
-      min-height: 230px;
-      z-index: 2;
-      font-family: var(--digital-font), monospace;
-    }
-    .audits-title {
-      font-size: 2.3rem;
+    .roadmap-step:last-child {
+      border-left: 4px dashed var(--blue);
       color: #fff;
-      background: linear-gradient(90deg, var(--highlight) 40%, var(--blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 900;
-      margin-bottom: 22px;
+      background: #0e153a;
+      font-weight: bold;
+      box-shadow: 0 0 30px #00b4fa22;
+    }
+    footer {
+      text-align: center;
+      color: var(--blue-dark);
+      background: #181a1b;
+      padding: 24px 8px 19px 8px;
+      font-size: 1.09em;
+      border-top: 1.5px solid #00b4fa11;
+      margin-top: 64px;
+      letter-spacing: 1px;
       font-family: var(--digital-font), monospace;
-      letter-spacing: 2.2px;
-      text-shadow: 0 4px 14px #00b4fa90;
     }
-    .audits-img {
-      flex: 1.2;
-      max-width: 350px;
-      min-width: 120px;
-      opacity: 0;
-      transform: translateX(160px) scaleX(1.35);
-      transition: opacity 1.3s cubic-bezier(.6,1.5,.45,1.09), transform 1.15s cubic-bezier(.6,1.5,.45,1.09);
-      will-change: opacity, transform;
-      border-radius: 17px;
-      box-shadow: 0 10px 48px #00b4fa3d, 0 2px 0px #00b4fa22;
-      background: #222;
-      object-fit: cover;
-      height: 145px;
-      margin: 0 0 0 6px;
-      display: block;
-    }
-    .audits-img.visible {
-      opacity: 1;
-      transform: translateX(0) scaleX(1.15);
-    }
-    .audits-text {
-      flex: 2.5;
-      z-index: 2;
-      font-size: 1.17rem;
-      color: var(--sand);
-      font-family: var(--digital-font), monospace;
-      letter-spacing: 0.5px;
-    }
-    @media (max-width: 800px) {
-      #audits { flex-direction: column-reverse; gap: 18px; min-height: 120px; }
-      .audits-img { margin: 0 auto; width: 85vw; max-width: 400px; height: 90px;}
-    }
-    @media (max-width: 480px) {
-      .audits-img { height: 60px; }
-      .audits-title { font-size: 1.13rem; }
-    }
-    /* --- ABOUT, POWERED BY: Unchanged --- */
+
+    /* --- ABOUT US, AUDITS, POWERED BY: Unchanged --- */
     .about-video-bg, .features-video-bg, .roadmap-video-bg, .poweredby-video-bg {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -599,6 +590,70 @@
       font-family: var(--digital-font), monospace;
       color: var(--sand);
       letter-spacing: 0.02em;
+    }
+    /* --- AUDITS HIGHLIGHT AND IMAGE --- */
+    #audits {
+      background: linear-gradient(100deg, #111a33 0%, #1b344a 98%);
+      box-shadow: 0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
+      border: 2.5px solid #00b4fa;
+      max-width: 930px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 34px 24px 36px 24px;
+      margin-bottom: 36px;
+    }
+    .audits-text {
+      flex: 2;
+      z-index: 2;
+      font-size: 1.13rem;
+      color: #fff;
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 0.5px;
+      background: none;
+    }
+    .audits-title {
+      font-size: 2rem;
+      color: #fff;
+      background: linear-gradient(92deg, #fff 80%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: var(--digital-font), monospace;
+      font-weight: 900;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 18px #10101577;
+    }
+    .audits-img {
+      flex: 1;
+      max-width: 190px;
+      min-width: 60px;
+      width: 30vw;
+      height: 85px;
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 1s, transform 1s;
+      will-change: opacity, transform;
+      border-radius: 14px;
+      box-shadow: 0 8px 38px #00b4fa28, 0 2px 0px #00b4fa22;
+      background: #222;
+      object-fit: cover;
+      margin-left: 12px;
+      display: block;
+    }
+    .audits-img.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    @media (max-width: 800px) {
+      #audits { flex-direction: column; gap: 12px; }
+      .audits-img { margin: 0 auto; width: 60vw; height: 65px;}
+    }
+    @media (max-width: 480px) {
+      .audits-img { height: 42px; }
+      .audits-title { font-size: 1.23rem; }
     }
     .poweredby-logos {
       position:relative;
@@ -679,12 +734,12 @@
       <span id="presale-raised">Raised: Coming Soon</span>
     </div>
     <form class="buy-form" id="buy-form" autocomplete="off">
-      <input type="number" step="0.001" min="0.001" placeholder="BNB Amount" id="buy-amount" required />
-      <button type="submit" id="buy-btn">Buy RA Tokens</button>
+      <input type="number" step="0.0001" min="0.0001" placeholder="BNB Amount" id="buy-amount" required />
+      <button type="submit" id="buy-btn" disabled>Buy RA Tokens</button>
     </form>
     <div class="buy-message" id="buy-message"></div>
     <div style="font-size:0.99em;margin-top:9px;">
-      <b>Contract:</b> <a href="https://bscscan.com/address/0xEbd8c8E89c64618E699eDb6f339331425d95EE3f" style="color:var(--blue);text-decoration:underline;" target="_blank">View Presale on BscScan</a>
+      <b>Contract:</b> <a href="https://bscscan.com/address/0xEbd8c8E89c64618E699eDb6f339331425d95EE3f" target="_blank">View Presale on BscScan</a>
     </div>
   </section>
 
@@ -786,7 +841,7 @@
     </div>
   </section>
 
-  <!-- AUDITS COMING SOON SECTION with live typing and highlight -->
+  <!-- AUDITS COMING SOON SECTION with live typing -->
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
@@ -903,7 +958,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     const presaleStart = 1750178782 * 1000;
     const presaleEnd = 1765730782 * 1000;
     let provider, signer;
-    // Presale price = 0.01 BNB!
+
     function updatePresaleInfo() {
       // Status, timer
       let now = Date.now();
@@ -920,10 +975,10 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       let s = Math.floor((diff % (60*1000))/1000);
       let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
       document.getElementById('presale-timer').innerText = timerText;
-      // Enable Buy Button ONLY if live & price 0.01
-      let buyBtn = document.getElementById('buy-btn');
-      if (status === "LIVE") buyBtn.classList.add('active');
-      else buyBtn.classList.remove('active');
+      // Price
+      document.getElementById('presale-price').innerText = "Price: 0.01 BNB";
+      // Buy button logic
+      document.getElementById('buy-btn').disabled = !(status === "LIVE");
       setTimeout(updatePresaleInfo, 1000);
     }
     updatePresaleInfo();
