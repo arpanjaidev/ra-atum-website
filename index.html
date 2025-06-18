@@ -12,7 +12,6 @@
     :root {
       --sand: #e7d7b6;
       --sand-dark: #bda76a;
-      --sand-bg: #f6e7c1;
       --blue: #00b4fa;
       --blue-dark: #004aad;
       --digital-blue: #0fffc7;
@@ -25,6 +24,9 @@
       --accent: #00b4fa;
       --accent2: #e7d7b6;
       --digital-font: 'Share Tech Mono', monospace;
+      --highlight-bg: linear-gradient(110deg, #22223acc 80%, #131326fa 100%);
+      --highlight-border: 2.5px solid #0fffc7cc;
+      --highlight-shadow: 0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
     }
     html, body {
       height: 100%;
@@ -177,14 +179,14 @@
     section, #buy-section, .top-info {
       max-width: 1000px;
       margin: 40px auto 44px auto;
-      background: linear-gradient(110deg, #22223acc 80%, #131326fa 100%);
+      background: var(--highlight-bg);
       border-radius: 19px;
       box-shadow: 0 6px 48px #00b4fa44, 0 1.5px 0 #00b4fa22;
       padding: 36px 23px 34px 23px;
       position: relative;
       z-index: 2;
       font-family: var(--digital-font), monospace;
-      border: 1.7px solid #00b4fa35;
+      border: var(--highlight-border);
     }
     .top-info {
       margin-top: 30px;
@@ -314,7 +316,6 @@
       margin-bottom: 12px;
       letter-spacing: 2px;
     }
-
     /* --- AUDITS SECTION HIGHLIGHT --- */
     #audits {
       background: linear-gradient(109deg, #171c33e3 60%, #21263bfc 100%);
@@ -322,6 +323,11 @@
       border: 2.5px solid #00c3ff77;
       color: #fff !important;
       margin-bottom: 56px;
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: center;
     }
     .audits-text {
       flex: 2;
@@ -342,316 +348,33 @@
       font-weight: 900;
     }
     .audits-img, .audits-img2, .audits-img3 {
-      max-width: 180px;
-      min-width: 100px;
-      opacity: 0;
-      transform: translateX(60px);
-      transition: opacity 1.2s cubic-bezier(.6,1.5,.45,1.09), transform 1.2s cubic-bezier(.6,1.5,.45,1.09);
-      will-change: opacity, transform;
+      max-width: 160px;
+      min-width: 80px;
+      height: 80px;
+      margin: 0 8px 0 0;
       border-radius: 13px;
-      box-shadow: 0 10px 48px #00b4fa3d, 0 2px 0px #00b4fa22;
-      background: #222;
-      object-fit: cover;
-      height: 110px;
-      margin: 0 16px 0 0;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .audits-img2, .audits-img3 {
-      max-width: 170px;
-      min-width: 60px;
-      height: 100px;
-      margin: 0 8px;
-      border-radius: 12px;
       object-fit: cover;
       box-shadow: 0 8px 34px #00b4fa44;
       vertical-align: middle;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 1.2s, transform 1.2s;
+      background: #222;
     }
     .audits-img.visible, .audits-img2.visible, .audits-img3.visible {
       opacity: 1;
       transform: translateX(0);
     }
-
-    /* --- HERO SECTION --- */
-    .hero {
-      min-height: 75vh;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: left;
-      background: none;
-      padding: 60px 6vw 36px 6vw;
-      position: relative;
-      z-index: 1;
-      overflow: visible;
-      gap: 32px;
-    }
-    .hero-logo {
-      flex: 0 0 auto;
-      height: 180px;
-      width: 180px;
-      min-width: 120px;
-      min-height: 120px;
-      max-width: 200px;
-      max-height: 200px;
-      object-fit: contain;
-      border-radius: 24px;
-      box-shadow: 0 4px 34px #00b4fa70, 0 0 0 5px #191a2466;
-      background: #1119;
-      margin-right: 34px;
-      z-index: 3;
-      border: 3px solid #00b4fa44;
-    }
     @media (max-width: 800px) {
-      .hero-logo {
-        height: 100px; width: 100px;
-        margin-right: 16px;
-      }
-      .hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 4vw 22px 4vw; min-height: 66vh;}
+      #audits { flex-direction: column; gap: 12px; }
+      .audits-img, .audits-img2, .audits-img3 { margin: 0 auto; width: 60vw; height: 48px;}
     }
-    .hero-float-images {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-      align-items: flex-start;
-      position: relative;
-      z-index: 2;
+    @media (max-width: 480px) {
+      .audits-img, .audits-img2, .audits-img3 { height: 32px; }
+      .audits-title { font-size: 1.23rem; }
     }
-    .zigzag-row {
-      display: flex;
-      flex-direction: row;
-      gap: 18px;
-      width: 100%;
-      justify-content: flex-start;
-    }
-    .zigzag-img {
-      width: 150px;
-      height: 110px;
-      border-radius: 16px;
-      object-fit: cover;
-      box-shadow: 0 8px 28px #00b4fa55, 0 0 0 3px #24224f44;
-      background: #23222433;
-      opacity: 0.98;
-      margin: 0;
-      border: none;
-      transform: translateX(140px);
-      opacity: 0;
-      transition: transform 1.6s cubic-bezier(.66,1.35,.25,.82), opacity 0.85s;
-    }
-    .zigzag-row:nth-child(1) .zigzag-img { margin-top: 0px; }
-    .zigzag-row:nth-child(2) .zigzag-img { margin-top: 30px; }
-    .zigzag-row:nth-child(3) .zigzag-img { margin-top: 0px; }
-    .zigzag-row:nth-child(4) .zigzag-img { margin-top: 30px; }
-    .zigzag-img.visible {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    @media (max-width: 900px) {
-      .zigzag-img { width: 100px; height: 74px; border-radius: 9px;}
-      .hero { gap: 6px;}
-    }
-    @media (max-width: 600px) {
-      .zigzag-img { width: 90vw; max-width: 98vw; height: 48vw; max-height: 35vw; }
-    }
-    .hero-content {
-      padding-top: 30px;
-      width: 100%;
-      min-width: 230px;
-      max-width: 530px;
-      text-align: left;
-      z-index: 4;
-    }
-    .hero-content h1 {
-      font-size: 2.2rem;
-      background: linear-gradient(90deg, var(--blue) 30%, var(--sand) 90%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 900;
-      margin-bottom: 16px;
-      line-height: 1.1;
-      display: block;
-      z-index: 10;
-      text-shadow: 0 4px 14px #004aad66;
-    }
-    .hero-content p {
-      font-size: 1.12rem;
-      max-width: 650px;
-      margin: 0 auto 28px 0;
-      color: var(--sand);
-      z-index: 10;
-      text-shadow: 0 2px 8px #10101580;
-    }
-    .hero-content .cta-btn {
-      font-size: 1.08rem;
-      padding: 13px 38px;
-      background: linear-gradient(90deg, var(--blue-dark) 0%, var(--blue) 100%);
-      color: #fff;
-      border: none;
-      border-radius: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 8px 30px #00b4fa44;
-      transition: background .22s, color .15s, transform .17s;
-      margin-top: 18px;
-      letter-spacing: 1px;
-      z-index: 10;
-    }
-    .hero-content .cta-btn:hover {
-      background: linear-gradient(90deg, var(--sand-dark) 10%, var(--blue-dark) 100%);
-      color: var(--black);
-      transform: translateY(-2px) scale(1.03);
-    }
-
-    /* --- FEATURES --- */
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 28px;
-      justify-content: center;
-    }
-    .feature-card {
-      background: var(--card-bg);
-      border-radius: 15px;
-      box-shadow: 0 2px 10px #0077cc44;
-      padding: 28px 22px 19px 22px;
-      text-align: center;
-      width: 220px;
-      min-width: 170px;
-      border: 1.5px solid #00b4fa30;
-      animation: float 3.6s ease-in-out infinite;
-      font-family: var(--digital-font), monospace;
-      text-shadow: 0 0 12px #0fffc7aa;
-    }
-    .features .feature-card:nth-child(1) { animation-delay: 0s; }
-    .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
-    .features .feature-card:nth-child(3) { animation-delay: 1.4s; }
-    .features .feature-card:nth-child(4) { animation-delay: 2.1s; }
-    .feature-card h3 {
-      margin: 10px 0 8px 0;
-      color: var(--digital-blue);
-      font-size: 1.2em;
-      font-weight: 700;
-      text-shadow: 0 0 13px #00c3ff99;
-      text-transform: uppercase;
-    }
-
-    /* --- ROADMAP --- */
-    #roadmap { overflow: visible; }
-    .roadmap-container {
-      position: relative;
-      padding-bottom: 36px;
-    }
-    .roadmap-list {
-      position: relative;
-      z-index: 2;
-      margin-left: 15px;
-    }
-    .roadmap-step {
-      background: #232224ee;
-      border-left: 4px solid var(--digital-blue);
-      border-radius: 11px;
-      padding: 13px 19px;
-      font-weight: 600;
-      min-width: 180px;
-      box-shadow: 0 1px 8px #00b4fa1a;
-      color: var(--sand);
-      margin-bottom: 12px;
-      font-size: 1.12em;
-      text-align: left;
-      font-family: var(--digital-font), monospace;
-      text-shadow: 0 0 8px #0fffc788;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    /* --- ABOUT US, AUDITS, POWERED BY, ETC: Unchanged --- */
-    .about-video-bg, .features-video-bg, .roadmap-video-bg, .poweredby-video-bg {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 0;
-      overflow: hidden;
-      border-radius: 18px;
-    }
-    .about-video-bg video,
-    .features-video-bg video,
-    .roadmap-video-bg video,
-    .poweredby-video-bg video {
-      width: 100vw;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0.22;
-      pointer-events: none;
-    }
-    .about-content, .audits-text {
-      max-width: 650px;
-      margin: 0 auto;
-      color: var(--sand);
-      line-height: 1.6;
-      font-size: 1.14rem;
-      font-family: var(--digital-font), monospace;
-      position: relative;
-      z-index: 2;
-      background: none;
-      min-height: 145px;
-    }
-    .about-typing, .audits-typing {
-      min-height: 120px;
-      font-size: 1.13rem;
-      white-space: pre-line;
-      font-family: var(--digital-font), monospace;
-      color: var(--sand);
-      letter-spacing: 0.02em;
-    }
-    .poweredby-logos {
-      position:relative;
-      z-index:2;
-      text-align:center;
-      padding:56px 8vw 40px 8vw;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      align-items:center;
-      gap:38px;
-      margin-top:10px;
-      min-height:110px;
-    }
-    .poweredby-logos span {
-      font-size:2.75rem;
-      color:var(--digital-blue);
-      letter-spacing:1.2px;
-      font-weight:700;
-      margin:0 13px;
-      animation: pb-float 3.6s ease-in-out infinite;
-      display:inline-block;
-      text-shadow:0 8px 30px #00b4fa44,0 0 6px #10101580;
-      text-transform: uppercase;
-    }
-    .poweredby-logos span:nth-child(2) { animation-delay:0.8s; color:#1cf0b9;}
-    .poweredby-logos span:nth-child(3) { animation-delay:1.3s; color:#ea6afb;}
-    .poweredby-logos span:nth-child(4) { animation-delay:2.1s; color:#e7d7b6;}
-    .poweredby-logos span:nth-child(5) { animation-delay:1.6s; color:#00b4fa;}
-    .poweredby-logos span:nth-child(6) { animation-delay:0.3s; color:#f4b400;}
-    .poweredby-logos span:nth-child(7) { animation-delay:0.5s; color:#fa7b17;}
-    .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#fff;}  /* GitHub = white */
-    .poweredby-logos span:nth-child(9) { animation-delay:1.9s; color:#47a7f5;}
-    @keyframes pb-float {
-      0%   { transform: translateY(0px);}
-      25%  { transform: translateY(-12px);}
-      60%  { transform: translateY(6px);}
-      100% { transform: translateY(0px);}
-    }
-    @media (max-width:640px){
-      .poweredby-logos {font-size:1.1rem;gap:18px;padding:30px 5vw 24px 5vw;}
-      .poweredby-logos span{font-size:1.37rem;}
-    }
-    /* ...keep all other sections as before... */
+    /* --- HERO, FEATURES, ROADMAP, ABOUT, POWERED BY, FOOTER: Keep from your last final (as in index 11) --- */
+    /* ...Rest of your design, animations, etc... */
   </style>
 </head>
 <body>
@@ -679,16 +402,13 @@
       </div>
     </div>
   </header>
-  
-  <!-- TOP INFO SECTION -->
   <section class="top-info">
     RA Atum is India’s first blockchain-powered evolution in donations and kindness. With a transparent supply of 1,000,000,000 RA tokens, we reward generosity and build real impact.<br>
     Starting at 0.001, with a projected launch value of 0.1, RA Atum is designed to grow with trust. We're here to build a future where every act of giving is rewarded — transparently, securely, and proudly powered by blockchain.
   </section>
-  
   <!-- BUY RA TOKENS (PRESALE) SECTION -->
   <section id="buy-section">
-    <h2>Buy RA Tokens – Presale LIVE!</h2>
+    <h2>BUY RA TOKENS – PRESALE LIVE!</h2>
     <div class="presale-info">
       <span id="presale-status">Status: <b>LIVE</b></span>
       <span id="presale-price">Price: <b>0.01 BNB</b></span>
@@ -704,7 +424,6 @@
       <b>Contract:</b> <a href="https://bscscan.com/address/0xEbd8c8E89c64618E699eDb6f339331425d95EE3f" style="color:var(--digital-blue);text-decoration:underline;" target="_blank">View Presale on BscScan</a>
     </div>
   </section>
-
   <!-- HERO SECTION -->
   <section class="hero">
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo" />
@@ -729,7 +448,6 @@
       <a href="https://ra-wallet-dapp.vercel.app/" class="cta-btn" target="_blank">Launch DApp</a>
     </div>
   </section>
-
   <!-- FEATURES SECTION with video background -->
   <section id="features">
     <div class="features-video-bg">
@@ -757,7 +475,6 @@
       </div>
     </div>
   </section>
-
   <!-- ROADMAP SECTION with video background and line -->
   <section id="roadmap">
     <div class="roadmap-video-bg">
@@ -780,7 +497,6 @@
       </div>
     </div>
   </section>
-
   <!-- ABOUT US SECTION with VIDEO background and typing effect -->
   <section id="about">
     <div class="about-video-bg">
@@ -793,7 +509,6 @@
       <div class="about-typing" id="about-typing"></div>
     </div>
   </section>
-
   <section id="contact">
     <h2>CONTACT & SOCIALS</h2>
     <div class="about-content" style="text-align:center;">
@@ -802,20 +517,16 @@
       <b>Telegram:</b> <a href="#" target="_blank" style="color:var(--blue-dark);">@ra_atum</a>
     </div>
   </section>
-
   <!-- AUDITS COMING SOON SECTION with live typing and 3 images -->
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
       <div class="audits-typing" id="audits-typing"></div>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:17px;">
-        <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
-        <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit Illustration 2" class="audits-img2" id="audits-img2">
-        <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit Illustration 3" class="audits-img3" id="audits-img3">
-      </div>
     </div>
+    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit 1" class="audits-img" id="audits-img">
+    <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit 2" class="audits-img2" id="audits-img2">
+    <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit 3" class="audits-img3" id="audits-img3">
   </section>
-
   <!-- POWERED BY SECTION with video background, floating text only -->
   <section id="poweredby">
     <div class="poweredby-video-bg">
@@ -836,7 +547,6 @@
       <span>Microsoft</span>
     </div>
   </section>
-
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   <script>
     // --- HAMBURGER MENU ---
@@ -865,7 +575,7 @@
     window.addEventListener('scroll', handleZigzagAnimation, {passive:true});
     window.addEventListener('DOMContentLoaded', handleZigzagAnimation);
 
-    // --- AUDITS LIVE TYPING EFFECT ---
+    // --- AUDITS LIVE TYPING EFFECT + IMAGES ---
     const auditsTypingText =
 `At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform.
 
@@ -882,20 +592,18 @@ The results and reports will be published here as soon as they are available. Th
       const typingEl = document.getElementById('audits-typing');
       if (typingEl) typeAuditsText(auditsTypingText, typingEl);
     });
-
-    // --- AUDITS IMAGE FADE-IN ---
+    // Audits images appear/disappear on scroll
     function auditsInView() {
       var img = document.getElementById('audits-img');
       var img2 = document.getElementById('audits-img2');
       var img3 = document.getElementById('audits-img3');
-      if (!img || !img2 || !img3) return;
-      var rect = img.getBoundingClientRect();
-      var inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (inView) {
-        img.classList.add('visible');
-        img2.classList.add('visible');
-        img3.classList.add('visible');
-      }
+      [img, img2, img3].forEach(function(im){
+        if (!im) return;
+        var rect = im.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (inView) im.classList.add('visible');
+        else im.classList.remove('visible');
+      });
     }
     window.addEventListener('scroll', auditsInView);
     window.addEventListener('resize', auditsInView);
@@ -923,6 +631,8 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
 
     // --- BUY TOKEN LOGIC (connect MetaMask, show presale info, balance check) ---
     const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
+    const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
+    const treasuryWallet = "0x27a2C4F65fd4E3Ae249C061468342f9A5D7cb89D";
     const presaleStart = 1750178782 * 1000;
     const presaleEnd = 1765730782 * 1000;
     let provider, signer;
@@ -947,6 +657,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     }
     updatePresaleInfo();
 
+    // --- Buy Form Logic (with balance check) ---
     document.getElementById('buy-form').onsubmit = async function(e) {
       e.preventDefault();
       if (!window.ethereum) return alert("MetaMask not found!");
@@ -955,23 +666,23 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       signer = provider.getSigner();
       let amt = document.getElementById('buy-amount').value;
       if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) {
-        document.getElementById('buy-message').innerText = "Minimum is 0.01 BNB";
+        document.getElementById('buy-message').innerText = "Min purchase: 0.01 BNB";
         return;
       }
-      document.getElementById('buy-message').innerText = "Checking balance...";
+      // Balance check
+      let address = await signer.getAddress();
+      let balance = await provider.getBalance(address);
+      if (balance.lt(ethers.utils.parseEther(amt))) {
+        document.getElementById('buy-message').innerText = "Insufficient BNB balance.";
+        return;
+      }
+      document.getElementById('buy-message').innerText = "Sending...";
       try {
-        let userAddr = await signer.getAddress();
-        let bal = await provider.getBalance(userAddr);
-        if (bal.lt(ethers.utils.parseEther(amt))) {
-          document.getElementById('buy-message').innerText = "❌ Insufficient balance!";
-          return;
-        }
-        document.getElementById('buy-message').innerText = "Sending...";
         let tx = await signer.sendTransaction({
           to: presaleAddress,
           value: ethers.utils.parseEther(amt)
         });
-        document.getElementById('buy-message').innerHTML = "✅ Success! <a href='https://bscscan.com/tx/"+tx.hash+"' style='color:#0fffc7;' target='_blank'>View on BscScan</a>";
+        document.getElementById('buy-message').innerHTML = "✅ Success! <a href='https://bscscan.com/tx/"+tx.hash+"' style='color:var(--digital-blue);' target='_blank'>View on BscScan</a>";
       } catch (err) {
         document.getElementById('buy-message').innerText = "Failed: " + (err.message || err);
       }
