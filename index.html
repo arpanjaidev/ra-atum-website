@@ -806,21 +806,19 @@
     <h2>CONTACT & SOCIALS</h2>
     <div class="about-content" style="text-align:center;">
       <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:var(--digital-blue);">info@ra-atum.com</a><br>
-      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:var(--digital-blue);">@ra_atum</a><br>
-      <b>Telegram:</b> <a href="#" target="_blank" style="color:var(--digital-blue);">@ra_atum</a>
+      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:var(--blue-dark);">@ra_atum</a><br>
+      <b>Telegram:</b> <a href="#" target="_blank" style="color:var(--blue-dark);">@ra_atum</a>
     </div>
   </section>
 
-  <!-- AUDITS COMING SOON SECTION with live typing -->
+  <!-- AUDITS COMING SOON SECTION with live typing and 3 images -->
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
       <div class="audits-typing" id="audits-typing"></div>
-    </div>
-    <div style="text-align:center;margin-top:24px;">
-      <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
-      <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit Illustration" class="audits-img2" id="audits-img2">
-      <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit Illustration" class="audits-img3" id="audits-img3">
+      <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit 1" class="audits-img" id="audits-img">
+      <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit 2" class="audits-img2" id="audits-img2">
+      <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit 3" class="audits-img3" id="audits-img3">
     </div>
   </section>
 
@@ -873,7 +871,7 @@
     window.addEventListener('scroll', handleZigzagAnimation, {passive:true});
     window.addEventListener('DOMContentLoaded', handleZigzagAnimation);
 
-    // --- AUDITS LIVE TYPING EFFECT & IMAGE IN VIEW ---
+    // --- AUDITS LIVE TYPING EFFECT ---
     const auditsTypingText =
 `At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform.
 
@@ -891,17 +889,17 @@ The results and reports will be published here as soon as they are available. Th
       if (typingEl) typeAuditsText(auditsTypingText, typingEl);
     });
 
-    // AUDITS IMAGES APPEAR ON SCROLL
+    // --- AUDITS IMAGE FADE-IN ---
     function auditsInView() {
-      var img1 = document.getElementById('audits-img');
+      var img = document.getElementById('audits-img');
       var img2 = document.getElementById('audits-img2');
       var img3 = document.getElementById('audits-img3');
-      [img1, img2, img3].forEach(function(img) {
-        if (!img) return;
-        var rect = img.getBoundingClientRect();
+      [img, img2, img3].forEach(function(im) {
+        if (!im) return;
+        var rect = im.getBoundingClientRect();
         var inView = rect.top < window.innerHeight && rect.bottom > 0;
-        if (inView) img.classList.add('visible');
-        else img.classList.remove('visible');
+        if (inView) im.classList.add('visible');
+        else im.classList.remove('visible');
       });
     }
     window.addEventListener('scroll', auditsInView);
@@ -928,7 +926,8 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       if (typingEl) typeAboutText(aboutTypingText, typingEl);
     });
 
-    // --- PRESALE BUY FORM LOGIC with BALANCE CHECK ---
+    // --- BUY TOKEN LOGIC (connect MetaMask, show presale info, balance check) ---
+    // Addresses (update if needed)
     const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
     const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
     const treasuryWallet = "0x27a2C4F65fd4E3Ae249C061468342f9A5D7cb89D";
@@ -939,7 +938,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     function updatePresaleInfo() {
       // Status, timer
       let now = Date.now();
-      let status = "NOT STARTED";
+      let status = "LIVE";
       if (now < presaleStart) status = "Not Started";
       else if (now > presaleEnd) status = "Ended";
       else status = "LIVE";
@@ -958,31 +957,38 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
 
     document.getElementById('buy-form').onsubmit = async function(e) {
       e.preventDefault();
-      if (!window.ethereum) return alert("MetaMask not found!");
+      if (!window.ethereum) {
+        document.getElementById('buy-message').innerText = "MetaMask not found!";
+        return;
+      }
       provider = new ethers.providers.Web3Provider(window.ethereum, "any");
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
-      let amt = document.getElementById('buy-amount').value;
-      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) return;
-      document.getElementById('buy-message').innerText = "Checking balance...";
+
+      // Check balance first
+      const amt = document.getElementById('buy-amount').value;
+      const weiAmt = ethers.utils.parseEther(amt);
       try {
-        const address = await signer.getAddress();
-        let balance = await provider.getBalance(address);
-        let valueBNB = ethers.utils.parseEther(amt);
-        let feeBuffer = ethers.utils.parseEther("0.001");
-        if (balance.lt(valueBNB.add(feeBuffer))) {
-          document.getElementById('buy-message').innerText = "❌ Not enough BNB for this purchase (need " + ethers.utils.formatEther(valueBNB.add(feeBuffer)) + " BNB for token + gas).";
+        const userAddress = await signer.getAddress();
+        const balance = await provider.getBalance(userAddress);
+        if (balance.lt(weiAmt)) {
+          document.getElementById('buy-message').innerText = "Insufficient BNB balance!";
           return;
         }
-        document.getElementById('buy-message').innerText = "Sending transaction...";
+      } catch (err) {
+        document.getElementById('buy-message').innerText = "Failed to check balance.";
+        return;
+      }
+
+      document.getElementById('buy-message').innerText = "Sending...";
+      try {
         let tx = await signer.sendTransaction({
           to: presaleAddress,
-          value: valueBNB
+          value: weiAmt
         });
-        document.getElementById('buy-message').innerHTML = "✅ Success! <a href='https://bscscan.com/tx/"+tx.hash+"' style='color:var(--digital-blue);' target='_blank'>View on BscScan</a>";
+        document.getElementById('buy-message').innerHTML = "✅ Success! <a href='https://bscscan.com/tx/"+tx.hash+"' style='color:#fff;' target='_blank'>View on BscScan</a>";
       } catch (err) {
-        let msg = err && err.message ? err.message : err;
-        document.getElementById('buy-message').innerText = "❌ Failed: " + msg;
+        document.getElementById('buy-message').innerText = "Failed: " + (err.data && err.data.message ? err.data.message : (err.message || err));
       }
     };
   </script>
