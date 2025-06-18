@@ -23,6 +23,9 @@
       --accent: #00b4fa;
       --accent2: #e7d7b6;
       --digital-font: 'Share Tech Mono', monospace;
+      --highlight-bg: linear-gradient(100deg, #111a33 0%, #1b344a 98%);
+      --highlight-border: 2.5px solid #00b4fa;
+      --highlight-shadow: 0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
     }
     html, body {
       height: 100%;
@@ -165,25 +168,45 @@
       }
     }
 
+    /* === HIGHLIGHT/CARD STYLE FOR ALL SECTIONS === */
+    section, #buy-section, #audits {
+      background: var(--highlight-bg);
+      border: var(--highlight-border);
+      box-shadow: var(--highlight-shadow);
+      border-radius: 18px;
+      margin: 54px auto 54px auto;
+      padding: 38px 26px 38px 26px;
+      max-width: 970px;
+      position: relative;
+      z-index: 2;
+      font-family: var(--digital-font), monospace;
+      font-weight: bold;
+      color: #fff;
+    }
+    h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 28px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
+      font-weight: bold;
+      background: linear-gradient(90deg, #fff 70%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 18px #22213855,0 0 8px #00315570;
+    }
     /* --- BUY RA TOKENS (PRESALE) SECTION --- */
     #buy-section {
-      max-width: 980px;
-      margin: 32px auto 0 auto;
-      padding: 38px 24px 32px 24px;
-      border-radius: 20px;
-      background: url('https://i.pinimg.com/736x/74/29/e2/7429e2f1931d41e4abb8600cd684c5a2.jpg') center/cover no-repeat, rgba(34, 34, 38, 0.96);
-      box-shadow: 0 3px 32px #00b4fa33, 0 0 0 4px #191a2433;
-      border: 2.2px solid #00b4fa44;
-      text-align: center;
-      position: relative;
-      z-index: 9;
+      background: url('https://i.pinimg.com/736x/74/29/e2/7429e2f1931d41e4abb8600cd684c5a2.jpg') center/cover no-repeat, var(--highlight-bg);
+      border: var(--highlight-border);
       color: #fff;
-      font-size: 1.16rem;
-      font-family: var(--digital-font), monospace;
-      letter-spacing: .5px;
       font-weight: bold;
+      box-shadow: var(--highlight-shadow);
       margin-bottom: 40px;
-      transition: box-shadow 0.2s;
+      z-index: 9;
+      letter-spacing: .5px;
     }
     #buy-section h2,
     #buy-section span,
@@ -304,18 +327,18 @@
 
     /* --- HERO SECTION --- */
     .hero {
-      min-height: 75vh;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
       text-align: left;
       background: none;
-      padding: 60px 6vw 36px 6vw;
+      gap: 32px;
+      padding: 48px 6vw 36px 6vw;
       position: relative;
       z-index: 1;
       overflow: visible;
-      gap: 32px;
+      border-radius: 18px;
     }
     .hero-logo {
       flex: 0 0 auto;
@@ -338,7 +361,7 @@
         height: 100px; width: 100px;
         margin-right: 16px;
       }
-      .hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 4vw 22px 4vw; min-height: 66vh;}
+      .hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 4vw 22px 4vw; }
     }
     .hero-float-images {
       flex: 1 1 auto;
@@ -437,36 +460,11 @@
     }
 
     /* --- FEATURES --- */
-    section {
-      max-width: 970px;
-      margin: 56px auto;
-      background: rgba(34, 34, 38, 0.88);
-      border-radius: 18px;
-      box-shadow: 0 4px 28px #00b4fa44;
-      padding: 36px 20px 30px 20px;
-      position: relative;
-      z-index: 2;
-      font-family: var(--digital-font), monospace;
-    }
-    h2 {
-      text-align: center;
-      color: var(--blue);
-      margin-bottom: 28px;
-      font-size: 2rem;
-      letter-spacing: 1px;
-      font-family: var(--digital-font), monospace;
-    }
     .features {
       display: flex;
       flex-wrap: wrap;
       gap: 28px;
       justify-content: center;
-    }
-    @keyframes float {
-      0%   { transform: translateY(0px) scale(1);}
-      40%  { transform: translateY(-12px) scale(1.04);}
-      60%  { transform: translateY(-12px) scale(1.04);}
-      100% { transform: translateY(0px) scale(1);}
     }
     .feature-card {
       background: var(--card-bg);
@@ -479,6 +477,13 @@
       border: 1.5px solid #00b4fa30;
       animation: float 3.6s ease-in-out infinite;
       font-family: var(--digital-font), monospace;
+      font-weight: bold;
+    }
+    @keyframes float {
+      0%   { transform: translateY(0px) scale(1);}
+      40%  { transform: translateY(-12px) scale(1.04);}
+      60%  { transform: translateY(-12px) scale(1.04);}
+      100% { transform: translateY(0px) scale(1);}
     }
     .features .feature-card:nth-child(1) { animation-delay: 0s; }
     .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
@@ -488,32 +493,24 @@
       margin: 10px 0 8px 0;
       color: var(--blue-dark);
       font-size: 1.2em;
-      font-weight: 700;
+      font-weight: bold;
       font-family: var(--digital-font), monospace;
     }
 
     /* --- ROADMAP --- */
     #roadmap { overflow: visible; }
-    .roadmap-container {
-      position: relative;
-      padding-bottom: 36px;
-    }
+    .roadmap-container { position: relative; padding-bottom: 36px; }
     .roadmap-list {
       position: relative;
       z-index: 2;
       margin-left: 0;
-    }
-    @keyframes roadmap-pulse {
-      0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
-      20% { box-shadow: 0 0 18px 2px #00b4fa66; border-left-color: var(--sand);}
-      50% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
     }
     .roadmap-step {
       background: #232224ee;
       border-left: 4px solid var(--blue);
       border-radius: 11px;
       padding: 13px 19px;
-      font-weight: 600;
+      font-weight: bold;
       min-width: 180px;
       box-shadow: 0 1px 8px #00b4fa1a;
       color: var(--sand);
@@ -523,14 +520,6 @@
       animation: roadmap-pulse 2.4s infinite;
       font-family: var(--digital-font), monospace;
     }
-    .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
-    .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
-    .roadmap-list .roadmap-step:nth-child(3) { animation-delay: 0.8s;}
-    .roadmap-list .roadmap-step:nth-child(4) { animation-delay: 1.2s;}
-    .roadmap-list .roadmap-step:nth-child(5) { animation-delay: 1.6s;}
-    .roadmap-list .roadmap-step:nth-child(6) { animation-delay: 2.0s;}
-    .roadmap-list .roadmap-step:nth-child(7) { animation-delay: 2.4s;}
-    .roadmap-list .roadmap-step:nth-child(8) { animation-delay: 2.8s;}
     .roadmap-step:last-child {
       border-left: 4px dashed var(--blue);
       color: #fff;
@@ -538,19 +527,13 @@
       font-weight: bold;
       box-shadow: 0 0 30px #00b4fa22;
     }
-    footer {
-      text-align: center;
-      color: var(--blue-dark);
-      background: #181a1b;
-      padding: 24px 8px 19px 8px;
-      font-size: 1.09em;
-      border-top: 1.5px solid #00b4fa11;
-      margin-top: 64px;
-      letter-spacing: 1px;
-      font-family: var(--digital-font), monospace;
+    @keyframes roadmap-pulse {
+      0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
+      20% { box-shadow: 0 0 18px 2px #00b4fa66; border-left-color: var(--sand);}
+      50% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
     }
 
-    /* --- ABOUT US, AUDITS, POWERED BY: Unchanged --- */
+    /* --- ABOUT US, AUDITS, POWERED BY --- */
     .about-video-bg, .features-video-bg, .roadmap-video-bg, .poweredby-video-bg {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -582,6 +565,7 @@
       z-index: 2;
       background: none;
       min-height: 145px;
+      font-weight: bold;
     }
     .about-typing, .audits-typing {
       min-height: 120px;
@@ -590,12 +574,14 @@
       font-family: var(--digital-font), monospace;
       color: var(--sand);
       letter-spacing: 0.02em;
+      font-weight: bold;
     }
+
     /* --- AUDITS HIGHLIGHT AND IMAGE --- */
     #audits {
-      background: linear-gradient(100deg, #111a33 0%, #1b344a 98%);
-      box-shadow: 0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
-      border: 2.5px solid #00b4fa;
+      background: var(--highlight-bg);
+      box-shadow: var(--highlight-shadow);
+      border: var(--highlight-border);
       max-width: 930px;
       display: flex;
       flex-wrap: wrap;
@@ -612,6 +598,7 @@
       font-family: var(--digital-font), monospace;
       letter-spacing: 0.5px;
       background: none;
+      font-weight: bold;
     }
     .audits-title {
       font-size: 2rem;
@@ -621,17 +608,17 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-family: var(--digital-font), monospace;
-      font-weight: 900;
+      font-weight: bold;
       margin-bottom: 18px;
       letter-spacing: 2px;
       text-shadow: 0 2px 18px #10101577;
     }
     .audits-img {
       flex: 1;
-      max-width: 190px;
+      max-width: 170px;
       min-width: 60px;
-      width: 30vw;
-      height: 85px;
+      width: 28vw;
+      height: 62px;
       opacity: 0;
       transform: translateX(-60px);
       transition: opacity 1s, transform 1s;
@@ -649,12 +636,13 @@
     }
     @media (max-width: 800px) {
       #audits { flex-direction: column; gap: 12px; }
-      .audits-img { margin: 0 auto; width: 60vw; height: 65px;}
+      .audits-img { margin: 0 auto; width: 60vw; height: 38px;}
     }
     @media (max-width: 480px) {
-      .audits-img { height: 42px; }
+      .audits-img { height: 28px; }
       .audits-title { font-size: 1.23rem; }
     }
+
     .poweredby-logos {
       position:relative;
       z-index:2;
@@ -677,6 +665,7 @@
       animation: pb-float 3.6s ease-in-out infinite;
       display:inline-block;
       text-shadow:0 8px 30px #00b4fa44,0 0 6px #10101580;
+      font-weight: bold;
     }
     .poweredby-logos span:nth-child(2) { animation-delay:0.8s; color:#1cf0b9;}
     .poweredby-logos span:nth-child(3) { animation-delay:1.3s; color:#ea6afb;}
@@ -695,6 +684,20 @@
     @media (max-width:640px){
       .poweredby-logos {font-size:1.1rem;gap:18px;padding:30px 5vw 24px 5vw;}
       .poweredby-logos span{font-size:1.37rem;}
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      color: var(--blue-dark);
+      background: #181a1b;
+      padding: 24px 8px 19px 8px;
+      font-size: 1.09em;
+      border-top: 1.5px solid #00b4fa11;
+      margin-top: 64px;
+      letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -841,7 +844,7 @@
     </div>
   </section>
 
-  <!-- AUDITS COMING SOON SECTION with live typing -->
+  <!-- AUDITS COMING SOON SECTION with live typing and highlight -->
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
@@ -950,7 +953,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       if (typingEl) typeAboutText(aboutTypingText, typingEl);
     });
 
-    // --- BUY TOKEN LOGIC (connect MetaMask, show presale info) ---
+    // --- BUY TOKEN LOGIC (connect MetaMask, show presale info, enable button only for price 0.01 BNB) ---
     // Addresses (update if needed)
     const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
     const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
@@ -975,10 +978,15 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       let s = Math.floor((diff % (60*1000))/1000);
       let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
       document.getElementById('presale-timer').innerText = timerText;
-      // Price
-      document.getElementById('presale-price').innerText = "Price: 0.01 BNB";
-      // Buy button logic
-      document.getElementById('buy-btn').disabled = !(status === "LIVE");
+
+      // Enable Buy Button only during LIVE and when price is 0.01 BNB
+      let buyBtn = document.getElementById('buy-btn');
+      let priceSpan = document.getElementById('presale-price');
+      if (status === "LIVE" && priceSpan && priceSpan.textContent.includes("0.01")) {
+        buyBtn.disabled = false;
+      } else {
+        buyBtn.disabled = true;
+      }
       setTimeout(updatePresaleInfo, 1000);
     }
     updatePresaleInfo();
@@ -991,7 +999,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
       let amt = document.getElementById('buy-amount').value;
-      if (!amt || isNaN(amt) || parseFloat(amt) <= 0) return;
+      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) return;
       document.getElementById('buy-message').innerText = "Sending...";
       try {
         let tx = await signer.sendTransaction({
