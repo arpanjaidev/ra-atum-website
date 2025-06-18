@@ -15,6 +15,8 @@
       --sand-bg: #f6e7c1;
       --blue: #00b4fa;
       --blue-dark: #004aad;
+      --digital-blue: #00c3ff;
+      --digital-blue-glow: #0fffc7;
       --black: #171818;
       --card-bg: #232224e6;
       --main-bg: linear-gradient(120deg, #101015 0%, #22212a 65%, #1d2b3a 100%);
@@ -23,10 +25,6 @@
       --accent: #00b4fa;
       --accent2: #e7d7b6;
       --digital-font: 'Share Tech Mono', monospace;
-      --highlight-bg: linear-gradient(100deg, #111a33 0%, #1b344a 98%);
-      --highlight-border: 2.5px solid #00b4fa;
-      --highlight-shadow: 0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
-      --blue-glow: 0 0 16px #00c3ff99, 0 0 40px #00c3ff33;
     }
     html, body {
       height: 100%;
@@ -77,7 +75,7 @@
       z-index: 102;
     }
     nav a {
-      color: var(--blue);
+      color: var(--digital-blue);
       font-weight: 700;
       text-decoration: none;
       font-size: 1rem;
@@ -88,6 +86,7 @@
       line-height: 1.1;
       cursor: pointer;
       background: none;
+      text-shadow: 0 0 10px var(--digital-blue-glow);
     }
     nav a:hover {
       background: var(--sand-dark);
@@ -99,7 +98,7 @@
       font-size: 2rem;
       background: none;
       border: none;
-      color: var(--blue);
+      color: var(--digital-blue);
       z-index: 110;
       margin-right: 6px;
       margin-left: 0;
@@ -126,7 +125,7 @@
       gap: 6px;
     }
     .mobile-nav a {
-      color: var(--blue);
+      color: var(--digital-blue);
       background: none;
       text-align: left;
       font-size: 1.55rem;
@@ -138,6 +137,7 @@
       transition: background 0.14s, color 0.14s;
       font-weight: 700;
       letter-spacing: 0.7px;
+      text-shadow: 0 0 10px var(--digital-blue-glow);
     }
     .mobile-nav a:last-child { border-bottom: none;}
     .mobile-nav a:hover {
@@ -150,7 +150,7 @@
       background: none;
       border: none;
       font-size: 2.6rem;
-      color: var(--blue);
+      color: var(--digital-blue);
       cursor: pointer;
     }
     @media (max-width: 800px) {
@@ -168,75 +168,83 @@
         padding: 14px 14px;
       }
     }
-
-    /* === HIGHLIGHT/CARD STYLE FOR ALL SECTIONS === */
-    section, #buy-section, #audits {
-      background: var(--highlight-bg);
-      border: var(--highlight-border);
-      box-shadow: var(--highlight-shadow);
-      border-radius: 18px;
-      margin: 54px auto 54px auto;
-      padding: 38px 26px 38px 26px;
-      max-width: 970px;
-      position: relative;
-      z-index: 2;
+    /* --- TOP INFO SECTION --- */
+    .top-info {
+      max-width: 960px;
+      margin: 26px auto 0 auto;
+      font-size: 1.11rem;
+      color: var(--digital-blue);
+      background: rgba(34,34,38,0.91);
+      border-radius: 12px;
+      box-shadow: 0 2px 22px #00b4fa15;
+      padding: 18px 16px 12px 16px;
       font-family: var(--digital-font), monospace;
-      font-weight: bold;
-      color: #fff;
-    }
-    /* DIGITAL BLUE SHINE FOR SECTION HEADINGS */
-    h2, .audits-title {
+      line-height: 1.65;
       text-align: center;
-      color: var(--blue);
-      margin-bottom: 28px;
-      font-size: 2.1rem;
-      letter-spacing: 2px;
-      font-family: var(--digital-font), monospace;
-      font-weight: bold;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, #fff 8%, #00b4fa 55%, #23e6ff 98%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 18px #22213855, 0 0 8px #00315580, 0 0 18px #00b4fa99;
-      filter: brightness(1.19) drop-shadow(0 0 3px #00e6ffbb);
-    }
-    /* --- BUY RA TOKENS (PRESALE) SECTION --- */
-    #buy-section {
-      background: url('https://i.pinimg.com/736x/74/29/e2/7429e2f1931d41e4abb8600cd684c5a2.jpg') center/cover no-repeat, var(--highlight-bg);
-      border: var(--highlight-border);
-      color: #fff;
-      font-weight: bold;
-      box-shadow: var(--highlight-shadow);
-      margin-bottom: 40px;
-      z-index: 9;
       letter-spacing: .5px;
+      border: 2.2px solid var(--digital-blue);
+      z-index: 8;
+      position: relative;
+      font-weight: bold;
+      text-shadow: 0 0 16px var(--digital-blue-glow), 0 1px 2px #001a22;
     }
-    #buy-section * { color: #fff !important; font-weight: bold !important; text-shadow: 0 2px 16px #10101560; }
-    #buy-section h2 { font-size: 2.2rem; }
+    /* --- PRESALE BUY SECTION (highlight) --- */
+    #buy-section {
+      max-width: 980px;
+      margin: 32px auto 0 auto;
+      padding: 32px 24px 26px 24px;
+      border-radius: 14px;
+      background: url('https://i.pinimg.com/736x/74/29/e2/7429e2f1931d41e4abb8600cd684c5a2.jpg') center center/cover no-repeat, rgba(34, 34, 38, 0.92);
+      box-shadow: 0 3px 32px #00b4fa22;
+      border: 2.7px solid var(--digital-blue);
+      text-align: center;
+      color: #fff;
+      font-size: 1.18rem;
+      position: relative;
+      z-index: 9;
+      font-weight: bold;
+      text-shadow: 0 0 13px var(--digital-blue-glow), 0 1px 2px #001a22;
+      font-family: var(--digital-font), monospace;
+    }
+    #buy-section h2,
+    #features h2,
+    #roadmap h2,
+    #about h2,
+    #contact h2,
+    #audits .audits-title,
+    #poweredby h2 {
+      color: var(--digital-blue);
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 2.2px;
+      text-shadow: 0 0 15px var(--digital-blue-glow), 0 2px 5px #00335577;
+      font-size: 2.05rem;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      font-weight: 900;
+      text-align: center;
+    }
+    /* Presale Info */
     .presale-info {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 32px;
+      gap: 28px;
       margin-bottom: 14px;
-      font-size: 1.23rem;
+      font-size: 1.07rem;
     }
     .presale-info span {
       display: inline-block;
       min-width: 144px;
-      background: #111b;
-      border-radius: 10px;
-      padding: 10px 18px;
+      background: #22253c99;
+      border-radius: 8px;
+      padding: 8px 18px;
       color: #fff;
       font-weight: bold;
-      letter-spacing: .6px;
-      margin: 4px 0;
-      box-shadow: 0 2px 8px #00b4fa30;
-      border: 1px solid #00b4fa55;
-      font-size: 1.13rem;
-      transition: background .2s;
-      text-shadow: 0 1px 6px #000;
+      letter-spacing: .8px;
+      margin: 3px 0;
+      box-shadow: 0 2px 8px #00b4fa25;
+      border: 1.5px solid var(--digital-blue);
+      text-shadow: 0 0 10px var(--digital-blue-glow), 0 1px 2px #001a22;
     }
     .buy-form {
       display: flex;
@@ -249,77 +257,77 @@
     .buy-form input[type='number'] {
       padding: 10px 18px;
       border-radius: 9px;
-      border: 1.7px solid #00b4fa;
-      background: #111b;
+      border: 1.3px solid var(--digital-blue);
+      background: #23223ae6;
       color: #fff;
-      font-size: 1.18rem;
+      font-size: 1.15rem;
       width: 150px;
       max-width: 200px;
       outline: none;
       font-family: var(--digital-font), monospace;
       margin-right: 10px;
-      font-weight: bold;
-      letter-spacing: .5px;
     }
     .buy-form button {
-      background: linear-gradient(90deg, var(--blue-dark) 0%, var(--blue) 100%);
+      background: linear-gradient(90deg, var(--blue-dark) 0%, var(--digital-blue) 100%);
       color: #fff;
       padding: 11px 38px;
-      font-size: 1.16rem;
+      font-size: 1.09rem;
       border: none;
       border-radius: 12px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 8px 24px #00b4fa44;
+      transition: background .22s, color .15s, transform .17s;
       font-family: var(--digital-font), monospace;
-      letter-spacing: 1.2px;
-      opacity: .89;
-      transition: background .22s, color .15s, transform .17s, opacity .19s;
+      box-shadow: 0 2px 22px var(--digital-blue-glow), 0 1px 2px #001a22;
     }
     .buy-form button:disabled {
-      background: #333e;
-      color: #aaa;
-      opacity: 0.6;
+      opacity: 0.5;
       cursor: not-allowed;
+      background: #888;
     }
     .buy-form button:hover:enabled {
       background: linear-gradient(90deg, var(--sand-dark) 10%, var(--blue-dark) 100%);
       color: var(--black);
       transform: translateY(-2px) scale(1.04);
-      opacity: 1;
     }
     .buy-message {
       margin-top: 7px;
       font-size: 1.07em;
-      color: #fff;
+      color: var(--digital-blue-glow);
       min-height: 24px;
       font-family: var(--digital-font), monospace;
       word-break: break-word;
-      text-shadow: 0 1px 7px #333;
-    }
-    #buy-section a {
-      color: #fff !important;
-      text-decoration: underline;
       font-weight: bold;
-      letter-spacing: .5px;
-      transition: color .19s;
     }
-    #buy-section a:hover { color: var(--blue); }
-
-    /* --- HERO SECTION --- */
+    /* --- Highlighted Cards for ALL Sections --- */
+    section, #audits {
+      max-width: 970px;
+      margin: 56px auto;
+      background: rgba(34, 34, 38, 0.92);
+      border-radius: 18px;
+      box-shadow: 0 4px 38px var(--digital-blue-glow), 0 8px 22px #00b4fa22;
+      padding: 36px 20px 30px 20px;
+      position: relative;
+      z-index: 2;
+      font-family: var(--digital-font), monospace;
+      font-weight: bold;
+      border: 2.2px solid var(--digital-blue);
+      text-shadow: 0 0 12px var(--digital-blue-glow), 0 2px 4px #001a22;
+    }
+    /* HERO Section & Zigzag Images: unchanged, keep highlight */
     .hero {
+      min-height: 75vh;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
       text-align: left;
       background: none;
-      gap: 32px;
-      padding: 48px 6vw 36px 6vw;
+      padding: 60px 6vw 36px 6vw;
       position: relative;
       z-index: 1;
       overflow: visible;
-      border-radius: 18px;
+      gap: 32px;
     }
     .hero-logo {
       flex: 0 0 auto;
@@ -331,18 +339,18 @@
       max-height: 200px;
       object-fit: contain;
       border-radius: 24px;
-      box-shadow: 0 4px 34px #00b4fa70, 0 0 0 5px #191a2466;
+      box-shadow: 0 4px 34px var(--digital-blue-glow), 0 0 0 5px #191a2466;
       background: #1119;
       margin-right: 34px;
       z-index: 3;
-      border: 3px solid #00b4fa44;
+      border: 3px solid var(--digital-blue);
     }
     @media (max-width: 800px) {
       .hero-logo {
         height: 100px; width: 100px;
         margin-right: 16px;
       }
-      .hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 4vw 22px 4vw; }
+      .hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 4vw 22px 4vw; min-height: 66vh;}
     }
     .hero-float-images {
       flex: 1 1 auto;
@@ -366,7 +374,7 @@
       height: 110px;
       border-radius: 16px;
       object-fit: cover;
-      box-shadow: 0 8px 28px #00b4fa55, 0 0 0 3px #24224f44;
+      box-shadow: 0 8px 28px var(--digital-blue-glow), 0 0 0 3px #24224f44;
       background: #23222433;
       opacity: 0.98;
       margin: 0;
@@ -400,7 +408,7 @@
     }
     .hero-content h1 {
       font-size: 2.2rem;
-      background: linear-gradient(90deg, var(--blue) 30%, var(--sand) 90%);
+      background: linear-gradient(90deg, var(--digital-blue) 30%, var(--sand) 90%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -409,38 +417,41 @@
       line-height: 1.1;
       display: block;
       z-index: 10;
-      text-shadow: 0 4px 14px #004aad66;
+      text-shadow: 0 4px 14px var(--digital-blue-glow);
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
     }
     .hero-content p {
       font-size: 1.12rem;
       max-width: 650px;
       margin: 0 auto 28px 0;
-      color: var(--sand);
+      color: var(--digital-blue);
       z-index: 10;
-      text-shadow: 0 2px 8px #10101580;
+      text-shadow: 0 2px 8px var(--digital-blue-glow);
+      font-weight: bold;
     }
     .hero-content .cta-btn {
       font-size: 1.08rem;
       padding: 13px 38px;
-      background: linear-gradient(90deg, var(--blue-dark) 0%, var(--blue) 100%);
+      background: linear-gradient(90deg, var(--blue-dark) 0%, var(--digital-blue) 100%);
       color: #fff;
       border: none;
       border-radius: 15px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 8px 30px #00b4fa44;
+      box-shadow: 0 8px 30px var(--digital-blue-glow);
       transition: background .22s, color .15s, transform .17s;
       margin-top: 18px;
       letter-spacing: 1px;
       z-index: 10;
+      text-shadow: 0 0 10px var(--digital-blue-glow);
     }
     .hero-content .cta-btn:hover {
       background: linear-gradient(90deg, var(--sand-dark) 10%, var(--blue-dark) 100%);
       color: var(--black);
       transform: translateY(-2px) scale(1.03);
     }
-
-    /* --- FEATURES --- */
+    /* --- Features --- */
     .features {
       display: flex;
       flex-wrap: wrap;
@@ -450,21 +461,17 @@
     .feature-card {
       background: var(--card-bg);
       border-radius: 15px;
-      box-shadow: 0 2px 10px #0077cc44;
+      box-shadow: 0 2px 14px var(--digital-blue-glow), 0 1px 8px #0077cc44;
       padding: 28px 22px 19px 22px;
       text-align: center;
       width: 220px;
       min-width: 170px;
-      border: 1.5px solid #00b4fa30;
-      animation: float 3.6s ease-in-out infinite;
+      border: 2.2px solid var(--digital-blue);
       font-family: var(--digital-font), monospace;
       font-weight: bold;
-    }
-    @keyframes float {
-      0%   { transform: translateY(0px) scale(1);}
-      40%  { transform: translateY(-12px) scale(1.04);}
-      60%  { transform: translateY(-12px) scale(1.04);}
-      100% { transform: translateY(0px) scale(1);}
+      text-shadow: 0 0 10px var(--digital-blue-glow), 0 2px 4px #001a22;
+      transition: box-shadow .18s;
+      animation: float 3.6s ease-in-out infinite;
     }
     .features .feature-card:nth-child(1) { animation-delay: 0s; }
     .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
@@ -472,48 +479,46 @@
     .features .feature-card:nth-child(4) { animation-delay: 2.1s; }
     .feature-card h3 {
       margin: 10px 0 8px 0;
-      color: var(--blue-dark);
-      font-size: 1.2em;
-      font-weight: bold;
+      color: var(--digital-blue);
+      font-size: 1.18em;
+      font-weight: 700;
       font-family: var(--digital-font), monospace;
+      letter-spacing: 1.2px;
+      text-shadow: 0 0 14px var(--digital-blue-glow);
+      text-transform: uppercase;
     }
-
+    @keyframes float {
+      0%   { transform: translateY(0px) scale(1);}
+      40%  { transform: translateY(-12px) scale(1.04);}
+      60%  { transform: translateY(-12px) scale(1.04);}
+      100% { transform: translateY(0px) scale(1);}
+    }
     /* --- ROADMAP --- */
     #roadmap { overflow: visible; }
-    .roadmap-container { position: relative; padding-bottom: 36px; }
+    .roadmap-container {
+      position: relative;
+      padding-bottom: 36px;
+    }
     .roadmap-list {
       position: relative;
       z-index: 2;
-      margin-left: 0;
+      margin-left: 15px;
     }
     .roadmap-step {
       background: #232224ee;
-      border-left: 4px solid var(--blue);
+      border-left: 4px solid var(--digital-blue);
       border-radius: 11px;
       padding: 13px 19px;
-      font-weight: bold;
+      font-weight: 700;
       min-width: 180px;
-      box-shadow: 0 1px 8px #00b4fa1a;
-      color: var(--sand);
+      box-shadow: 0 1px 8px var(--digital-blue-glow);
+      color: var(--digital-blue);
       margin-bottom: 12px;
-      font-size: 1.06em;
+      font-size: 1.09em;
       text-align: left;
-      animation: roadmap-pulse 2.4s infinite;
       font-family: var(--digital-font), monospace;
+      text-shadow: 0 0 13px var(--digital-blue-glow), 0 2px 4px #001a22;
     }
-    .roadmap-step:last-child {
-      border-left: 4px dashed var(--blue);
-      color: #fff;
-      background: #0e153a;
-      font-weight: bold;
-      box-shadow: 0 0 30px #00b4fa22;
-    }
-    @keyframes roadmap-pulse {
-      0%,100% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
-      20% { box-shadow: 0 0 18px 2px #00b4fa66; border-left-color: var(--sand);}
-      50% { box-shadow: 0 0 0px #00b4fa00; border-left-color: var(--blue);}
-    }
-
     /* --- ABOUT US, AUDITS, POWERED BY --- */
     .about-video-bg, .features-video-bg, .roadmap-video-bg, .poweredby-video-bg {
       position: absolute;
@@ -538,7 +543,7 @@
     .about-content, .audits-text {
       max-width: 650px;
       margin: 0 auto;
-      color: var(--sand);
+      color: var(--digital-blue);
       line-height: 1.6;
       font-size: 1.14rem;
       font-family: var(--digital-font), monospace;
@@ -547,89 +552,42 @@
       background: none;
       min-height: 145px;
       font-weight: bold;
+      text-shadow: 0 0 8px var(--digital-blue-glow), 0 1px 2px #001a22;
     }
     .about-typing, .audits-typing {
       min-height: 120px;
       font-size: 1.13rem;
       white-space: pre-line;
       font-family: var(--digital-font), monospace;
-      color: var(--sand);
+      color: var(--digital-blue);
       letter-spacing: 0.02em;
       font-weight: bold;
     }
-
-    /* --- AUDITS HIGHLIGHT AND IMAGE --- */
-    #audits {
-      background: var(--highlight-bg);
-      box-shadow: var(--highlight-shadow);
-      border: var(--highlight-border);
-      max-width: 930px;
+    /* --- AUDITS IMAGES HORIZONTAL --- */
+    .audits-imgs {
       display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      gap: 20px;
-      padding: 34px 24px 36px 24px;
-      margin-bottom: 36px;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin: 26px 0 0 0;
     }
-    .audits-text {
-      flex: 2;
-      z-index: 2;
-      font-size: 1.13rem;
-      color: #fff;
-      font-family: var(--digital-font), monospace;
-      letter-spacing: 0.5px;
-      background: none;
-      font-weight: bold;
-    }
-    .audits-title {
-      font-size: 2.2rem;
-      color: #00b4fa;
-      background: linear-gradient(92deg, #fff 15%, #00b4fa 65%, #23e6ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-family: var(--digital-font), monospace;
-      font-weight: bold;
-      margin-bottom: 18px;
-      letter-spacing: 2px;
-      text-shadow: 0 2px 18px #00b4fa90, 0 0 16px #23e6ff80;
-      filter: brightness(1.28) drop-shadow(0 0 3px #00e6ffbb);
-      text-align: left;
-      text-transform: uppercase;
-    }
-    .audits-img {
-      flex: 1 0 160px;
-      max-width: 160px;
-      min-width: 60px;
-      width: 22vw;
-      height: 62px;
+    .audits-imgs img {
+      width: 120px;
+      max-width: 24vw;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 2px 22px var(--digital-blue-glow), 0 0 0 3px #23222444;
       opacity: 0;
       transform: translateX(-60px);
-      transition: opacity 1s, transform 1s;
-      will-change: opacity, transform;
-      border-radius: 14px;
-      box-shadow: 0 8px 38px #00b4fa28, 0 2px 0px #00b4fa22;
-      background: #222;
-      object-fit: cover;
-      margin-left: 12px;
-      display: block;
+      transition: all 1s cubic-bezier(.56,1.13,.25,.82);
     }
-    .audits-img.visible {
+    .audits-imgs img.visible {
       opacity: 1;
       transform: translateX(0);
     }
-    .audits-img:not(:first-child) {
-      margin-top: 16px;
-    }
-    @media (max-width: 800px) {
-      #audits { flex-direction: column; gap: 12px; }
-      .audits-img { margin: 0 auto; width: 60vw; height: 38px;}
-    }
-    @media (max-width: 480px) {
-      .audits-img { height: 28px; }
-      .audits-title { font-size: 1.23rem; }
-    }
-
+    /* --- CONTACT & POWERED BY --- */
     .poweredby-logos {
       position:relative;
       z-index:2;
@@ -645,22 +603,23 @@
     }
     .poweredby-logos span {
       font-size:2.75rem;
-      color:var(--blue);
+      color:var(--digital-blue);
       letter-spacing:1.2px;
       font-weight:700;
       margin:0 13px;
       animation: pb-float 3.6s ease-in-out infinite;
       display:inline-block;
-      text-shadow:0 8px 30px #00b4fa44,0 0 6px #10101580;
-      font-weight: bold;
+      text-shadow:0 8px 30px var(--digital-blue-glow),0 0 6px #10101580;
+      font-family: var(--digital-font), monospace;
+      text-transform: uppercase;
     }
     .poweredby-logos span:nth-child(2) { animation-delay:0.8s; color:#1cf0b9;}
     .poweredby-logos span:nth-child(3) { animation-delay:1.3s; color:#ea6afb;}
     .poweredby-logos span:nth-child(4) { animation-delay:2.1s; color:#e7d7b6;}
-    .poweredby-logos span:nth-child(5) { animation-delay:1.6s; color:#00b4fa;}
+    .poweredby-logos span:nth-child(5) { animation-delay:1.6s; color:var(--digital-blue);}
     .poweredby-logos span:nth-child(6) { animation-delay:0.3s; color:#f4b400;}
     .poweredby-logos span:nth-child(7) { animation-delay:0.5s; color:#fa7b17;}
-    .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#fff;}  /* GitHub = white */
+    .poweredby-logos span:nth-child(8) { animation-delay:2.4s; color:#fff;}
     .poweredby-logos span:nth-child(9) { animation-delay:1.9s; color:#47a7f5;}
     @keyframes pb-float {
       0%   { transform: translateY(0px);}
@@ -671,20 +630,19 @@
     @media (max-width:640px){
       .poweredby-logos {font-size:1.1rem;gap:18px;padding:30px 5vw 24px 5vw;}
       .poweredby-logos span{font-size:1.37rem;}
+      .audits-imgs img {width: 72px; height: 55px;}
     }
-
-    /* --- FOOTER --- */
     footer {
       text-align: center;
-      color: var(--blue-dark);
+      color: var(--digital-blue);
       background: #181a1b;
       padding: 24px 8px 19px 8px;
       font-size: 1.09em;
-      border-top: 1.5px solid #00b4fa11;
+      border-top: 1.5px solid var(--digital-blue);
       margin-top: 64px;
       letter-spacing: 1px;
       font-family: var(--digital-font), monospace;
-      font-weight: bold;
+      text-shadow: 0 0 8px var(--digital-blue-glow);
     }
   </style>
 </head>
@@ -713,12 +671,16 @@
       </div>
     </div>
   </header>
-  
+  <!-- TOP INFO SECTION -->
+  <section class="top-info">
+    RA Atum is India’s first blockchain-powered evolution in donations and kindness. With a transparent supply of 1,000,000,000 RA tokens, we reward generosity and build real impact.<br>
+    Starting at 0.001, with a projected launch value of 0.1, RA Atum is designed to grow with trust. We're here to build a future where every act of giving is rewarded — transparently, securely, and proudly powered by blockchain.
+  </section>
   <!-- BUY RA TOKENS (PRESALE) SECTION -->
   <section id="buy-section">
     <h2>BUY RA TOKENS – PRESALE LIVE!</h2>
     <div class="presale-info">
-      <span id="presale-status">Status: Connect Wallet</span>
+      <span id="presale-status">Status: <span style="color:var(--digital-blue);font-weight:900;">LIVE</span></span>
       <span id="presale-price">Price: 0.01 BNB</span>
       <span id="presale-timer">Time left: ...</span>
       <span id="presale-raised">Raised: Coming Soon</span>
@@ -729,10 +691,9 @@
     </form>
     <div class="buy-message" id="buy-message"></div>
     <div style="font-size:0.99em;margin-top:9px;">
-      <b>Contract:</b> <a href="https://bscscan.com/address/0xEbd8c8E89c64618E699eDb6f339331425d95EE3f" target="_blank">View Presale on BscScan</a>
+      <b>Contract:</b> <a href="https://bscscan.com/address/0xEbd8c8E89c64618E699eDb6f339331425d95EE3f" style="color:var(--digital-blue);text-decoration:underline;" target="_blank">View Presale on BscScan</a>
     </div>
   </section>
-
   <!-- HERO SECTION -->
   <section class="hero">
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="hero-logo" />
@@ -751,14 +712,13 @@
       </div>
     </div>
     <div class="hero-content">
-      <h1>RA Atum<br>Where Every Gift Creates Value</h1>
+      <h1>RA ATUM<br>WHERE EVERY GIFT CREATES VALUE</h1>
       <p>Rewarding your kindness with real-world impact and blockchain innovation.<br>
       Donate, earn tokens, and help light the way!</p>
       <a href="https://ra-wallet-dapp.vercel.app/" class="cta-btn" target="_blank">Launch DApp</a>
     </div>
   </section>
-
-  <!-- FEATURES SECTION with video background -->
+  <!-- FEATURES SECTION -->
   <section id="features">
     <div class="features-video-bg">
       <video autoplay loop muted playsinline>
@@ -768,25 +728,24 @@
     <h2>FEATURES</h2>
     <div class="features">
       <div class="feature-card">
-        <h3>Accept Donations</h3>
+        <h3>ACCEPT DONATIONS</h3>
         <div>Toys, books, clothes for kids & families</div>
       </div>
       <div class="feature-card">
-        <h3>Kidswear & Toys</h3>
+        <h3>KIDSWEAR & TOYS</h3>
         <div>Ethical, affordable shopping in our online store</div>
       </div>
       <div class="feature-card">
-        <h3>Token Rewards</h3>
+        <h3>TOKEN REWARDS</h3>
         <div>Get RA Atum Tokens for every donation</div>
       </div>
       <div class="feature-card">
-        <h3>Community</h3>
+        <h3>COMMUNITY</h3>
         <div>Build a network of compassion & crypto</div>
       </div>
     </div>
   </section>
-
-  <!-- ROADMAP SECTION with video background and line -->
+  <!-- ROADMAP SECTION -->
   <section id="roadmap">
     <div class="roadmap-video-bg">
       <video autoplay loop muted playsinline>
@@ -804,12 +763,11 @@
         <div class="roadmap-step">🟦 Mainnet Launch</div>
         <div class="roadmap-step">🟦 PancakeSwap Listing</div>
         <div class="roadmap-step">🟦 Claim Rewards Feature</div>
-        <div class="roadmap-step">And More...</div>
+        <div class="roadmap-step">AND MORE...</div>
       </div>
     </div>
   </section>
-
-  <!-- ABOUT US SECTION with VIDEO background and typing effect -->
+  <!-- ABOUT US SECTION -->
   <section id="about">
     <div class="about-video-bg">
       <video autoplay loop muted playsinline>
@@ -821,28 +779,27 @@
       <div class="about-typing" id="about-typing"></div>
     </div>
   </section>
-
   <section id="contact">
     <h2>CONTACT & SOCIALS</h2>
     <div class="about-content" style="text-align:center;">
-      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:var(--blue);">info@ra-atum.com</a><br>
-      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:var(--blue-dark);">@ra_atum</a><br>
-      <b>Telegram:</b> <a href="#" target="_blank" style="color:var(--blue-dark);">@ra_atum</a>
+      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:var(--digital-blue);">info@ra-atum.com</a><br>
+      <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:var(--digital-blue);">@ra_atum</a><br>
+      <b>Telegram:</b> <a href="#" target="_blank" style="color:var(--digital-blue);">@ra_atum</a>
     </div>
   </section>
-
-  <!-- AUDITS COMING SOON SECTION with live typing and THREE images -->
+  <!-- AUDITS COMING SOON SECTION with live typing + 3 images -->
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
       <div class="audits-typing" id="audits-typing"></div>
+      <div class="audits-imgs">
+        <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit 1" class="audits-img" />
+        <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit 2" class="audits-img" />
+        <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit 3" class="audits-img" />
+      </div>
     </div>
-    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration 1" class="audits-img" id="audits-img-1">
-    <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit Illustration 2" class="audits-img" id="audits-img-2">
-    <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit Illustration 3" class="audits-img" id="audits-img-3">
   </section>
-
-  <!-- POWERED BY SECTION with video background, floating text only -->
+  <!-- POWERED BY SECTION -->
   <section id="poweredby">
     <div class="poweredby-video-bg">
       <video autoplay loop muted playsinline>
@@ -851,18 +808,17 @@
     </div>
     <h2>POWERED BY</h2>
     <div class="poweredby-logos">
-      <span>OpenAI</span>
-      <span>Gemini</span>
-      <span>Deepseek</span>
+      <span>OPENAI</span>
+      <span>GEMINI</span>
+      <span>DEEPSEEK</span>
       <span>NVIDIA</span>
-      <span>Meta</span>
-      <span>Google</span>
-      <span>Analytics</span>
-      <span>GitHub</span>
-      <span>Microsoft</span>
+      <span>META</span>
+      <span>GOOGLE</span>
+      <span>ANALYTICS</span>
+      <span>GITHUB</span>
+      <span>MICROSOFT</span>
     </div>
   </section>
-
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   <script>
     // --- HAMBURGER MENU ---
@@ -876,7 +832,6 @@
       window.onkeydown = e => { if (e.key === "Escape") mobileNavOverlay.classList.remove('active'); }
       window.onclick = e => { if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active'); }
     }
-
     // --- SLOW ZIGZAG IMAGE EFFECT ---
     let lastScroll = window.scrollY;
     function handleZigzagAnimation() {
@@ -891,7 +846,7 @@
     window.addEventListener('scroll', handleZigzagAnimation, {passive:true});
     window.addEventListener('DOMContentLoaded', handleZigzagAnimation);
 
-    // --- AUDITS LIVE TYPING EFFECT ---
+    // --- AUDITS LIVE TYPING EFFECT & IMAGES ---
     const auditsTypingText =
 `At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform.
 
@@ -908,17 +863,14 @@ The results and reports will be published here as soon as they are available. Th
       const typingEl = document.getElementById('audits-typing');
       if (typingEl) typeAuditsText(auditsTypingText, typingEl);
     });
-
-    // --- AUDITS IMAGE FADE-IN --- (for all three images)
+    // --- AUDITS IMAGE FADE-IN ---
     function auditsInView() {
-      for (let i = 1; i <= 3; ++i) {
-        let img = document.getElementById('audits-img-' + i);
-        if (!img) continue;
+      document.querySelectorAll('.audits-img').forEach(img => {
         var rect = img.getBoundingClientRect();
         var inView = rect.top < window.innerHeight && rect.bottom > 0;
         if (inView) img.classList.add('visible');
         else img.classList.remove('visible');
-      }
+      });
     }
     window.addEventListener('scroll', auditsInView);
     window.addEventListener('resize', auditsInView);
@@ -951,55 +903,51 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     const treasuryWallet = "0x27a2C4F65fd4E3Ae249C061468342f9A5D7cb89D";
     const presaleStart = 1750178782 * 1000;
     const presaleEnd = 1765730782 * 1000;
-    let provider, signer;
-
-    // Enable buy button only if presale is live and price is set
+    let provider, signer, presaleStatus = "LIVE";
     function updatePresaleInfo() {
-      // Status, timer
       let now = Date.now();
       let status = "NOT STARTED";
-      let btn = document.getElementById('buy-btn');
-      if (now < presaleStart) {
-        status = "Not Started";
-        if(btn) btn.disabled = true;
-      }
-      else if (now > presaleEnd) {
-        status = "Ended";
-        if(btn) btn.disabled = true;
-      }
-      else {
-        status = "LIVE";
-        if(btn) btn.disabled = false;
-      }
-      document.getElementById('presale-status').innerText = "Status: " + status;
+      if (now < presaleStart) status = "NOT STARTED";
+      else if (now > presaleEnd) status = "ENDED";
+      else status = "LIVE";
+      presaleStatus = status;
+      document.getElementById('presale-status').innerHTML = "Status: <span style='color:var(--digital-blue);font-weight:900;'>" + status + "</span>";
       // Time left
       let diff = Math.max(0, presaleEnd - now);
       let d = Math.floor(diff / (24*60*60*1000));
       let h = Math.floor((diff % (24*60*60*1000))/(60*60*1000));
       let m = Math.floor((diff % (60*60*1000))/(60*1000));
       let s = Math.floor((diff % (60*1000))/1000);
-      let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
+      let timerText = status === "ENDED" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
       document.getElementById('presale-timer').innerText = timerText;
+      // Enable/disable button based on status
+      document.getElementById('buy-btn').disabled = (status !== "LIVE");
       setTimeout(updatePresaleInfo, 1000);
     }
     updatePresaleInfo();
-
     // --- Buy Form Logic ---
     document.getElementById('buy-form').onsubmit = async function(e) {
       e.preventDefault();
       if (!window.ethereum) return alert("MetaMask not found!");
+      let amt = document.getElementById('buy-amount').value;
+      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) {
+        document.getElementById('buy-message').innerText = "Enter at least 0.01 BNB";
+        return;
+      }
+      if (presaleStatus !== "LIVE") {
+        document.getElementById('buy-message').innerText = "Presale is not live!";
+        return;
+      }
+      document.getElementById('buy-message').innerText = "Sending...";
       provider = new ethers.providers.Web3Provider(window.ethereum, "any");
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
-      let amt = document.getElementById('buy-amount').value;
-      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) return;
-      document.getElementById('buy-message').innerText = "Sending...";
       try {
         let tx = await signer.sendTransaction({
           to: presaleAddress,
           value: ethers.utils.parseEther(amt)
         });
-        document.getElementById('buy-message').innerHTML = "✅ Success! <a href='https://bscscan.com/tx/"+tx.hash+"' style='color:var(--blue);' target='_blank'>View on BscScan</a>";
+        document.getElementById('buy-message').innerHTML = "✅ Success! <a href='https://bscscan.com/tx/"+tx.hash+"' style='color:var(--digital-blue);' target='_blank'>View on BscScan</a>";
       } catch (err) {
         document.getElementById('buy-message').innerText = "Failed: " + (err.message || err);
       }
