@@ -198,13 +198,13 @@
       text-shadow: 0 2px 16px #10101560;
     }
     #buy-section h2 {
-      color: var(--blue) !important;
+      color: #fff !important;
       margin-bottom: 19px;
       font-size: 2rem;
       font-family: var(--digital-font), monospace;
       font-weight: 900;
       letter-spacing: 1.2px;
-      background: linear-gradient(90deg, var(--blue) 70%, #fff 100%);
+      background: linear-gradient(90deg, #fff 80%, var(--blue) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -406,7 +406,6 @@
       display: block;
       z-index: 10;
       text-shadow: 0 4px 14px #004aad66;
-      color: var(--blue);
     }
     .hero-content p {
       font-size: 1.12rem;
@@ -456,11 +455,6 @@
       font-size: 2rem;
       letter-spacing: 1px;
       font-family: var(--digital-font), monospace;
-      background: linear-gradient(90deg, var(--blue) 60%, #fff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 900;
     }
     .features {
       display: flex;
@@ -485,7 +479,6 @@
       border: 1.5px solid #00b4fa30;
       animation: float 3.6s ease-in-out infinite;
       font-family: var(--digital-font), monospace;
-      font-weight: bold;
     }
     .features .feature-card:nth-child(1) { animation-delay: 0s; }
     .features .feature-card:nth-child(2) { animation-delay: 0.7s; }
@@ -493,14 +486,10 @@
     .features .feature-card:nth-child(4) { animation-delay: 2.1s; }
     .feature-card h3 {
       margin: 10px 0 8px 0;
-      color: var(--blue);
+      color: var(--blue-dark);
       font-size: 1.2em;
-      font-weight: 900;
+      font-weight: 700;
       font-family: var(--digital-font), monospace;
-      background: linear-gradient(90deg, var(--blue) 60%, #fff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     /* --- ROADMAP --- */
@@ -524,16 +513,15 @@
       border-left: 4px solid var(--blue);
       border-radius: 11px;
       padding: 13px 19px;
-      font-weight: 900;
+      font-weight: 600;
       min-width: 180px;
       box-shadow: 0 1px 8px #00b4fa1a;
-      color: var(--blue);
+      color: var(--sand);
       margin-bottom: 12px;
-      font-size: 1.13em;
+      font-size: 1.06em;
       text-align: left;
       animation: roadmap-pulse 2.4s infinite;
       font-family: var(--digital-font), monospace;
-      background: linear-gradient(90deg, #181a22 90%, #00161e 100%);
     }
     .roadmap-list .roadmap-step:nth-child(1) { animation-delay: 0s;}
     .roadmap-list .roadmap-step:nth-child(2) { animation-delay: 0.4s;}
@@ -586,7 +574,7 @@
     .about-content, .audits-text {
       max-width: 650px;
       margin: 0 auto;
-      color: var(--blue);
+      color: var(--sand);
       line-height: 1.6;
       font-size: 1.14rem;
       font-family: var(--digital-font), monospace;
@@ -594,7 +582,6 @@
       z-index: 2;
       background: none;
       min-height: 145px;
-      font-weight: bold;
     }
     .about-typing, .audits-typing {
       min-height: 120px;
@@ -603,7 +590,6 @@
       font-family: var(--digital-font), monospace;
       color: var(--sand);
       letter-spacing: 0.02em;
-      font-weight: bold;
     }
     /* --- AUDITS HIGHLIGHT AND IMAGE --- */
     #audits {
@@ -617,7 +603,6 @@
       gap: 20px;
       padding: 34px 24px 36px 24px;
       margin-bottom: 36px;
-      font-weight: bold;
     }
     .audits-text {
       flex: 2;
@@ -630,8 +615,8 @@
     }
     .audits-title {
       font-size: 2rem;
-      color: var(--blue);
-      background: linear-gradient(92deg, var(--blue) 80%, #fff 100%);
+      color: #fff;
+      background: linear-gradient(92deg, #fff 80%, var(--blue) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -662,34 +647,12 @@
       opacity: 1;
       transform: translateX(0);
     }
-    .audits-img2 {
-      flex: 1;
-      max-width: 170px;
-      min-width: 60px;
-      width: 30vw;
-      height: 85px;
-      opacity: 0;
-      transform: translateX(-60px);
-      transition: opacity 1s, transform 1s;
-      will-change: opacity, transform;
-      border-radius: 14px;
-      box-shadow: 0 8px 38px #00b4fa28, 0 2px 0px #00b4fa22;
-      background: #222;
-      object-fit: cover;
-      margin-left: 12px;
-      margin-top: 18px;
-      display: block;
-    }
-    .audits-img2.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
     @media (max-width: 800px) {
       #audits { flex-direction: column; gap: 12px; }
-      .audits-img, .audits-img2 { margin: 0 auto; width: 60vw; height: 65px;}
+      .audits-img { margin: 0 auto; width: 60vw; height: 65px;}
     }
     @media (max-width: 480px) {
-      .audits-img, .audits-img2 { height: 42px; }
+      .audits-img { height: 42px; }
       .audits-title { font-size: 1.23rem; }
     }
     .poweredby-logos {
@@ -709,15 +672,11 @@
       font-size:2.75rem;
       color:var(--blue);
       letter-spacing:1.2px;
-      font-weight:900;
+      font-weight:700;
       margin:0 13px;
       animation: pb-float 3.6s ease-in-out infinite;
       display:inline-block;
       text-shadow:0 8px 30px #00b4fa44,0 0 6px #10101580;
-      background: linear-gradient(90deg, var(--blue) 60%, #fff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
     .poweredby-logos span:nth-child(2) { animation-delay:0.8s; color:#1cf0b9;}
     .poweredby-logos span:nth-child(3) { animation-delay:1.3s; color:#ea6afb;}
@@ -837,7 +796,7 @@
     </div>
   </section>
 
-  <!-- ROADMAP SECTION with video background -->
+  <!-- ROADMAP SECTION with video background and line -->
   <section id="roadmap">
     <div class="roadmap-video-bg">
       <video autoplay loop muted playsinline>
@@ -882,14 +841,13 @@
     </div>
   </section>
 
-  <!-- AUDITS COMING SOON SECTION with live typing and two images -->
+  <!-- AUDITS COMING SOON SECTION with live typing -->
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
       <div class="audits-typing" id="audits-typing"></div>
     </div>
     <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
-    <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit Illustration 2" class="audits-img2" id="audits-img2">
   </section>
 
   <!-- POWERED BY SECTION with video background, floating text only -->
@@ -941,7 +899,7 @@
     window.addEventListener('scroll', handleZigzagAnimation, {passive:true});
     window.addEventListener('DOMContentLoaded', handleZigzagAnimation);
 
-    // --- AUDITS LIVE TYPING EFFECT + IMAGE FADE-IN ---
+    // --- AUDITS LIVE TYPING EFFECT ---
     const auditsTypingText =
 `At RA Atum, transparency and security are our top priorities. To ensure the safety and trust of our community, we are currently in the process of scheduling comprehensive third-party audits for the RA Atum Token smart contracts and platform.
 
@@ -959,19 +917,14 @@ The results and reports will be published here as soon as they are available. Th
       if (typingEl) typeAuditsText(auditsTypingText, typingEl);
     });
 
+    // --- AUDITS IMAGE FADE-IN ---
     function auditsInView() {
       var img = document.getElementById('audits-img');
-      var img2 = document.getElementById('audits-img2');
-      if (!img || !img2) return;
+      if (!img) return;
       var rect = img.getBoundingClientRect();
       var inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (inView) {
-        img.classList.add('visible');
-        img2.classList.add('visible');
-      } else {
-        img.classList.remove('visible');
-        img2.classList.remove('visible');
-      }
+      if (inView) img.classList.add('visible');
+      else img.classList.remove('visible');
     }
     window.addEventListener('scroll', auditsInView);
     window.addEventListener('resize', auditsInView);
@@ -1010,22 +963,10 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       // Status, timer
       let now = Date.now();
       let status = "NOT STARTED";
-      let price = "0.01 BNB";
-      let buyBtn = document.getElementById('buy-btn');
-      if (now < presaleStart) {
-        status = "Not Started";
-        buyBtn.disabled = true;
-      }
-      else if (now > presaleEnd) {
-        status = "Ended";
-        buyBtn.disabled = true;
-      }
-      else {
-        status = "LIVE";
-        buyBtn.disabled = false;
-      }
+      if (now < presaleStart) status = "Not Started";
+      else if (now > presaleEnd) status = "Ended";
+      else status = "LIVE";
       document.getElementById('presale-status').innerText = "Status: " + status;
-      document.getElementById('presale-price').innerText = "Price: " + price;
       // Time left
       let diff = Math.max(0, presaleEnd - now);
       let d = Math.floor(diff / (24*60*60*1000));
@@ -1034,6 +975,10 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       let s = Math.floor((diff % (60*1000))/1000);
       let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
       document.getElementById('presale-timer').innerText = timerText;
+      // Price
+      document.getElementById('presale-price').innerText = "Price: 0.01 BNB";
+      // Buy button logic
+      document.getElementById('buy-btn').disabled = !(status === "LIVE");
       setTimeout(updatePresaleInfo, 1000);
     }
     updatePresaleInfo();
@@ -1046,7 +991,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
       let amt = document.getElementById('buy-amount').value;
-      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) return;
+      if (!amt || isNaN(amt) || parseFloat(amt) <= 0) return;
       document.getElementById('buy-message').innerText = "Sending...";
       try {
         let tx = await signer.sendTransaction({
