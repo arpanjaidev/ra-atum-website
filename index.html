@@ -26,6 +26,7 @@
       --highlight-bg: linear-gradient(100deg, #111a33 0%, #1b344a 98%);
       --highlight-border: 2.5px solid #00b4fa;
       --highlight-shadow: 0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
+      --blue-glow: 0 0 16px #00c3ff99, 0 0 40px #00c3ff33;
     }
     html, body {
       height: 100%;
@@ -183,19 +184,22 @@
       font-weight: bold;
       color: #fff;
     }
-    h2 {
+    /* DIGITAL BLUE SHINE FOR SECTION HEADINGS */
+    h2, .audits-title {
       text-align: center;
-      color: #fff;
+      color: var(--blue);
       margin-bottom: 28px;
-      font-size: 2rem;
-      letter-spacing: 1px;
+      font-size: 2.1rem;
+      letter-spacing: 2px;
       font-family: var(--digital-font), monospace;
       font-weight: bold;
-      background: linear-gradient(90deg, #fff 70%, var(--blue) 100%);
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #fff 8%, #00b4fa 55%, #23e6ff 98%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 2px 18px #22213855,0 0 8px #00315570;
+      text-shadow: 0 2px 18px #22213855, 0 0 8px #00315580, 0 0 18px #00b4fa99;
+      filter: brightness(1.19) drop-shadow(0 0 3px #00e6ffbb);
     }
     /* --- BUY RA TOKENS (PRESALE) SECTION --- */
     #buy-section {
@@ -208,31 +212,8 @@
       z-index: 9;
       letter-spacing: .5px;
     }
-    #buy-section h2,
-    #buy-section span,
-    #buy-section .presale-info,
-    #buy-section .buy-message,
-    #buy-section a,
-    #buy-section input,
-    #buy-section button,
-    #buy-section form {
-      color: #fff !important;
-      font-weight: bold !important;
-      text-shadow: 0 2px 16px #10101560;
-    }
-    #buy-section h2 {
-      color: #fff !important;
-      margin-bottom: 19px;
-      font-size: 2rem;
-      font-family: var(--digital-font), monospace;
-      font-weight: 900;
-      letter-spacing: 1.2px;
-      background: linear-gradient(90deg, #fff 80%, var(--blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 18px #22213855,0 0 8px #00315570;
-    }
+    #buy-section * { color: #fff !important; font-weight: bold !important; text-shadow: 0 2px 16px #10101560; }
+    #buy-section h2 { font-size: 2.2rem; }
     .presale-info {
       display: flex;
       flex-wrap: wrap;
@@ -601,9 +582,9 @@
       font-weight: bold;
     }
     .audits-title {
-      font-size: 2rem;
-      color: #fff;
-      background: linear-gradient(92deg, #fff 80%, var(--blue) 100%);
+      font-size: 2.2rem;
+      color: #00b4fa;
+      background: linear-gradient(92deg, #fff 15%, #00b4fa 65%, #23e6ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -611,13 +592,16 @@
       font-weight: bold;
       margin-bottom: 18px;
       letter-spacing: 2px;
-      text-shadow: 0 2px 18px #10101577;
+      text-shadow: 0 2px 18px #00b4fa90, 0 0 16px #23e6ff80;
+      filter: brightness(1.28) drop-shadow(0 0 3px #00e6ffbb);
+      text-align: left;
+      text-transform: uppercase;
     }
     .audits-img {
-      flex: 1;
-      max-width: 170px;
+      flex: 1 0 160px;
+      max-width: 160px;
       min-width: 60px;
-      width: 28vw;
+      width: 22vw;
       height: 62px;
       opacity: 0;
       transform: translateX(-60px);
@@ -633,6 +617,9 @@
     .audits-img.visible {
       opacity: 1;
       transform: translateX(0);
+    }
+    .audits-img:not(:first-child) {
+      margin-top: 16px;
     }
     @media (max-width: 800px) {
       #audits { flex-direction: column; gap: 12px; }
@@ -707,29 +694,29 @@
       <i class="fas fa-bars"></i>
     </button>
     <nav>
-      <a href="#features">Features</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="nft-gallery.html">NFT Gallery</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+      <a href="#features">FEATURES</a>
+      <a href="#roadmap">ROADMAP</a>
+      <a href="nft-gallery.html">NFT GALLERY</a>
+      <a href="#about">ABOUT US</a>
+      <a href="#contact">CONTACT & SOCIALS</a>
+      <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
     </nav>
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
       <div class="mobile-nav">
-        <a href="#features" onclick="closeMobileNav()">Features</a>
-        <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>
-        <a href="nft-gallery.html" onclick="closeMobileNav()">NFT Gallery</a>
-        <a href="#about" onclick="closeMobileNav()">About</a>
-        <a href="#contact" onclick="closeMobileNav()">Contact</a>
-        <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+        <a href="#features" onclick="closeMobileNav()">FEATURES</a>
+        <a href="#roadmap" onclick="closeMobileNav()">ROADMAP</a>
+        <a href="nft-gallery.html" onclick="closeMobileNav()">NFT GALLERY</a>
+        <a href="#about" onclick="closeMobileNav()">ABOUT US</a>
+        <a href="#contact" onclick="closeMobileNav()">CONTACT & SOCIALS</a>
+        <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
       </div>
     </div>
   </header>
   
   <!-- BUY RA TOKENS (PRESALE) SECTION -->
   <section id="buy-section">
-    <h2>Buy RA Tokens – Presale LIVE!</h2>
+    <h2>BUY RA TOKENS – PRESALE LIVE!</h2>
     <div class="presale-info">
       <span id="presale-status">Status: Connect Wallet</span>
       <span id="presale-price">Price: 0.01 BNB</span>
@@ -778,7 +765,7 @@
         <source src="https://videos.pexels.com/video-files/3129595/3129595-uhd_2560_1440_30fps.mp4" type="video/mp4">
       </video>
     </div>
-    <h2>Features</h2>
+    <h2>FEATURES</h2>
     <div class="features">
       <div class="feature-card">
         <h3>Accept Donations</h3>
@@ -806,7 +793,7 @@
         <source src="https://videos.pexels.com/video-files/3141208/3141208-uhd_2560_1440_25fps.mp4" type="video/mp4">
       </video>
     </div>
-    <h2>Roadmap</h2>
+    <h2>ROADMAP</h2>
     <div class="roadmap-container">
       <div class="roadmap-list">
         <div class="roadmap-step">✅ Whitepaper Released</div>
@@ -829,14 +816,14 @@
         <source src="https://videos.pexels.com/video-files/19419586/19419586-hd_1920_1080_30fps.mp4" type="video/mp4">
       </video>
     </div>
-    <h2>About RA Atum</h2>
+    <h2>ABOUT US</h2>
     <div class="about-content">
       <div class="about-typing" id="about-typing"></div>
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact & Socials</h2>
+    <h2>CONTACT & SOCIALS</h2>
     <div class="about-content" style="text-align:center;">
       <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:var(--blue);">info@ra-atum.com</a><br>
       <b>Twitter:</b> <a href="https://twitter.com/" target="_blank" style="color:var(--blue-dark);">@ra_atum</a><br>
@@ -844,13 +831,15 @@
     </div>
   </section>
 
-  <!-- AUDITS COMING SOON SECTION with live typing and highlight -->
+  <!-- AUDITS COMING SOON SECTION with live typing and THREE images -->
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
       <div class="audits-typing" id="audits-typing"></div>
     </div>
-    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
+    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration 1" class="audits-img" id="audits-img-1">
+    <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit Illustration 2" class="audits-img" id="audits-img-2">
+    <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit Illustration 3" class="audits-img" id="audits-img-3">
   </section>
 
   <!-- POWERED BY SECTION with video background, floating text only -->
@@ -860,7 +849,7 @@
         <source src="https://videos.pexels.com/video-files/854322/854322-hd_1280_720_25fps.mp4" type="video/mp4">
       </video>
     </div>
-    <h2>Powered By</h2>
+    <h2>POWERED BY</h2>
     <div class="poweredby-logos">
       <span>OpenAI</span>
       <span>Gemini</span>
@@ -920,14 +909,16 @@ The results and reports will be published here as soon as they are available. Th
       if (typingEl) typeAuditsText(auditsTypingText, typingEl);
     });
 
-    // --- AUDITS IMAGE FADE-IN ---
+    // --- AUDITS IMAGE FADE-IN --- (for all three images)
     function auditsInView() {
-      var img = document.getElementById('audits-img');
-      if (!img) return;
-      var rect = img.getBoundingClientRect();
-      var inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (inView) img.classList.add('visible');
-      else img.classList.remove('visible');
+      for (let i = 1; i <= 3; ++i) {
+        let img = document.getElementById('audits-img-' + i);
+        if (!img) continue;
+        var rect = img.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (inView) img.classList.add('visible');
+        else img.classList.remove('visible');
+      }
     }
     window.addEventListener('scroll', auditsInView);
     window.addEventListener('resize', auditsInView);
@@ -953,7 +944,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       if (typingEl) typeAboutText(aboutTypingText, typingEl);
     });
 
-    // --- BUY TOKEN LOGIC (connect MetaMask, show presale info, enable button only for price 0.01 BNB) ---
+    // --- BUY TOKEN LOGIC (connect MetaMask, show presale info) ---
     // Addresses (update if needed)
     const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
     const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
@@ -962,13 +953,24 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     const presaleEnd = 1765730782 * 1000;
     let provider, signer;
 
+    // Enable buy button only if presale is live and price is set
     function updatePresaleInfo() {
       // Status, timer
       let now = Date.now();
       let status = "NOT STARTED";
-      if (now < presaleStart) status = "Not Started";
-      else if (now > presaleEnd) status = "Ended";
-      else status = "LIVE";
+      let btn = document.getElementById('buy-btn');
+      if (now < presaleStart) {
+        status = "Not Started";
+        if(btn) btn.disabled = true;
+      }
+      else if (now > presaleEnd) {
+        status = "Ended";
+        if(btn) btn.disabled = true;
+      }
+      else {
+        status = "LIVE";
+        if(btn) btn.disabled = false;
+      }
       document.getElementById('presale-status').innerText = "Status: " + status;
       // Time left
       let diff = Math.max(0, presaleEnd - now);
@@ -978,15 +980,6 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       let s = Math.floor((diff % (60*1000))/1000);
       let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
       document.getElementById('presale-timer').innerText = timerText;
-
-      // Enable Buy Button only during LIVE and when price is 0.01 BNB
-      let buyBtn = document.getElementById('buy-btn');
-      let priceSpan = document.getElementById('presale-price');
-      if (status === "LIVE" && priceSpan && priceSpan.textContent.includes("0.01")) {
-        buyBtn.disabled = false;
-      } else {
-        buyBtn.disabled = true;
-      }
       setTimeout(updatePresaleInfo, 1000);
     }
     updatePresaleInfo();
