@@ -204,7 +204,7 @@
     /* --- BUY RA TOKENS (PRESALE) HIGHLIGHT --- */
     #buy-section {
       margin-top: 44px;
-      background: url('https://i.pinimg.com/736x/74/29/e2/7429e2f1931d41e4abb8600cd684c5a2.jpg') no-repeat center center;
+      background: url('https://i.pinimg.com/736x/8a/f2/dd/8af2dddeac28709607bd72fe6ec569ea.jpg') no-repeat center center;
       background-size: cover;
       color: #fff;
       box-shadow: 0 12px 42px #0fffc766, 0 2px 2px #10102477;
@@ -341,8 +341,7 @@
       letter-spacing: 2.2px;
       font-weight: 900;
     }
-    .audits-img {
-      flex: 1.2;
+    .audits-img, .audits-img2, .audits-img3 {
       max-width: 180px;
       min-width: 100px;
       opacity: 0;
@@ -358,10 +357,6 @@
       display: inline-block;
       vertical-align: middle;
     }
-    .audits-img.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
     .audits-img2, .audits-img3 {
       max-width: 170px;
       min-width: 60px;
@@ -371,11 +366,8 @@
       object-fit: cover;
       box-shadow: 0 8px 34px #00b4fa44;
       vertical-align: middle;
-      opacity: 0;
-      transform: translateX(60px);
-      transition: opacity 1.2s, transform 1.2s;
     }
-    .audits-img2.visible, .audits-img3.visible {
+    .audits-img.visible, .audits-img2.visible, .audits-img3.visible {
       opacity: 1;
       transform: translateX(0);
     }
@@ -816,9 +808,11 @@
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
       <div class="audits-typing" id="audits-typing"></div>
-      <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit 1" class="audits-img" id="audits-img">
-      <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit 2" class="audits-img2" id="audits-img2">
-      <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit 3" class="audits-img3" id="audits-img3">
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:17px;">
+        <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration" class="audits-img" id="audits-img">
+        <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit Illustration 2" class="audits-img2" id="audits-img2">
+        <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit Illustration 3" class="audits-img3" id="audits-img3">
+      </div>
     </div>
   </section>
 
@@ -894,13 +888,14 @@ The results and reports will be published here as soon as they are available. Th
       var img = document.getElementById('audits-img');
       var img2 = document.getElementById('audits-img2');
       var img3 = document.getElementById('audits-img3');
-      [img, img2, img3].forEach(function(im) {
-        if (!im) return;
-        var rect = im.getBoundingClientRect();
-        var inView = rect.top < window.innerHeight && rect.bottom > 0;
-        if (inView) im.classList.add('visible');
-        else im.classList.remove('visible');
-      });
+      if (!img || !img2 || !img3) return;
+      var rect = img.getBoundingClientRect();
+      var inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        img.classList.add('visible');
+        img2.classList.add('visible');
+        img3.classList.add('visible');
+      }
     }
     window.addEventListener('scroll', auditsInView);
     window.addEventListener('resize', auditsInView);
@@ -927,10 +922,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     });
 
     // --- BUY TOKEN LOGIC (connect MetaMask, show presale info, balance check) ---
-    // Addresses (update if needed)
     const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
-    const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
-    const treasuryWallet = "0x27a2C4F65fd4E3Ae249C061468342f9A5D7cb89D";
     const presaleStart = 1750178782 * 1000;
     const presaleEnd = 1765730782 * 1000;
     let provider, signer;
@@ -938,7 +930,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     function updatePresaleInfo() {
       // Status, timer
       let now = Date.now();
-      let status = "LIVE";
+      let status = "NOT STARTED";
       if (now < presaleStart) status = "Not Started";
       else if (now > presaleEnd) status = "Ended";
       else status = "LIVE";
@@ -957,38 +949,31 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
 
     document.getElementById('buy-form').onsubmit = async function(e) {
       e.preventDefault();
-      if (!window.ethereum) {
-        document.getElementById('buy-message').innerText = "MetaMask not found!";
-        return;
-      }
+      if (!window.ethereum) return alert("MetaMask not found!");
       provider = new ethers.providers.Web3Provider(window.ethereum, "any");
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
-
-      // Check balance first
-      const amt = document.getElementById('buy-amount').value;
-      const weiAmt = ethers.utils.parseEther(amt);
-      try {
-        const userAddress = await signer.getAddress();
-        const balance = await provider.getBalance(userAddress);
-        if (balance.lt(weiAmt)) {
-          document.getElementById('buy-message').innerText = "Insufficient BNB balance!";
-          return;
-        }
-      } catch (err) {
-        document.getElementById('buy-message').innerText = "Failed to check balance.";
+      let amt = document.getElementById('buy-amount').value;
+      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) {
+        document.getElementById('buy-message').innerText = "Minimum is 0.01 BNB";
         return;
       }
-
-      document.getElementById('buy-message').innerText = "Sending...";
+      document.getElementById('buy-message').innerText = "Checking balance...";
       try {
+        let userAddr = await signer.getAddress();
+        let bal = await provider.getBalance(userAddr);
+        if (bal.lt(ethers.utils.parseEther(amt))) {
+          document.getElementById('buy-message').innerText = "❌ Insufficient balance!";
+          return;
+        }
+        document.getElementById('buy-message').innerText = "Sending...";
         let tx = await signer.sendTransaction({
           to: presaleAddress,
-          value: weiAmt
+          value: ethers.utils.parseEther(amt)
         });
-        document.getElementById('buy-message').innerHTML = "✅ Success! <a href='https://bscscan.com/tx/"+tx.hash+"' style='color:#fff;' target='_blank'>View on BscScan</a>";
+        document.getElementById('buy-message').innerHTML = "✅ Success! <a href='https://bscscan.com/tx/"+tx.hash+"' style='color:#0fffc7;' target='_blank'>View on BscScan</a>";
       } catch (err) {
-        document.getElementById('buy-message').innerText = "Failed: " + (err.data && err.data.message ? err.data.message : (err.message || err));
+        document.getElementById('buy-message').innerText = "Failed: " + (err.message || err);
       }
     };
   </script>
