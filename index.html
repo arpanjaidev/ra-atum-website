@@ -822,6 +822,7 @@
     </div>
   </section>
 
+  <!-- CONTACT & SOCIALS SECTION -->
   <section id="contact">
     <h2>CONTACT & SOCIALS</h2>
     <div class="about-content" style="text-align:center;">
@@ -831,15 +832,17 @@
     </div>
   </section>
 
-  <!-- AUDITS COMING SOON SECTION with live typing and THREE images -->
+  <!-- AUDITS COMING SOON SECTION with live typing and 3 images -->
   <section id="audits">
     <div class="audits-text">
       <div class="audits-title">AUDITS COMING SOON</div>
       <div class="audits-typing" id="audits-typing"></div>
     </div>
-    <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration 1" class="audits-img" id="audits-img-1">
-    <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit Illustration 2" class="audits-img" id="audits-img-2">
-    <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit Illustration 3" class="audits-img" id="audits-img-3">
+    <div>
+      <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration 1" class="audits-img" id="audits-img-1">
+      <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit Illustration 2" class="audits-img" id="audits-img-2">
+      <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit Illustration 3" class="audits-img" id="audits-img-3">
+    </div>
   </section>
 
   <!-- POWERED BY SECTION with video background, floating text only -->
@@ -909,16 +912,16 @@ The results and reports will be published here as soon as they are available. Th
       if (typingEl) typeAuditsText(auditsTypingText, typingEl);
     });
 
-    // --- AUDITS IMAGE FADE-IN --- (for all three images)
+    // --- AUDITS IMAGE FADE-IN ---
     function auditsInView() {
-      for (let i = 1; i <= 3; ++i) {
-        let img = document.getElementById('audits-img-' + i);
-        if (!img) continue;
+      ['audits-img-1', 'audits-img-2', 'audits-img-3'].forEach(id => {
+        var img = document.getElementById(id);
+        if (!img) return;
         var rect = img.getBoundingClientRect();
         var inView = rect.top < window.innerHeight && rect.bottom > 0;
         if (inView) img.classList.add('visible');
         else img.classList.remove('visible');
-      }
+      });
     }
     window.addEventListener('scroll', auditsInView);
     window.addEventListener('resize', auditsInView);
@@ -953,24 +956,14 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     const presaleEnd = 1765730782 * 1000;
     let provider, signer;
 
-    // Enable buy button only if presale is live and price is set
     function updatePresaleInfo() {
       // Status, timer
       let now = Date.now();
       let status = "NOT STARTED";
-      let btn = document.getElementById('buy-btn');
-      if (now < presaleStart) {
-        status = "Not Started";
-        if(btn) btn.disabled = true;
-      }
-      else if (now > presaleEnd) {
-        status = "Ended";
-        if(btn) btn.disabled = true;
-      }
-      else {
-        status = "LIVE";
-        if(btn) btn.disabled = false;
-      }
+      let live = false;
+      if (now < presaleStart) status = "Not Started";
+      else if (now > presaleEnd) status = "Ended";
+      else { status = "LIVE"; live = true; }
       document.getElementById('presale-status').innerText = "Status: " + status;
       // Time left
       let diff = Math.max(0, presaleEnd - now);
@@ -980,6 +973,8 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       let s = Math.floor((diff % (60*1000))/1000);
       let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
       document.getElementById('presale-timer').innerText = timerText;
+      // Enable/disable buy button
+      document.getElementById('buy-btn').disabled = !live;
       setTimeout(updatePresaleInfo, 1000);
     }
     updatePresaleInfo();
@@ -987,12 +982,17 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     // --- Buy Form Logic ---
     document.getElementById('buy-form').onsubmit = async function(e) {
       e.preventDefault();
+      const btn = document.getElementById('buy-btn');
+      if (btn.disabled) return;
       if (!window.ethereum) return alert("MetaMask not found!");
       provider = new ethers.providers.Web3Provider(window.ethereum, "any");
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
       let amt = document.getElementById('buy-amount').value;
-      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) return;
+      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) {
+        document.getElementById('buy-message').innerText = "Minimum buy: 0.01 BNB";
+        return;
+      }
       document.getElementById('buy-message').innerText = "Sending...";
       try {
         let tx = await signer.sendTransaction({
