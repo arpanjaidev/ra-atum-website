@@ -882,18 +882,23 @@
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script>
-    // --- HAMBURGER MENU ---
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-    const closeMobileNavBtn = document.getElementById('close-mobile-nav');
-    if (hamburgerBtn && mobileNavOverlay && closeMobileNavBtn) {
-      hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
-      closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
-      function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
-      window.onkeydown = e => { if (e.key === "Escape") mobileNavOverlay.classList.remove('active'); }
-      window.onclick = e => { if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active'); }
-    }
+ <script>
+  // --- HAMBURGER MENU ---
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+  const closeMobileNavBtn = document.getElementById('close-mobile-nav');
+
+  function closeMobileNav() {
+    document.getElementById('mobile-nav-overlay').classList.remove('active');
+  }
+
+  if (hamburgerBtn && mobileNavOverlay && closeMobileNavBtn) {
+    hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
+    closeMobileNavBtn.onclick = closeMobileNav;
+    window.onkeydown = e => { if (e.key === "Escape") closeMobileNav(); }
+    window.onclick = e => { if (e.target === mobileNavOverlay) closeMobileNav(); }
+  }
+</script>
 
     // --- SLOW ZIGZAG IMAGE EFFECT ---
     let lastScroll = window.scrollY;
