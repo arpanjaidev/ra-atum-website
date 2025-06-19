@@ -616,9 +616,22 @@
       text-align: left;
       text-transform: uppercase;
     }
-  .audits-img {
-  flex: 0 0 auto;
-  width: 140px;     /* You can make this 160px, 180px, etc if you want even bigger */
+ #audits {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.audits-imgs-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 32px;
+}
+.audits-img {
+  width: 140px;
   height: 90px;
   opacity: 0;
   transform: translateX(-60px);
@@ -628,32 +641,22 @@
   box-shadow: 0 8px 38px #00b4fa28, 0 2px 0px #00b4fa22;
   background: #222;
   object-fit: cover;
-  margin-left: 12px;
+  margin-left: 0; /* Now handled by the audits-imgs-vertical gap/margin */
   display: block;
 }
 .audits-img.visible {
   opacity: 1;
   transform: translateX(0);
 }
-.audits-img:not(:first-child) {
-  margin-top: 16px;
-}
 
-/* Responsive – same size, but shrinks a bit on mobile */
+/* Mobile: stack text and images vertically */
 @media (max-width: 800px) {
-  .audits-img {
-    width: 90vw;
-    max-width: 260px;
-    height: 70px;
-    margin: 0 auto;
-  }
+  #audits { flex-direction: column; gap: 12px; }
+  .audits-imgs-vertical { margin-left: 0; flex-direction: row; gap: 12px; justify-content: center; }
+  .audits-img { width: 90px; height: 54px; }
 }
 @media (max-width: 480px) {
-  .audits-img {
-    width: 92vw;
-    max-width: 220px;
-    height: 52px;
-  }
+  .audits-img { width: 70px; height: 42px; }
 }
 
     .poweredby-logos {
@@ -868,15 +871,18 @@
   </section>
 
   <!-- AUDITS COMING SOON SECTION with live typing and THREE images -->
-  <section id="audits">
-    <div class="audits-text">
-      <div class="audits-title">AUDITS COMING SOON</div>
-      <div class="audits-typing" id="audits-typing"></div>
-    </div>
+ <section id="audits">
+  <div class="audits-text">
+    <div class="audits-title">AUDITS COMING SOON</div>
+    <div class="audits-typing" id="audits-typing"></div>
+  </div>
+  <div class="audits-imgs-vertical">
     <img src="https://i.pinimg.com/736x/b7/44/81/b7448100751d2a33aa8e561dd7503892.jpg" alt="Audit Illustration 1" class="audits-img" id="audits-img-1">
     <img src="https://i.pinimg.com/736x/c6/73/32/c67332fa4ba3de8bf3149fc8ce005655.jpg" alt="Audit Illustration 2" class="audits-img" id="audits-img-2">
     <img src="https://i.pinimg.com/736x/b1/23/35/b123350613d327c06109ac37aac6b762.jpg" alt="Audit Illustration 3" class="audits-img" id="audits-img-3">
-  </section>
+  </div>
+</section>
+
 
   <!-- POWERED BY SECTION with video background, floating text only -->
  <section id="poweredby">
