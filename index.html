@@ -103,7 +103,21 @@
       z-index: 110;
       margin-right: 6px;
       margin-left: 0;
-    }
+    }  
+    .open-metamask-link { display: none; }
+@media (max-width: 800px) {
+  .open-metamask-link {
+    display: block;
+    background: #00b4fa;
+    color: #171818 !important;
+    font-weight: bold;
+    margin-top: 8px;
+    border-radius: 7px;
+    padding: 11px 16px;
+    text-align: center;
+  }
+}
+
     .mobile-nav-overlay {
       display: none;
       position: fixed;
@@ -704,16 +718,17 @@
     </nav>
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
-      <div class="mobile-nav">
-        <a href="#features" onclick="closeMobileNav()">FEATURES</a>
-        <a href="#roadmap" onclick="closeMobileNav()">ROADMAP</a>
-        <a href="nft-gallery.html" onclick="closeMobileNav()">NFT GALLERY</a>
-        <a href="#about" onclick="closeMobileNav()">ABOUT US</a>
-        <a href="#contact" onclick="closeMobileNav()">CONTACT & SOCIALS</a>
-        <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
-        <a href="wallet.html" class="connect-wallet-btn" onclick="closeMobileNav()">Connect Wallet</a>
+     <div class="mobile-nav">
+  <a href="#features" onclick="closeMobileNav()">FEATURES</a>
+  <a href="#roadmap" onclick="closeMobileNav()">ROADMAP</a>
+  <a href="nft-gallery.html" onclick="closeMobileNav()">NFT GALLERY</a>
+  <a href="#about" onclick="closeMobileNav()">ABOUT US</a>
+  <a href="#contact" onclick="closeMobileNav()">CONTACT & SOCIALS</a>
+  <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" onclick="closeMobileNav()">DAPP</a>
+  <a href="wallet.html" class="connect-wallet-btn" onclick="closeMobileNav()">Connect Wallet</a>
+  <a href="https://metamask.app.link/dapp/ra-wallet-dapp.vercel.app" target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
+</div>
 
-      </div>
     </div>
   </header>
   
