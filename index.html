@@ -236,22 +236,25 @@
       margin-bottom: 14px;
       font-size: 1.23rem;
     }
-    .presale-info span {
-      display: inline-block;
-      min-width: 144px;
-      background: #111b;
-      border-radius: 10px;
-      padding: 10px 18px;
-      color: #fff;
-      font-weight: bold;
-      letter-spacing: .6px;
-      margin: 4px 0;
-      box-shadow: 0 2px 8px #00b4fa30;
-      border: 1px solid #00b4fa55;
-      font-size: 1.13rem;
-      transition: background .2s;
-      text-shadow: 0 1px 6px #000;
-    }
+   .presale-title {
+  text-align: center;
+  margin-bottom: 28px;
+  font-size: 2.1rem;
+  letter-spacing: 2px;
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff9900 15%, #ff3838 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow:
+    0 2px 18px #ff990055,
+    0 0 8px #ff383880,
+    0 0 18px #ff660099;
+  filter: brightness(1.15) drop-shadow(0 0 5px #ff2a0066);
+}
+
     .buy-form {
       display: flex;
       flex-wrap: wrap;
@@ -734,7 +737,8 @@
   
   <!-- BUY RA TOKENS (PRESALE) SECTION -->
   <section id="buy-section">
-    <h2>BUY RA TOKENS – PRESALE LIVE!</h2>
+    <div class="presale-title">BUY RA TOKENS – PRESALE LIVE!</div>
+
     <div class="presale-info">
       <span id="presale-status">Status: Connect Wallet</span>
       <span id="presale-price">Price: 0.01 BNB</span>
