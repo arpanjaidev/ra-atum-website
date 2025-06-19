@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wallet – RA Atum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #0e1018;
+      color: #fff;
+      font-family: 'Share Tech Mono', monospace;
+      text-align: center;
+      padding: 80px 10px 40px 10px;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .wallet-container {
+      background: #181a1b;
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #00b4fa33;
+      max-width: 390px;
+      margin: 60px auto 0 auto;
+      padding: 38px 32px 30px 32px;
+      border: 2.5px solid #00b4fa;
+      position: relative;
+    }
+    .wallet-title {
+      font-size: 2rem;
+      color: #00b4fa;
+      margin-bottom: 30px;
+      letter-spacing: 1.7px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #fff 8%, #00b4fa 55%, #23e6ff 98%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 18px #22213855, 0 0 8px #00315580, 0 0 18px #00b4fa99;
+      filter: brightness(1.19);
+    }
+    .wallet-info-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+      font-size: 1.23rem;
+      font-weight: bold;
+      color: #e7d7b6;
+      border-bottom: 1px solid #202f38;
+      padding-bottom: 8px;
+    }
+    .wallet-info-row:last-child {
+      border-bottom: none;
+    }
+    .wallet-address {
+      margin: 18px 0 32px 0;
+      font-size: 1.01rem;
+      color: #00b4fa;
+      word-break: break-all;
+      letter-spacing: 0.5px;
+    }
+    .wallet-connect-btn {
+      margin-top: 18px;
+      background: linear-gradient(90deg, #00b4fa 0%, #00ffd0 100%);
+      color: #181a1b;
+      border: none;
+      border-radius: 11px;
+      padding: 12px 36px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 18px #00b4fa33;
+      transition: background .17s, color .17s;
+    }
+    .wallet-connect-btn:hover { background: #e7d7b6; color: #002a37; }
+    .wallet-msg { margin: 14px 0 0 0; min-height: 20px; font-size: 1rem;}
+    a.back-link { color:#00b4fa; margin-top: 16px; display:inline-block;}
+    a.back-link:hover { text-decoration: underline;}
+  </style>
+</head>
+<body>
+  <div class="wallet-container">
+    <div class="wallet-title"><i class="fas fa-wallet"></i> Wallet Overview</div>
+    <div id="wallet-address" class="wallet-address"></div>
+    <div class="wallet-info-row">
+      <span>Token Balance</span>
+      <span id="token-balance">0.00</span>
+    </div>
+    <div class="wallet-info-row">
+      <span>Referral Earnings</span>
+      <span id="referral-earnings">0.00</span>
+    </div>
+    <button class="wallet-connect-btn" id="connect-wallet-btn">Connect Wallet</button>
+    <div class="wallet-msg" id="wallet-msg"></div>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script>
+    document.getElementById('connect-wallet-btn').onclick = async function() {
+      if (!window.ethereum) {
+        document.getElementById('wallet-msg').innerText = "🦊 Please install MetaMask!";
+        return;
+      }
+      const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      const address = await signer.getAddress();
+      document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
+      document.getElementById('wallet-msg').innerText = "Wallet connected!";
+      // Dummy value, replace with token contract logic if needed:
+      document.getElementById('token-balance').innerText = "0.00";
+      document.getElementById('referral-earnings').innerText = "0.00";
+    };
+  </script>
+</body>
+</html>
