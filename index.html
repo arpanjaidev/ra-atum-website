@@ -985,25 +985,43 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
     updatePresaleInfo();
 
     // --- Buy Form Logic ---
-    document.getElementById('buy-form').onsubmit = async function(e) {
-      e.preventDefault();
-      if (!window.ethereum) return alert("MetaMask not found!");
-      provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-      await provider.send("eth_requestAccounts", []);
-      signer = provider.getSigner();
-      let amt = document.getElementById('buy-amount').value;
-      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) return;
-      document.getElementById('buy-message').innerText = "Sending...";
-      try {
-        let tx = await signer.sendTransaction({
-          to: presaleAddress,
-          value: ethers.utils.parseEther(amt)
-        });
-        document.getElementById('buy-message').innerHTML = "✅ Success! <a href='https://bscscan.com/tx/"+tx.hash+"' style='color:var(--blue);' target='_blank'>View on BscScan</a>";
-      } catch (err) {
-        document.getElementById('buy-message').innerText = "Failed: " + (err.message || err);
-      }
-    };
+   // --- Buy Form Logic (call buyTokens) ---
+const presaleABI = [
+  "function buyTokens() public payable"
+];
+const presaleContract = new ethers.Contract(
+  presaleAddress, presaleABI, signer || provider
+);
+
+document.getElementById('buy-form').onsubmit = async function(e) {
+  e.preventDefault();
+  if (!window.ethereum) return alert("MetaMask not found!");
+  provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+  await provider.send("eth_requestAccounts", []);
+  signer = provider.getSigner();
+  const presaleContract = new ethers.Contract(
+    presaleAddress, presaleABI, signer
+  );
+  let amt = document.getElementById('buy-amount').value;
+  if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) return;
+  document.getElementById('buy-message').innerText = "Sending...";
+  try {
+    let tx = await presaleContract.buyTokens({
+      value: ethers.utils.parseEther(amt)
+    });
+    document.getElementById('buy-message').innerHTML =
+      "✅ Success! <a href='https://bscscan.com/tx/" + tx.hash +
+      "' style='color:var(--blue);' target='_blank'>View on BscScan</a>";
+  } catch (err) {
+    // Handle "insufficient funds" and other errors
+    let msg = (err?.error?.message || err?.data?.message || err?.message || err).toString();
+    if (msg.toLowerCase().includes("insufficient funds")) {
+      msg = "❌ Not enough BNB for purchase.";
+    }
+    document.getElementById('buy-message').innerText = "Failed: " + msg;
+  }
+};
+
   </script>
   <footer>
     &copy; 2025 RA Atum. All Rights Reserved.
