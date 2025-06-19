@@ -898,7 +898,7 @@
     window.onkeydown = e => { if (e.key === "Escape") closeMobileNav(); }
     window.onclick = e => { if (e.target === mobileNavOverlay) closeMobileNav(); }
   }
-</script>
+
 
     // --- SLOW ZIGZAG IMAGE EFFECT ---
     let lastScroll = window.scrollY;
@@ -1012,9 +1012,7 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
 const presaleABI = [
   "function buyTokens() public payable"
 ];
-const presaleContract = new ethers.Contract(
-  presaleAddress, presaleABI, signer || provider
-);
+
 
 document.getElementById('buy-form').onsubmit = async function(e) {
   e.preventDefault();
