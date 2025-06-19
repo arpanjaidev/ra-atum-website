@@ -121,13 +121,42 @@
     .tokenomics-row b { color: var(--blue); }
     .tokenomics-chart {
       flex: 1;
-      min-width: 180px;
+      min-width: 220px;
+      min-height: 220px;
       display: flex;
       justify-content: center;
       align-items: center;
       background: rgba(25, 30, 45, 0.5);
       border-radius: 50%;
       padding: 16px;
+      position: relative;
+    }
+    /* Logo in center of chart */
+    .chart-logo-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 85px;
+      height: 85px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: #111d;
+      box-shadow: 0 2px 18px #00b4fa55;
+      z-index: 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      pointer-events: none;
+      border: 3.5px solid #00b4fa44;
+      transition: box-shadow .3s;
+    }
+    .chart-logo-center img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      display: block;
+      border-radius: 50%;
     }
     .tokenomics-details {
       margin-top: 30px;
@@ -196,8 +225,11 @@
         <div class="tokenomics-row"><b>Launch Price:</b> <span>₹55</span></div>
         <div class="tokenomics-row"><b>Whitepaper:</b> <a href="RA-Atum-Whitepaper.pdf" style="color:var(--blue);" target="_blank">Download</a></div>
       </div>
-      <div class="tokenomics-chart">
+      <div class="tokenomics-chart" style="position:relative;">
         <canvas id="tokenomicsChart" width="220" height="220"></canvas>
+        <div class="chart-logo-center">
+          <img src="RA-ATUM-LOGO.png" alt="RA ATUM Logo">
+        </div>
       </div>
     </div>
     <div class="tokenomics-details">
