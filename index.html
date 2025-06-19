@@ -615,38 +615,45 @@
       text-align: left;
       text-transform: uppercase;
     }
-    .audits-img {
-      flex: 1 0 160px;
-      max-width: 160px;
-      min-width: 60px;
-      width: 50vw;
-      height: 80px;
-      opacity: 0;
-      transform: translateX(-60px);
-      transition: opacity 1s, transform 1s;
-      will-change: opacity, transform;
-      border-radius: 14px;
-      box-shadow: 0 8px 38px #00b4fa28, 0 2px 0px #00b4fa22;
-      background: #222;
-      object-fit: cover;
-      margin-left: 12px;
-      display: block;
-    }
-    .audits-img.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .audits-img:not(:first-child) {
-      margin-top: 16px;
-    }
-    @media (max-width: 800px) {
-      #audits { flex-direction: column; gap: 12px; }
-      .audits-img { margin: 0 auto; width: 60vw; height: 38px;}
-    }
-    @media (max-width: 480px) {
-      .audits-img { height: 28px; }
-      .audits-title { font-size: 1.23rem; }
-    }
+  .audits-img {
+  flex: 0 0 auto;
+  width: 140px;     /* You can make this 160px, 180px, etc if you want even bigger */
+  height: 90px;
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 1s, transform 1s;
+  will-change: opacity, transform;
+  border-radius: 14px;
+  box-shadow: 0 8px 38px #00b4fa28, 0 2px 0px #00b4fa22;
+  background: #222;
+  object-fit: cover;
+  margin-left: 12px;
+  display: block;
+}
+.audits-img.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.audits-img:not(:first-child) {
+  margin-top: 16px;
+}
+
+/* Responsive – same size, but shrinks a bit on mobile */
+@media (max-width: 800px) {
+  .audits-img {
+    width: 90vw;
+    max-width: 260px;
+    height: 70px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 480px) {
+  .audits-img {
+    width: 92vw;
+    max-width: 220px;
+    height: 52px;
+  }
+}
 
     .poweredby-logos {
       position:relative;
