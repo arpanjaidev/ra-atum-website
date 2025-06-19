@@ -95,10 +95,16 @@
     <div class="wallet-msg" id="wallet-msg"></div>
     <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
- <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 <script>
+  // --- Replace with your deployed token address: ---
+  const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
+  const erc20ABI = [
+    "function balanceOf(address owner) view returns (uint256)",
+    "function decimals() view returns (uint8)"
+  ];
+
   document.getElementById('connect-wallet-btn').onclick = async function() {
-    // Detect if user is in MetaMask mobile browser
     const walletMsg = document.getElementById('wallet-msg');
     walletMsg.innerText = "Connecting...";
     if (window.ethereum && /MetaMask/i.test(window.ethereum.isMetaMask ? 'MetaMask' : navigator.userAgent)) {
@@ -109,8 +115,17 @@
         const address = await signer.getAddress();
         document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
         walletMsg.innerText = "✅ Wallet connected!";
-        // Dummy values for balance/earnings:
-        document.getElementById('token-balance').innerText = "0.00";
+
+        // --- NEW: Fetch and display actual token balance ---
+        const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
+        const [rawBalance, decimals] = await Promise.all([
+          tokenContract.balanceOf(address),
+          tokenContract.decimals()
+        ]);
+        const balance = ethers.utils.formatUnits(rawBalance, decimals);
+        document.getElementById('token-balance').innerText = balance;
+
+        // Dummy value for referral earnings (customize as needed)
         document.getElementById('referral-earnings').innerText = "0.00";
       } catch (err) {
         walletMsg.innerText = "❌ Wallet connection failed.";
@@ -119,12 +134,12 @@
         document.getElementById('referral-earnings').innerText = "–";
       }
     } else {
-      // Not in MetaMask browser: Redirect user to open in MetaMask
       walletMsg.innerText = "";
-      // Remove "/wallet.html" to avoid possible path issues in MetaMask app:
+      // Use base path (not wallet.html) for MetaMask mobile app
       window.location.href = "https://metamask.app.link/dapp/ra-wallet-dapp.vercel.app";
     }
   };
 </script>
+
 </body>
 </html>
