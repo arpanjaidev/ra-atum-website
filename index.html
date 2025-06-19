@@ -1036,14 +1036,15 @@ document.getElementById('buy-form').onsubmit = async function(e) {
   } catch (err) {
     // Handle "insufficient funds" and other errors
     let msg = (err?.error?.message || err?.data?.message || err?.message || err).toString();
-    if (msg.toLowerCase().includes("insufficient funds")) {
+       if (msg.toLowerCase().includes("insufficient funds")) {
       msg = "❌ Not enough BNB for purchase.";
     }
     document.getElementById('buy-message').innerText = "Failed: " + msg;
   }
-};<!-- ...all your other code/scripts above... -->
+}; // <-- SCRIPT ENDS HERE!
+</script> <!-- <-- Make sure you close the script tag!! -->
 
-<!-- Mobile MetaMask browser warning -->
+<!-- NOW HTML CAN START AGAIN! -->
 <div id="mobile-warning" style="display:none;position:fixed;bottom:0;left:0;width:100vw;background:#181a1bee;color:#fff;padding:17px 5vw;z-index:9999;font-weight:bold;text-align:center;">
   <span>For full token purchase, please open this site in the MetaMask app browser.</span><br>
   <a href="https://metamask.app.link/dapp/ra-wallet-dapp.vercel.app" style="color:#00b4fa;text-decoration:underline;font-size:1.16em;">Open in MetaMask</a>
@@ -1062,4 +1063,3 @@ document.getElementById('buy-form').onsubmit = async function(e) {
 </footer>
 </body>
 </html>
-
