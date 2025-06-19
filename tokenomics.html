@@ -81,7 +81,7 @@
       border-radius: 18px;
       margin: 54px auto;
       padding: 36px 24px;
-      max-width: 970px;
+      max-width: 1020px;
       position: relative;
       z-index: 2;
       font-family: var(--digital-font), monospace;
@@ -102,7 +102,6 @@
       text-shadow: 0 2px 18px #00b4fa90, 0 0 16px #23e6ff80;
       filter: brightness(1.23) drop-shadow(0 0 3px #00e6ffbb);
     }
-
     .tokenomics-grid {
       display: flex;
       flex-wrap: wrap;
@@ -113,18 +112,19 @@
     }
     .tokenomics-info {
       flex: 2;
-      min-width: 190px;
+      min-width: 230px;
       display: flex;
       flex-direction: column;
       gap: 24px;
+      justify-content: center;
     }
     .live-typing-box {
       position: relative;
-      padding: 30px 22px 24px 22px;
+      padding: 18px 22px 14px 22px;
       margin-bottom: 2px;
       border-radius: 16px;
-      font-size: 1.29rem;
-      background: linear-gradient(100deg, #161c34 50%, #20375b 100%);
+      font-size: 1.21rem;
+      background: linear-gradient(100deg, #161c34 60%, #20375b 100%);
       border: 2.2px solid var(--blue);
       box-shadow: 0 2px 18px #00b4fa18, 0 0 8px #00182255;
       color: var(--pink);
@@ -137,54 +137,90 @@
       margin-bottom: 16px;
       overflow: hidden;
     }
-    .live-typing-box.big {
-      font-size: 2.1rem;
-      color: #fff;
-      background: linear-gradient(90deg, #171c35 80%, #00b4fa33 100%);
-      text-align: center;
-      border: 2.9px solid #ff6ad5;
-      margin-bottom: 16px;
-      font-weight: bold;
-      text-shadow: 0 3px 18px #ff6ad588, 0 0 10px #fff5, 0 0 18px #00b4fa88;
-      letter-spacing: 2.5px;
-    }
     .live-typing-label {
-      font-size: 0.98em;
+      font-size: 0.99em;
       color: var(--blue);
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-bottom: 5px;
+      margin-bottom: 0;
       display: block;
       font-weight: 900;
     }
     .live-typing-value {
-      display: inline;
+      display: inline-block;
+      margin-top: 5px;
     }
+    /* For Total Supply */
+    .supply-label {
+      font-size: 1rem;
+      color: #ddd;
+      font-weight: 700;
+      margin-bottom: 1px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+    .supply-value {
+      font-size: 2.2rem;
+      color: #fff;
+      font-weight: 900;
+      display: block;
+      letter-spacing: 2.5px;
+      margin-top: 2px;
+      text-shadow: 0 3px 18px #ff6ad588, 0 0 10px #fff5, 0 0 18px #00b4fa88;
+    }
+    /* Whitepaper: no typing, bigger Download */
+    .whitepaper-box {
+      background: linear-gradient(100deg, #181d38 80%, #00b4fa22 100%);
+      border: 2.2px solid var(--blue-dark);
+      color: var(--blue);
+      font-size: 1.08rem;
+      font-weight: bold;
+      margin-bottom: 16px;
+      min-width: 245px;
+      border-radius: 16px;
+      padding: 18px 22px 16px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .whitepaper-box a {
+      margin-top: 5px;
+      color: #ff6ad5;
+      font-size: 1.25em;
+      font-weight: 800;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .whitepaper-box a:hover {
+      color: #00b4fa;
+    }
+
+    /* PIE CHART + LOGO */
     .tokenomics-chart-container {
       position: relative;
-      flex: 1;
-      min-width: 210px;
+      flex: 1.3;
+      min-width: 320px;
       display: flex;
       justify-content: center;
       align-items: center;
       background: rgba(25, 30, 45, 0.5);
       border-radius: 50%;
       padding: 16px;
-      min-height: 250px;
-      min-width: 250px;
-      max-width: 340px;
+      min-height: 350px;
+      min-width: 350px;
+      max-width: 460px;
     }
     #tokenomicsChart {
-      width: 230px !important;
-      height: 230px !important;
+      width: 340px !important;
+      height: 340px !important;
       z-index: 3;
     }
     .logo-center-graph {
       position: absolute;
       left: 50%; top: 50%;
       transform: translate(-50%,-50%);
-      width: 85px;
-      height: 85px;
+      width: 125px;
+      height: 125px;
       object-fit: contain;
       z-index: 5;
       pointer-events: none;
@@ -195,7 +231,7 @@
       padding: 8px;
     }
     .tokenomics-details {
-      margin-top: 30px;
+      margin-top: 32px;
       display: flex;
       flex-wrap: wrap;
       gap: 26px;
@@ -222,20 +258,21 @@
       font-size: 1.4em;
       margin-right: 6px;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
       .tokenomics-grid { flex-direction: column; gap: 24px; }
       .tokenomics-chart-container { margin-bottom: 16px; }
-      .logo-center-graph { width: 65px; height: 65px;}
+      .logo-center-graph { width: 85px; height: 85px;}
+      #tokenomicsChart { width: 200px !important; height: 200px !important; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .tokenomics-title { font-size: 1.29rem; }
       .tokenomics-details { flex-direction: column; gap: 10px;}
       .tokenomics-chart-container { min-width: 180px; min-height: 180px; }
-      #tokenomicsChart { width: 170px !important; height: 170px !important; }
-      .logo-center-graph { width: 46px; height: 46px;}
-      .live-typing-box.big { font-size: 1.23rem; }
+      .logo-center-graph { width: 56px; height: 56px;}
+      #tokenomicsChart { width: 120px !important; height: 120px !important; }
+      .live-typing-box { font-size: 1em; }
+      .supply-value { font-size: 1.13rem; }
     }
-
     /* FOOTER */
     footer {
       text-align: center;
@@ -268,9 +305,9 @@
     <div class="tokenomics-title">Tokenomics</div>
     <div class="tokenomics-grid">
       <div class="tokenomics-info">
-        <div class="live-typing-box big" id="supply-box">
-          <span class="live-typing-label">Total Supply</span>
-          <span class="live-typing-value" id="supply-type"></span>
+        <div class="live-typing-box" id="supply-box">
+          <span class="supply-label">Total Supply</span>
+          <span class="supply-value" id="supply-type"></span>
         </div>
         <div class="live-typing-box" id="startprice-box">
           <span class="live-typing-label">Starting Price</span>
@@ -280,13 +317,13 @@
           <span class="live-typing-label">Launch Price</span>
           <span class="live-typing-value" id="launchprice-type"></span>
         </div>
-        <div class="live-typing-box" id="whitepaper-box">
+        <div class="whitepaper-box">
           <span class="live-typing-label">Whitepaper</span>
-          <span class="live-typing-value" id="whitepaper-type"></span>
+          <a href="RA-Atum-Whitepaper.pdf" target="_blank">Download</a>
         </div>
       </div>
       <div class="tokenomics-chart-container">
-        <canvas id="tokenomicsChart" width="230" height="230"></canvas>
+        <canvas id="tokenomicsChart" width="340" height="340"></canvas>
         <img src="RA-ATUM-LOGO.png" class="logo-center-graph" alt="RA Atum Logo" />
       </div>
     </div>
@@ -325,8 +362,7 @@
     }
     go();
   }
-  // --- USD/BNB Calculation ---
-  // (Values as per June 2025, update if needed)
+  // (Rates: June 2025, update if needed)
   const BNB_TO_INR = 48000;  // 1 BNB = ₹48,000
   const USD_TO_INR = 86;     // 1 USD = ₹86
 
@@ -341,42 +377,34 @@
   const launchPriceBnb = (launchPriceInr / BNB_TO_INR).toFixed(4);
   const launchX = (launchPriceInr / startPriceInr).toFixed(1);
 
-  const whitepaperTxt = `<a href="RA-Atum-Whitepaper.pdf" style="color:var(--blue);" target="_blank">Download</a>`;
-
   document.addEventListener('DOMContentLoaded', function() {
-    typeIt('supply-type', supplyTxt, 60, function(){
+    typeIt('supply-type', supplyTxt, 50, function(){
       setTimeout(function(){
-        typeIt('startprice-type', `₹${startPriceInr} &nbsp;&nbsp; $${startPriceUsd} &nbsp;&nbsp; BNB ${startPriceBnb}`, 60, function(){
+        typeIt('startprice-type', `₹55 &nbsp;&nbsp; $0.64 &nbsp;&nbsp; BNB 0.0011`, 55, function(){
           setTimeout(function(){
-            typeIt('launchprice-type', `₹${launchPriceInr} &nbsp; $${launchPriceUsd} &nbsp; BNB ${launchPriceBnb} <span style="color:#0fffc7;">(${launchX}x&#8593; from start)</span>`, 60, function(){
-              setTimeout(function(){
-                typeIt('whitepaper-type', whitepaperTxt, 60);
-              }, 400);
-            });
-          }, 400);
+            typeIt('launchprice-type', `₹555 &nbsp; $6.45 &nbsp; BNB 0.0116 <span style="color:#0fffc7;">(10.1x&#8593; from start)</span>`, 57);
+          }, 370);
         });
-      }, 500);
+      }, 350);
     });
   });
 
-  // --- SLOW REVEAL PIE CHART ANIMATION ---
+  // --- PIE CHART ANIMATION ---
   document.addEventListener('DOMContentLoaded', function() {
     const ctx = document.getElementById('tokenomicsChart').getContext('2d');
-    let animProgress = [0, 0, 0, 0];
-    const values = [60, 25, 10, 5];
-    const colors = [
+    let values = [60,25,10,5];
+    let colors = [
       'rgba(255,106,213,0.9)', // Pink (Presale)
       'rgba(0,180,250,0.95)',  // Blue (Liquidity)
       'rgba(182,33,254,0.9)',  // Purple (Post-Presale)
       'rgba(230,230,230,0.9)'  // Light Gray (Team)
     ];
-    const borderColors = [
+    let borderColors = [
       'rgba(255,106,213,1)',
       'rgba(0,180,250,1)',
       'rgba(182,33,254,1)',
       'rgba(200,200,200,1)'
     ];
-    // Start with blank, then fill each slice
     let chart = new Chart(ctx, {
       type: 'doughnut',
       data: {
@@ -413,15 +441,14 @@
         chart.update();
         if(step < maxStep) {
           step++;
-          setTimeout(fill, 18); // Slow fill, adjust for speed
+          setTimeout(fill, 22); // Slow fill, adjust for speed
         } else {
           animateStep(i+1);
         }
       }
       fill();
     }
-    // Start with a small pause for effect
-    setTimeout(() => { animateStep(0); }, 1100);
+    setTimeout(() => { animateStep(0); }, 1000);
   });
 
   // --- SLOW TYPING FOR BOTTOM PERCENT BOXES ---
@@ -432,17 +459,17 @@
     function go() {
       el.innerHTML = "<b>" + txt[0] + "</b>" + txt.slice(1, i);
       if (i < txt.length) {
-        setTimeout(go, delay + Math.random()*20);
+        setTimeout(go, delay + Math.random()*22);
         i++;
       }
     }
     go();
   }
   document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(()=>typePercent('perc-1', "60% – Presale (Marketing)<br>Allocated for early promotional efforts and awareness campaigns prior to the public sale. These tokens are used to attract strategic partners, create early buzz, and build initial momentum for RA ATUM. Vesting schedules may apply to maintain long-term promotional consistency."), 2700);
-    setTimeout(()=>typePercent('perc-2', "25% – Liquidity<br>Dedicated to providing liquidity on decentralized and centralized exchanges to ensure smooth trading experiences. These tokens help stabilize price movements, support healthy market activity, and enhance accessibility for the community."), 5100);
-    setTimeout(()=>typePercent('perc-3', "10% – Post Presale Marketing<br>Reserved to sustain and expand marketing initiatives after the presale. These tokens support branding, influencer collaborations, exchange listings, and long-term user acquisition strategies to grow the RA ATUM ecosystem."), 7600);
-    setTimeout(()=>typePercent('perc-4', "5% – Team<br>Allocated to the core team and strategic contributors to incentivize long-term commitment and sustained development. These tokens are subject to a vesting schedule to ensure alignment with the project's growth and roadmap milestones."), 9700);
+    setTimeout(()=>typePercent('perc-1', "60% – Presale (Marketing)<br>Allocated for early promotional efforts and awareness campaigns prior to the public sale. These tokens are used to attract strategic partners, create early buzz, and build initial momentum for RA ATUM. Vesting schedules may apply to maintain long-term promotional consistency."), 2800);
+    setTimeout(()=>typePercent('perc-2', "25% – Liquidity<br>Dedicated to providing liquidity on decentralized and centralized exchanges to ensure smooth trading experiences. These tokens help stabilize price movements, support healthy market activity, and enhance accessibility for the community."), 5400);
+    setTimeout(()=>typePercent('perc-3', "10% – Post Presale Marketing<br>Reserved to sustain and expand marketing initiatives after the presale. These tokens support branding, influencer collaborations, exchange listings, and long-term user acquisition strategies to grow the RA ATUM ecosystem."), 7900);
+    setTimeout(()=>typePercent('perc-4', "5% – Team<br>Allocated to the core team and strategic contributors to incentivize long-term commitment and sustained development. These tokens are subject to a vesting schedule to ensure alignment with the project's growth and roadmap milestones."), 10300);
   });
   </script>
 </body>
