@@ -117,8 +117,22 @@
     .tokenomics-row {
       margin-bottom: 13px;
       font-weight: bold;
+      font-size: 1.07em;
     }
     .tokenomics-row b { color: var(--blue); }
+    .tokenomics-row .price-extra {
+      display: inline-block;
+      margin-left: 5px;
+      font-size: 0.97em;
+      color: #ff6ad5;
+      font-weight: bold;
+    }
+    .tokenomics-row .price-percent {
+      color: #ff6ad5;
+      font-size: 1.07em;
+      margin-left: 7px;
+      font-weight: bold;
+    }
     .tokenomics-chart {
       flex: 1;
       min-width: 220px;
@@ -184,6 +198,11 @@
       font-size: 1.4em;
       margin-right: 6px;
     }
+    .tokenomics-percent .live-type {
+      min-height: 72px;
+      display: inline-block;
+      white-space: pre-line;
+    }
     @media (max-width: 900px) {
       .tokenomics-grid { flex-direction: column; gap: 24px; }
       .tokenomics-chart { margin-bottom: 16px; }
@@ -222,7 +241,17 @@
     <div class="tokenomics-grid">
       <div class="tokenomics-info">
         <div class="tokenomics-row"><b>Total Supply:</b> <span>21,000,000 RA ATUM</span></div>
-        <div class="tokenomics-row"><b>Launch Price:</b> <span>₹55</span></div>
+        <div class="tokenomics-row"><b>Starting Price:</b>
+          <span id="start-inr">₹55</span>
+          <span class="price-extra" id="start-usd">$...</span>
+          <span class="price-extra" id="start-bnb">BNB ...</span>
+        </div>
+        <div class="tokenomics-row"><b>Launch Price:</b>
+          <span id="launch-inr">₹555</span>
+          <span class="price-extra" id="launch-usd">$...</span>
+          <span class="price-extra" id="launch-bnb">BNB ...</span>
+          <span class="price-percent" id="launch-x"></span>
+        </div>
         <div class="tokenomics-row"><b>Whitepaper:</b> <a href="RA-Atum-Whitepaper.pdf" style="color:var(--blue);" target="_blank">Download</a></div>
       </div>
       <div class="tokenomics-chart" style="position:relative;">
@@ -234,16 +263,16 @@
     </div>
     <div class="tokenomics-details">
       <div class="tokenomics-percent"><b>60%</b> – Presale (Marketing)<br>
-        Allocated for early promotional efforts and awareness campaigns prior to the public sale. These tokens are used to attract strategic partners, create early buzz, and build initial momentum for RA ATUM. Vesting schedules may apply to maintain long-term promotional consistency.
+        <span class="live-type" id="live-type-1"></span>
       </div>
       <div class="tokenomics-percent"><b>25%</b> – Liquidity<br>
-        Dedicated to providing liquidity on decentralized and centralized exchanges to ensure smooth trading experiences. These tokens help stabilize price movements, support healthy market activity, and enhance accessibility for the community.
+        <span class="live-type" id="live-type-2"></span>
       </div>
       <div class="tokenomics-percent"><b>10%</b> – Post Presale Marketing<br>
-        Reserved to sustain and expand marketing initiatives after the presale. These tokens support branding, influencer collaborations, exchange listings, and long-term user acquisition strategies to grow the RA ATUM ecosystem.
+        <span class="live-type" id="live-type-3"></span>
       </div>
       <div class="tokenomics-percent"><b>5%</b> – Team<br>
-        Allocated to the core team and strategic contributors to incentivize long-term commitment and sustained development. These tokens are subject to a vesting schedule to ensure alignment with the project's growth and roadmap milestones.
+        <span class="live-type" id="live-type-4"></span>
       </div>
     </div>
   </section>
@@ -254,43 +283,125 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const ctx = document.getElementById('tokenomicsChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: [
-          'Presale (Marketing) – 60%',
-          'Liquidity – 25%',
-          'Post Presale Marketing – 10%',
-          'Team – 5%'
-        ],
-        datasets: [{
-          data: [60, 25, 10, 5],
-          backgroundColor: [
-            'rgba(255,106,213,0.9)', // Pink (Presale)
-            'rgba(0,180,250,0.95)',  // Blue (Liquidity)
-            'rgba(182,33,254,0.9)',  // Purple (Post-Presale)
-            'rgba(230,230,230,0.9)'  // Light Gray (Team)
-          ],
-          borderColor: [
-            'rgba(255,106,213,1)',
-            'rgba(0,180,250,1)',
-            'rgba(182,33,254,1)',
-            'rgba(200,200,200,1)'
-          ],
-          borderWidth: 2.7
-        }]
+    // ANIMATED CHART.JS GRAPH (segment-by-segment)
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+      let chart;
+      let animSteps = [60, 25, 10, 5];
+      let colors = [
+        'rgba(255,106,213,0.9)', // Pink (Presale)
+        'rgba(0,180,250,0.95)',  // Blue (Liquidity)
+        'rgba(182,33,254,0.9)',  // Purple (Post-Presale)
+        'rgba(230,230,230,0.9)'  // Light Gray (Team)
+      ];
+      let borderColors = [
+        'rgba(255,106,213,1)',
+        'rgba(0,180,250,1)',
+        'rgba(182,33,254,1)',
+        'rgba(200,200,200,1)'
+      ];
+      function animateChart(idx = 0, arr = []) {
+        if(idx > 0) arr.push(animSteps[idx-1]);
+        chart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: [
+              'Presale (Marketing) – 60%',
+              'Liquidity – 25%',
+              'Post Presale Marketing – 10%',
+              'Team – 5%'
+            ],
+            datasets: [{
+              data: arr.concat(new Array(animSteps.length-arr.length).fill(0)),
+              backgroundColor: colors,
+              borderColor: borderColors,
+              borderWidth: 2.7
+            }]
+          },
+          options: {
+            cutout: '70%',
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: true }
+            },
+            animation: false
+          }
+        });
+        if(idx < animSteps.length) setTimeout(() => { chart.destroy(); animateChart(idx+1, arr.slice()); }, 480);
+      }
+      animateChart(0, []);
+    });
+  </script>
+  <script>
+    // LIVE TYPING FOR ALL 4 SECTIONS
+    const typeSections = [
+      {
+        id: "live-type-1",
+        text: `Allocated for early promotional efforts and awareness campaigns prior to the public sale. These tokens are used to attract strategic partners, create early buzz, and build initial momentum for RA ATUM. Vesting schedules may apply to maintain long-term promotional consistency.`
       },
-      options: {
-        cutout: '70%',
-        plugins: {
-          legend: { display: false },
-          tooltip: { enabled: true }
-        }
+      {
+        id: "live-type-2",
+        text: `Dedicated to providing liquidity on decentralized and centralized exchanges to ensure smooth trading experiences. These tokens help stabilize price movements, support healthy market activity, and enhance accessibility for the community.`
+      },
+      {
+        id: "live-type-3",
+        text: `Reserved to sustain and expand marketing initiatives after the presale. These tokens support branding, influencer collaborations, exchange listings, and long-term user acquisition strategies to grow the RA ATUM ecosystem.`
+      },
+      {
+        id: "live-type-4",
+        text: `Allocated to the core team and strategic contributors to incentivize long-term commitment and sustained development. These tokens are subject to a vesting schedule to ensure alignment with the project's growth and roadmap milestones.`
+      }
+    ];
+    function typeEffect(text, el, i = 0) {
+      if(i <= text.length) {
+        el.innerHTML = text.slice(0, i).replace(/\n/g, '<br>');
+        setTimeout(() => typeEffect(text, el, i + 1), 11 + Math.random()*19);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      for(const section of typeSections) {
+        const el = document.getElementById(section.id);
+        if(el) typeEffect(section.text, el);
       }
     });
-  });
+  </script>
+  <script>
+    // LIVE INR→USD/BNB conversion for prices
+    async function updatePrices() {
+      // -- Prices
+      const INR_USD_API = "https://api.exchangerate-api.com/v4/latest/INR";
+      const BNB_API = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
+      let startPrice = 55, launchPrice = 555;
+
+      // Fetch USD rate
+      let inrUsdRate = 0.012;
+      try {
+        const fx = await fetch(INR_USD_API).then(r => r.json());
+        inrUsdRate = fx.rates.USD || 0.012;
+      } catch {}
+      // Fetch BNB price in USD
+      let bnbPriceUsd = 600;
+      try {
+        const bnb = await fetch(BNB_API).then(r => r.json());
+        bnbPriceUsd = parseFloat(bnb.price) || 600;
+      } catch {}
+
+      // Calculate
+      function formatMoney(x) { return x.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}); }
+      let startUsd = startPrice * inrUsdRate;
+      let launchUsd = launchPrice * inrUsdRate;
+      let startBnb = startUsd / bnbPriceUsd;
+      let launchBnb = launchUsd / bnbPriceUsd;
+      let x = (launchPrice/startPrice).toFixed(1);
+
+      // Display
+      document.getElementById("start-usd").textContent = "$"+formatMoney(startUsd);
+      document.getElementById("start-bnb").textContent = "BNB "+formatMoney(startBnb);
+      document.getElementById("launch-usd").textContent = "$"+formatMoney(launchUsd);
+      document.getElementById("launch-bnb").textContent = "BNB "+formatMoney(launchBnb);
+      document.getElementById("launch-x").textContent = `(${x}x↑ from start)`;
+    }
+    updatePrices();
   </script>
 </body>
 </html>
