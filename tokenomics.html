@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RA ATUM Tokenomics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #00b4fa;
+      --blue-dark: #004aad;
+      --sand: #e7d7b6;
+      --digital-font: 'Share Tech Mono', monospace;
+      --highlight-bg: linear-gradient(100deg, #111a33 0%, #1b344a 98%);
+      --highlight-border: 2.5px solid #00b4fa;
+      --highlight-shadow: 0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
+    }
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      background: url('https://e1.pxfuel.com/desktop-wallpaper/767/930/desktop-wallpaper-printed-circuit-board-video-motherboard-blue-and-purple-digital-circuit-board-background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #fff;
+      font-family: var(--digital-font), monospace;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: linear-gradient(115deg, #0c0c10bb 0%, #191a24b7 90%);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.85;
+      mix-blend-mode: multiply;
+    }
+    header {
+      width: 100%;
+      background: rgba(23, 22, 22, 0.98);
+      box-shadow: 0 2px 18px #00b4fa44;
+      z-index: 100;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 18px 3vw;
+      min-height: 62px;
+      position: sticky; top: 0;
+    }
+    nav {
+      display: flex;
+      gap: 18px;
+      width: 100%;
+      align-items: center;
+    }
+    nav a {
+      color: var(--blue);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      border-radius: 7px;
+      padding: 10px 16px;
+      letter-spacing: 0.6px;
+      background: none;
+      transition: background .16s, color .16s;
+    }
+    nav a:hover {
+      background: var(--sand);
+      color: #222;
+    }
+
+    /* TOKENOMICS SECTION */
+    #tokenomics {
+      background: var(--highlight-bg);
+      border: var(--highlight-border);
+      box-shadow: var(--highlight-shadow);
+      border-radius: 18px;
+      margin: 54px auto;
+      padding: 36px 24px;
+      max-width: 970px;
+      position: relative;
+      z-index: 2;
+      font-family: var(--digital-font), monospace;
+      color: #fff;
+    }
+    .tokenomics-title {
+      text-align: center;
+      margin-bottom: 36px;
+      font-size: 2.3rem;
+      letter-spacing: 2.2px;
+      font-family: var(--digital-font), monospace;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(92deg, #fff 15%, #00b4fa 65%, #23e6ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 18px #00b4fa90, 0 0 16px #23e6ff80;
+      filter: brightness(1.23) drop-shadow(0 0 3px #00e6ffbb);
+    }
+    .tokenomics-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 38px;
+      margin-bottom: 18px;
+      justify-content: space-between;
+    }
+    .tokenomics-info {
+      flex: 2;
+      min-width: 190px;
+      font-size: 1.19rem;
+      color: var(--sand);
+      font-family: var(--digital-font), monospace;
+    }
+    .tokenomics-row {
+      margin-bottom: 13px;
+      font-weight: bold;
+    }
+    .tokenomics-row b { color: var(--blue); }
+    .tokenomics-chart {
+      flex: 1;
+      min-width: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(25, 30, 45, 0.5);
+      border-radius: 50%;
+      padding: 16px;
+    }
+    .tokenomics-details {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 26px;
+      justify-content: center;
+    }
+    .tokenomics-percent {
+      background: linear-gradient(93deg, #1d243b 60%, #233052 100%);
+      border: 1.8px solid #00b4fa44;
+      border-radius: 13px;
+      box-shadow: 0 2px 18px #00b4fa18;
+      padding: 20px 20px 17px 20px;
+      min-width: 210px;
+      max-width: 410px;
+      color: #fff;
+      font-size: 1.09rem;
+      margin-bottom: 10px;
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 0.5px;
+    }
+    .tokenomics-percent b {
+      color: #ff6ad5;
+      font-size: 1.4em;
+      margin-right: 6px;
+    }
+    @media (max-width: 900px) {
+      .tokenomics-grid { flex-direction: column; gap: 24px; }
+      .tokenomics-chart { margin-bottom: 16px; }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      color: var(--blue-dark);
+      background: #181a1b;
+      padding: 24px 8px 19px 8px;
+      font-size: 1.09em;
+      border-top: 1.5px solid #00b4fa11;
+      margin-top: 64px;
+      letter-spacing: 1px;
+      font-family: var(--digital-font), monospace;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#roadmap">Roadmap</a>
+      <a href="nft-gallery.html">NFT Gallery</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="tokenomics.html" style="color:#ff6ad5;">Tokenomics</a>
+    </nav>
+  </header>
+
+  <section id="tokenomics">
+    <div class="tokenomics-title">Tokenomics</div>
+    <div class="tokenomics-grid">
+      <div class="tokenomics-info">
+        <div class="tokenomics-row"><b>Total Supply:</b> <span>21,000,000 RA ATUM</span></div>
+        <div class="tokenomics-row"><b>Launch Price:</b> <span>₹55</span></div>
+        <div class="tokenomics-row"><b>Whitepaper:</b> <a href="RA-Atum-Whitepaper.pdf" style="color:var(--blue);" target="_blank">Download</a></div>
+      </div>
+      <div class="tokenomics-chart">
+        <canvas id="tokenomicsChart" width="220" height="220"></canvas>
+      </div>
+    </div>
+    <div class="tokenomics-details">
+      <div class="tokenomics-percent"><b>60%</b> – Presale (Marketing)<br>
+        Allocated for early promotional efforts and awareness campaigns prior to the public sale. These tokens are used to attract strategic partners, create early buzz, and build initial momentum for RA ATUM. Vesting schedules may apply to maintain long-term promotional consistency.
+      </div>
+      <div class="tokenomics-percent"><b>25%</b> – Liquidity<br>
+        Dedicated to providing liquidity on decentralized and centralized exchanges to ensure smooth trading experiences. These tokens help stabilize price movements, support healthy market activity, and enhance accessibility for the community.
+      </div>
+      <div class="tokenomics-percent"><b>10%</b> – Post Presale Marketing<br>
+        Reserved to sustain and expand marketing initiatives after the presale. These tokens support branding, influencer collaborations, exchange listings, and long-term user acquisition strategies to grow the RA ATUM ecosystem.
+      </div>
+      <div class="tokenomics-percent"><b>5%</b> – Team<br>
+        Allocated to the core team and strategic contributors to incentivize long-term commitment and sustained development. These tokens are subject to a vesting schedule to ensure alignment with the project's growth and roadmap milestones.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 RA ATUM. All Rights Reserved.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: [
+          'Presale (Marketing) – 60%',
+          'Liquidity – 25%',
+          'Post Presale Marketing – 10%',
+          'Team – 5%'
+        ],
+        datasets: [{
+          data: [60, 25, 10, 5],
+          backgroundColor: [
+            'rgba(255,106,213,0.9)', // Pink (Presale)
+            'rgba(0,180,250,0.95)',  // Blue (Liquidity)
+            'rgba(182,33,254,0.9)',  // Purple (Post-Presale)
+            'rgba(230,230,230,0.9)'  // Light Gray (Team)
+          ],
+          borderColor: [
+            'rgba(255,106,213,1)',
+            'rgba(0,180,250,1)',
+            'rgba(182,33,254,1)',
+            'rgba(200,200,200,1)'
+          ],
+          borderWidth: 2.7
+        }]
+      },
+      options: {
+        cutout: '70%',
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: true }
+        }
+      }
+    });
+  });
+  </script>
+</body>
+</html>
