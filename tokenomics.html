@@ -129,7 +129,6 @@
       cursor: pointer;
       z-index: 2200;
     }
-    /* Only show hamburger/menu on small screens */
     @media (max-width: 950px) {
       nav { display: none; }
       .hamburger { display: block; }
@@ -182,49 +181,59 @@
       flex-direction: column;
       gap: 15px;
     }
-    .tokenomics-row {
+    .tokenomics-block {
       margin-bottom: 0;
       font-weight: bold;
-      border: 2px solid #202848;
-      border-radius: 13px;
-      background: linear-gradient(95deg, #171a2d 50%, #1e2d47 100%);
-      box-shadow: 0 2px 14px #00b4fa10;
-      padding: 17px 22px 13px 22px;
+      border: 2.5px solid #00b4fa;
+      border-radius: 15px;
+      background: linear-gradient(98deg, #151b2d 60%, #1d2e49 100%);
+      box-shadow: 0 2px 18px #00b4fa25;
+      padding: 16px 23px 14px 22px;
       display: flex;
-      align-items: center;
-      font-size: 1.25em;
-      letter-spacing: 0.7px;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 1.16em;
+      letter-spacing: 0.8px;
+      margin-bottom: 15px;
     }
-    .tokenomics-row .label {
-      font-size: 1em;
+    .tokenomics-block .headline {
       color: #fff;
+      font-size: 1.05em;
       font-weight: bold;
-      margin-right: 12px;
-      white-space: nowrap;
+      letter-spacing: 1.1px;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 10px #20284880;
+      text-transform: uppercase;
     }
-    .tokenomics-row .value {
-      font-size: 1.25em;
+    .tokenomics-block .content {
+      font-size: 1.19em;
       color: #00b4fa;
       font-weight: 900;
-      margin-right: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      min-height: 25px;
     }
-    .tokenomics-row .subvalue {
-      font-size: 0.9em;
+    .tokenomics-block .subvalue {
+      font-size: 0.92em;
       color: #ffb0f9;
       font-weight: bold;
-      margin-left: 8px;
+      margin-left: 4px;
+      margin-right: 9px;
     }
-    .tokenomics-row .x-multiplier {
-      font-size: 1.1em;
+    .tokenomics-block .x-multiplier {
+      font-size: 1.08em;
       color: #ff6ad5;
       font-weight: bold;
-      margin-left: 9px;
-    }
-    .tokenomics-row a {
-      color: #ff6ad5;
-      font-size: 1.12em;
       margin-left: 8px;
+    }
+    .tokenomics-block a {
+      color: #ff6ad5;
+      font-size: 1.14em;
+      margin-left: 7px;
       text-decoration: underline;
+      margin-top: 4px;
     }
     .tokenomics-chart-container {
       flex: 1;
@@ -263,15 +272,15 @@
       .tokenomics-grid { flex-direction: column; gap: 24px; }
       .tokenomics-chart-container { margin-bottom: 16px; width: 220px; height: 220px; }
       .chart-logo-center { width: 58px; height: 58px;}
-      .tokenomics-row { font-size: 1.07em; padding: 12px 11px 10px 13px; }
+      .tokenomics-block { font-size: 1.05em; padding: 10px 9px 10px 11px; }
     }
     @media (max-width: 550px) {
       #tokenomics { padding: 19px 2vw 22px 2vw; }
       .tokenomics-title { font-size: 1.33rem;}
       .tokenomics-chart-container { width: 130px; height: 130px; padding: 4px;}
       .chart-logo-center { width: 34px; height: 34px;}
-      .tokenomics-row { font-size: .98em; padding: 9px 6px 7px 8px; }
-      .tokenomics-info { font-size: 0.98rem; gap: 10px;}
+      .tokenomics-block { font-size: .98em; padding: 6px 5px 8px 7px; }
+      .tokenomics-info { font-size: 0.98rem; gap: 9px;}
     }
     .tokenomics-details {
       margin-top: 30px;
@@ -350,11 +359,20 @@
     <div class="tokenomics-title">Tokenomics</div>
     <div class="tokenomics-grid">
       <div class="tokenomics-info">
-        <div class="tokenomics-row" id="supply-typing"><span class="label">Total Supply</span></div>
-        <div class="tokenomics-row" id="startprice-typing"><span class="label">Starting Price</span></div>
-        <div class="tokenomics-row" id="launchprice-typing"><span class="label">Launch Price</span></div>
-        <div class="tokenomics-row" id="whitepaper-row">
-          <span class="label">Whitepaper</span>
+        <div class="tokenomics-block">
+          <div class="headline">Total Supply</div>
+          <div class="content" id="supply-typing"></div>
+        </div>
+        <div class="tokenomics-block">
+          <div class="headline">Starting Price</div>
+          <div class="content" id="startprice-typing"></div>
+        </div>
+        <div class="tokenomics-block">
+          <div class="headline">Launch Price</div>
+          <div class="content" id="launchprice-typing"></div>
+        </div>
+        <div class="tokenomics-block">
+          <div class="headline">Whitepaper</div>
           <a href="RA-Atum-Whitepaper.pdf" target="_blank"><i class="fas fa-file-download"></i> Download</a>
         </div>
       </div>
@@ -401,9 +419,10 @@
     const launchPriceInr = 555;
     const launchPriceUsd = (launchPriceInr / USD_TO_INR).toFixed(2);
     const launchPriceBnb = (launchPriceInr / BNB_TO_INR).toFixed(4);
+
     const launchX = (launchPriceInr / startPriceInr).toFixed(1);
 
-    // Section text (edit if needed)
+    // Details
     const details = [
       `<b>60%</b> – Presale (Marketing)<br>
       Allocated for early promotional efforts and awareness campaigns prior to the public sale. These tokens are used to attract strategic partners, create early buzz, and build initial momentum for RA ATUM. Vesting schedules may apply to maintain long-term promotional consistency.`,
@@ -482,9 +501,9 @@
           setTimeout(() => slowType(txt, el, cb, idx+1), 19 + Math.random()*24);
         } else if(cb) cb();
       }
-      slowType(`<span class="value">${supplyTxt}</span>`, document.getElementById('supply-typing'));
-      slowType(`<span class="value">₹${startPriceInr}</span><span class="subvalue">$${startPriceUsd} &nbsp; BNB ${startPriceBnb}</span>`, document.getElementById('startprice-typing'));
-      slowType(`<span class="value">₹${launchPriceInr}</span><span class="subvalue">$${launchPriceUsd} &nbsp; BNB ${launchPriceBnb}</span><span class="x-multiplier">(${launchX}x↑ from start)</span>`, document.getElementById('launchprice-typing'));
+      slowType(`<span class="content">${supplyTxt}</span>`, document.getElementById('supply-typing'));
+      slowType(`<span class="content">₹${startPriceInr}</span><span class="subvalue">$${startPriceUsd} &nbsp; BNB ${startPriceBnb}</span>`, document.getElementById('startprice-typing'));
+      slowType(`<span class="content">₹${launchPriceInr}</span><span class="subvalue">$${launchPriceUsd} &nbsp; BNB ${launchPriceBnb}</span><span class="x-multiplier">(${launchX}x↑ from start)</span>`, document.getElementById('launchprice-typing'));
 
       // Details section, live typing, slow
       details.forEach((t, idx) => {
