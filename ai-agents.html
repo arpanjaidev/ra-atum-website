@@ -63,57 +63,47 @@
       min-width: 320px;
       max-width: 740px;
     }
-    /* RIGHT COLUMN: Sticky stacked image effect */
-    .image-stack-section {
+    /* Image scroll-push column */
+    .image-push-col {
       flex: 1;
       min-width: 350px;
-      max-width: 420px;
-      position: relative;
-      height: 90vh;
-      margin-top: 18px;
+      max-width: 430px;
       display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-    }
-    .image-stack-inner {
+      flex-direction: column;
       position: relative;
-      width: 100%;
-      height: 80vh;
-      margin-top: 10vh;
+      height: 100vh;
     }
-    .cover-image {
+    .image-push-section {
+      height: 100vh;
+      position: relative;
+    }
+    .push-image {
       position: sticky;
-      top: 10vh;
+      top: 0;
       width: 100%;
-      height: 60vh;
+      height: 90vh;
+      object-fit: cover;
       border-radius: 32px;
       border: 3px solid #00b4fa44;
       box-shadow: var(--glow);
       background: #181a25;
-      object-fit: cover;
-      z-index: 1;
-      opacity: 1;
-      filter: brightness(0.93) grayscale(0.11);
-      transition: box-shadow .4s, filter .3s;
+      z-index: 2;
+      filter: brightness(0.94) grayscale(0.12);
+      transition: box-shadow .35s, filter .3s;
       display: block;
     }
-    .cover-image.active {
-      z-index: 99;
-      box-shadow: 0 12px 40px #00b4fa55, 0 1px 32px #00b4fa33;
-      filter: brightness(1.1) grayscale(0);
+    .image-push-section:last-child .push-image {
+      margin-bottom: 30px;
     }
-    /* Responsive tweaks */
+    /* Responsive */
     @media (max-width: 1100px) {
-      .main-flex { flex-direction: column-reverse; gap: 22px; padding: 8vw 2vw 40px 2vw; }
-      .image-stack-section { min-width: 98vw; max-width: 100vw; height: 55vw;}
-      .image-stack-inner { height: 42vw; }
-      .cover-image { height: 42vw; min-height: 130px; }
+      .main-flex { flex-direction: column-reverse; gap: 24px; padding: 8vw 2vw 40px 2vw; }
+      .image-push-col { min-width: 98vw; max-width: 100vw; height: 70vw; }
+      .push-image { height: 42vw; min-height: 130px; }
     }
     @media (max-width: 700px) {
-      .main-flex { padding: 5vw 1vw 30px 1vw; }
-      .image-stack-section { height: 58vw; }
-      .image-stack-inner { height: 38vw; }
-      .cover-image { height: 38vw; min-height: 80px; }
+      .main-flex { padding: 5vw 1vw 36px 1vw; }
+      .push-image { height: 38vw; min-height: 90px; }
     }
     @media (max-width: 500px) {
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
@@ -427,14 +417,12 @@
         </form>
       </div>
     </div>
-    <!-- Right: Image "cover" stacking scroll effect -->
-    <div class="image-stack-section">
-      <div class="image-stack-inner">
-        <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="cover-image" id="img1">
-        <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="cover-image" id="img2">
-        <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="cover-image" id="img3">
-        <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" class="cover-image" id="img4">
-      </div>
+    <!-- Right: True scroll "push/cover" image effect -->
+    <div class="image-push-col">
+      <div class="image-push-section"><img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" class="push-image" alt="AI Agent"></div>
+      <div class="image-push-section"><img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" class="push-image" alt="Highlight 1"></div>
+      <div class="image-push-section"><img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" class="push-image" alt="Highlight 2"></div>
+      <div class="image-push-section"><img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" class="push-image" alt="Highlight 3"></div>
     </div>
   </div>
   <div style="text-align:center;">
@@ -478,30 +466,7 @@
       chatInput.value = "";
       chatMessages.scrollTop = chatMessages.scrollHeight;
     };
-
-    // Sticky image stack scroll effect
-    const images = [
-      document.getElementById('img1'),
-      document.getElementById('img2'),
-      document.getElementById('img3'),
-      document.getElementById('img4')
-    ];
-    function updateImageStack() {
-      // Each image covers the last as you scroll
-      const scrollTop = window.scrollY;
-      const section = document.querySelector('.image-stack-inner');
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const sectionTop = rect.top + window.scrollY - window.innerHeight * 0.10;
-      const sectionHeight = section.offsetHeight;
-      const imageHeight = sectionHeight / images.length;
-      let idx = Math.floor((scrollTop - sectionTop + imageHeight/2) / imageHeight);
-      idx = Math.max(0, Math.min(idx, images.length - 1));
-      images.forEach((img, i) => img.classList.remove('active'));
-      images[idx].classList.add('active');
-    }
-    window.addEventListener('scroll', updateImageStack, { passive: true });
-    window.addEventListener('DOMContentLoaded', updateImageStack);
+    // No JS needed for push scroll, all handled by sticky CSS!
   </script>
 </body>
 </html>
