@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RA Atum – AI Agents Vertical Snap Reveal</title>
+  <title>RA Atum – AI Agents Vertical Cover Scroll</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
@@ -63,60 +63,58 @@
       min-width: 320px;
       max-width: 740px;
     }
-    .main-image-side {
+
+    /* Sticky image reveal panel */
+    .sticky-image-panel {
       flex: 1;
       position: relative;
-      min-width: 230px;
-      max-width: 400px;
-      height: 620px;
+      min-width: 290px;
+      max-width: 430px;
+      height: 85vh;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       justify-content: flex-start;
-      /* This is just for alignment */
     }
-
-    /* SCROLL CONTAINER */
-    .image-scroll-stack {
-      position: relative;
-      width: 340px;
-      max-width: 38vw;
-      min-width: 160px;
-      height: 500px;
-      overflow: hidden;
-      /* fix for edge-to-edge */
-      border-radius: 34px;
-      box-shadow: var(--glow);
-      border: 3px solid #00b4fa44;
-      background: #161922;
-      scroll-snap-type: y mandatory;
-      display: flex;
-      flex-direction: column;
-      /* Stick to viewport on scroll */
+    .sticky-container {
       position: sticky;
-      top: 90px;
+      top: 55px;
+      width: 100%;
+      height: 65vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
     }
-
-    /* Each "slide" (image) */
-    .scroll-snap-image {
+    .scroll-img-stack {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+    }
+    .scroll-img-panel {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 34px;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      /* Fade transition is optional! */
-      transition: filter 0.2s;
-      background: #10151b;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity .5s cubic-bezier(.25,.95,.44,1), filter .28s;
+      border-radius: 36px;
+      box-shadow: var(--glow);
+      border: 3px solid #00b4fa44;
+      background: #161922;
+      filter: grayscale(50%) brightness(0.92) blur(2px);
+    }
+    .scroll-img-panel.active {
+      opacity: 1;
+      z-index: 5;
+      filter: none;
+      transition: opacity .54s cubic-bezier(.25,.95,.44,1), filter .33s;
     }
 
-    /* When not visible, slightly blur (optional effect) */
-    .scroll-snap-image:not(.active) {
-      filter: blur(4px) brightness(0.8) grayscale(0.25);
-      transition: filter 0.22s;
-    }
-
-    /* --------- Rest of your style (no change) ----------- */
+    /* Section highlight-blocks */
     .highlight-block {
       background: var(--card-bg);
       border-radius: 19px;
@@ -324,12 +322,13 @@
     }
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
-      .main-image-side { min-width: 90vw; height: 350px;}
-      .image-scroll-stack { height: 240px; }
+      .sticky-image-panel { min-width: 99vw; max-width: 99vw; height: 340px;}
+      .sticky-container { height: 240px;}
+      .scroll-img-stack { height: 240px;}
     }
     @media (max-width: 700px) {
       .main-flex { padding: 5vw 1vw 36px 1vw; }
-      .image-scroll-stack { max-width: 98vw; width: 98vw; height: 180px;}
+      .sticky-image-panel, .scroll-img-stack { max-width: 98vw; width: 98vw; height: 170px;}
       .highlight-block, .main-content { padding: 17px 4vw 19px 4vw;}
       .features-grid { grid-template-columns: 1fr; }
     }
@@ -439,13 +438,15 @@
         </form>
       </div>
     </div>
-    <!-- Right Side: Vertical Snap Scroll Images -->
-    <div class="main-image-side">
-      <div class="image-scroll-stack" id="image-scroll-stack">
-        <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" class="scroll-snap-image" id="main-right-img1" alt="AI Agent"/>
-        <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" class="scroll-snap-image" id="main-right-img2" alt="Highlight 1"/>
-        <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" class="scroll-snap-image" id="main-right-img3" alt="Highlight 2"/>
-        <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" class="scroll-snap-image" id="main-right-img4" alt="Highlight 3"/>
+    <!-- Sticky Image Reveal Panel -->
+    <div class="sticky-image-panel">
+      <div class="sticky-container">
+        <div class="scroll-img-stack">
+          <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" class="scroll-img-panel" id="main-right-img1" alt="AI Agent"/>
+          <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" class="scroll-img-panel" id="main-right-img2" alt="Highlight 1"/>
+          <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" class="scroll-img-panel" id="main-right-img3" alt="Highlight 2"/>
+          <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" class="scroll-img-panel" id="main-right-img4" alt="Highlight 3"/>
+        </div>
       </div>
     </div>
   </div>
@@ -453,7 +454,7 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Vertical section-by-section snap scroll image effect
+    // Vertical image panel reveal: only one image is active at a time, matches section.
     (() => {
       const images = [
         document.getElementById('main-right-img1'),
@@ -464,7 +465,6 @@
       const sections = document.querySelectorAll('.highlight-block, .features-grid');
       function updateActiveImage() {
         let activeIdx = 0;
-        // Find the most visible section
         for (let i = 0; i < sections.length && i < images.length; i++) {
           const rect = sections[i].getBoundingClientRect();
           if (rect.top <= window.innerHeight/2 && rect.bottom > window.innerHeight/3) {
@@ -500,8 +500,6 @@
       const div = document.createElement('div');
       div.innerHTML = "<b>You:</b> " + userMsg;
       chatMessages.appendChild(div);
-
-      // Bot response
       let reply = "I'm here to answer questions about RA Atum! Ask me about donations, rewards, or features.";
       for (const entry of botResponses) {
         for (const k of entry.keywords) {
