@@ -44,8 +44,11 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 22px;
+      justify-content: flex-start;
       position: relative;
+      min-height: 430px;
+      height: 70vh;
+      max-height: 700px;
     }
     .main-right-img {
       width: 340px;
@@ -56,18 +59,28 @@
       background: #161922;
       box-shadow: var(--glow);
       border: 3px solid #00b4fa44;
-      margin-right: 0;
-      margin-left: 28px;
-      margin-top: 32px;
-      transition: transform .24s, opacity .7s cubic-bezier(.35,1.18,.23,1.01);
+      position: absolute;
+      right: 0;
+      top: 0;
       opacity: 0;
-      transform: translateX(80px);
+      transform: scale(0.94) translateY(40px);
       z-index: 1;
+      transition:
+        opacity 0.7s cubic-bezier(.35,1.18,.23,1.01),
+        transform 0.65s cubic-bezier(.44,1.42,.23,1.01);
       display: block;
+      pointer-events: none;
     }
-    .main-right-img.visible {
+    .main-right-img.active {
       opacity: 1;
-      transform: translateX(0);
+      transform: scale(1) translateY(0);
+      z-index: 9;
+      pointer-events: auto;
+    }
+    .main-right-img.prev {
+      opacity: 0;
+      z-index: 1;
+      transform: scale(0.92) translateY(60px);
     }
     .highlight-block {
       background: var(--card-bg);
@@ -205,7 +218,6 @@
       text-decoration: underline;
       border-color: #e7d7b6;
     }
-    /* Chatbox */
     .chatbox {
       background: #161d29;
       border: 2px solid #00b4fa;
@@ -276,8 +288,8 @@
     }
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
-      .main-right-img { margin: 30px auto 0 auto; max-width: 330px; width: 60vw; }
-      .main-image-side { justify-content: center; align-items: center; }
+      .main-right-img { margin: 0 auto; max-width: 330px; width: 60vw; }
+      .main-image-side { justify-content: center; align-items: center; min-height: 220px; }
     }
     @media (max-width: 700px) {
       .main-flex { padding: 5vw 1vw 36px 1vw; }
@@ -387,7 +399,7 @@
         </form>
       </div>
     </div>
-    <div class="main-image-side">
+    <div class="main-image-side" style="height:450px;min-height:300px;">
       <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="main-right-img" id="main-right-img1"/>
       <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="main-right-img" id="main-right-img2"/>
       <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="main-right-img" id="main-right-img3"/>
@@ -398,27 +410,50 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Animate all images in as you scroll
-    function showImageOnScroll() {
-      for (let i = 1; i <= 4; i++) {
-        const img = document.getElementById('main-right-img' + i);
-        if (!img) continue;
-        const rect = img.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 90 && rect.bottom > 50) {
-          img.classList.add('visible');
-        } else {
-          img.classList.remove('visible');
-        }
+    // IMAGE STACK COVERFLOW LOGIC
+    const imgCount = 4;
+    const imgSectionTops = [];
+    let lastActive = 1;
+
+    function calcImageSections() {
+      // Find the top of each main section (highlight-block or features-grid)
+      const sections = [
+        ...document.querySelectorAll('.highlight-block, .features-grid')
+      ];
+      imgSectionTops.length = 0;
+      for (let i = 0; i < imgCount; i++) {
+        let top = sections[i] ? sections[i].getBoundingClientRect().top + window.scrollY : 0;
+        imgSectionTops.push(top);
       }
     }
-    window.addEventListener('scroll', showImageOnScroll, { passive: true });
-    window.addEventListener('DOMContentLoaded', showImageOnScroll);
 
-    // Simple working chat box logic
+    function showOneImagePerSection() {
+      const scroll = window.scrollY + window.innerHeight/3;
+      let activeIdx = 1;
+      for (let i = 0; i < imgCount; i++) {
+        if (scroll >= imgSectionTops[i]) activeIdx = i + 1;
+      }
+      // Hide all, show only active
+      for (let i = 1; i <= imgCount; i++) {
+        const img = document.getElementById('main-right-img' + i);
+        img.classList.remove('active','prev');
+        if (i === activeIdx) img.classList.add('active');
+        else if (i < activeIdx) img.classList.add('prev');
+      }
+      lastActive = activeIdx;
+    }
+
+    window.addEventListener('scroll', showOneImagePerSection, { passive: true });
+    window.addEventListener('resize', () => { calcImageSections(); showOneImagePerSection(); });
+    window.addEventListener('DOMContentLoaded', () => {
+      calcImageSections();
+      showOneImagePerSection();
+    });
+
+    // Chat box logic
     const chatForm = document.getElementById('chatbox-form');
     const chatInput = document.getElementById('chatbox-input');
     const chatMessages = document.getElementById('chatbox-messages');
-
     const botResponses = [
       { keywords: ['donate', 'donation', 'give'], response: "To donate, just visit our site and fill out the donation form. You'll instantly earn RA Atum tokens for every gift!" },
       { keywords: ['reward', 'token', 'ra atum'], response: "Every donation or purchase earns you RA Atum tokens—use them for NFT rewards, voting, and more." },
@@ -427,7 +462,6 @@
       { keywords: ['contact', 'support', 'help'], response: "For support, use this chat or email us any time at info@ra-atum.com." },
       { keywords: ['buy', 'presale'], response: "You can buy RA Atum tokens directly in our presale! Click the BUY TOKENS NOW button above." }
     ];
-
     chatForm.onsubmit = function(e) {
       e.preventDefault();
       const userMsg = chatInput.value.trim();
