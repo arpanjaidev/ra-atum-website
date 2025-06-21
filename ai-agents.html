@@ -24,8 +24,32 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    .ai-bot-line {
+      background: linear-gradient(90deg,#161d29 60%,#202b3e 100%);
+      border: 2px solid #00b4fa;
+      border-radius: 16px;
+      max-width: 780px;
+      margin: 38px auto 28px auto;
+      padding: 17px 32px;
+      color: #fff;
+      box-shadow: var(--glow);
+      text-align: center;
+      font-size: 1.15em;
+      font-weight: bold;
+      letter-spacing: 0.7px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+    .ai-bot-line i {
+      color: #00b4fa;
+      font-size: 2em;
+      margin-right: 10px;
+      filter: drop-shadow(0 2px 12px #00b4fa99);
+    }
     .main-flex {
-      max-width: 1400px;
+      max-width: 1250px;
       margin: 0 auto;
       display: flex;
       align-items: flex-start;
@@ -37,63 +61,60 @@
     .main-content {
       flex: 2;
       min-width: 320px;
-      max-width: 750px;
+      max-width: 740px;
     }
-    /* ====== STICKY SCROLLING IMAGES EFFECT ====== */
-    .sticky-images-outer {
+    /* Sticky vertical image scroll */
+    .scroll-img-sections {
       flex: 1;
+      min-width: 350px;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
       position: relative;
-      min-width: 360px;
-      max-width: 440px;
+    }
+    .img-sticky-section {
       height: 100vh;
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      z-index: 1;
+      /* Give margin-bottom: -1px to prevent stacking issues */
+      margin-bottom: -1px;
     }
-    .sticky-images-inner {
+    .img-sticky-section img {
       position: sticky;
-      top: 4vh;
-      height: 92vh;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .slide-img {
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%;
-      height: 100%;
+      top: 6vh;
+      width: 96%;
+      height: 88vh;
       object-fit: cover;
-      border-radius: 32px;
+      border-radius: 34px;
       background: #161922;
       box-shadow: var(--glow);
       border: 3px solid #00b4fa44;
-      opacity: 0;
-      transition: opacity 0.55s cubic-bezier(.6,.3,.3,1), filter .44s;
-      z-index: 1;
-      filter: brightness(0.93);
+      transition: box-shadow .4s, filter .4s;
+      filter: brightness(0.96) grayscale(0.05);
+      z-index: 2;
     }
-    .slide-img.active {
-      opacity: 1;
-      filter: brightness(1.09);
-      z-index: 5;
+    .img-sticky-section.active img {
+      box-shadow: 0 12px 40px #00b4fa44, 0 1px 32px #00b4fa33;
+      filter: brightness(1.08) grayscale(0);
     }
     /* Responsive tweaks */
     @media (max-width: 1100px) {
-      .main-flex { flex-direction: column-reverse; gap: 10px; padding: 5vw 1vw 34px 1vw; }
-      .sticky-images-outer { min-width: 100vw; max-width: 100vw; height: 40vw;}
-      .sticky-images-inner { height: 46vw; }
+      .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
+      .scroll-img-sections { min-width: 90vw; max-width: 100vw; }
+      .img-sticky-section img { max-width: 97vw; }
     }
     @media (max-width: 700px) {
-      .sticky-images-outer { min-width: 100vw; max-width: 100vw; height: 60vw;}
-      .sticky-images-inner { height: 66vw; }
-      .main-flex { padding: 3vw 1vw 30px 1vw; }
+      .main-flex { padding: 5vw 1vw 36px 1vw; }
+      .highlight-block, .main-content { padding: 17px 4vw 19px 4vw;}
+      .features-grid { grid-template-columns: 1fr; }
+      .img-sticky-section img { height: 45vw; min-height: 110px;}
     }
     @media (max-width: 500px) {
-      .sticky-images-outer { min-width: 100vw; max-width: 100vw; height: 60vw;}
-      .sticky-images-inner { height: 66vw; }
+      .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
+      .back-link-bottom { font-size: 0.97em; padding: 8px 8vw;}
     }
-    /* Left content styles unchanged */
+    /* Other style, left content */
     .highlight-block {
       background: var(--card-bg);
       border-radius: 19px;
@@ -301,6 +322,10 @@
   </style>
 </head>
 <body>
+  <!-- AI Bot Line -->
+  <div class="ai-bot-line"><i class="fas fa-robot"></i>
+    AI Bot: I’m here to help you build, automate, and earn with RA Atum. Let’s shape the future of decentralized AI together!
+  </div>
   <div class="main-flex">
     <div class="main-content">
       <div class="highlight-block">
@@ -396,51 +421,19 @@
         </form>
       </div>
     </div>
-    <!-- RIGHT SIDE: Sticky Images -->
-    <div class="sticky-images-outer">
-      <div class="sticky-images-inner">
-        <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" class="slide-img" id="slide-img-1" alt="AI Agent" />
-        <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" class="slide-img" id="slide-img-2" alt="Highlight 1" />
-        <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" class="slide-img" id="slide-img-3" alt="Highlight 2" />
-        <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" class="slide-img" id="slide-img-4" alt="Highlight 3" />
-      </div>
+    <!-- Right: Sticky scroll image sections, only 1 image per viewport at a time -->
+    <div class="scroll-img-sections">
+      <div class="img-sticky-section"><img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" /></div>
+      <div class="img-sticky-section"><img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" /></div>
+      <div class="img-sticky-section"><img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" /></div>
+      <div class="img-sticky-section"><img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" /></div>
     </div>
   </div>
   <div style="text-align:center;">
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Sticky image cover effect: only one image visible at a time as you scroll!
-    function updateActiveImage() {
-      // Get the sticky section
-      const sticky = document.querySelector('.sticky-images-outer');
-      if (!sticky) return;
-
-      // Get all images
-      const images = [
-        document.getElementById('slide-img-1'),
-        document.getElementById('slide-img-2'),
-        document.getElementById('slide-img-3'),
-        document.getElementById('slide-img-4'),
-      ];
-      // Calculate scroll position relative to sticky area
-      const rect = sticky.getBoundingClientRect();
-      const totalHeight = sticky.offsetHeight;
-      const scrollY = window.scrollY + window.innerHeight / 2 - sticky.offsetTop;
-      // How much have we scrolled as a percentage (0 to 1)
-      let percent = Math.max(0, Math.min(1, scrollY / totalHeight));
-      let imgIndex = 0;
-      if (percent > 0.75) imgIndex = 3;
-      else if (percent > 0.5) imgIndex = 2;
-      else if (percent > 0.25) imgIndex = 1;
-      else imgIndex = 0;
-      // Set only the current image to active
-      images.forEach((img, i) => img.classList.toggle('active', i === imgIndex));
-    }
-    window.addEventListener('scroll', updateActiveImage, { passive: true });
-    window.addEventListener('DOMContentLoaded', updateActiveImage);
-
-    // Chatbox logic (unchanged)
+    // Chat box logic
     const chatForm = document.getElementById('chatbox-form');
     const chatInput = document.getElementById('chatbox-input');
     const chatMessages = document.getElementById('chatbox-messages');
@@ -478,6 +471,21 @@
       chatInput.value = "";
       chatMessages.scrollTop = chatMessages.scrollHeight;
     };
+    // Optional: Highlight active image (optional, not required for effect)
+    function setActiveImage() {
+      const imgs = document.querySelectorAll('.img-sticky-section');
+      let found = false;
+      imgs.forEach(sec => sec.classList.remove('active'));
+      for (let i = imgs.length - 1; i >= 0; i--) {
+        const rect = imgs[i].getBoundingClientRect();
+        if (!found && rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.15) {
+          imgs[i].classList.add('active');
+          found = true;
+        }
+      }
+    }
+    window.addEventListener('scroll', setActiveImage, { passive: true });
+    window.addEventListener('DOMContentLoaded', setActiveImage);
   </script>
 </body>
 </html>
