@@ -15,7 +15,7 @@
       --glow: 0 0 24px #00b4fa55, 0 2px 32px #00b4fa33;
       --shine-grad: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
     }
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       font-family: 'Share Tech Mono', monospace;
@@ -38,7 +38,6 @@
     .back-link-bottom {
       display: inline-block;
       position: relative;
-      left: 0;
       margin: 38px auto 18px auto;
       color: var(--blue);
       font-size: 1.09em;
@@ -71,6 +70,7 @@
       padding: 50px 6vw 24px 6vw;
       gap: 48px;
       position: relative;
+      z-index: 2;
     }
     .token-content {
       flex: 2;
@@ -231,6 +231,36 @@
       font-size: 1.09em;
       letter-spacing: .6px;
     }
+    .token-contract-link i {
+      margin-right: 5px;
+    }
+    .why-btn-row {
+      margin-top: 30px;
+      text-align: left;
+    }
+    .buy-btn {
+      background: linear-gradient(90deg, #00b4fa 10%, #00ffd0 90%);
+      color: #181a1b;
+      font-family: 'Share Tech Mono', monospace;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 36px;
+      font-size: 1.16em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 6px 32px #00b4fa22;
+      transition: background .18s, color .17s, transform .13s;
+      letter-spacing: 1px;
+      margin-top: 0;
+      min-width: 190px;
+      outline: none;
+      display: inline-block;
+    }
+    .buy-btn:hover {
+      background: #e7d7b6;
+      color: #002a37;
+      transform: scale(1.045);
+    }
     @media (max-width:950px) {
       .token-main { flex-direction: column-reverse; gap: 18px; padding-top: 30px; }
       .token-logo-side { justify-content: center; }
@@ -243,9 +273,7 @@
       .ra-logo-right { width: 110px; border-radius: 18px;}
       .back-link-bottom { font-size: 0.97em; padding: 8px 14px 8px 10px;}
     }
-    .footer-spacer {
-      height: 40px;
-    }
+    .footer-spacer { height: 40px; }
   </style>
 </head>
 <body>
