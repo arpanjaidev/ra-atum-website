@@ -63,53 +63,46 @@
       min-width: 320px;
       max-width: 740px;
     }
-
-    /* ===== Scroll Image Section: Full-page effect ===== */
-    .main-image-scroll-frames {
+    .scroll-img-sections {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      position: sticky;
-      top: 40px;
-      height: 90vh;
       min-width: 330px;
       max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
     }
-    .scroll-img-frame {
+    .img-section {
       width: 100%;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      z-index: 1;
+    }
+    .img-section img {
+      width: 96%;
       height: 90vh;
-      max-width: 390px;
-      position: absolute;
-      left: 0;
-      top: 0;
+      max-width: 410px;
+      object-fit: cover;
       border-radius: 34px;
       background: #161922;
       box-shadow: var(--glow);
       border: 3px solid #00b4fa44;
-      object-fit: cover;
-      opacity: 0;
-      z-index: 1;
-      transition: opacity .5s, transform .7s cubic-bezier(.4,1.4,.5,.98);
-      will-change: transform, opacity;
-      transform: translateY(60px) scale(0.99);
-    }
-    .scroll-img-frame.active {
-      opacity: 1;
-      z-index: 5;
-      transform: translateY(0) scale(1.01);
-    }
-    .scroll-img-frame.above {
       opacity: 0.2;
+      transition: opacity .5s, transform .6s cubic-bezier(.4,1.4,.5,.98);
+      position: absolute;
+      bottom: 0; right: 0;
       z-index: 1;
-      transform: translateY(-100px) scale(0.97);
+      transform: scale(0.98) translateY(30px);
     }
-    .scroll-img-frame.below {
-      opacity: 0;
-      z-index: 0;
-      transform: translateY(70px) scale(0.97);
+    .img-section.active img {
+      opacity: 1;
+      z-index: 10;
+      transform: scale(1.02) translateY(0);
     }
-
     /* Content sections as before */
     .highlight-block {
       background: var(--card-bg);
@@ -316,22 +309,18 @@
     .chatbox-input-row button:hover {
       background: #e7d7b6; color: #002a37;
     }
-
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
-      .main-image-scroll-frames { margin: 30px auto 0 auto; min-width: 60vw; max-width: 100vw; height: 300px;}
-      .scroll-img-frame { height: 300px; max-width: 95vw; }
+      .scroll-img-sections { min-width: 60vw; max-width: 100vw; }
+      .img-section img { max-width: 98vw; }
     }
     @media (max-width: 700px) {
       .main-flex { padding: 5vw 1vw 36px 1vw; }
-      .main-image-scroll-frames { height: 180px; }
-      .scroll-img-frame { height: 180px; }
       .highlight-block, .main-content { padding: 17px 4vw 19px 4vw;}
       .features-grid { grid-template-columns: 1fr; }
+      .img-section img { height: 46vw; min-height: 110px;}
     }
     @media (max-width: 500px) {
-      .main-image-scroll-frames { height: 98vw; }
-      .scroll-img-frame { height: 98vw; }
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
       .back-link-bottom { font-size: 0.97em; padding: 8px 8vw;}
     }
@@ -444,44 +433,48 @@
         </form>
       </div>
     </div>
-    <!-- ====== Right side: Scroll images (one at a time) ======= -->
-    <div class="main-image-scroll-frames" id="img-scroll">
-      <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" class="scroll-img-frame" id="main-right-img1" alt="AI Agent"/>
-      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" class="scroll-img-frame" id="main-right-img2" alt="Highlight 1"/>
-      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" class="scroll-img-frame" id="main-right-img3" alt="Highlight 2"/>
-      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" class="scroll-img-frame" id="main-right-img4" alt="Highlight 3"/>
+    <!-- Right side: Each image is full-height, only one is "active" per scroll -->
+    <div class="scroll-img-sections" id="img-scroll">
+      <div class="img-section" id="img-section-1">
+        <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent"/>
+      </div>
+      <div class="img-section" id="img-section-2">
+        <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1"/>
+      </div>
+      <div class="img-section" id="img-section-3">
+        <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2"/>
+      </div>
+      <div class="img-section" id="img-section-4">
+        <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3"/>
+      </div>
     </div>
   </div>
   <div style="text-align:center;">
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Scroll slider: Show only one image fully at a time
-    const imgFrames = [
-      document.getElementById('main-right-img1'),
-      document.getElementById('main-right-img2'),
-      document.getElementById('main-right-img3'),
-      document.getElementById('main-right-img4')
+    // Reveal 1 image per section, "cover" up/down as you scroll.
+    const sections = [
+      document.getElementById('img-section-1'),
+      document.getElementById('img-section-2'),
+      document.getElementById('img-section-3'),
+      document.getElementById('img-section-4')
     ];
-    const stack = document.getElementById('img-scroll');
-    function updateStackImages() {
-      const rect = stack.getBoundingClientRect();
-      // Split area into 4 zones
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const frameHeight = rect.height / imgFrames.length;
-      let zone = Math.floor(((vh/2) - rect.top) / frameHeight);
-      zone = Math.max(0, Math.min(imgFrames.length-1, zone));
-      imgFrames.forEach((img,i)=>{
-        img.classList.remove('active','above','below');
-        if(i === zone) img.classList.add('active');
-        else if(i < zone) img.classList.add('above');
-        else img.classList.add('below');
+    function revealSectionImage() {
+      const buffer = window.innerHeight * 0.35; // triggers change a bit before center
+      sections.forEach((sec, i) => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < buffer && rect.bottom > buffer) {
+          sec.classList.add('active');
+        } else {
+          sec.classList.remove('active');
+        }
       });
     }
-    window.addEventListener('scroll', updateStackImages, { passive: true });
-    window.addEventListener('DOMContentLoaded', updateStackImages);
+    window.addEventListener('scroll', revealSectionImage, { passive: true });
+    window.addEventListener('DOMContentLoaded', revealSectionImage);
 
-    // Working chat box logic
+    // Simple working chat box logic (unchanged)
     const chatForm = document.getElementById('chatbox-form');
     const chatInput = document.getElementById('chatbox-input');
     const chatMessages = document.getElementById('chatbox-messages');
