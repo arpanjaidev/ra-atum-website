@@ -24,30 +24,6 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    .ai-bot-line {
-      background: linear-gradient(90deg,#161d29 60%,#202b3e 100%);
-      border: 2px solid #00b4fa;
-      border-radius: 16px;
-      max-width: 780px;
-      margin: 38px auto 28px auto;
-      padding: 17px 32px;
-      color: #fff;
-      box-shadow: var(--glow);
-      text-align: center;
-      font-size: 1.15em;
-      font-weight: bold;
-      letter-spacing: 0.7px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      position: relative;
-    }
-    .ai-bot-line i {
-      color: #00b4fa;
-      font-size: 2em;
-      margin-right: 10px;
-      filter: drop-shadow(0 2px 12px #00b4fa99);
-    }
     .main-flex {
       max-width: 1250px;
       margin: 0 auto;
@@ -66,14 +42,12 @@
     .main-image-side {
       flex: 1;
       display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-      position: relative;
       flex-direction: column;
+      align-items: flex-end;
       gap: 22px;
+      position: relative;
     }
-    .main-right-img,
-    .side-img {
+    .main-right-img {
       width: 340px;
       max-width: 38vw;
       min-width: 160px;
@@ -89,9 +63,9 @@
       opacity: 0;
       transform: translateX(80px);
       z-index: 1;
+      display: block;
     }
-    .main-right-img.visible,
-    .side-img.visible {
+    .main-right-img.visible {
       opacity: 1;
       transform: translateX(0);
     }
@@ -302,28 +276,23 @@
     }
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
-      .main-right-img, .side-img { margin: 30px auto 0 auto; max-width: 330px; width: 60vw; }
-      .main-image-side { justify-content: center; }
+      .main-right-img { margin: 30px auto 0 auto; max-width: 330px; width: 60vw; }
+      .main-image-side { justify-content: center; align-items: center; }
     }
     @media (max-width: 700px) {
       .main-flex { padding: 5vw 1vw 36px 1vw; }
-      .main-right-img, .side-img { max-width: 98vw; width: 98vw; }
+      .main-right-img { max-width: 98vw; width: 98vw; }
       .highlight-block, .main-content { padding: 17px 4vw 19px 4vw;}
       .features-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 500px) {
-      .main-right-img, .side-img { width: 90vw; min-width: 60vw; }
+      .main-right-img { width: 90vw; min-width: 60vw; }
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
       .back-link-bottom { font-size: 0.97em; padding: 8px 8vw;}
     }
   </style>
 </head>
 <body>
-  <!-- AI Bot Line -->
-  <div class="ai-bot-line"><i class="fas fa-robot"></i>
-    AI Bot: I’m here to help you build, automate, and earn with RA Atum. Let’s shape the future of decentralized AI together!
-  </div>
-
   <div class="main-flex">
     <div class="main-content">
       <div class="highlight-block">
@@ -337,7 +306,6 @@
           </button>
         </div>
       </div>
-
       <div class="highlight-block">
         <div class="section-title">What is RA Atum?</div>
         <p>
@@ -348,7 +316,6 @@
           <strong>•</strong> No coding or technical skills needed—just kindness.
         </p>
       </div>
-
       <div class="features-grid">
         <div class="feature-card"><i class="fas fa-gift"></i>
           <div><strong>Build a Brighter World</strong>
@@ -391,7 +358,6 @@
           </div>
         </div>
       </div>
-
       <div class="highlight-block">
         <div class="section-title">How it Works</div>
         <ul style="padding-left:18px;">
@@ -401,19 +367,15 @@
           <li><strong>Track & Vote:</strong> See your impact and help decide project direction.</li>
         </ul>
       </div>
-
       <div class="why-callout">
         With RA Atum, you’re not just part of a platform — you’re part of a continually growing and evolving ecosystem.<br>
         <span style="font-size:0.97em;color:#00b4fa;">Soon, you’ll be able to chat live with our AI agent for help, questions, or rewards!</span>
       </div>
-
       <div class="center-btn-row" style="margin-top:32px;">
         <button class="buy-btn" onclick="window.location.href='index.html#buy-section'">
           <i class="fas fa-bolt"></i> BUY TOKENS NOW
         </button>
       </div>
-
-      <!-- Working Chat Box -->
       <div class="chatbox">
         <div class="chatbox-title"><i class="fas fa-comments"></i> RA Atum Chat Bot</div>
         <div class="chatbox-messages" id="chatbox-messages">
@@ -426,10 +388,10 @@
       </div>
     </div>
     <div class="main-image-side">
-      <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="main-right-img" id="main-right-img"/>
-      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="side-img" id="side-img-1"/>
-      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="side-img" id="side-img-2"/>
-      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" class="side-img" id="side-img-3"/>
+      <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="main-right-img" id="main-right-img1"/>
+      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="main-right-img" id="main-right-img2"/>
+      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="main-right-img" id="main-right-img3"/>
+      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" class="main-right-img" id="main-right-img4"/>
     </div>
   </div>
   <div style="text-align:center;">
@@ -451,7 +413,6 @@
     }
     window.addEventListener('scroll', showImageOnScroll, { passive: true });
     window.addEventListener('DOMContentLoaded', showImageOnScroll);
-  
 
     // Simple working chat box logic
     const chatForm = document.getElementById('chatbox-form');
