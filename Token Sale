@@ -1,1 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Token Sale – RA Atum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #0e1018;
+      color: #fff;
+      font-family: 'Share Tech Mono', monospace;
+      margin: 0; padding: 0; min-height: 100vh;
+      background-image: url('https://e1.pxfuel.com/desktop-wallpaper/767/930/desktop-wallpaper-printed-circuit-board-video-motherboard-blue-and-purple-digital-circuit-board-background.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; top:0; left:0; right:0; bottom:0;
+      background: linear-gradient(115deg, #0c0c10bb 0%, #191a24b7 90%);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.85;
+      mix-blend-mode: multiply;
+    }
+    .sale-main {
+      max-width: 570px;
+      margin: 48px auto;
+      background: linear-gradient(120deg, #111a33 0%, #1b344a 98%);
+      border: 2.5px solid #00b4fa;
+      box-shadow: 0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
+      border-radius: 18px;
+      padding: 40px 28px 32px 28px;
+      position: relative;
+      z-index: 2;
+    }
+    .sale-title {
+      text-align: center;
+      color: #00b4fa;
+      margin-bottom: 28px;
+      font-size: 2.1rem;
+      letter-spacing: 2px;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #fff 8%, #00b4fa 55%, #23e6ff 98%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 18px #22213855, 0 0 8px #00315580, 0 0 18px #00b4fa99;
+      filter: brightness(1.19);
+      min-height: 1.5em;
+    }
+    .sale-desc {
+      text-align: center;
+      font-size: 1.15em;
+      color: #e7d7b6;
+      margin-bottom: 22px;
+      letter-spacing: .2px;
+      font-weight: bold;
+    }
+    .sale-supply {
+      margin: 30px 0 22px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+    }
+    .sale-supply-big {
+      font-size: 2.2em;
+      font-weight: bold;
+      color: #00b4fa;
+      background: linear-gradient(90deg,#fff 10%,#00b4fa 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 18px #00b4fa33;
+      filter: brightness(1.17);
+      margin-bottom: 2px;
+    }
+    .sale-label {
+      font-size: 1em;
+      color: #e7d7b6;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+      margin-bottom: 4px;
+    }
+    .sale-line {
+      border: none;
+      border-top: 2.2px dashed #00b4fa77;
+      margin: 22px auto 22px auto;
+      width: 80%;
+      opacity: 0.8;
+    }
+    .sale-feature-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 11px 0;
+      color: #00b4fa;
+      font-weight: bold;
+      font-size: 1.15em;
+      letter-spacing: .8px;
+    }
+    .sale-feature-row i {
+      color: #23e6ff;
+      font-size: 1.12em;
+      margin-right: 7px;
+    }
+    .sale-price-table {
+      margin: 28px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 14px;
+      width: 100%;
+      font-size: 1.11em;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      background: #23243b88;
+      box-shadow: 0 2px 18px #00b4fa22;
+      padding: 14px 8px 13px 8px;
+    }
+    .sale-price-label {
+      color: #00b4fa;
+      text-align: right;
+    }
+    .sale-price-val {
+      color: #e7d7b6;
+      text-align: left;
+    }
+    .sale-how {
+      margin-top: 24px;
+      padding: 19px 15px;
+      border-radius: 12px;
+      background: #181a1b;
+      border: 1.7px solid #00b4fa;
+      color: #fff;
+      font-size: 1.09em;
+      box-shadow: 0 2px 16px #00b4fa22;
+      text-align: left;
+      font-weight: bold;
+    }
+    .sale-how-title {
+      color: #00b4fa;
+      text-transform: uppercase;
+      font-size: 1.07em;
+      letter-spacing: .7px;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #fff 8%, #00b4fa 55%, #23e6ff 98%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 14px #00315590;
+      filter: brightness(1.10);
+      font-weight: bold;
+    }
+    .sale-how-list {
+      margin: 0 0 0 6px;
+      padding-left: 18px;
+      color: #23e6ff;
+    }
+    .sale-contract-link {
+      color: #00b4fa;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-top: 22px;
+      display: inline-block;
+      font-size: 1.09em;
+      letter-spacing: .6px;
+    }
+    .back-link {
+      color:#00b4fa; margin-top: 28px; display:inline-block; font-size:1.09em; font-weight:bold;
+    }
+    .back-link:hover { text-decoration: underline; }
+    @media (max-width:600px) {
+      .sale-main { padding: 24px 5vw 24px 5vw;}
+      .sale-title { font-size: 1.3rem;}
+      .sale-supply-big { font-size: 1.5em; }
+      .sale-price-table { font-size: 0.98em; }
+      .sale-how { font-size: 0.99em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="sale-main">
+    <div class="sale-title"><i class="fa-solid fa-coins"></i> Token Sale</div>
+    <div class="sale-desc">
+      The <b>$RA ATUM</b> Token powers the RA Atum ecosystem — unlocking rewards, access, and blockchain-powered transparency.<br><br>
+      Join a fair, smart-contract-powered presale with no preferential allocations and transparent value. Early supporters benefit from high utility and strong community upside.
+    </div>
+    <div class="sale-supply">
+      <span class="sale-label">Total Supply</span>
+      <span class="sale-supply-big">21,000,000</span>
+      <span class="sale-label">$RA ATUM Tokens</span>
+      <hr class="sale-line" />
+      <div class="sale-label">Ensuring Scarcity & Value Stability</div>
+      <div class="sale-feature-row"><i class="fas fa-lock"></i>Smart-Contract Secured</div>
+      <div class="sale-feature-row"><i class="fas fa-fire"></i>Fair Launch & Burn Features</div>
+      <div class="sale-feature-row"><i class="fas fa-balance-scale"></i>Equal-Access Presale</div>
+      <hr class="sale-line" />
+      <div class="sale-label">No Preferential Allocations</div>
+    </div>
+    <div class="sale-price-table">
+      <span class="sale-price-label">Presale Price</span>
+      <span class="sale-price-val">₹0.55 | $0.01 | BNB 0.00001 per RA</span>
+      <span class="sale-price-label">Launch Price</span>
+      <span class="sale-price-val">₹15 | $0.17 | BNB 0.0003 per RA</span>
+      <span class="sale-price-label">Uplift</span>
+      <span class="sale-price-val">27× at launch</span>
+    </div>
+    <div class="sale-label">How To Participate?</div>
+    <div class="sale-how">
+      <div class="sale-how-title"><i class="fa-solid fa-list-check"></i> Steps:</div>
+      <ul class="sale-how-list">
+        <li>Connect your wallet</li>
+        <li>Fund with BNB</li>
+        <li>Mint RA Atum tokens in the presale portal</li>
+      </ul>
+    </div>
+    <a href="https://bscscan.com/address/0xEbd8c8E89c64618E699eDb6f339331425d95EE3f" target="_blank" class="sale-contract-link">
+      <i class="fas fa-file-contract"></i> View Presale on BscScan
+    </a>
+    <br>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
+</body>
+</html>
 
