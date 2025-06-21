@@ -1215,19 +1215,19 @@ function typeFooterLine() {
     if (ftIndex <= footerTypingText.length) {
       footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
       ftIndex++;
-      setTimeout(typeFooterLine, 37);
+      setTimeout(typeFooterLine, 30);
     } else {
       typingForward = false;
-      setTimeout(typeFooterLine, 1300); // pause before erase
+      setTimeout(typeFooterLine, 1500); // pause before erase
     }
   } else {
     if (ftIndex >= 0) {
       footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
       ftIndex--;
-      setTimeout(typeFooterLine, 14); // erasing is faster
+      setTimeout(typeFooterLine, 17); // erasing is faster
     } else {
       typingForward = true;
-      setTimeout(typeFooterLine, 650); // pause before typing again
+      setTimeout(typeFooterLine, 1050); // pause before typing again
     }
   }
 }
