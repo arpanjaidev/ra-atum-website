@@ -14,9 +14,6 @@
       margin: 0;
       min-height: 100vh;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
     }
     .wallet-headline {
       text-align: center;
@@ -35,19 +32,18 @@
       letter-spacing: 1.1px;
       min-height: 1.7em;
     }
-    .wallet-full-row {
+    .wallet-main-flex {
       display: flex;
       align-items: flex-start;
       justify-content: center;
       gap: 44px;
       padding: 16px 0 0 0;
-      max-width: 1250px;
-      margin: 0 auto 48px auto;
-      flex-wrap: nowrap;
+      max-width: 980px;
+      margin: 0 auto;
     }
     .ra-logo-big {
-      width: 170px;
-      height: 170px;
+      width: 168px;
+      height: 168px;
       max-width: 35vw;
       border-radius: 35px;
       object-fit: contain;
@@ -69,7 +65,7 @@
       box-shadow: 0 8px 32px #00b4fa33;
       width: 320px;
       min-width: 230px;
-      margin: 0;
+      margin: 20px 0 0 0;
       padding: 30px 22px 24px 22px;
       border: 2.5px solid #00b4fa;
       position: relative;
@@ -157,136 +153,123 @@
       background: #e7d7b6; color: #002a37; transform: scale(1.045);
     }
     .wallet-msg { margin: 4px 0 0 0; min-height: 22px; font-size: 1rem; align-self: center;}
-    /* === CALCULATOR SECTION === */
-    .wallet-calc-container {
-      max-width: 400px;
-      background: #181a1b;
-      border-radius: 18px;
-      box-shadow: 0 8px 32px #00b4fa33;
+    a.back-link { color:#00b4fa; margin-top: 12px; display:inline-block; font-size:1.01em; align-self: center;}
+    a.back-link:hover { text-decoration: underline;}
+    /* --- CALCULATOR CARD --- */
+    .calc-section {
+      background: linear-gradient(120deg, #0e153a 0%, #191a24 100%);
       border: 2.5px solid #00b4fa;
-      margin: 0;
-      padding: 28px 20px 22px 20px;
-      font-family: 'Share Tech Mono', monospace;
-      color: #fff;
-      text-align: center;
+      box-shadow: 0 8px 38px #00b4fa55, 0 0 0 7px #191a2488;
+      border-radius: 18px;
+      padding: 30px 28px 22px 28px;
+      margin: 36px auto 0 auto;
+      width: 320px;
+      min-width: 230px;
+      max-width: 98vw;
+      position: relative;
       z-index: 2;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: 270px;
     }
-    .calc-title-shine {
-      font-size: 1.13em;
+    .calc-title {
+      font-size: 1.33rem;
+      letter-spacing: 1.4px;
       font-weight: bold;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #fff 8%, #00b4fa 55%, #23e6ff 98%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 2px 18px #22213866,0 0 8px #00b4fa88,0 0 18px #00b4fa99;
-      filter: brightness(1.15) drop-shadow(0 0 3px #00e6ff99);
-      letter-spacing: 1.1px;
-      margin-bottom: 16px;
+      text-shadow: 0 2px 18px #22213855, 0 0 8px #00315580, 0 0 18px #00b4fa99;
+      filter: brightness(1.19);
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+    }
+    .calc-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    .calc-form input[type="number"] {
+      padding: 10px 18px;
+      border-radius: 9px;
+      border: 1.7px solid #00b4fa;
+      background: #111b;
+      color: #fff;
+      font-size: 1.18rem;
+      width: 130px;
+      max-width: 180px;
+      outline: none;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      letter-spacing: .5px;
+      text-align: right;
     }
     .calc-row {
       display: flex;
+      gap: 12px;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 18px;
+      margin-bottom: 0;
     }
-    .calc-row label {
+    .calc-label {
+      font-size: 1.07em;
       color: #00b4fa;
-      font-size: 1em;
       font-weight: bold;
-      letter-spacing: .3px;
-      min-width: 70px;
-      text-align: right;
+      min-width: 65px;
     }
-    .calc-input {
-      border-radius: 6px;
-      border: 1.5px solid #00b4fa77;
-      background: #222941;
-      color: #fff;
-      padding: 8px 14px;
-      font-size: 1em;
-      font-family: 'Share Tech Mono', monospace;
-      width: 120px;
-      margin-left: 8px;
-      outline: none;
-    }
-    .calc-results-table {
+    .calc-results {
       width: 100%;
-      border-collapse: collapse;
-      margin: 14px 0 0 0;
-    }
-    .calc-results-table th,
-    .calc-results-table td {
-      font-size: 0.97em;
-      padding: 7px 2px;
-      border-bottom: 1px solid #263344;
+      margin-top: 10px;
+      padding: 10px 2px;
+      background: #1a263d80;
+      border-radius: 9px;
+      text-align: center;
       color: #e7d7b6;
-    }
-    .calc-results-table th {
-      color: #00b4fa;
+      font-size: 1.11em;
       font-weight: bold;
-      background: none;
+      letter-spacing: .5px;
+      box-shadow: 0 2px 8px #00b4fa55;
     }
-    .calc-results-table tr:last-child td { border-bottom: none; }
-    .calc-footer-space { min-height: 38px; }
-    @media (max-width: 1100px) {
-      .wallet-full-row { gap: 22px; }
-      .ra-logo-big { width: 115px; height: 115px;}
+    .calc-prices {
+      margin-top: 18px;
+      width: 100%;
+      color: #00b4fa;
+      font-size: 1.06em;
+      text-align: left;
+      font-weight: bold;
     }
-    @media (max-width: 900px) {
-      .wallet-full-row { gap: 6vw;}
-      .ra-logo-big { width: 95px; height: 95px;}
-      .wallet-container { max-width: 320px;}
-      .wallet-calc-container { max-width: 290px;}
+    .calc-prices span {
+      display: block;
+      margin-bottom: 5px;
+      color: #23e6ff;
     }
-    @media (max-width: 800px) {
-      .wallet-full-row { flex-direction: column; align-items: center; gap: 18px;}
+    /* Responsive: stack on mobile */
+    @media (max-width: 850px) {
+      .wallet-main-flex { flex-direction: column; align-items: center; gap: 18px; }
       .ra-logo-big { margin: 0 auto 14px auto; }
-      .wallet-container { align-items: center; width: 98vw; max-width: 340px;}
-      .wallet-title, .wallet-msg, .wallet-buy-btn, .wallet-connect-btn, .wallet-address, .wallet-info-row { align-self: center !important;}
-      .wallet-btn-row { justify-content: center;}
-      .wallet-calc-container { padding: 16px 5vw 14px 5vw; margin-top: 18px;}
+      .wallet-container { align-items: center; width: 98vw; max-width: 340px; }
+      .wallet-title, .wallet-msg, .wallet-buy-btn, .wallet-connect-btn, .wallet-address, .wallet-info-row, a.back-link { align-self: center !important; }
+      .wallet-btn-row { justify-content: center; }
+      .calc-section { width: 98vw; max-width: 340px; }
     }
     @media (max-width: 480px) {
-      .wallet-container { padding: 12px 3vw 12px 3vw;}
-      .wallet-title { font-size: 1rem;}
-      .ra-logo-big { width: 80px; height: 80px;}
-      .wallet-calc-container { padding: 11px 2vw 10px 2vw; }
+      .wallet-container { padding: 12px 3vw 12px 3vw; }
+      .wallet-title { font-size: 1rem; }
+      .ra-logo-big { width: 95px; height: 95px;}
+      .calc-section { padding: 12px 3vw 12px 3vw; }
     }
-    /* --- Bottom Back to Home Button --- */
-    .bottom-back-home {
-      margin: 0 auto 32px auto;
-      text-align: center;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    .calc-footer-link {
-      color: #00b4fa;
-      margin-top: 28px;
-      display: inline-block;
-      font-size: 1.07em;
-      border-radius: 7px;
-      padding: 12px 36px;
-      background: #23243b;
-      text-decoration: none;
-      transition: background 0.14s, color 0.14s;
-      font-family: 'Share Tech Mono', monospace;
-      border: 1.5px solid #00b4fa44;
-      font-weight: bold;
-      box-shadow: 0 2px 10px #00b4fa22;
-    }
-    .calc-footer-link:hover { background: #00b4fa; color: #222; text-decoration: underline;}
   </style>
 </head>
 <body>
   <div class="wallet-headline" id="wallet-typing-shine"></div>
-  <div class="wallet-full-row">
+  <div class="wallet-main-flex">
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-big" />
     <div class="wallet-container">
       <div class="wallet-title"><i class="fas fa-wallet"></i> Wallet Overview</div>
@@ -305,42 +288,23 @@
       </div>
       <div class="wallet-msg" id="wallet-msg"></div>
     </div>
-    <div class="wallet-calc-container">
-      <div class="calc-title-shine">CALCULATE THIS PROFIT</div>
-      <div class="calc-row">
-        <label for="calc-ra">Enter RA ATUM</label>
-        <input id="calc-ra" class="calc-input" type="number" min="0" placeholder="100" />
+    <div class="calc-section">
+      <div class="calc-title"><i class="fas fa-calculator"></i> CALCULATE THIS PROFIT</div>
+      <form class="calc-form" id="calc-form" autocomplete="off" onsubmit="return false">
+        <div class="calc-row">
+          <span class="calc-label">RA ATUM</span>
+          <input type="number" id="calc-amount" placeholder="100" min="0" step="any" />
+        </div>
+      </form>
+      <div class="calc-results" id="calc-results">
+        Enter RA Atum amount to see profit estimate.
       </div>
-      <table class="calc-results-table">
-        <tr>
-          <th></th>
-          <th>RS</th>
-          <th>USD</th>
-          <th>BNB</th>
-        </tr>
-        <tr>
-          <td>Starting Price</td>
-          <td id="rs-start">₹0.00</td>
-          <td id="usd-start">$0.00</td>
-          <td id="bnb-start">0.00000</td>
-        </tr>
-        <tr>
-          <td>Launch Price</td>
-          <td id="rs-launch">₹0.00</td>
-          <td id="usd-launch">$0.00</td>
-          <td id="bnb-launch">0.00000</td>
-        </tr>
-      </table>
-      <div style="font-size:0.98em; color:#bda76a; margin-top:12px; letter-spacing:.2px;">
-        Starting: ₹0.55 | $0.01 | BNB 0.00001<br>
-        Launch: ₹15 | $0.17 | BNB 0.0003
+      <div class="calc-prices">
+        <span>Starting Price: ₹0.55 | $0.01 | BNB 0.00001</span>
+        <span>Launch Price: ₹15 | $0.17 | BNB 0.0003</span>
       </div>
-      <div class="calc-footer-space"></div>
+      <a href="index.html" class="back-link" style="margin-top:22px;"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </div>
-  </div>
-  <!-- BOTTOM BACK TO HOME BUTTON -->
-  <div class="bottom-back-home">
-    <a href="index.html" class="calc-footer-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
@@ -414,24 +378,24 @@
     };
 
     // Calculator logic
-    const startingPrice = { rs: 0.55, usd: 0.01, bnb: 0.00001 };
-    const launchPrice   = { rs: 15,   usd: 0.17, bnb: 0.0003 };
-
-    function calcUpdate() {
-      let amount = parseFloat(document.getElementById('calc-ra').value) || 0;
-      document.getElementById('rs-start').innerText  = "₹" + (amount * startingPrice.rs).toFixed(2);
-      document.getElementById('usd-start').innerText = "$" + (amount * startingPrice.usd).toFixed(2);
-      document.getElementById('bnb-start').innerText = (amount * startingPrice.bnb).toFixed(5);
-
-      document.getElementById('rs-launch').innerText  = "₹" + (amount * launchPrice.rs).toFixed(2);
-      document.getElementById('usd-launch').innerText = "$" + (amount * launchPrice.usd).toFixed(2);
-      document.getElementById('bnb-launch').innerText = (amount * launchPrice.bnb).toFixed(5);
-    }
-    document.getElementById('calc-ra').addEventListener('input', calcUpdate);
-
-    // Set default value for demo
-    document.getElementById('calc-ra').value = "100";
-    calcUpdate();
+    const start = { inr: 0.55, usd: 0.01, bnb: 0.00001 };
+    const launch = { inr: 15, usd: 0.17, bnb: 0.0003 };
+    document.getElementById('calc-amount').oninput = function() {
+      const amt = parseFloat(this.value);
+      const results = document.getElementById('calc-results');
+      if (!amt || amt <= 0) {
+        results.innerHTML = "Enter RA Atum amount to see profit estimate.";
+        return;
+      }
+      const profitINR = (amt * (launch.inr - start.inr)).toFixed(2);
+      const profitUSD = (amt * (launch.usd - start.usd)).toFixed(2);
+      const profitBNB = (amt * (launch.bnb - start.bnb)).toFixed(5);
+      results.innerHTML =
+        `<b>Estimated Profit if bought at start, sold at launch:</b><br>
+        <span>INR: ₹${profitINR}</span> &nbsp; | &nbsp;
+        <span>USD: $${profitUSD}</span> &nbsp; | &nbsp;
+        <span>BNB: ${profitBNB}</span>`;
+    };
   </script>
 </body>
 </html>
