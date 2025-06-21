@@ -63,8 +63,7 @@
       min-width: 320px;
       max-width: 740px;
     }
-
-    /* Image cover stack effect */
+    /* RIGHT COLUMN: Sticky stacked image effect */
     .image-stack-section {
       flex: 1;
       min-width: 350px;
@@ -77,17 +76,16 @@
       justify-content: flex-end;
     }
     .image-stack-inner {
-      position: sticky;
-      top: 7vh;
+      position: relative;
       width: 100%;
-      height: 76vh;
+      height: 80vh;
+      margin-top: 10vh;
     }
     .cover-image {
-      position: absolute;
-      left: 0;
-      top: 0;
+      position: sticky;
+      top: 10vh;
       width: 100%;
-      height: 76vh;
+      height: 60vh;
       border-radius: 32px;
       border: 3px solid #00b4fa44;
       box-shadow: var(--glow);
@@ -95,17 +93,15 @@
       object-fit: cover;
       z-index: 1;
       opacity: 1;
+      filter: brightness(0.93) grayscale(0.11);
       transition: box-shadow .4s, filter .3s;
+      display: block;
     }
     .cover-image.active {
       z-index: 99;
       box-shadow: 0 12px 40px #00b4fa55, 0 1px 32px #00b4fa33;
       filter: brightness(1.1) grayscale(0);
     }
-    .cover-image:not(.active) {
-      filter: brightness(0.8) grayscale(0.13);
-    }
-
     /* Responsive tweaks */
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 22px; padding: 8vw 2vw 40px 2vw; }
@@ -123,7 +119,6 @@
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
       .back-link-bottom { font-size: 0.97em; padding: 8px 8vw;}
     }
-
     /* Other style, left content */
     .highlight-block {
       background: var(--card-bg);
@@ -338,8 +333,7 @@
   </div>
   <div class="main-flex">
     <div class="main-content">
-      <!-- ... (keep all your sections here, no change) ... -->
-      <!-- use your previous left content blocks here -->
+      <!-- ... all your sections (unchanged) ... -->
       <div class="highlight-block">
         <div class="hero-title">SECURE YOUR<br>EARLY ACCESS</div>
         <div style="text-align:center;margin-bottom:18px;">
@@ -433,7 +427,7 @@
         </form>
       </div>
     </div>
-    <!-- Right side: images stacked and covering each other as you scroll -->
+    <!-- Right: Image "cover" stacking scroll effect -->
     <div class="image-stack-section">
       <div class="image-stack-inner">
         <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="cover-image" id="img1">
@@ -447,7 +441,7 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Bot chat logic (untouched)
+    // Chat box logic (unchanged)
     const chatForm = document.getElementById('chatbox-form');
     const chatInput = document.getElementById('chatbox-input');
     const chatMessages = document.getElementById('chatbox-messages');
@@ -466,7 +460,6 @@
       const div = document.createElement('div');
       div.innerHTML = "<b>You:</b> " + userMsg;
       chatMessages.appendChild(div);
-
       let reply = "I'm here to answer questions about RA Atum! Ask me about donations, rewards, or features.";
       for (const entry of botResponses) {
         for (const k of entry.keywords) {
@@ -486,7 +479,7 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
-    // --- Image "cover" scroll effect ---
+    // Sticky image stack scroll effect
     const images = [
       document.getElementById('img1'),
       document.getElementById('img2'),
@@ -494,15 +487,15 @@
       document.getElementById('img4')
     ];
     function updateImageStack() {
-      const section = document.querySelector('.image-stack-section');
+      // Each image covers the last as you scroll
+      const scrollTop = window.scrollY;
+      const section = document.querySelector('.image-stack-inner');
       if (!section) return;
       const rect = section.getBoundingClientRect();
-      const h = rect.height;
-      const vh = window.innerHeight;
-      let scroll = Math.max(0, Math.min(h - vh, vh - rect.top));
-      // Each image will "cover" previous by 25% of section height
-      const per = h / images.length;
-      let idx = Math.floor(scroll / per);
+      const sectionTop = rect.top + window.scrollY - window.innerHeight * 0.10;
+      const sectionHeight = section.offsetHeight;
+      const imageHeight = sectionHeight / images.length;
+      let idx = Math.floor((scrollTop - sectionTop + imageHeight/2) / imageHeight);
       idx = Math.max(0, Math.min(idx, images.length - 1));
       images.forEach((img, i) => img.classList.remove('active'));
       images[idx].classList.add('active');
