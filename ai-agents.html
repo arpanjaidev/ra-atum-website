@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RA Atum – The Future of Decentralized AI Agents</title>
+  <title>About RA Atum – AI Agents & Rewards</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
@@ -30,7 +30,7 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      padding: 20px 4vw 44px 4vw;
+      padding: 30px 4vw 60px 4vw;
       gap: 48px;
       position: relative;
     }
@@ -44,169 +44,103 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      justify-content: flex-start;
+      gap: 34px; /* space between images */
       position: relative;
-      min-height: 430px;
-      height: 70vh;
-      max-height: 700px;
     }
     .main-right-img {
-      width: 340px;
-      max-width: 38vw;
-      min-width: 160px;
-      border-radius: 34px;
-      background: #161922;
-      box-shadow: var(--glow);
-      border: 3px solid #00b4fa44;
-      position: absolute;
-      right: 0;
-      top: 0;
+      width: 330px;
+      max-width: 40vw;
+      min-width: 180px;
+      border-radius: 32px;
+      background: #181b24;
+      box-shadow: 0 0 32px #00b4fa55, 0 6px 32px #191a2444;
+      border: 3px solid #00b4fa66;
+      margin-right: 0;
+      margin-left: 18px;
       opacity: 0;
-      transform: scale(0.96) translateY(30px);
-      z-index: 1;
-      transition:
-        opacity 0.7s cubic-bezier(.35,1.18,.23,1.01),
-        transform 0.7s cubic-bezier(.44,1.42,.23,1.01);
+      transform: translateX(90px) scale(0.98);
+      transition: all .75s cubic-bezier(.35,1.18,.23,1.01);
+      filter: brightness(1.12) drop-shadow(0 2px 22px #00b4fa33);
       display: block;
-      pointer-events: none;
     }
-    .main-right-img.active {
+    .main-right-img.visible {
       opacity: 1;
-      transform: scale(1) translateY(0);
-      z-index: 9;
-      pointer-events: auto;
-    }
-    /* --- Sections styling (keep your previous CSS) --- */
-    .highlight-block, .features-grid {
-      background: var(--card-bg);
-      border-radius: 19px;
-      box-shadow: var(--glow);
-      border: 2.2px solid #00b4fa66;
-      padding: 34px 27px 24px 27px;
-      margin-bottom: 36px;
-      font-size: 1.15em;
-      color: #fff;
-      font-weight: bold;
-      line-height: 1.6;
-      position: relative;
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      margin-bottom: 35px;
+      transform: translateX(0) scale(1);
     }
     @media (max-width: 1100px) {
-      .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
-      .main-right-img { margin: 0 auto; max-width: 330px; width: 60vw; }
-      .main-image-side { justify-content: center; align-items: center; min-height: 220px; }
+      .main-flex { flex-direction: column-reverse; gap: 16px; padding: 7vw 2vw 36px 2vw; }
+      .main-image-side { flex-direction: row; justify-content: center; gap: 14px; flex-wrap: wrap; align-items: center;}
+      .main-right-img { margin: 0 8px 0 0; width: 38vw; max-width: 340px; min-width: 110px; }
     }
-    @media (max-width: 700px) {
-      .main-flex { padding: 5vw 1vw 36px 1vw; }
-      .main-right-img { max-width: 98vw; width: 98vw; }
-      .highlight-block, .main-content { padding: 17px 4vw 19px 4vw;}
-      .features-grid { grid-template-columns: 1fr; }
+    @media (max-width: 800px) {
+      .main-image-side { flex-direction: row; gap: 10px;}
+      .main-right-img { width: 44vw; min-width: 120px; max-width: 180px; }
     }
-    @media (max-width: 500px) {
-      .main-right-img { width: 90vw; min-width: 60vw; }
-      .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
+    @media (max-width: 600px) {
+      .main-flex { gap: 0; padding: 5vw 0 18vw 0; }
+      .main-image-side { flex-direction: row; gap: 7px; flex-wrap: wrap;}
+      .main-right-img { width: 98vw; max-width: 98vw; min-width: 70vw; margin: 8px auto; }
     }
   </style>
 </head>
 <body>
   <div class="main-flex">
     <div class="main-content">
-      <div class="highlight-block" id="section1">
-        <div class="hero-title">SECURE YOUR<br>EARLY ACCESS</div>
-        <div style="text-align:center;margin-bottom:18px;">
-          Join the live RA Atum presale, power AI agents, and shape the future.
-        </div>
-        <div class="center-btn-row">
-          <button class="buy-btn" onclick="window.location.href='index.html#buy-section'">
-            <i class="fas fa-bolt"></i> BUY TOKENS NOW
-          </button>
+      <div class="highlight-block">
+        <div class="hero-title">What is RA Atum?</div>
+        <div>
+          <b>RA Atum is India’s first donation-powered blockchain platform where your generosity creates real-world impact <span style="color:#00b4fa;">and</span> rewards you with digital assets.</b><br><br>
+          Donate toys, books, or clothes, and you’ll receive RA Atum tokens instantly. Every donation is recorded on-chain, giving you total transparency and ownership over your giving journey.<br><br>
+          RA Atum goes beyond donations – you can also <b>shop for kids’ essentials, earn tokens, and join a global movement of kindness and innovation.</b> The RA Atum token is your gateway to voting, claiming special rewards, accessing NFTs, and helping shape the future of our community.
         </div>
       </div>
-      <div class="highlight-block" id="section2">
-        <div class="section-title">What is RA Atum?</div>
-        <p>
-          RA Atum is your gateway to rewarding giving, using blockchain and AI.<br>
-          <strong>•</strong> Donate toys, clothes, or books, and instantly earn RA Atum tokens.<br>
-          <strong>•</strong> Each donation is tracked securely on-chain for transparency and trust.<br>
-          <strong>•</strong> Your tokens unlock exclusive platform features, rewards, and a say in the community’s future.<br>
-          <strong>•</strong> No coding or technical skills needed—just kindness.
-        </p>
-      </div>
-      <div class="features-grid" id="section3">
-        <div class="feature-card"><i class="fas fa-gift"></i>
-          <div><strong>Build a Brighter World</strong>
-            Every donation creates real impact and earns you token rewards.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-bolt"></i>
-          <div><strong>Instant Rewards</strong>
-            Get RA Atum tokens for every gift—redeemable for utility, perks, and community access.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-users"></i>
-          <div><strong>Community First</strong>
-            Join a movement where you help shape project direction and roadmap.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-shield-alt"></i>
-          <div><strong>Safe & Transparent</strong>
-            All activity is on-chain. Security, privacy, and fairness come standard.
-          </div>
-        </div>
-      </div>
-      <div class="highlight-block" id="section4">
+      <div class="highlight-block">
         <div class="section-title">How it Works</div>
-        <ul style="padding-left:18px;">
-          <li><strong>Donate:</strong> Support children and families with toys, clothes, and books.</li>
-          <li><strong>Earn Tokens:</strong> Instantly receive RA Atum for each donation or purchase.</li>
-          <li><strong>Access Features:</strong> Use tokens for NFTs, rewards, exclusive events, and governance.</li>
-          <li><strong>Track & Vote:</strong> See your impact and help decide project direction.</li>
+        <ul class="how-list">
+          <li><b>Give & Earn:</b> Donate toys, books, or clothes — every donation earns you RA Atum tokens (no crypto or coding needed).</li>
+          <li><b>On-Chain Transparency:</b> All donations and token rewards are tracked with blockchain for total trust.</li>
+          <li><b>Shop, Redeem, & Grow:</b> Use your tokens in our shop, redeem rewards, or hold for exclusive NFT and community benefits.</li>
+          <li><b>Vote & Shape the Future:</b> Use RA Atum to vote on new features, donation drives, and platform upgrades.</li>
+          <li><b>Track & Optimize:</b> View your donation impact and rewards — everything is recorded, secure, and yours forever.</li>
         </ul>
       </div>
+      <div class="center-btn-row">
+        <button class="buy-btn" onclick="window.location.href='index.html#buy-section'">
+          <i class="fas fa-bolt"></i> BUY TOKENS NOW
+        </button>
+      </div>
+      <div class="back-btn-row">
+        <button class="back-btn" onclick="window.location.href='index.html'">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </button>
+      </div>
+      <div class="chatbox-line">
+        <i class="fas fa-comments"></i> In future, a smart chat box powered by ChatGPT will help you with live support, FAQs, and token info — coming soon!
+      </div>
     </div>
-    <div class="main-image-side" style="height:450px;min-height:300px;">
+    <div class="main-image-side">
       <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="main-right-img" id="main-right-img1"/>
-      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="main-right-img" id="main-right-img2"/>
-      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="main-right-img" id="main-right-img3"/>
-      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" class="main-right-img" id="main-right-img4"/>
+      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Kids & Family" class="main-right-img" id="main-right-img2"/>
+      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Rewards" class="main-right-img" id="main-right-img3"/>
+      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="NFT" class="main-right-img" id="main-right-img4"/>
     </div>
   </div>
   <script>
-    // Map each image to its section by ID
-    const sectionIds = ['section1', 'section2', 'section3', 'section4'];
-    const imageIds = ['main-right-img1', 'main-right-img2', 'main-right-img3', 'main-right-img4'];
-
-    function setActiveImage() {
-      // Find which section is most visible in the viewport
-      let activeIdx = 0;
-      let minDiff = Infinity;
-      const windowCenter = window.scrollY + window.innerHeight/2;
-      sectionIds.forEach((id, idx) => {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          const elCenter = rect.top + window.scrollY + rect.height/2;
-          const diff = Math.abs(elCenter - windowCenter);
-          if (diff < minDiff) {
-            minDiff = diff;
-            activeIdx = idx;
-          }
+    // Animate all images in as you scroll
+    function showImageOnScroll() {
+      for (let i = 1; i <= 4; i++) {
+        const img = document.getElementById('main-right-img' + i);
+        if (!img) continue;
+        const rect = img.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 90 && rect.bottom > 50) {
+          img.classList.add('visible');
+        } else {
+          img.classList.remove('visible');
         }
-      });
-      // Hide all, show only the active one
-      imageIds.forEach((imgId, idx) => {
-        const img = document.getElementById(imgId);
-        if (img) img.classList.toggle('active', idx === activeIdx);
-      });
+      }
     }
-    window.addEventListener('scroll', setActiveImage, { passive: true });
-    window.addEventListener('resize', setActiveImage, { passive: true });
-    window.addEventListener('DOMContentLoaded', setActiveImage);
+    window.addEventListener('scroll', showImageOnScroll, { passive: true });
+    window.addEventListener('DOMContentLoaded', showImageOnScroll);
   </script>
 </body>
 </html>
