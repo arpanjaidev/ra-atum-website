@@ -11,25 +11,95 @@
       background: #0e1018;
       color: #fff;
       font-family: 'Share Tech Mono', monospace;
-      text-align: center;
-      padding: 80px 10px 40px 10px;
       margin: 0;
       min-height: 100vh;
+      padding: 0;
+    }
+    .wallet-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+      padding: 36px 7vw 14px 7vw;
+      margin-bottom: 16px;
+      background: none;
+      position: relative;
+      min-height: 120px;
+    }
+    .ra-logo {
+      height: 98px;
+      width: 98px;
+      max-width: 20vw;
+      object-fit: contain;
+      border-radius: 22px;
+      box-shadow: 0 4px 36px #00b4fa70, 0 0 0 5px #191a2466;
+      background: #191b2a;
+      margin-top: 0;
+      border: 3px solid #00b4fa44;
+      display: block;
+      margin-right: 26px;
+    }
+    .wallet-headline {
+      flex: 1;
+      min-width: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 16px;
+      font-size: 1.23em;
+    }
+    #wallet-typing-shine {
+      font-size: 1.36em;
+      display: inline-block;
+      min-height: 1.7em;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88, 0 0 18px #00b4fa99;
+      filter: brightness(1.15) drop-shadow(0 0 3px #00e6ff99);
+      letter-spacing: 1.2px;
+      text-align: left;
+    }
+    .wallet-typing-cursor {
+      color: #00b4fa;
+      font-weight: bold;
+      font-size: 1.3em;
+      letter-spacing: 0;
+    }
+    @media (max-width: 600px) {
+      .wallet-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 18px 0 0 0;
+        min-height: 0;
+      }
+      .wallet-headline {
+        padding-top: 0;
+        font-size: 1em;
+        justify-content: center;
+      }
+      .ra-logo { margin: 0 auto 12px auto; }
     }
     .wallet-container {
       background: #181a1b;
-      border-radius: 16px;
-      box-shadow: 0 6px 32px #00b4fa33;
-      max-width: 390px;
-      margin: 60px auto 0 auto;
-      padding: 38px 32px 30px 32px;
+      border-radius: 22px;
+      box-shadow: 0 8px 32px #00b4fa33;
+      max-width: 410px;
+      margin: 24px auto 0 auto;
+      padding: 38px 32px 32px 32px;
       border: 2.5px solid #00b4fa;
       position: relative;
+      z-index: 2;
+      font-family: 'Share Tech Mono', monospace;
     }
     .wallet-title {
       font-size: 2rem;
       color: #00b4fa;
-      margin-bottom: 30px;
+      margin-bottom: 34px;
       letter-spacing: 1.7px;
       font-weight: bold;
       background: linear-gradient(90deg, #fff 8%, #00b4fa 55%, #23e6ff 98%);
@@ -43,43 +113,81 @@
       display: flex;
       justify-content: space-between;
       margin: 20px 0;
-      font-size: 1.23rem;
+      font-size: 1.22rem;
       font-weight: bold;
       color: #e7d7b6;
       border-bottom: 1px solid #202f38;
       padding-bottom: 8px;
     }
-    .wallet-info-row:last-child {
-      border-bottom: none;
-    }
+    .wallet-info-row:last-child { border-bottom: none; }
     .wallet-address {
-      margin: 18px 0 32px 0;
-      font-size: 1.01rem;
+      margin: 18px 0 30px 0;
+      font-size: 1.04rem;
       color: #00b4fa;
       word-break: break-all;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.6px;
       min-height: 20px;
+      font-family: 'Share Tech Mono', monospace;
+      background: #23243b;
+      border-radius: 7px;
+      padding: 7px 10px;
+      font-weight: bold;
+      display: inline-block;
+      box-shadow: 0 2px 16px #00b4fa33;
+      border: 1.5px solid #00b4fa44;
     }
     .wallet-connect-btn {
       margin-top: 18px;
       background: linear-gradient(90deg, #00b4fa 0%, #00ffd0 100%);
       color: #181a1b;
       border: none;
-      border-radius: 11px;
-      padding: 12px 36px;
-      font-size: 1rem;
+      border-radius: 12px;
+      padding: 14px 38px;
+      font-size: 1.07rem;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 2px 18px #00b4fa33;
-      transition: background .17s, color .17s;
+      transition: background .17s, color .17s, transform .14s;
+      letter-spacing: 1px;
+      font-family: 'Share Tech Mono', monospace;
+      opacity: 0.96;
     }
     .wallet-connect-btn:hover { background: #e7d7b6; color: #002a37; }
-    .wallet-msg { margin: 14px 0 0 0; min-height: 20px; font-size: 1rem;}
-    a.back-link { color:#00b4fa; margin-top: 16px; display:inline-block;}
+    .wallet-msg { margin: 16px 0 0 0; min-height: 22px; font-size: 1rem;}
+    .wallet-buy-btn {
+      margin-top: 30px;
+      margin-bottom: 7px;
+      background: linear-gradient(92deg, #00b4fa 10%, #00ffd0 75%, #23e6ff 100%);
+      color: #181a1b;
+      border: none;
+      border-radius: 14px;
+      padding: 17px 0;
+      width: 100%;
+      font-size: 1.17rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 6px 32px #00b4fa44, 0 1.5px 16px #00ffd044;
+      transition: background .18s, color .13s, transform .13s;
+      letter-spacing: 1.2px;
+      font-family: 'Share Tech Mono', monospace;
+      opacity: 1;
+      text-shadow: 0 2px 15px #00b4fa22;
+      outline: none;
+      display: block;
+    }
+    .wallet-buy-btn:hover { background: #00ffd0; color: #222; transform: scale(1.022);}
+    a.back-link { color:#00b4fa; margin-top: 18px; display:inline-block; font-size:1.03em;}
     a.back-link:hover { text-decoration: underline;}
   </style>
 </head>
 <body>
+  <div class="wallet-header">
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo" />
+    <div class="wallet-headline">
+      <span id="wallet-typing-shine"></span>
+    </div>
+  </div>
+
   <div class="wallet-container">
     <div class="wallet-title"><i class="fas fa-wallet"></i> Wallet Overview</div>
     <div id="wallet-address" class="wallet-address">Not connected</div>
@@ -92,54 +200,86 @@
       <span id="referral-earnings">–</span>
     </div>
     <button class="wallet-connect-btn" id="connect-wallet-btn"><i class="fa-solid fa-link"></i> Connect Wallet</button>
+    <button class="wallet-buy-btn" onclick="window.location.href='index.html#buy-section'"><i class="fas fa-bolt"></i> Buy RA Atum</button>
     <div class="wallet-msg" id="wallet-msg"></div>
     <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-<script>
-  // --- Replace with your deployed token address: ---
-  const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
-  const erc20ABI = [
-    "function balanceOf(address owner) view returns (uint256)",
-    "function decimals() view returns (uint8)"
-  ];
+  
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script>
+    // Typing effect headline
+    const walletTypingText = "Join RA Atum to shape the future of blockchain-powered kindness.";
+    const walletTypingElem = document.getElementById("wallet-typing-shine");
+    let wIndex = 0;
+    let wTypingForward = true;
+    let wBlinkOn = true;
 
-  document.getElementById('connect-wallet-btn').onclick = async function() {
-    const walletMsg = document.getElementById('wallet-msg');
-    walletMsg.innerText = "Connecting...";
-    if (window.ethereum && /MetaMask/i.test(window.ethereum.isMetaMask ? 'MetaMask' : navigator.userAgent)) {
-      try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-        const address = await signer.getAddress();
-        document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
-        walletMsg.innerText = "✅ Wallet connected!";
-
-        // --- NEW: Fetch and display actual token balance ---
-        const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
-        const [rawBalance, decimals] = await Promise.all([
-          tokenContract.balanceOf(address),
-          tokenContract.decimals()
-        ]);
-        const balance = ethers.utils.formatUnits(rawBalance, decimals);
-        document.getElementById('token-balance').innerText = balance;
-
-        // Dummy value for referral earnings (customize as needed)
-        document.getElementById('referral-earnings').innerText = "0.00";
-      } catch (err) {
-        walletMsg.innerText = "❌ Wallet connection failed.";
-        document.getElementById('wallet-address').innerText = "Not connected";
-        document.getElementById('token-balance').innerText = "–";
-        document.getElementById('referral-earnings').innerText = "–";
+    function typeWalletLine() {
+      if (!walletTypingElem) return;
+      if (wTypingForward) {
+        if (wIndex <= walletTypingText.length) {
+          walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span class="wallet-typing-cursor">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
+          wIndex++;
+          setTimeout(typeWalletLine, 37);
+        } else {
+          wTypingForward = false;
+          setTimeout(typeWalletLine, 1300);
+        }
+      } else {
+        if (wIndex >= 0) {
+          walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span class="wallet-typing-cursor">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
+          wIndex--;
+          setTimeout(typeWalletLine, 17);
+        } else {
+          wTypingForward = true;
+          setTimeout(typeWalletLine, 850);
+        }
       }
-    } else {
-      walletMsg.innerText = "";
-      // Use base path (not wallet.html) for MetaMask mobile app
-      window.location.href = "https://metamask.app.link/dapp/ra-wallet-dapp.vercel.app";
     }
-  };
-</script>
+    setInterval(function() { wBlinkOn = !wBlinkOn; }, 410);
+    typeWalletLine();
 
+    // Wallet connect logic
+    const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
+    const erc20ABI = [
+      "function balanceOf(address owner) view returns (uint256)",
+      "function decimals() view returns (uint8)"
+    ];
+
+    document.getElementById('connect-wallet-btn').onclick = async function() {
+      const walletMsg = document.getElementById('wallet-msg');
+      walletMsg.innerText = "Connecting...";
+      if (window.ethereum && /MetaMask/i.test(window.ethereum.isMetaMask ? 'MetaMask' : navigator.userAgent)) {
+        try {
+          const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+          await provider.send("eth_requestAccounts", []);
+          const signer = provider.getSigner();
+          const address = await signer.getAddress();
+          document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
+          walletMsg.innerText = "✅ Wallet connected!";
+
+          // Fetch and display actual token balance
+          const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
+          const [rawBalance, decimals] = await Promise.all([
+            tokenContract.balanceOf(address),
+            tokenContract.decimals()
+          ]);
+          const balance = ethers.utils.formatUnits(rawBalance, decimals);
+          document.getElementById('token-balance').innerText = balance;
+
+          // Dummy value for referral earnings (customize as needed)
+          document.getElementById('referral-earnings').innerText = "0.00";
+        } catch (err) {
+          walletMsg.innerText = "❌ Wallet connection failed.";
+          document.getElementById('wallet-address').innerText = "Not connected";
+          document.getElementById('token-balance').innerText = "–";
+          document.getElementById('referral-earnings').innerText = "–";
+        }
+      } else {
+        walletMsg.innerText = "";
+        window.location.href = "https://metamask.app.link/dapp/ra-wallet-dapp.vercel.app";
+      }
+    };
+  </script>
 </body>
 </html>
