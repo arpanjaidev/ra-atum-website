@@ -745,6 +745,14 @@
   filter: brightness(1.15) drop-shadow(0 0 3px #00e6ff99);
   letter-spacing: 1.2px;
 }
+    .footer-typing-cursor {
+  color: #00b4fa;
+  font-weight: bold;
+  font-size: 1.25em;
+  letter-spacing: 0;
+  /* blinking handled by JS, so no animation here */
+}
+
 
 .footer-links a {
   color: #fff !important;
@@ -1142,9 +1150,10 @@ if (isMobile() && !window.ethereum) {
 
 <!-- === RA ATUM MEGA FOOTER START === -->
 <footer>
-  <div style="text-align:center;">
-    <span id="footer-typing-shine" class="footer-title-shine" style="font-size:1.28em;display:inline-block;min-height:1.8em;"></span>
-  </div>
+ <div style="text-align:center;">
+  <span id="footer-typing-shine" class="footer-title-shine" style="font-size:1.28em;display:inline-block;min-height:1.8em;"></span>
+</div>
+
   <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:26px 10px;padding:38px 10px 16px 10px;text-align:left;">
     <div class="footer-links">
       <h4 class="footer-title-shine">ABOUT</h4>
@@ -1197,16 +1206,39 @@ if (isMobile() && !window.ethereum) {
 const footerTypingText = "Join RA Atum to shape the future of blockchain-powered kindness.";
 const footerTypingElem = document.getElementById("footer-typing-shine");
 let ftIndex = 0;
+let typingForward = true;
+let blinkOn = true;
 
 function typeFooterLine() {
-  if (ftIndex <= footerTypingText.length) {
-    footerTypingElem.textContent = footerTypingText.substring(0, ftIndex);
-    ftIndex++;
-    setTimeout(typeFooterLine, 37);
+  if (!footerTypingElem) return;
+  if (typingForward) {
+    if (ftIndex <= footerTypingText.length) {
+      footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
+      ftIndex++;
+      setTimeout(typeFooterLine, 37);
+    } else {
+      typingForward = false;
+      setTimeout(typeFooterLine, 1300); // pause before erase
+    }
+  } else {
+    if (ftIndex >= 0) {
+      footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
+      ftIndex--;
+      setTimeout(typeFooterLine, 17); // erasing is faster
+    } else {
+      typingForward = true;
+      setTimeout(typeFooterLine, 850); // pause before typing again
+    }
   }
 }
-if(footerTypingElem){ typeFooterLine(); }
+// Blinking cursor interval
+setInterval(function() {
+  blinkOn = !blinkOn;
+}, 410);
+
+typeFooterLine();
 </script>
+
 
 
 
