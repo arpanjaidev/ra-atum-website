@@ -24,6 +24,33 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    .back-link {
+      display: inline-block;
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      color: var(--blue);
+      font-size: 1.12em;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      text-decoration: none;
+      background: #172432b3;
+      padding: 10px 24px 10px 16px;
+      border-radius: 16px;
+      box-shadow: 0 2px 15px #00b4fa33;
+      transition: background .16s, color .13s;
+      z-index: 15;
+      letter-spacing: 1.1px;
+    }
+    .back-link i {
+      margin-right: 7px;
+      font-size: 1.09em;
+    }
+    .back-link:hover {
+      background: #e7d7b6;
+      color: #003a5c;
+      text-decoration: underline;
+    }
     .why-main {
       max-width: 1150px;
       margin: 0 auto;
@@ -32,6 +59,7 @@
       justify-content: space-between;
       padding: 50px 6vw 24px 6vw;
       gap: 48px;
+      position: relative;
     }
     .why-content {
       flex: 2;
@@ -158,16 +186,19 @@
       .why-main { flex-direction: column-reverse; gap: 18px; padding-top: 30px; }
       .why-logo-side { justify-content: center; }
       .ra-logo-right { margin-left: 0; }
+      .back-link { left: 10px; top: 10px; padding: 8px 18px 8px 12px; font-size: 1em;}
     }
     @media (max-width: 600px) {
       .why-main { padding: 12vw 3vw 4vw 3vw; }
       .why-headline { font-size: 1.3em; }
       .why-blocks { flex-direction: column; gap: 18px; }
       .ra-logo-right { width: 110px; border-radius: 18px;}
+      .back-link { font-size: 0.97em; padding: 8px 14px 8px 10px;}
     }
   </style>
 </head>
 <body>
+  <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
   <div class="why-main">
     <div class="why-content">
       <div class="why-headline">Why Choose RA Atum?</div>
