@@ -51,6 +51,33 @@
       color: #003a5c;
       text-decoration: underline;
     }
+    .back-link-bottom {
+      display: inline-block;
+      position: relative;
+      left: 0;
+      margin: 38px auto 18px auto;
+      color: var(--blue);
+      font-size: 1.09em;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      text-decoration: none;
+      background: #172432b3;
+      padding: 10px 24px 10px 16px;
+      border-radius: 16px;
+      box-shadow: 0 2px 15px #00b4fa33;
+      transition: background .16s, color .13s;
+      z-index: 15;
+      letter-spacing: 1.1px;
+    }
+    .back-link-bottom i {
+      margin-right: 7px;
+      font-size: 1.09em;
+    }
+    .back-link-bottom:hover {
+      background: #e7d7b6;
+      color: #003a5c;
+      text-decoration: underline;
+    }
     .why-main {
       max-width: 1150px;
       margin: 0 auto;
@@ -194,6 +221,10 @@
       .why-blocks { flex-direction: column; gap: 18px; }
       .ra-logo-right { width: 110px; border-radius: 18px;}
       .back-link { font-size: 0.97em; padding: 8px 14px 8px 10px;}
+      .back-link-bottom { font-size: 0.97em; padding: 8px 14px 8px 10px;}
+    }
+    .footer-spacer {
+      height: 40px;
     }
   </style>
 </head>
@@ -240,6 +271,10 @@
     <div class="why-logo-side">
       <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-right" />
     </div>
+  </div>
+  <div class="footer-spacer"></div>
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
 </body>
 </html>
