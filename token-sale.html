@@ -107,23 +107,43 @@
       transform: scale(1.04) rotate(2deg);
       box-shadow: 0 18px 68px #00b4faaa, 0 0 0 18px #191a24bb;
     }
+    /* --------- NEW: Image to the right of "No Preferential Allocations" --------- */
+    .token-supply-row-img {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      margin: 16px 0 0 0;
+      gap: 25px;
+      position: relative;
+    }
+    .token-label.no-alloc {
+      margin-bottom: 0;
+      min-width: 200px;
+      font-size: 1.02em;
+      text-align: left;
+      display: inline-block;
+    }
     .scroll-image {
-      width: 150px;
-      max-width: 32vw;
-      border-radius: 20px;
+      width: 220px;
+      max-width: 44vw;
+      border-radius: 36px;
       box-shadow: 0 12px 32px #00b4fa44, 0 2px 14px #00315599;
-      margin-top: 230px;
       opacity: 0;
-      transform: translateX(70px);
-      transition: opacity 0.9s, transform 0.9s;
-      position: absolute;
-      right: 0; 
+      transform: translateX(90px);
+      transition: opacity 0.95s, transform 0.95s;
       z-index: 1;
+      margin-left: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      background: #10151b;
     }
     .scroll-image.visible {
       opacity: 1;
       transform: translateX(0);
     }
+    /* --------- END NEW --------- */
     .token-headline {
       font-size: 2.3rem;
       font-weight: bold;
@@ -318,7 +338,8 @@
       .token-main { flex-direction: column-reverse; gap: 18px; padding-top: 30px; align-items:center;}
       .token-logo-side { justify-content: center; width:100%; min-width:unset; }
       .ra-logo-right { position:static; margin:0 auto 14px auto; display:block; }
-      .scroll-image { position:static; margin:14px auto 0 auto; display:block; }
+      .token-supply-row-img { justify-content: center; }
+      .scroll-image { margin:14px auto 0 auto; display:block; }
     }
     @media (max-width:600px) {
       .token-main { padding: 12vw 3vw 4vw 3vw; }
@@ -349,7 +370,10 @@
         <div class="token-feature-row"><i class="fas fa-fire"></i>Fair Launch & Burn Features</div>
         <div class="token-feature-row"><i class="fas fa-balance-scale"></i>Equal-Access Presale</div>
         <hr class="token-line" />
-        <div class="token-label">No Preferential Allocations</div>
+        <div class="token-supply-row-img">
+          <span class="token-label no-alloc">No Preferential Allocations</span>
+          <img src="https://i.pinimg.com/736x/7a/51/af/7a51af7c80dbe5e52f61503559af1030.jpg" alt="Presale Highlight" class="scroll-image" id="scroll-img" />
+        </div>
       </div>
       <!-- Centered Price Section -->
       <div class="token-price-section">
@@ -380,7 +404,6 @@
     </div>
     <div class="token-logo-side">
       <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-right" id="logo-img" />
-      <img src="https://i.pinimg.com/736x/7a/51/af/7a51af7c80dbe5e52f61503559af1030.jpg" alt="Presale Highlight" class="scroll-image" id="scroll-img" />
     </div>
   </div>
   <div class="footer-spacer"></div>
@@ -388,25 +411,22 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Animate scroll-image in/out when scrolling
-    let lastScroll = window.scrollY;
-    window.addEventListener('scroll', function() {
-      const img = document.getElementById('scroll-img');
-      if (!img) return;
-      let currentScroll = window.scrollY;
-      // Show image if scrolling down, hide if up (basic demo logic)
-      if (currentScroll > lastScroll) {
-        img.classList.add('visible');
+    // Animate scroll-image in/out when the section is visible
+    function checkImageInView() {
+      const el = document.getElementById('scroll-img');
+      if (!el) return;
+      const row = el.closest('.token-supply-row-img');
+      if (!row) return;
+      const rect = row.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.82 && rect.bottom > 50) {
+        el.classList.add('visible');
       } else {
-        img.classList.remove('visible');
+        el.classList.remove('visible');
       }
-      lastScroll = currentScroll;
-    }, {passive:true});
-    // Show on first scroll-down
-    setTimeout(() => {
-      const img = document.getElementById('scroll-img');
-      if (img) img.classList.remove('visible');
-    }, 400);
+    }
+    window.addEventListener('scroll', checkImageInView, { passive: true });
+    window.addEventListener('resize', checkImageInView);
+    window.addEventListener('DOMContentLoaded', checkImageInView);
   </script>
 </body>
 </html>
