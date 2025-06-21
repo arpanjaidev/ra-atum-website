@@ -7,14 +7,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --blue: #00b4fa;
+      --sand: #e7d7b6;
+      --bg-dark: #10151b;
+      --card-bg: #192332e6;
+      --glow: 0 0 24px #00b4fa55, 0 2px 32px #00b4fa33;
+      --shine-grad: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
+    }
     body {
-      background: #0e1018;
-      color: #fff;
+      margin: 0;
+      padding: 0;
       font-family: 'Share Tech Mono', monospace;
-      margin: 0; padding: 0; min-height: 100vh;
-      background-image: url('https://e1.pxfuel.com/desktop-wallpaper/767/930/desktop-wallpaper-printed-circuit-board-video-motherboard-blue-and-purple-digital-circuit-board-background.jpg');
+      background: var(--bg-dark) url('https://e1.pxfuel.com/desktop-wallpaper/767/930/desktop-wallpaper-printed-circuit-board-video-motherboard-blue-and-purple-digital-circuit-board-background.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-attachment: fixed;
+      color: var(--sand);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
     body::before {
       content: "";
@@ -25,50 +35,99 @@
       opacity: 0.85;
       mix-blend-mode: multiply;
     }
-    .sale-main {
-      max-width: 570px;
-      margin: 48px auto;
-      background: linear-gradient(120deg, #111a33 0%, #1b344a 98%);
-      border: 2.5px solid #00b4fa;
-      box-shadow: 0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
-      border-radius: 18px;
-      padding: 40px 28px 32px 28px;
+    .back-link-bottom {
+      display: inline-block;
       position: relative;
-      z-index: 2;
-    }
-    .sale-title {
-      text-align: center;
-      color: #00b4fa;
-      margin-bottom: 28px;
-      font-size: 2.1rem;
-      letter-spacing: 2px;
+      left: 0;
+      margin: 38px auto 18px auto;
+      color: var(--blue);
+      font-size: 1.09em;
       font-family: 'Share Tech Mono', monospace;
       font-weight: bold;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, #fff 8%, #00b4fa 55%, #23e6ff 98%);
+      text-decoration: none;
+      background: #172432b3;
+      padding: 10px 24px 10px 16px;
+      border-radius: 16px;
+      box-shadow: 0 2px 15px #00b4fa33;
+      transition: background .16s, color .13s;
+      z-index: 15;
+      letter-spacing: 1.1px;
+    }
+    .back-link-bottom i {
+      margin-right: 7px;
+      font-size: 1.09em;
+    }
+    .back-link-bottom:hover {
+      background: #e7d7b6;
+      color: #003a5c;
+      text-decoration: underline;
+    }
+    .token-main {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px 6vw 24px 6vw;
+      gap: 48px;
+      position: relative;
+    }
+    .token-content {
+      flex: 2;
+      min-width: 320px;
+    }
+    .token-logo-side {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .ra-logo-right {
+      width: 220px;
+      max-width: 44vw;
+      height: auto;
+      border-radius: 36px;
+      background: #161922;
+      box-shadow: var(--glow);
+      border: 3px solid #00b4fa44;
+      margin-right: 0;
+      margin-left: 28px;
+      margin-top: 12px;
+      transition: transform .19s;
+    }
+    .ra-logo-right:hover {
+      transform: scale(1.04) rotate(2deg);
+      box-shadow: 0 18px 68px #00b4faaa, 0 0 0 18px #191a24bb;
+    }
+    .token-headline {
+      font-size: 2.3rem;
+      font-weight: bold;
+      letter-spacing: 1.2px;
+      margin-bottom: 18px;
+      background: var(--shine-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 2px 18px #22213855, 0 0 8px #00315580, 0 0 18px #00b4fa99;
+      text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88;
       filter: brightness(1.19);
-      min-height: 1.5em;
+      text-transform: uppercase;
     }
-    .sale-desc {
-      text-align: center;
-      font-size: 1.15em;
+    .token-desc {
+      font-size: 1.15rem;
       color: #e7d7b6;
-      margin-bottom: 22px;
-      letter-spacing: .2px;
+      margin-bottom: 32px;
+      line-height: 1.5;
       font-weight: bold;
+      text-shadow: 0 2px 13px #00b4fa33;
     }
-    .sale-supply {
-      margin: 30px 0 22px 0;
+    .token-supply {
+      margin: 24px 0 22px 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 9px;
+      align-items: flex-start;
+      gap: 11px;
     }
-    .sale-supply-big {
+    .token-supply-big {
       font-size: 2.2em;
       font-weight: bold;
       color: #00b4fa;
@@ -80,7 +139,7 @@
       filter: brightness(1.17);
       margin-bottom: 2px;
     }
-    .sale-label {
+    .token-label {
       font-size: 1em;
       color: #e7d7b6;
       font-weight: bold;
@@ -88,30 +147,30 @@
       letter-spacing: 1.1px;
       margin-bottom: 4px;
     }
-    .sale-line {
+    .token-line {
       border: none;
       border-top: 2.2px dashed #00b4fa77;
       margin: 22px auto 22px auto;
-      width: 80%;
+      width: 88%;
       opacity: 0.8;
     }
-    .sale-feature-row {
+    .token-feature-row {
       display: flex;
       align-items: center;
-      gap: 18px;
-      margin: 11px 0;
+      gap: 15px;
+      margin: 7px 0;
       color: #00b4fa;
       font-weight: bold;
-      font-size: 1.15em;
+      font-size: 1.09em;
       letter-spacing: .8px;
     }
-    .sale-feature-row i {
+    .token-feature-row i {
       color: #23e6ff;
       font-size: 1.12em;
       margin-right: 7px;
     }
-    .sale-price-table {
-      margin: 28px 0;
+    .token-price-table {
+      margin: 26px 0 22px 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px 14px;
@@ -124,17 +183,17 @@
       box-shadow: 0 2px 18px #00b4fa22;
       padding: 14px 8px 13px 8px;
     }
-    .sale-price-label {
+    .token-price-label {
       color: #00b4fa;
       text-align: right;
     }
-    .sale-price-val {
+    .token-price-val {
       color: #e7d7b6;
       text-align: left;
     }
-    .sale-how {
-      margin-top: 24px;
-      padding: 19px 15px;
+    .token-how {
+      margin-top: 16px;
+      padding: 15px 13px;
       border-radius: 12px;
       background: #181a1b;
       border: 1.7px solid #00b4fa;
@@ -144,13 +203,13 @@
       text-align: left;
       font-weight: bold;
     }
-    .sale-how-title {
+    .token-how-title {
       color: #00b4fa;
       text-transform: uppercase;
       font-size: 1.07em;
       letter-spacing: .7px;
       margin-bottom: 8px;
-      background: linear-gradient(90deg, #fff 8%, #00b4fa 55%, #23e6ff 98%);
+      background: var(--shine-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -158,12 +217,12 @@
       filter: brightness(1.10);
       font-weight: bold;
     }
-    .sale-how-list {
+    .token-how-list {
       margin: 0 0 0 6px;
       padding-left: 18px;
       color: #23e6ff;
     }
-    .sale-contract-link {
+    .token-contract-link {
       color: #00b4fa;
       font-weight: bold;
       text-decoration: underline;
@@ -172,61 +231,76 @@
       font-size: 1.09em;
       letter-spacing: .6px;
     }
-    .back-link {
-      color:#00b4fa; margin-top: 28px; display:inline-block; font-size:1.09em; font-weight:bold;
+    @media (max-width:950px) {
+      .token-main { flex-direction: column-reverse; gap: 18px; padding-top: 30px; }
+      .token-logo-side { justify-content: center; }
+      .ra-logo-right { margin-left: 0; }
     }
-    .back-link:hover { text-decoration: underline; }
     @media (max-width:600px) {
-      .sale-main { padding: 24px 5vw 24px 5vw;}
-      .sale-title { font-size: 1.3rem;}
-      .sale-supply-big { font-size: 1.5em; }
-      .sale-price-table { font-size: 0.98em; }
-      .sale-how { font-size: 0.99em;}
+      .token-main { padding: 12vw 3vw 4vw 3vw; }
+      .token-headline { font-size: 1.3em; }
+      .token-price-table { font-size: 0.98em; }
+      .ra-logo-right { width: 110px; border-radius: 18px;}
+      .back-link-bottom { font-size: 0.97em; padding: 8px 14px 8px 10px;}
+    }
+    .footer-spacer {
+      height: 40px;
     }
   </style>
 </head>
 <body>
-  <div class="sale-main">
-    <div class="sale-title"><i class="fa-solid fa-coins"></i> Token Sale</div>
-    <div class="sale-desc">
-      The <b>$RA ATUM</b> Token powers the RA Atum ecosystem — unlocking rewards, access, and blockchain-powered transparency.<br><br>
-      Join a fair, smart-contract-powered presale with no preferential allocations and transparent value. Early supporters benefit from high utility and strong community upside.
+  <div class="token-main">
+    <div class="token-content">
+      <div class="token-headline"><i class="fa-solid fa-coins"></i> Token Sale</div>
+      <div class="token-desc">
+        The <b>$RA ATUM</b> Token powers the RA Atum ecosystem — unlocking rewards, access, and blockchain-powered transparency.<br><br>
+        Join a fair, smart-contract-powered presale with no preferential allocations and transparent value. Early supporters benefit from high utility and strong community upside.
+      </div>
+      <div class="token-supply">
+        <span class="token-label">Total Supply</span>
+        <span class="token-supply-big">21,000,000</span>
+        <span class="token-label">$RA ATUM Tokens</span>
+        <hr class="token-line" />
+        <div class="token-label">Ensuring Scarcity & Value Stability</div>
+        <div class="token-feature-row"><i class="fas fa-lock"></i>Smart-Contract Secured</div>
+        <div class="token-feature-row"><i class="fas fa-fire"></i>Fair Launch & Burn Features</div>
+        <div class="token-feature-row"><i class="fas fa-balance-scale"></i>Equal-Access Presale</div>
+        <hr class="token-line" />
+        <div class="token-label">No Preferential Allocations</div>
+      </div>
+      <div class="token-price-table">
+        <span class="token-price-label">Presale Price</span>
+        <span class="token-price-val">₹0.55 | $0.01 | BNB 0.00001 per RA</span>
+        <span class="token-price-label">Launch Price</span>
+        <span class="token-price-val">₹15 | $0.17 | BNB 0.0003 per RA</span>
+        <span class="token-price-label">Uplift</span>
+        <span class="token-price-val">27× at launch</span>
+      </div>
+      <div class="token-label">How To Participate?</div>
+      <div class="token-how">
+        <div class="token-how-title"><i class="fa-solid fa-list-check"></i> Steps:</div>
+        <ul class="token-how-list">
+          <li>Connect your wallet</li>
+          <li>Fund with BNB</li>
+          <li>Mint RA Atum tokens in the presale portal</li>
+        </ul>
+      </div>
+      <a href="https://bscscan.com/address/0xEbd8c8E89c64618E699eDb6f339331425d95EE3f" target="_blank" class="token-contract-link">
+        <i class="fas fa-file-contract"></i> View Presale on BscScan
+      </a>
+      <div class="why-btn-row" style="margin-top:30px;">
+        <button class="buy-btn" onclick="window.location.href='index.html#buy-section'">
+          <i class="fas fa-bolt"></i> BUY TOKENS NOW
+        </button>
+      </div>
     </div>
-    <div class="sale-supply">
-      <span class="sale-label">Total Supply</span>
-      <span class="sale-supply-big">21,000,000</span>
-      <span class="sale-label">$RA ATUM Tokens</span>
-      <hr class="sale-line" />
-      <div class="sale-label">Ensuring Scarcity & Value Stability</div>
-      <div class="sale-feature-row"><i class="fas fa-lock"></i>Smart-Contract Secured</div>
-      <div class="sale-feature-row"><i class="fas fa-fire"></i>Fair Launch & Burn Features</div>
-      <div class="sale-feature-row"><i class="fas fa-balance-scale"></i>Equal-Access Presale</div>
-      <hr class="sale-line" />
-      <div class="sale-label">No Preferential Allocations</div>
+    <div class="token-logo-side">
+      <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-right" />
     </div>
-    <div class="sale-price-table">
-      <span class="sale-price-label">Presale Price</span>
-      <span class="sale-price-val">₹0.55 | $0.01 | BNB 0.00001 per RA</span>
-      <span class="sale-price-label">Launch Price</span>
-      <span class="sale-price-val">₹15 | $0.17 | BNB 0.0003 per RA</span>
-      <span class="sale-price-label">Uplift</span>
-      <span class="sale-price-val">27× at launch</span>
-    </div>
-    <div class="sale-label">How To Participate?</div>
-    <div class="sale-how">
-      <div class="sale-how-title"><i class="fa-solid fa-list-check"></i> Steps:</div>
-      <ul class="sale-how-list">
-        <li>Connect your wallet</li>
-        <li>Fund with BNB</li>
-        <li>Mint RA Atum tokens in the presale portal</li>
-      </ul>
-    </div>
-    <a href="https://bscscan.com/address/0xEbd8c8E89c64618E699eDb6f339331425d95EE3f" target="_blank" class="sale-contract-link">
-      <i class="fas fa-file-contract"></i> View Presale on BscScan
-    </a>
-    <br>
-    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
+  <div class="footer-spacer"></div>
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
 </body>
 </html>
-
