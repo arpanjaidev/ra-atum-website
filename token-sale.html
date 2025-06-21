@@ -143,7 +143,6 @@
       opacity: 1;
       transform: translateX(0);
     }
-    /* --------- END NEW --------- */
     .token-headline {
       font-size: 2.3rem;
       font-weight: bold;
@@ -342,11 +341,13 @@
       .scroll-image { margin:14px auto 0 auto; display:block; }
     }
     @media (max-width:600px) {
-      .token-main { padding: 12vw 3vw 4vw 3vw; }
-      .token-headline { font-size: 1.3em; }
-      .token-price-section { font-size: 0.98em; }
-      .ra-logo-right { width: 110px; border-radius: 18px;}
-      .scroll-image { width: 78vw; max-width: 95vw; }
+      .token-main { padding: 10vw 3vw 4vw 3vw; }
+      .token-content { padding-top: 0; }
+      .token-headline { font-size: 1.07em; }
+      .token-price-section { font-size: 0.95em; padding: 12px 5px 12px 5px; }
+      .ra-logo-right { width: 88vw; min-width:80vw; border-radius: 16px; }
+      .scroll-image { width: 88vw; max-width: 95vw; border-radius: 16px;}
+      .token-supply-row-img { flex-direction: column; gap:10px; align-items:center;}
       .back-link-bottom { font-size: 0.97em; padding: 8px 14px 8px 10px;}
     }
     .footer-spacer { height: 40px; }
@@ -411,13 +412,12 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Animate scroll-image in/out when the section is visible
+    // Scroll in/out effect for side image
     function checkImageInView() {
-      const el = document.getElementById('scroll-img');
-      if (!el) return;
-      const row = el.closest('.token-supply-row-img');
-      if (!row) return;
-      const rect = row.getBoundingClientRect();
+      var el = document.getElementById('scroll-img');
+      var row = document.querySelector('.token-supply-row-img');
+      if (!el || !row) return;
+      var rect = row.getBoundingClientRect();
       if (rect.top < window.innerHeight * 0.82 && rect.bottom > 50) {
         el.classList.add('visible');
       } else {
