@@ -436,26 +436,22 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Animate images in/out on scroll
+    // Animate all images in as you scroll
     function showImageOnScroll() {
-      const imgs = [
-        document.getElementById('main-right-img'),
-        document.getElementById('side-img-1'),
-        document.getElementById('side-img-2'),
-        document.getElementById('side-img-3')
-      ];
-      imgs.forEach(function(img, i) {
-        if (!img) return;
+      for (let i = 1; i <= 4; i++) {
+        const img = document.getElementById('main-right-img' + i);
+        if (!img) continue;
         const rect = img.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100 && rect.bottom > 50) {
-          setTimeout(() => img.classList.add('visible'), i * 110);
+        if (rect.top < window.innerHeight - 90 && rect.bottom > 50) {
+          img.classList.add('visible');
         } else {
           img.classList.remove('visible');
         }
-      });
+      }
     }
     window.addEventListener('scroll', showImageOnScroll, { passive: true });
     window.addEventListener('DOMContentLoaded', showImageOnScroll);
+  
 
     // Simple working chat box logic
     const chatForm = document.getElementById('chatbox-form');
