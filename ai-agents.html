@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RA Atum – The Future of Decentralized AI Agents</title>
+  <title>RA Atum – AI Agents Vertical Snap Reveal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
@@ -69,46 +69,54 @@
       min-width: 230px;
       max-width: 400px;
       height: 620px;
-      /* Large enough to hold all images stacked */
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       justify-content: flex-start;
+      /* This is just for alignment */
     }
-    .sticky-stack {
-      position: sticky;
-      top: 80px;
-      width: 100%;
-      height: 480px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: flex-start;
-    }
-    .scroll-image {
+
+    /* SCROLL CONTAINER */
+    .image-scroll-stack {
+      position: relative;
       width: 340px;
       max-width: 38vw;
       min-width: 160px;
-      height: 420px;
+      height: 500px;
+      overflow: hidden;
+      /* fix for edge-to-edge */
       border-radius: 34px;
-      background: #161922;
       box-shadow: var(--glow);
       border: 3px solid #00b4fa44;
-      position: absolute;
-      left: 0;
-      top: 0;
-      opacity: 1;
-      transition: transform 0.7s cubic-bezier(.4,.22,.17,1.09), 
-                  box-shadow 0.5s cubic-bezier(.22,.45,.16,1);
-      z-index: 1;
-      will-change: transform, opacity;
+      background: #161922;
+      scroll-snap-type: y mandatory;
+      display: flex;
+      flex-direction: column;
+      /* Stick to viewport on scroll */
+      position: sticky;
+      top: 90px;
+    }
+
+    /* Each "slide" (image) */
+    .scroll-snap-image {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      border-radius: 34px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      /* Fade transition is optional! */
+      transition: filter 0.2s;
+      background: #10151b;
     }
-    .scroll-image:not(:first-child) {
-      /* All but the first are above */
-      z-index: 2;
+
+    /* When not visible, slightly blur (optional effect) */
+    .scroll-snap-image:not(.active) {
+      filter: blur(4px) brightness(0.8) grayscale(0.25);
+      transition: filter 0.22s;
     }
-    /* ------ All your other CSS below this (no change!) ------- */
+
+    /* --------- Rest of your style (no change) ----------- */
     .highlight-block {
       background: var(--card-bg);
       border-radius: 19px;
@@ -317,20 +325,17 @@
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
       .main-image-side { min-width: 90vw; height: 350px;}
-      .sticky-stack { height: 340px; }
-      .scroll-image { margin-left: 0; }
+      .image-scroll-stack { height: 240px; }
     }
     @media (max-width: 700px) {
       .main-flex { padding: 5vw 1vw 36px 1vw; }
-      .scroll-image { max-width: 98vw; width: 98vw; }
+      .image-scroll-stack { max-width: 98vw; width: 98vw; height: 180px;}
       .highlight-block, .main-content { padding: 17px 4vw 19px 4vw;}
       .features-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 500px) {
-      .scroll-image { width: 90vw; min-width: 60vw; height: 180px;}
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
       .back-link-bottom { font-size: 0.97em; padding: 8px 8vw;}
-      .sticky-stack { height: 150px; }
     }
   </style>
 </head>
@@ -339,10 +344,8 @@
   <div class="ai-bot-line"><i class="fas fa-robot"></i>
     AI Bot: I’m here to help you build, automate, and earn with RA Atum. Let’s shape the future of decentralized AI together!
   </div>
-
   <div class="main-flex">
-    <div class="main-content" id="main-content">
-      <!-- Your content sections here -->
+    <div class="main-content">
       <div class="highlight-block">
         <div class="hero-title">SECURE YOUR<br>EARLY ACCESS</div>
         <div style="text-align:center;margin-bottom:18px;">
@@ -354,7 +357,6 @@
           </button>
         </div>
       </div>
-
       <div class="highlight-block">
         <div class="section-title">What is RA Atum?</div>
         <p>
@@ -365,7 +367,6 @@
           <strong>•</strong> No coding or technical skills needed—just kindness.
         </p>
       </div>
-
       <div class="features-grid">
         <div class="feature-card"><i class="fas fa-gift"></i>
           <div><strong>Build a Brighter World</strong>
@@ -408,7 +409,6 @@
           </div>
         </div>
       </div>
-
       <div class="highlight-block">
         <div class="section-title">How it Works</div>
         <ul style="padding-left:18px;">
@@ -418,18 +418,15 @@
           <li><strong>Track & Vote:</strong> See your impact and help decide project direction.</li>
         </ul>
       </div>
-
       <div class="why-callout">
         With RA Atum, you’re not just part of a platform — you’re part of a continually growing and evolving ecosystem.<br>
         <span style="font-size:0.97em;color:#00b4fa;">Soon, you’ll be able to chat live with our AI agent for help, questions, or rewards!</span>
       </div>
-
       <div class="center-btn-row" style="margin-top:32px;">
         <button class="buy-btn" onclick="window.location.href='index.html#buy-section'">
           <i class="fas fa-bolt"></i> BUY TOKENS NOW
         </button>
       </div>
-
       <!-- Working Chat Box -->
       <div class="chatbox">
         <div class="chatbox-title"><i class="fas fa-comments"></i> RA Atum Chat Bot</div>
@@ -442,12 +439,13 @@
         </form>
       </div>
     </div>
+    <!-- Right Side: Vertical Snap Scroll Images -->
     <div class="main-image-side">
-      <div class="sticky-stack" id="sticky-stack">
-        <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="scroll-image" id="main-right-img1"/>
-        <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="scroll-image" id="main-right-img2"/>
-        <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="scroll-image" id="main-right-img3"/>
-        <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" class="scroll-image" id="main-right-img4"/>
+      <div class="image-scroll-stack" id="image-scroll-stack">
+        <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" class="scroll-snap-image" id="main-right-img1" alt="AI Agent"/>
+        <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" class="scroll-snap-image" id="main-right-img2" alt="Highlight 1"/>
+        <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" class="scroll-snap-image" id="main-right-img3" alt="Highlight 2"/>
+        <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" class="scroll-snap-image" id="main-right-img4" alt="Highlight 3"/>
       </div>
     </div>
   </div>
@@ -455,57 +453,38 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Reveal/hide image stack on scroll
-    (function() {
+    // Vertical section-by-section snap scroll image effect
+    (() => {
       const images = [
         document.getElementById('main-right-img1'),
         document.getElementById('main-right-img2'),
         document.getElementById('main-right-img3'),
         document.getElementById('main-right-img4')
       ];
-      const stickyStack = document.getElementById('sticky-stack');
-      const content = document.getElementById('main-content');
-      // Section heights to reveal next image (change for more/less scroll required)
-      let revealPoints = [];
-      window.addEventListener('scroll', updateImageStack, {passive:true});
-      window.addEventListener('DOMContentLoaded', () => {
-        computeRevealPoints();
-        updateImageStack();
-      });
-      window.addEventListener('resize', computeRevealPoints);
-
-      function computeRevealPoints() {
-        // Divide content height equally for each image
-        let contentHeight = content.scrollHeight;
-        let step = contentHeight / images.length;
-        revealPoints = [];
-        for (let i = 0; i < images.length; i++) {
-          revealPoints.push(content.offsetTop + i * step - window.innerHeight / 2.5);
-        }
-      }
-      function updateImageStack() {
-        const scrollY = window.scrollY;
-        for (let i = 0; i < images.length; i++) {
-          let img = images[i];
-          if (!img) continue;
-          if (scrollY >= revealPoints[i]) {
-            img.style.transform = `translateY(0px)`;
-            img.style.zIndex = 10 + i;
-            img.style.opacity = 1;
-          } else {
-            img.style.transform = `translateY(${50 * (images.length - i)}px)`;
-            img.style.zIndex = 10 + i;
-            img.style.opacity = 0.95 - 0.25 * i;
+      const sections = document.querySelectorAll('.highlight-block, .features-grid');
+      function updateActiveImage() {
+        let activeIdx = 0;
+        // Find the most visible section
+        for (let i = 0; i < sections.length && i < images.length; i++) {
+          const rect = sections[i].getBoundingClientRect();
+          if (rect.top <= window.innerHeight/2 && rect.bottom > window.innerHeight/3) {
+            activeIdx = i;
           }
         }
+        images.forEach((img, idx) => {
+          if(idx === activeIdx) img.classList.add('active');
+          else img.classList.remove('active');
+        });
       }
+      window.addEventListener('scroll', updateActiveImage, { passive: true });
+      window.addEventListener('DOMContentLoaded', updateActiveImage);
+      window.addEventListener('resize', updateActiveImage);
     })();
 
     // Simple working chat box logic
     const chatForm = document.getElementById('chatbox-form');
     const chatInput = document.getElementById('chatbox-input');
     const chatMessages = document.getElementById('chatbox-messages');
-
     const botResponses = [
       { keywords: ['donate', 'donation', 'give'], response: "To donate, just visit our site and fill out the donation form. You'll instantly earn RA Atum tokens for every gift!" },
       { keywords: ['reward', 'token', 'ra atum'], response: "Every donation or purchase earns you RA Atum tokens—use them for NFT rewards, voting, and more." },
@@ -514,7 +493,6 @@
       { keywords: ['contact', 'support', 'help'], response: "For support, use this chat or email us any time at info@ra-atum.com." },
       { keywords: ['buy', 'presale'], response: "You can buy RA Atum tokens directly in our presale! Click the BUY TOKENS NOW button above." }
     ];
-
     chatForm.onsubmit = function(e) {
       e.preventDefault();
       const userMsg = chatInput.value.trim();
