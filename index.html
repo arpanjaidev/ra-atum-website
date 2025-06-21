@@ -730,7 +730,8 @@
       letter-spacing: 1px;
       font-family: var(--digital-font), monospace;
       font-weight: bold;
-    }.footer-title-shine {
+    }
+   .footer-title-shine {
   font-size: 1.11em;
   margin-bottom: 11px;
   font-family: 'Share Tech Mono', monospace;
@@ -744,6 +745,23 @@
   filter: brightness(1.15) drop-shadow(0 0 3px #00e6ff99);
   letter-spacing: 1.2px;
 }
+
+.footer-links a {
+  color: #fff !important;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 7px;
+  transition: color 0.17s;
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.3px;
+}
+.footer-links a:hover {
+  color: #00b4fa !important;
+  text-decoration: underline;
+}
+
 
   </style>
 </head>
@@ -1125,39 +1143,39 @@ if (isMobile() && !window.ethereum) {
 <!-- === RA ATUM MEGA FOOTER START === -->
 <footer>
   <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:26px 10px;padding:38px 10px 16px 10px;text-align:left;">
-    <div>
+    <div class="footer-links">
       <h4 class="footer-title-shine">ABOUT</h4>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Who We Are</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Our Story</a>
-      <a href="#features" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Key Features</a>
-      <a href="#roadmap" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Roadmap</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Mission & Vision</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Community</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Careers</a>
+      <a href="#">Who We Are</a>
+      <a href="#">Our Story</a>
+      <a href="#features">Key Features</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#">Mission & Vision</a>
+      <a href="#">Community</a>
+      <a href="#">Careers</a>
     </div>
-    <div>
+    <div class="footer-links">
       <h4 class="footer-title-shine">RESOURCES</h4>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">How RA Atum Works</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Why Choose RA Atum</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Getting Started</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Investor Center</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Give Back</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">FAQs</a>
+      <a href="#">How RA Atum Works</a>
+      <a href="#">Why Choose RA Atum</a>
+      <a href="#">Getting Started</a>
+      <a href="#">Investor Center</a>
+      <a href="#">Give Back</a>
+      <a href="#">FAQs</a>
     </div>
-    <div>
+    <div class="footer-links">
       <h4 class="footer-title-shine">TOKEN SALE</h4>
-      <a href="tokenomics.html" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Tokenomics</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">How to Buy RA Atum</a>
-      <a href="RA-Atum-Whitepaper.pdf" target="_blank" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Whitepaper</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Pricing</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Referral Program</a>
-      <a href="#buy-section" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Token Sale Live</a>
+      <a href="tokenomics.html">Tokenomics</a>
+      <a href="#">How to Buy RA Atum</a>
+      <a href="RA-Atum-Whitepaper.pdf" target="_blank">Whitepaper</a>
+      <a href="#">Pricing</a>
+      <a href="#">Referral Program</a>
+      <a href="#buy-section">Token Sale Live</a>
     </div>
-    <div>
+    <div class="footer-links">
       <h4 class="footer-title-shine">HELP CENTER</h4>
-      <a href="#contact" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Support</a>
-      <a href="#" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Troubleshooting</a>
-      <a href="#contact" style="display:block;color:inherit;text-decoration:none;margin-bottom:7px;">Contact Us</a>
+      <a href="#contact">Support</a>
+      <a href="#">Troubleshooting</a>
+      <a href="#contact">Contact Us</a>
     </div>
   </div>
   <div style="text-align:center;color:#00b4fa;margin-top:26px;margin-bottom:9px;">
@@ -1171,8 +1189,8 @@ if (isMobile() && !window.ethereum) {
     <a href="#" style="color:#00b4fa;text-decoration:underline;">Cookie Policy</a>
   </div>
 </footer>
-
 <!-- === RA ATUM MEGA FOOTER END === -->
+
 
 </body>
 </html>
