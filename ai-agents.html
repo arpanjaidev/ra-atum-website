@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RA Atum – The Future of Decentralized AI Agents</title>
+  <title>About RA Atum – AI Agents & Rewards</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
@@ -24,37 +24,13 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    .ai-bot-line {
-      background: linear-gradient(90deg,#161d29 60%,#202b3e 100%);
-      border: 2px solid #00b4fa;
-      border-radius: 16px;
-      max-width: 780px;
-      margin: 38px auto 28px auto;
-      padding: 17px 32px;
-      color: #fff;
-      box-shadow: var(--glow);
-      text-align: center;
-      font-size: 1.15em;
-      font-weight: bold;
-      letter-spacing: 0.7px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      position: relative;
-    }
-    .ai-bot-line i {
-      color: #00b4fa;
-      font-size: 2em;
-      margin-right: 10px;
-      filter: drop-shadow(0 2px 12px #00b4fa99);
-    }
     .main-flex {
       max-width: 1250px;
       margin: 0 auto;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      padding: 20px 4vw 44px 4vw;
+      padding: 30px 4vw 60px 4vw;
       gap: 48px;
       position: relative;
     }
@@ -66,12 +42,13 @@
     .main-image-side {
       flex: 1;
       display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 28px;
       position: relative;
     }
     .main-right-img {
-      width: 340px;
+      width: 320px;
       max-width: 38vw;
       height: auto;
       border-radius: 34px;
@@ -80,13 +57,15 @@
       border: 3px solid #00b4fa44;
       margin-right: 0;
       margin-left: 28px;
-      margin-top: 32px;
-      transition: transform .24s;
+      margin-top: 18px;
+      margin-bottom: 0;
+      transition: transform .24s, opacity 0.6s;
       opacity: 0;
       transform: translateX(80px);
       position: sticky;
       top: 40px;
       z-index: 1;
+      display: block;
     }
     .main-right-img.visible {
       opacity: 1;
@@ -107,20 +86,20 @@
       position: relative;
     }
     .hero-title {
-      font-size: 2.25rem;
+      font-size: 2.2rem;
       font-weight: bold;
       background: var(--shine-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: 1.3px;
+      letter-spacing: 1.2px;
       text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88;
       text-align: center;
-      margin-bottom: 14px;
+      margin-bottom: 20px;
       text-transform: uppercase;
     }
     .section-title {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: bold;
       background: var(--shine-grad);
       -webkit-background-clip: text;
@@ -131,42 +110,21 @@
       margin-bottom: 18px;
       text-transform: uppercase;
     }
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      margin-bottom: 35px;
-    }
-    .feature-card {
-      background: #222b36e9;
-      border-radius: 13px;
-      box-shadow: 0 4px 20px #00b4fa22;
-      border: 1.6px solid #00b4fa44;
-      padding: 24px 18px 18px 18px;
-      color: #fff;
+    .how-list {
+      margin-top: 16px;
+      margin-bottom: 0;
+      padding-left: 17px;
+      font-size: 1.04em;
+      color: #e7d7b6;
       font-weight: bold;
-      font-size: 1.07em;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      min-height: 110px;
     }
-    .feature-card i {
-      font-size: 1.53em;
-      color: #00b4fa;
-      margin-top: 4px;
-      filter: drop-shadow(0 2px 8px #00b4fa44);
-      flex-shrink: 0;
-    }
-    .feature-card strong {
-      color: #00b4fa;
-      display: block;
-      margin-bottom: 2px;
-      font-size: 1.06em;
+    .how-list li {
+      margin-bottom: 12px;
+      line-height: 1.6;
     }
     .center-btn-row {
       text-align: center;
-      margin-top: 36px;
+      margin-top: 35px;
     }
     .buy-btn {
       background: linear-gradient(90deg, #00b4fa 10%, #00ffd0 90%);
@@ -175,7 +133,7 @@
       border: none;
       border-radius: 16px;
       padding: 16px 46px;
-      font-size: 1.18em;
+      font-size: 1.16em;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 6px 32px #00b4fa22;
@@ -190,149 +148,107 @@
       color: #002a37;
       transform: scale(1.045);
     }
-    .why-callout {
-      margin: 30px 0 0 0;
-      font-size: 1.15em;
+    .back-btn-row {
       text-align: center;
-      background: var(--shine-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin-top: 55px;
+    }
+    .back-btn {
+      background: linear-gradient(90deg, #00b4fa 30%, #23e6ff 90%);
+      color: #fff;
+      font-family: 'Share Tech Mono', monospace;
+      border: none;
+      border-radius: 15px;
+      padding: 14px 38px;
+      font-size: 1.13em;
       font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 16px #00b4fa22;
+      margin-top: 0;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      outline: none;
+      display: inline-block;
+      transition: background .19s, color .16s, transform .13s;
+    }
+    .back-btn:hover {
+      background: #e7d7b6;
+      color: #002a37;
+      transform: scale(1.045);
+    }
+    .chatbox-line {
+      text-align: center;
+      margin: 42px 0 0 0;
+      font-size: 1.09em;
+      color: #00b4fa;
       letter-spacing: .7px;
-      min-height: 1.5em;
+      font-weight: bold;
     }
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
-      .main-right-img { margin: 30px auto 0 auto; max-width: 330px; width: 60vw; }
-      .main-image-side { justify-content: center; }
+      .main-right-img { margin: 30px auto 0 auto; max-width: 98vw; width: 60vw;}
+      .main-image-side { justify-content: center; align-items: center; }
     }
     @media (max-width: 700px) {
-      .main-flex { padding: 5vw 1vw 36px 1vw; }
-      .main-right-img { max-width: 98vw; width: 98vw; }
-      .highlight-block, .main-content { padding: 17px 4vw 19px 4vw;}
-      .features-grid { grid-template-columns: 1fr; }
+      .main-flex { padding: 5vw 1vw 30px 1vw; }
+      .main-right-img { max-width: 99vw; width: 98vw; }
+      .highlight-block, .main-content { padding: 15px 2vw 15px 2vw;}
     }
   </style>
 </head>
 <body>
-  <!-- AI Bot Line -->
-  <div class="ai-bot-line"><i class="fas fa-robot"></i>
-    AI Bot: I’m here to help you build, automate, and earn with RA Atum. Let’s shape the future of decentralized AI together!
-  </div>
-
   <div class="main-flex">
     <div class="main-content">
       <div class="highlight-block">
-        <div class="hero-title">SECURE YOUR<br>EARLY ACCESS</div>
-        <div style="text-align:center;margin-bottom:18px;">
-          Join the live RA Atum presale, power AI agents, and shape the future.
-        </div>
-        <div class="center-btn-row">
-          <button class="buy-btn" onclick="window.location.href='index.html#buy-section'">
-            <i class="fas fa-bolt"></i> BUY TOKENS NOW
-          </button>
+        <div class="hero-title">What is RA Atum?</div>
+        <div>
+          <b>RA Atum is India’s first donation-powered blockchain platform where your generosity creates real-world impact <span style="color:#00b4fa;">and</span> rewards you with digital assets.</b><br><br>
+          Donate toys, books, or clothes, and you’ll receive RA Atum tokens instantly. Every donation is recorded on-chain, giving you total transparency and ownership over your giving journey.<br><br>
+          RA Atum goes beyond donations – you can also <b>shop for kids’ essentials, earn tokens, and join a global movement of kindness and innovation.</b> The RA Atum token is your gateway to voting, claiming special rewards, accessing NFTs, and helping shape the future of our community.
         </div>
       </div>
-
-      <div class="highlight-block">
-        <div class="section-title">What is RA Atum?</div>
-        <p>
-          RA Atum is a decentralized platform for creating “smart agents”—AI assistants that automate messaging, content creation, and community management across all your favorite platforms.<br><br>
-          Agents run on blockchain, giving you full ownership, transparency, and security via on-chain tokenization.<br>
-          The core utility and governance token, RA ATUM, powers every agent interaction, unlocks premium features, and enables on-chain voting.
-        </p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card"><i class="fas fa-cogs"></i>
-          <div><strong>Build Smarter, Not Harder</strong>
-            Anyone can create, customize, and deploy AI agents—no code or technical hurdles.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-coins"></i>
-          <div><strong>Earn While You Innovate</strong>
-            Earn 10% RA Atum for every successful referral. Grow your wallet with every action.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-chart-line"></i>
-          <div><strong>Data-Driven Success</strong>
-            Track your agents’ performance, optimize, and scale your impact—referral earnings and analytics built-in.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-shield-alt"></i>
-          <div><strong>Secure & Transparent</strong>
-            Blockchain ensures safety, transparency, and user control. Your funds and data, always yours.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-rocket"></i>
-          <div><strong>Trailblazing Tech</strong>
-            Blend blockchain & AI like never before. Join a movement to redefine automation & rewards.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-users"></i>
-          <div><strong>Community-Driven</strong>
-            We listen—your feedback and votes shape the platform's future and features.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-sliders-h"></i>
-          <div><strong>Simple, Powerful UX</strong>
-            Sleek, intuitive interface. No steep learning curve—just results.
-          </div>
-        </div>
-        <div class="feature-card"><i class="fas fa-infinity"></i>
-          <div><strong>Future-Ready</strong>
-            Designed for tomorrow. New integrations and features always on the horizon.
-          </div>
-        </div>
-      </div>
-
-      <div class="highlight-block">
-        <div class="section-title">Why Invest in RA Atum?</div>
-        <ul style="padding-left:18px;">
-          <li><strong>Passive Income Made Easy</strong><br>Stake RA Atum to earn consistent rewards. No complex setups, just smart growth.</li>
-          <li><strong>Immediate Utility</strong><br>Unlock agents, premium tools, and discounts from day one.</li>
-          <li><strong>Governance Rights</strong><br>Stake and vote on platform features and upgrades.</li>
-          <li><strong>Fairlaunch Access</strong><br>Transparent, equal-opportunity presale. No insider deals.</li>
-          <li><strong>Revenue Sharing</strong><br>Earn a share of platform fees by staking as the ecosystem scales.</li>
-        </ul>
-      </div>
-
       <div class="highlight-block">
         <div class="section-title">How it Works</div>
-        <ul style="padding-left:18px;">
-          <li><strong>Design Your Agent:</strong> Drag, drop, and customize with our no-code builder.</li>
-          <li><strong>Tokenize On-Chain:</strong> Mint your agent using Fairlaunch Technology—transparent, smart-contract-driven, open to all.</li>
-          <li><strong>Deploy & Engage:</strong> Automate outreach, content, and moderation across social platforms.</li>
-          <li><strong>Earn & Optimize:</strong> Agents generate rewards. Use built-in analytics to refine and scale.</li>
+        <ul class="how-list">
+          <li><b>Give & Earn:</b> Donate toys, books, or clothes — every donation earns you RA Atum tokens (no crypto or coding needed).</li>
+          <li><b>On-Chain Transparency:</b> All donations and token rewards are tracked with blockchain for total trust.</li>
+          <li><b>Shop, Redeem, & Grow:</b> Use your tokens in our shop, redeem rewards, or hold for exclusive NFT and community benefits.</li>
+          <li><b>Vote & Shape the Future:</b> Use RA Atum to vote on new features, donation drives, and platform upgrades.</li>
+          <li><b>Track & Optimize:</b> View your donation impact and rewards — everything is recorded, secure, and yours forever.</li>
         </ul>
       </div>
-      <div class="why-callout">
-        With RA Atum, you’re not just part of a platform — you’re part of a continually growing and evolving ecosystem.
-      </div>
-      <div class="center-btn-row" style="margin-top:32px;">
+      <div class="center-btn-row">
         <button class="buy-btn" onclick="window.location.href='index.html#buy-section'">
           <i class="fas fa-bolt"></i> BUY TOKENS NOW
         </button>
       </div>
+      <div class="back-btn-row">
+        <button class="back-btn" onclick="window.location.href='index.html'">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </button>
+      </div>
+      <div class="chatbox-line">
+        <i class="fas fa-comments"></i> In future, a smart chat box powered by ChatGPT will help you with live support, FAQs, and token info — coming soon!
+      </div>
     </div>
     <div class="main-image-side">
-      <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="main-right-img" id="main-right-img"/>
+      <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="main-right-img" id="main-right-img1"/>
+      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Kids & Family" class="main-right-img" id="main-right-img2"/>
+      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Rewards" class="main-right-img" id="main-right-img3"/>
+      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="NFT" class="main-right-img" id="main-right-img4"/>
     </div>
   </div>
-  <div style="text-align:center;">
-    <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
-  </div>
   <script>
-    // Animate image in/out on scroll
+    // Animate all images in as you scroll
     function showImageOnScroll() {
-      const img = document.getElementById('main-right-img');
-      if (!img) return;
-      const rect = img.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100 && rect.bottom > 50) {
-        img.classList.add('visible');
-      } else {
-        img.classList.remove('visible');
+      for (let i = 1; i <= 4; i++) {
+        const img = document.getElementById('main-right-img' + i);
+        if (!img) continue;
+        const rect = img.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 90 && rect.bottom > 50) {
+          img.classList.add('visible');
+        } else {
+          img.classList.remove('visible');
+        }
       }
     }
     window.addEventListener('scroll', showImageOnScroll, { passive: true });
