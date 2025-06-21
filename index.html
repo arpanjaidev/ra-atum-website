@@ -1215,10 +1215,10 @@ function typeFooterLine() {
     if (ftIndex <= footerTypingText.length) {
       footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
       ftIndex++;
-      setTimeout(typeFooterLine, 30);
+      setTimeout(typeFooterLine, 37);
     } else {
       typingForward = false;
-      setTimeout(typeFooterLine, 1500); // pause before erase
+      setTimeout(typeFooterLine, 1300); // pause before erase
     }
   } else {
     if (ftIndex >= 0) {
@@ -1227,7 +1227,7 @@ function typeFooterLine() {
       setTimeout(typeFooterLine, 17); // erasing is faster
     } else {
       typingForward = true;
-      setTimeout(typeFooterLine, 1050); // pause before typing again
+      setTimeout(typeFooterLine, 850); // pause before typing again
     }
   }
 }
