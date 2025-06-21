@@ -1224,10 +1224,10 @@ function typeFooterLine() {
     if (ftIndex >= 0) {
       footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
       ftIndex--;
-      setTimeout(typeFooterLine, 20); // erasing is faster
+      setTimeout(typeFooterLine, 14); // erasing is faster
     } else {
       typingForward = true;
-      setTimeout(typeFooterLine, 950); // pause before typing again
+      setTimeout(typeFooterLine, 650); // pause before typing again
     }
   }
 }
