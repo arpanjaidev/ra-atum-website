@@ -1142,6 +1142,9 @@ if (isMobile() && !window.ethereum) {
 
 <!-- === RA ATUM MEGA FOOTER START === -->
 <footer>
+  <div style="text-align:center;">
+    <span id="footer-typing-shine" class="footer-title-shine" style="font-size:1.28em;display:inline-block;min-height:1.8em;"></span>
+  </div>
   <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:26px 10px;padding:38px 10px 16px 10px;text-align:left;">
     <div class="footer-links">
       <h4 class="footer-title-shine">ABOUT</h4>
@@ -1178,8 +1181,7 @@ if (isMobile() && !window.ethereum) {
       <a href="#contact">Contact Us</a>
     </div>
   </div>
-  <div style="text-align:center;color:#00b4fa;margin-top:26px;margin-bottom:9px;">
-    Join RA Atum to shape the future of blockchain-powered kindness.<br>
+  <div style="text-align:center;color:#00b4fa;margin-top:6px;margin-bottom:9px;">
     <span style="color:#e7d7b6;">&copy; 2025 RA Atum. All Rights Reserved.</span>
   </div>
   <div style="text-align:center;font-size:0.93em;color:#0077cc;margin-top:8px;">
@@ -1190,6 +1192,22 @@ if (isMobile() && !window.ethereum) {
   </div>
 </footer>
 <!-- === RA ATUM MEGA FOOTER END === -->
+
+<script>
+const footerTypingText = "Join RA Atum to shape the future of blockchain-powered kindness.";
+const footerTypingElem = document.getElementById("footer-typing-shine");
+let ftIndex = 0;
+
+function typeFooterLine() {
+  if (ftIndex <= footerTypingText.length) {
+    footerTypingElem.textContent = footerTypingText.substring(0, ftIndex);
+    ftIndex++;
+    setTimeout(typeFooterLine, 37);
+  }
+}
+if(footerTypingElem){ typeFooterLine(); }
+</script>
+
 
 
 </body>
