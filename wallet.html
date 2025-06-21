@@ -15,25 +15,42 @@
       min-height: 100vh;
       padding: 0;
     }
+    .wallet-headline {
+      text-align: center;
+      margin-top: 38px;
+      margin-bottom: 35px;
+      font-size: 1.18em;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(90deg,#fff 8%,#00b4fa 60%,#23e6ff 98%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 18px #22213866,0 0 8px #00b4fa88,0 0 18px #00b4fa99;
+      filter: brightness(1.15) drop-shadow(0 0 3px #00e6ff99);
+      letter-spacing: 1.1px;
+      min-height: 1.7em;
+    }
     .wallet-main-flex {
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      gap: 50px;
-      padding: 48px 0 0 0;
+      gap: 44px;
+      padding: 16px 0 0 0;
       max-width: 980px;
       margin: 0 auto;
     }
     .ra-logo-big {
-      width: 178px;
-      height: 178px;
+      width: 168px;
+      height: 168px;
       max-width: 35vw;
       border-radius: 35px;
       object-fit: contain;
       background: #191b2a;
       box-shadow: 0 8px 48px #00b4fa88, 0 0 0 7px #191a2477;
       border: 3px solid #00b4fa44;
-      margin-top: 16px;
+      margin-top: 8px;
       margin-left: 8px;
       display: block;
       transition: transform .22s;
@@ -44,12 +61,12 @@
     }
     .wallet-container {
       background: #181a1b;
-      border-radius: 22px;
+      border-radius: 18px;
       box-shadow: 0 8px 32px #00b4fa33;
-      width: 330px;
-      min-width: 250px;
+      width: 320px;
+      min-width: 230px;
       margin: 20px 0 0 0;
-      padding: 32px 24px 24px 24px;
+      padding: 30px 22px 24px 22px;
       border: 2.5px solid #00b4fa;
       position: relative;
       z-index: 2;
@@ -59,12 +76,11 @@
       align-items: flex-end;
     }
     .wallet-title {
-      font-size: 1.5rem;
-      letter-spacing: 1.5px;
+      font-size: 1.33rem;
+      letter-spacing: 1.4px;
       font-weight: bold;
-      margin-bottom: 23px;
+      margin-bottom: 20px;
       align-self: flex-end;
-      /* Shine effect like AUDITS */
       background: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -77,24 +93,24 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
-      margin: 16px 0;
-      font-size: 1.08rem;
+      margin: 13px 0;
+      font-size: 1.04rem;
       font-weight: bold;
       color: #e7d7b6;
       border-bottom: 1px solid #202f38;
-      padding-bottom: 6px;
+      padding-bottom: 5px;
     }
     .wallet-info-row:last-child { border-bottom: none; }
     .wallet-address {
-      margin: 13px 0 19px 0;
-      font-size: 1rem;
+      margin: 8px 0 17px 0;
+      font-size: 0.98rem;
       color: #00b4fa;
       word-break: break-all;
       letter-spacing: 0.6px;
       min-height: 20px;
       background: #23243b;
       border-radius: 7px;
-      padding: 7px 10px;
+      padding: 6px 10px;
       font-weight: bold;
       display: inline-block;
       box-shadow: 0 2px 16px #00b4fa33;
@@ -102,66 +118,56 @@
       align-self: flex-end;
       font-family: 'Share Tech Mono', monospace;
     }
-    .wallet-connect-btn {
+    .wallet-btn-row {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      justify-content: flex-end;
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+    .wallet-connect-btn, .wallet-buy-btn {
       background: linear-gradient(90deg, #00b4fa 0%, #00ffd0 100%);
       color: #181a1b;
       border: none;
-      border-radius: 12px;
-      padding: 12px 30px;
+      border-radius: 9px;
+      padding: 10px 22px;
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 2px 18px #00b4fa33;
-      transition: background .17s, color .17s;
+      transition: background .17s, color .17s, transform .12s;
       letter-spacing: 1px;
       font-family: 'Share Tech Mono', monospace;
       opacity: 0.97;
-      margin-top: 13px;
-      margin-bottom: 18px;
-      align-self: flex-end;
-    }
-    .wallet-connect-btn:hover { background: #e7d7b6; color: #002a37; }
-    .wallet-msg { margin: 8px 0 0 0; min-height: 22px; font-size: 1rem; align-self: flex-end;}
-    .wallet-buy-btn {
-      margin-top: 22px;
-      background: linear-gradient(92deg, #00b4fa 10%, #00ffd0 75%, #23e6ff 100%);
-      color: #181a1b;
-      border: none;
-      border-radius: 13px;
-      padding: 13px 0;
-      width: 90%;
-      font-size: 1.12rem;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 6px 32px #00b4fa44, 0 1.5px 16px #00ffd044;
-      transition: background .18s, color .13s, transform .13s;
-      letter-spacing: 1.15px;
-      font-family: 'Share Tech Mono', monospace;
-      opacity: 1;
-      text-shadow: 0 2px 15px #00b4fa22;
       outline: none;
-      display: block;
-      align-self: flex-end;
+      min-width: 110px;
+      max-width: 46%;
+      display: inline-block;
       text-align: center;
     }
-    .wallet-buy-btn:hover { background: #00ffd0; color: #222; transform: scale(1.022);}
-    a.back-link { color:#00b4fa; margin-top: 15px; display:inline-block; font-size:1.02em; align-self: flex-end;}
+    .wallet-connect-btn:hover, .wallet-buy-btn:hover {
+      background: #e7d7b6; color: #002a37; transform: scale(1.045);
+    }
+    .wallet-msg { margin: 4px 0 0 0; min-height: 22px; font-size: 1rem; align-self: flex-end;}
+    a.back-link { color:#00b4fa; margin-top: 12px; display:inline-block; font-size:1.01em; align-self: flex-end;}
     a.back-link:hover { text-decoration: underline;}
-
     @media (max-width: 850px) {
-      .wallet-main-flex { flex-direction: column; align-items: center; gap: 22px; }
+      .wallet-main-flex { flex-direction: column; align-items: center; gap: 18px; }
       .ra-logo-big { margin: 0 auto 14px auto; }
-      .wallet-container { align-items: center; width: 98vw; max-width: 370px; }
+      .wallet-container { align-items: center; width: 98vw; max-width: 340px; }
       .wallet-title, .wallet-msg, .wallet-buy-btn, .wallet-connect-btn, .wallet-address, .wallet-info-row, a.back-link { align-self: center !important; }
+      .wallet-btn-row { justify-content: center; }
     }
     @media (max-width: 480px) {
-      .wallet-container { padding: 18px 5vw 18px 5vw; }
-      .wallet-title { font-size: 1.14rem; }
-      .ra-logo-big { width: 106px; height: 106px;}
+      .wallet-container { padding: 12px 3vw 12px 3vw; }
+      .wallet-title { font-size: 1rem; }
+      .ra-logo-big { width: 95px; height: 95px;}
     }
   </style>
 </head>
 <body>
+  <div class="wallet-headline" id="wallet-typing-shine"></div>
   <div class="wallet-main-flex">
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-big" />
     <div class="wallet-container">
@@ -175,25 +181,13 @@
         <span>Referral Earnings</span>
         <span id="referral-earnings">–</span>
       </div>
-      <button class="wallet-connect-btn" id="connect-wallet-btn"><i class="fa-solid fa-link"></i> Connect Wallet</button>
-      <button class="wallet-buy-btn" onclick="window.location.href='index.html#buy-section'"><i class="fas fa-bolt"></i> Buy RA Atum</button>
+      <div class="wallet-btn-row">
+        <button class="wallet-connect-btn" id="connect-wallet-btn"><i class="fa-solid fa-link"></i> Connect Wallet</button>
+        <button class="wallet-buy-btn" onclick="window.location.href='index.html#buy-section'"><i class="fas fa-bolt"></i> Buy RA Atum</button>
+      </div>
       <div class="wallet-msg" id="wallet-msg"></div>
       <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </div>
-  </div>
-
-  <div style="text-align:center;margin-top:38px;">
-    <span id="wallet-typing-shine"
-      style="font-size:1.18em;display:inline-block;min-height:1.7em;
-        font-family:'Share Tech Mono', monospace;font-weight:bold;
-        text-transform:uppercase;
-        background:linear-gradient(90deg,#fff 8%,#00b4fa 60%,#23e6ff 98%);
-        -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-        background-clip:text;
-        text-shadow:0 2px 18px #22213866,0 0 8px #00b4fa88,0 0 18px #00b4fa99;
-        filter:brightness(1.15) drop-shadow(0 0 3px #00e6ff99);
-        letter-spacing:1.1px;text-align:center;">
-    </span>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
@@ -201,15 +195,12 @@
     // Typing effect headline
     const walletTypingText = "Join RA Atum to shape the future of blockchain-powered kindness.";
     const walletTypingElem = document.getElementById("wallet-typing-shine");
-    let wIndex = 0;
-    let wTypingForward = true;
-    let wBlinkOn = true;
-
+    let wIndex = 0, wTypingForward = true, wBlinkOn = true;
     function typeWalletLine() {
       if (!walletTypingElem) return;
       if (wTypingForward) {
         if (wIndex <= walletTypingText.length) {
-          walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.18em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
+          walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.15em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
           wIndex++;
           setTimeout(typeWalletLine, 37);
         } else {
@@ -218,12 +209,12 @@
         }
       } else {
         if (wIndex >= 0) {
-          walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.18em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
+          walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.15em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
           wIndex--;
-          setTimeout(typeWalletLine, 17);
+          setTimeout(typeWalletLine, 16);
         } else {
           wTypingForward = true;
-          setTimeout(typeWalletLine, 850);
+          setTimeout(typeWalletLine, 750);
         }
       }
     }
@@ -236,7 +227,6 @@
       "function balanceOf(address owner) view returns (uint256)",
       "function decimals() view returns (uint8)"
     ];
-
     document.getElementById('connect-wallet-btn').onclick = async function() {
       const walletMsg = document.getElementById('wallet-msg');
       walletMsg.innerText = "Connecting...";
@@ -248,7 +238,6 @@
           const address = await signer.getAddress();
           document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
           walletMsg.innerText = "✅ Wallet connected!";
-
           // Fetch and display actual token balance
           const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
           const [rawBalance, decimals] = await Promise.all([
@@ -257,7 +246,6 @@
           ]);
           const balance = ethers.utils.formatUnits(rawBalance, decimals);
           document.getElementById('token-balance').innerText = balance;
-
           // Dummy value for referral earnings (customize as needed)
           document.getElementById('referral-earnings').innerText = "0.00";
         } catch (err) {
