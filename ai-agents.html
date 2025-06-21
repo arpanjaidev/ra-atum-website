@@ -70,10 +70,10 @@
       justify-content: flex-end;
       position: relative;
       flex-direction: column;
-      gap: 22px;
+      gap: 0;
+      min-width: 200px;
     }
-    .main-right-img,
-    .side-img {
+    .scroll-image {
       width: 340px;
       max-width: 38vw;
       min-width: 160px;
@@ -85,15 +85,23 @@
       margin-right: 0;
       margin-left: 28px;
       margin-top: 32px;
-      transition: transform .24s, opacity .7s cubic-bezier(.35,1.18,.23,1.01);
+      margin-bottom: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
       opacity: 0;
-      transform: translateX(80px);
-      z-index: 1;
+      transform: translateY(50px) scale(0.97);
+      z-index: 0;
+      transition: opacity 0.5s cubic-bezier(.4,.22,.17,1.09), 
+                  transform 0.65s cubic-bezier(.4,.22,.17,1.09), 
+                  z-index 0.2s;
+      pointer-events: none;
     }
-    .main-right-img.visible,
-    .side-img.visible {
+    .scroll-image.visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0) scale(1);
+      z-index: 2;
+      pointer-events: auto;
     }
     .highlight-block {
       background: var(--card-bg);
@@ -302,17 +310,18 @@
     }
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
-      .main-right-img, .side-img { margin: 30px auto 0 auto; max-width: 330px; width: 60vw; }
-      .main-image-side { justify-content: center; }
+      .main-image-side { min-height: 340px; min-width: 240px; position: relative; }
+      .scroll-image { margin-left: 0; margin-top: 0; left: 0; }
     }
     @media (max-width: 700px) {
       .main-flex { padding: 5vw 1vw 36px 1vw; }
-      .main-right-img, .side-img { max-width: 98vw; width: 98vw; }
+      .scroll-image { max-width: 98vw; width: 98vw; }
       .highlight-block, .main-content { padding: 17px 4vw 19px 4vw;}
       .features-grid { grid-template-columns: 1fr; }
+      .main-image-side { min-width: 90vw;}
     }
     @media (max-width: 500px) {
-      .main-right-img, .side-img { width: 90vw; min-width: 60vw; }
+      .scroll-image { width: 90vw; min-width: 60vw; }
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
       .back-link-bottom { font-size: 0.97em; padding: 8px 8vw;}
     }
@@ -425,37 +434,48 @@
         </form>
       </div>
     </div>
-    <div class="main-image-side">
-      <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="main-right-img" id="main-right-img"/>
-      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="side-img" id="side-img-1"/>
-      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="side-img" id="side-img-2"/>
-      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" class="side-img" id="side-img-3"/>
+    <div class="main-image-side" style="height:420px;min-height:340px;position:relative;">
+      <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="scroll-image" id="main-right-img1"/>
+      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="scroll-image" id="main-right-img2"/>
+      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="scroll-image" id="main-right-img3"/>
+      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" class="scroll-image" id="main-right-img4"/>
     </div>
   </div>
   <div style="text-align:center;">
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Animate images in/out on scroll
-    function showImageOnScroll() {
-      const imgs = [
-        document.getElementById('main-right-img'),
-        document.getElementById('side-img-1'),
-        document.getElementById('side-img-2'),
-        document.getElementById('side-img-3')
+    // Image scroll swap (1 at a time, cover style)
+    function showOnlyCurrentImage() {
+      const images = [
+        document.getElementById('main-right-img1'),
+        document.getElementById('main-right-img2'),
+        document.getElementById('main-right-img3'),
+        document.getElementById('main-right-img4')
       ];
-      imgs.forEach(function(img, i) {
+      const winH = window.innerHeight;
+      let indexToShow = 0;
+      // Use scroll position to determine which image to show
+      const mainImagesSide = images[0]?.parentElement;
+      if (!mainImagesSide) return;
+      const rect = mainImagesSide.getBoundingClientRect();
+      const totalScroll = rect.height - winH * 0.7;
+      let scrollPos = Math.max(0, Math.min(totalScroll, -rect.top + winH * 0.3));
+      // Divide scroll range by # images
+      let imgRange = totalScroll / (images.length - 1 || 1);
+      if (imgRange > 0) indexToShow = Math.round(scrollPos / imgRange);
+      indexToShow = Math.max(0, Math.min(images.length - 1, indexToShow));
+      images.forEach((img, idx) => {
         if (!img) return;
-        const rect = img.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100 && rect.bottom > 50) {
-          setTimeout(() => img.classList.add('visible'), i * 110);
+        if (idx === indexToShow) {
+          img.classList.add('visible');
         } else {
           img.classList.remove('visible');
         }
       });
     }
-    window.addEventListener('scroll', showImageOnScroll, { passive: true });
-    window.addEventListener('DOMContentLoaded', showImageOnScroll);
+    window.addEventListener('scroll', showOnlyCurrentImage, { passive: true });
+    window.addEventListener('DOMContentLoaded', showOnlyCurrentImage);
 
     // Simple working chat box logic
     const chatForm = document.getElementById('chatbox-form');
