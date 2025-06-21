@@ -72,6 +72,8 @@
       flex-direction: column;
       gap: 0;
       min-width: 200px;
+      height: 440px;
+      min-height: 320px;
     }
     .scroll-image {
       width: 340px;
@@ -90,14 +92,14 @@
       top: 0;
       left: 0;
       opacity: 0;
-      transform: translateY(50px) scale(0.97);
+      transform: translateY(40px) scale(0.98);
       z-index: 0;
-      transition: opacity 0.5s cubic-bezier(.4,.22,.17,1.09), 
+      transition: opacity 0.4s cubic-bezier(.4,.22,.17,1.09), 
                   transform 0.65s cubic-bezier(.4,.22,.17,1.09), 
                   z-index 0.2s;
       pointer-events: none;
     }
-    .scroll-image.visible {
+    .scroll-image.active {
       opacity: 1;
       transform: translateY(0) scale(1);
       z-index: 2;
@@ -334,7 +336,7 @@
   </div>
 
   <div class="main-flex">
-    <div class="main-content">
+    <div class="main-content" id="main-content">
       <div class="highlight-block">
         <div class="hero-title">SECURE YOUR<br>EARLY ACCESS</div>
         <div style="text-align:center;margin-bottom:18px;">
@@ -434,7 +436,7 @@
         </form>
       </div>
     </div>
-    <div class="main-image-side" style="height:420px;min-height:340px;position:relative;">
+    <div class="main-image-side" id="main-image-side">
       <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="scroll-image" id="main-right-img1"/>
       <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="scroll-image" id="main-right-img2"/>
       <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="scroll-image" id="main-right-img3"/>
@@ -445,32 +447,29 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Image scroll swap (1 at a time, cover style)
+    // Only one image shows at a time, switching as user scrolls main-content
     function showOnlyCurrentImage() {
+      const content = document.getElementById('main-content');
       const images = [
         document.getElementById('main-right-img1'),
         document.getElementById('main-right-img2'),
         document.getElementById('main-right-img3'),
         document.getElementById('main-right-img4')
       ];
+      const rect = content.getBoundingClientRect();
       const winH = window.innerHeight;
+      let totalHeight = rect.height - winH * 0.7;
+      let scrollPos = Math.max(0, Math.min(totalHeight, -rect.top + winH * 0.3));
+      let imgRange = totalHeight / (images.length - 1 || 1);
       let indexToShow = 0;
-      // Use scroll position to determine which image to show
-      const mainImagesSide = images[0]?.parentElement;
-      if (!mainImagesSide) return;
-      const rect = mainImagesSide.getBoundingClientRect();
-      const totalScroll = rect.height - winH * 0.7;
-      let scrollPos = Math.max(0, Math.min(totalScroll, -rect.top + winH * 0.3));
-      // Divide scroll range by # images
-      let imgRange = totalScroll / (images.length - 1 || 1);
       if (imgRange > 0) indexToShow = Math.round(scrollPos / imgRange);
       indexToShow = Math.max(0, Math.min(images.length - 1, indexToShow));
       images.forEach((img, idx) => {
         if (!img) return;
         if (idx === indexToShow) {
-          img.classList.add('visible');
+          img.classList.add('active');
         } else {
-          img.classList.remove('visible');
+          img.classList.remove('active');
         }
       });
     }
