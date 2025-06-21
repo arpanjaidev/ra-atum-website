@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About RA Atum – AI Agents & Rewards</title>
+  <title>What is RA Atum?</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
@@ -24,13 +24,37 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    .ai-bot-line {
+      background: linear-gradient(90deg,#161d29 60%,#202b3e 100%);
+      border: 2px solid #00b4fa;
+      border-radius: 16px;
+      max-width: 780px;
+      margin: 38px auto 28px auto;
+      padding: 17px 32px;
+      color: #fff;
+      box-shadow: var(--glow);
+      text-align: center;
+      font-size: 1.15em;
+      font-weight: bold;
+      letter-spacing: 0.7px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+    .ai-bot-line i {
+      color: #00b4fa;
+      font-size: 2em;
+      margin-right: 10px;
+      filter: drop-shadow(0 2px 12px #00b4fa99);
+    }
     .main-flex {
       max-width: 1250px;
       margin: 0 auto;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      padding: 30px 4vw 60px 4vw;
+      padding: 20px 4vw 44px 4vw;
       gap: 48px;
       position: relative;
     }
@@ -42,35 +66,33 @@
     .main-image-side {
       flex: 1;
       display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 28px;
       position: relative;
+      gap: 22px;
+      min-width: 180px;
     }
     .main-right-img {
-      width: 320px;
-      max-width: 38vw;
+      width: 240px;
+      max-width: 39vw;
       height: auto;
       border-radius: 34px;
       background: #161922;
       box-shadow: var(--glow);
       border: 3px solid #00b4fa44;
+      margin-top: 32px;
+      margin-left: auto;
       margin-right: 0;
-      margin-left: 28px;
-      margin-top: 18px;
-      margin-bottom: 0;
-      transition: transform .24s, opacity 0.6s;
+      transition: transform .27s, opacity .6s;
       opacity: 0;
       transform: translateX(80px);
-      position: sticky;
-      top: 40px;
       z-index: 1;
-      display: block;
     }
     .main-right-img.visible {
       opacity: 1;
       transform: translateX(0);
-      transition: all 0.7s cubic-bezier(.35,1.18,.23,1.01);
+      transition: all 0.72s cubic-bezier(.33,1.14,.21,1.01);
     }
     .highlight-block {
       background: var(--card-bg);
@@ -86,20 +108,20 @@
       position: relative;
     }
     .hero-title {
-      font-size: 2.2rem;
+      font-size: 2.25rem;
       font-weight: bold;
       background: var(--shine-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.3px;
       text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
       text-transform: uppercase;
     }
     .section-title {
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       font-weight: bold;
       background: var(--shine-grad);
       -webkit-background-clip: text;
@@ -110,21 +132,42 @@
       margin-bottom: 18px;
       text-transform: uppercase;
     }
-    .how-list {
-      margin-top: 16px;
-      margin-bottom: 0;
-      padding-left: 17px;
-      font-size: 1.04em;
-      color: #e7d7b6;
-      font-weight: bold;
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 35px;
     }
-    .how-list li {
-      margin-bottom: 12px;
-      line-height: 1.6;
+    .feature-card {
+      background: #222b36e9;
+      border-radius: 13px;
+      box-shadow: 0 4px 20px #00b4fa22;
+      border: 1.6px solid #00b4fa44;
+      padding: 24px 18px 18px 18px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.07em;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-height: 110px;
+    }
+    .feature-card i {
+      font-size: 1.53em;
+      color: #00b4fa;
+      margin-top: 4px;
+      filter: drop-shadow(0 2px 8px #00b4fa44);
+      flex-shrink: 0;
+    }
+    .feature-card strong {
+      color: #00b4fa;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 1.06em;
     }
     .center-btn-row {
       text-align: center;
-      margin-top: 35px;
+      margin-top: 36px;
     }
     .buy-btn {
       background: linear-gradient(90deg, #00b4fa 10%, #00ffd0 90%);
@@ -133,7 +176,7 @@
       border: none;
       border-radius: 16px;
       padding: 16px 46px;
-      font-size: 1.16em;
+      font-size: 1.18em;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 6px 32px #00b4fa22;
@@ -148,111 +191,243 @@
       color: #002a37;
       transform: scale(1.045);
     }
-    .back-btn-row {
+    .why-callout {
+      margin: 30px 0 0 0;
+      font-size: 1.15em;
       text-align: center;
-      margin-top: 55px;
+      background: var(--shine-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
+      letter-spacing: .7px;
+      min-height: 1.5em;
     }
-    .back-btn {
-      background: linear-gradient(90deg, #00b4fa 30%, #23e6ff 90%);
-      color: #fff;
+    .chat-box {
+      background: #222b36e9;
+      border-radius: 13px;
+      box-shadow: 0 4px 20px #00b4fa22;
+      border: 2px solid #00b4fa;
+      padding: 20px 14px 16px 14px;
+      margin: 34px auto 22px auto;
+      max-width: 410px;
       font-family: 'Share Tech Mono', monospace;
+      position: relative;
+      min-height: 104px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .chat-title {
+      font-size: 1.07em;
+      color: #00b4fa;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .chat-messages {
+      flex: 1;
+      font-size: 1em;
+      color: #e7d7b6;
+      min-height: 40px;
+      margin-bottom: 4px;
+    }
+    .chat-input-row {
+      display: flex;
+      gap: 6px;
+    }
+    .chat-input {
+      flex: 1;
+      padding: 9px 13px;
+      border-radius: 7px;
+      border: 1.2px solid #00b4fa;
+      background: #181a25;
+      color: #fff;
+      font-size: 1em;
+      font-family: 'Share Tech Mono', monospace;
+      outline: none;
+    }
+    .chat-send-btn {
+      background: linear-gradient(90deg, #00b4fa 10%, #00ffd0 90%);
+      color: #181a1b;
       border: none;
-      border-radius: 15px;
-      padding: 14px 38px;
-      font-size: 1.13em;
+      border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 2px 16px #00b4fa22;
-      margin-top: 0;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
-      outline: none;
-      display: inline-block;
-      transition: background .19s, color .16s, transform .13s;
+      padding: 9px 18px;
+      font-family: 'Share Tech Mono', monospace;
+      transition: background .18s, color .14s, transform .12s;
+      font-size: 1em;
     }
-    .back-btn:hover {
+    .chat-send-btn:hover {
       background: #e7d7b6;
       color: #002a37;
-      transform: scale(1.045);
-    }
-    .chatbox-line {
-      text-align: center;
-      margin: 42px 0 0 0;
-      font-size: 1.09em;
-      color: #00b4fa;
-      letter-spacing: .7px;
-      font-weight: bold;
     }
     @media (max-width: 1100px) {
-      .main-flex { flex-direction: column-reverse; gap: 12px; padding: 8vw 2vw 40px 2vw; }
-      .main-right-img { margin: 30px auto 0 auto; max-width: 98vw; width: 60vw;}
-      .main-image-side { justify-content: center; align-items: center; }
+      .main-flex { flex-direction: column-reverse; gap: 16px; padding: 8vw 2vw 40px 2vw; }
+      .main-right-img { margin: 22px auto 0 auto; max-width: 360px; width: 60vw; }
+      .main-image-side { justify-content: flex-start; }
     }
     @media (max-width: 700px) {
-      .main-flex { padding: 5vw 1vw 30px 1vw; }
-      .main-right-img { max-width: 99vw; width: 98vw; }
-      .highlight-block, .main-content { padding: 15px 2vw 15px 2vw;}
+      .main-flex { padding: 5vw 1vw 36px 1vw; }
+      .main-right-img { max-width: 98vw; width: 98vw; }
+      .highlight-block, .main-content { padding: 17px 4vw 19px 4vw;}
+      .features-grid { grid-template-columns: 1fr; }
+      .chat-box { max-width: 98vw; }
+    }
+    .back-link-bottom {
+      display: inline-block;
+      margin: 38px auto 18px auto;
+      color: #00b4fa;
+      font-size: 1.09em;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      text-decoration: none;
+      background: #172432b3;
+      padding: 10px 24px 10px 16px;
+      border-radius: 16px;
+      box-shadow: 0 2px 15px #00b4fa33;
+      transition: background .16s, color .13s;
+      z-index: 15;
+      letter-spacing: 1.1px;
+      border: none;
+      cursor: pointer;
+    }
+    .back-link-bottom i {
+      margin-right: 7px;
+      font-size: 1.09em;
+    }
+    .back-link-bottom:hover {
+      background: #e7d7b6;
+      color: #003a5c;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+  <!-- AI Bot Line -->
+  <div class="ai-bot-line"><i class="fas fa-robot"></i>
+    AI Bot: I’m here to help you build, automate, and earn with RA Atum. Let’s shape the future of decentralized AI together!
+  </div>
+
   <div class="main-flex">
     <div class="main-content">
       <div class="highlight-block">
         <div class="hero-title">What is RA Atum?</div>
-        <div>
-          <b>RA Atum is India’s first donation-powered blockchain platform where your generosity creates real-world impact <span style="color:#00b4fa;">and</span> rewards you with digital assets.</b><br><br>
-          Donate toys, books, or clothes, and you’ll receive RA Atum tokens instantly. Every donation is recorded on-chain, giving you total transparency and ownership over your giving journey.<br><br>
-          RA Atum goes beyond donations – you can also <b>shop for kids’ essentials, earn tokens, and join a global movement of kindness and innovation.</b> The RA Atum token is your gateway to voting, claiming special rewards, accessing NFTs, and helping shape the future of our community.
+        <div style="text-align:center;margin-bottom:18px;">
+          RA Atum is your gateway to the future of giving. It’s a decentralized platform built for real-world impact—where every donation earns you RA Atum tokens, every act of kindness is rewarded, and all activity is transparent on the blockchain.<br><br>
+          Automate messaging, content, and community management with AI-powered agents. Enjoy full ownership, transparent rewards, and on-chain governance powered by the RA Atum token.
         </div>
       </div>
+
       <div class="highlight-block">
         <div class="section-title">How it Works</div>
-        <ul class="how-list">
-          <li><b>Give & Earn:</b> Donate toys, books, or clothes — every donation earns you RA Atum tokens (no crypto or coding needed).</li>
-          <li><b>On-Chain Transparency:</b> All donations and token rewards are tracked with blockchain for total trust.</li>
-          <li><b>Shop, Redeem, & Grow:</b> Use your tokens in our shop, redeem rewards, or hold for exclusive NFT and community benefits.</li>
-          <li><b>Vote & Shape the Future:</b> Use RA Atum to vote on new features, donation drives, and platform upgrades.</li>
-          <li><b>Track & Optimize:</b> View your donation impact and rewards — everything is recorded, secure, and yours forever.</li>
+        <ul style="padding-left:18px;">
+          <li><strong>Easy Donation:</strong> Give toys, clothes, or books—online or in-person—and your impact is tracked on-chain.</li>
+          <li><strong>Token Rewards:</strong> For every donation, instantly receive RA Atum tokens as a reward for your kindness.</li>
+          <li><strong>Automated Agents:</strong> Use our simple tools to create and deploy smart agents to help manage your giving and community—no code needed.</li>
+          <li><strong>Transparent Analytics:</strong> Monitor your rewards, referrals, and community impact with built-in dashboards.</li>
         </ul>
       </div>
-      <div class="center-btn-row">
+
+      <div class="features-grid">
+        <div class="feature-card"><i class="fas fa-gift"></i>
+          <div><strong>Rewarded Giving</strong>
+            Every donation—big or small—earns you RA Atum tokens for real value.
+          </div>
+        </div>
+        <div class="feature-card"><i class="fas fa-hand-holding-heart"></i>
+          <div><strong>Transparent & Secure</strong>
+            All donations and rewards are on-chain, public, and tamper-proof.
+          </div>
+        </div>
+        <div class="feature-card"><i class="fas fa-robot"></i>
+          <div><strong>Smart Automation</strong>
+            Build and use AI agents to automate community, social, and support—no code needed.
+          </div>
+        </div>
+        <div class="feature-card"><i class="fas fa-users"></i>
+          <div><strong>Community Power</strong>
+            Stake tokens to vote and shape the platform’s features and roadmap.
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-box">
+        <div class="chat-title"><i class="fas fa-comment-dots"></i> Chat with RA Bot (LIVE)</div>
+        <div class="chat-messages" id="chat-messages">Hi 👋! I’m RA Bot. Ask anything about RA Atum or your donations.</div>
+        <div class="chat-input-row">
+          <input type="text" class="chat-input" id="chat-input" placeholder="Type your message..." autocomplete="off">
+          <button class="chat-send-btn" id="chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+
+      <div class="why-callout">
+        With RA Atum, you’re not just part of a platform — you’re part of a continually growing and evolving ecosystem.
+      </div>
+      <div class="center-btn-row" style="margin-top:32px;">
         <button class="buy-btn" onclick="window.location.href='index.html#buy-section'">
           <i class="fas fa-bolt"></i> BUY TOKENS NOW
         </button>
       </div>
-      <div class="back-btn-row">
-        <button class="back-btn" onclick="window.location.href='index.html'">
-          <i class="fas fa-arrow-left"></i> Back to Home
-        </button>
-      </div>
-      <div class="chatbox-line">
-        <i class="fas fa-comments"></i> In future, a smart chat box powered by ChatGPT will help you with live support, FAQs, and token info — coming soon!
-      </div>
     </div>
     <div class="main-image-side">
-      <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="main-right-img" id="main-right-img1"/>
-      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Kids & Family" class="main-right-img" id="main-right-img2"/>
-      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Rewards" class="main-right-img" id="main-right-img3"/>
-      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="NFT" class="main-right-img" id="main-right-img4"/>
+      <!-- 4 images, animated in on scroll, stacked -->
+      <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="main-right-img" id="main-right-img-1"/>
+      <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="AI Agent 2" class="main-right-img" id="main-right-img-2"/>
+      <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="AI Agent 3" class="main-right-img" id="main-right-img-3"/>
+      <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="AI Agent 4" class="main-right-img" id="main-right-img-4"/>
     </div>
   </div>
+  <div style="text-align:center;">
+    <button onclick="window.location.href='index.html'" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</button>
+  </div>
   <script>
-    // Animate all images in as you scroll
-    function showImageOnScroll() {
-      for (let i = 1; i <= 4; i++) {
-        const img = document.getElementById('main-right-img' + i);
+    // Animate each image in on scroll one by one
+    function showImagesOnScroll() {
+      for(let i=1;i<=4;i++) {
+        const img = document.getElementById('main-right-img-'+i);
         if (!img) continue;
         const rect = img.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 90 && rect.bottom > 50) {
-          img.classList.add('visible');
+        if (rect.top < window.innerHeight - 80 && rect.bottom > 30) {
+          setTimeout(() => img.classList.add('visible'), i*140);
         } else {
           img.classList.remove('visible');
         }
       }
     }
-    window.addEventListener('scroll', showImageOnScroll, { passive: true });
-    window.addEventListener('DOMContentLoaded', showImageOnScroll);
+    window.addEventListener('scroll', showImagesOnScroll, { passive: true });
+    window.addEventListener('DOMContentLoaded', showImagesOnScroll);
+
+    // Simple working chat bot (local, just demo)
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const chatSendBtn = document.getElementById('chat-send-btn');
+    function sendBotReply(userMsg) {
+      let reply = "";
+      // Simple demo logic (expand as you want)
+      if (userMsg.toLowerCase().includes("donate")) {
+        reply = "You can donate toys, books, or clothes — every donation earns RA Atum tokens!";
+      } else if (userMsg.toLowerCase().includes("token")) {
+        reply = "RA Atum tokens are your reward. Stake, vote, and unlock features with them!";
+      } else if (userMsg.toLowerCase().includes("ai")) {
+        reply = "Our AI agents help you automate, organize, and maximize your impact.";
+      } else if (userMsg.toLowerCase().includes("help") || userMsg.toLowerCase().includes("support")) {
+        reply = "Type your question or visit our support page for more info!";
+      } else {
+        reply = "Thanks for your message! I’ll help however I can. 🚀";
+      }
+      setTimeout(()=>{ chatMessages.innerHTML = `<b>You:</b> ${userMsg}<br><b>RA Bot:</b> ${reply}`; }, 500);
+    }
+    chatSendBtn.onclick = function() {
+      if (!chatInput.value.trim()) return;
+      let msg = chatInput.value;
+      chatMessages.innerHTML = `<b>You:</b> ${msg}<br><b>RA Bot:</b> ...`;
+      sendBotReply(msg);
+      chatInput.value = "";
+    };
+    chatInput.addEventListener('keypress', function(e){
+      if(e.key==='Enter'){chatSendBtn.click();}
+    });
   </script>
 </body>
 </html>
