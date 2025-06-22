@@ -58,7 +58,7 @@
       gap: 54px;
     }
     .main-content { flex: 2; min-width: 320px; max-width: 760px; }
-    /* IMAGE STACK EFFECT */
+    /* IMAGE STACK EFFECT WITH GAP */
     .image-stack {
       flex: 1;
       min-width: 370px;
@@ -71,9 +71,10 @@
     }
     .image-layer {
       position: relative;
-      height: 85vh;
-      margin-bottom: -55vh; /* Makes next image overlap and cover previous */
+      height: 82vh;
+      margin-bottom: -64vh; /* This value controls how much images overlap. Change for more or less gap! */
       z-index: 1;
+      pointer-events: none;
     }
     .image-layer:last-child { margin-bottom: 0; }
     .image-stack img {
@@ -89,8 +90,8 @@
       z-index: 2;
       transition: box-shadow 0.34s, filter 0.34s;
       filter: grayscale(0.08) brightness(0.97);
+      background-blend-mode: multiply;
     }
-    /* Highlight top image (optional, can be skipped) */
     .image-stack img.active {
       box-shadow: 0 18px 48px #00b4fa88, 0 1px 32px #00b4fa33;
       filter: grayscale(0) brightness(1.07);
@@ -106,7 +107,7 @@
     @media (max-width: 700px) {
       .main-flex { padding: 4vw 1vw 28px 1vw; }
       .image-stack img { height: 36vw; min-height: 90px;}
-      .image-layer { height: 39vw; margin-bottom: -21vw;}
+      .image-layer { height: 39vw; margin-bottom: -17vw;}
     }
     /* Other content styling */
     .highlight-block {
@@ -471,7 +472,8 @@
       let activeIdx = 0;
       for (let i = imgs.length - 1; i >= 0; i--) {
         const rect = imgs[i].getBoundingClientRect();
-        if (rect.top <= 130 && rect.bottom > 140) {
+        // 70 here means: image is "mostly" in viewport, increase or decrease for your effect!
+        if (rect.top <= 70 && rect.bottom > 160) {
           activeIdx = i;
           break;
         }
