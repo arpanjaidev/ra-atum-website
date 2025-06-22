@@ -24,6 +24,40 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    .logo-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 34px;
+      margin-bottom: 28px;
+    }
+    .ra-logo-img {
+      width: 135px;
+      height: 135px;
+      max-width: 38vw;
+      border-radius: 26px;
+      box-shadow: 0 0 32px #00b4fa66, 0 3px 18px #00b4fa22;
+      background: #181a25;
+      object-fit: contain;
+      border: 3.5px solid #00b4fa90;
+      animation: logoShine 3s infinite linear alternate;
+    }
+    @keyframes logoShine {
+      0% { filter: brightness(1) drop-shadow(0 0 6px #00b4fa88); }
+      100% { filter: brightness(1.16) drop-shadow(0 0 18px #00b4fac9); }
+    }
+    .logo-title {
+      margin-top: 9px;
+      font-size: 1.35em;
+      font-weight: bold;
+      letter-spacing: 1.1px;
+      background: var(--shine-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      filter: brightness(1.13);
+    }
     .back-link-bottom {
       display: inline-block;
       position: relative;
@@ -57,7 +91,7 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      padding: 46px 6vw 24px 6vw;
+      padding: 12px 6vw 24px 6vw;
       gap: 44px;
       position: relative;
     }
@@ -70,13 +104,15 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 32px;
-      margin-top: 10px;
+      gap: 45px;
+      margin-top: 18px;
+      position: relative;
     }
     .donate-img {
-      width: 245px;
-      max-width: 38vw;
-      height: auto;
+      width: 300px;
+      max-width: 46vw;
+      min-width: 160px;
+      height: 255px;
       border-radius: 36px;
       background: #161922;
       box-shadow: var(--glow);
@@ -84,11 +120,16 @@
       margin-right: 0;
       margin-left: 22px;
       margin-top: 12px;
-      transition: transform .19s;
+      transition: transform .28s, box-shadow .24s, opacity .7s, right .7s;
       object-fit: cover;
+      opacity: 0;
+      right: -70px;
+      position: relative;
     }
-    .donate-img:hover {
-      transform: scale(1.04) rotate(1.5deg);
+    .donate-img.visible {
+      opacity: 1;
+      right: 0;
+      transform: scale(1.03);
       box-shadow: 0 18px 68px #00b4faaa, 0 0 0 18px #191a24bb;
     }
     .donate-headline {
@@ -118,8 +159,8 @@
       position: relative;
     }
     .upiqr {
-      width: 155px;
-      height: 155px;
+      width: 175px;
+      height: 175px;
       border-radius: 14px;
       background: #fff;
       margin: 17px 0 9px 0;
@@ -146,21 +187,26 @@
       box-shadow: 0 2px 18px #00b4fa15;
     }
     @media (max-width: 950px) {
-      .donate-main { flex-direction: column-reverse; gap: 16px; padding-top: 18px; }
+      .donate-main { flex-direction: column-reverse; gap: 16px; padding-top: 10px; }
       .donate-images-side { align-items: center; }
       .donate-img { margin-left: 0; }
     }
     @media (max-width: 600px) {
-      .donate-main { padding: 11vw 3vw 4vw 3vw; }
+      .donate-main { padding: 3vw 2vw 2vw 2vw; }
       .donate-headline { font-size: 1.35em; }
       .donate-section { padding: 13px 4vw 10px 4vw;}
-      .donate-img { width: 95vw; border-radius: 18px;}
+      .donate-img { width: 97vw; min-width:100px; border-radius: 18px;}
       .back-link-bottom { font-size: 0.97em; padding: 8px 14px 8px 10px;}
     }
     .footer-spacer { height: 40px; }
   </style>
 </head>
 <body>
+  <!-- Logo at the top -->
+  <div class="logo-top">
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-img" />
+    <div class="logo-title">RA Atum</div>
+  </div>
   <div class="donate-main">
     <div class="donate-content">
       <div class="donate-headline">Donate & Get RA Atum Tokens</div>
@@ -198,13 +244,30 @@
       </div>
     </div>
     <div class="donate-images-side">
-      <img src="https://i.pinimg.com/736x/88/d4/da/88d4da814dd0113c1633fdc572cfe65e.jpg" alt="Kids Support" class="donate-img" />
-      <img src="https://i.pinimg.com/736x/28/ea/1e/28ea1ef796b8dece056693eae97933e2.jpg" alt="Kindness Mission" class="donate-img" />
+      <img src="https://i.pinimg.com/736x/88/d4/da/88d4da814dd0113c1633fdc572cfe65e.jpg" alt="Kids Support" class="donate-img" id="donate-img1" />
+      <img src="https://i.pinimg.com/736x/28/ea/1e/28ea1ef796b8dece056693eae97933e2.jpg" alt="Kindness Mission" class="donate-img" id="donate-img2" />
     </div>
   </div>
   <div class="footer-spacer"></div>
   <div style="text-align:center;">
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
+  <script>
+    // Image fade-in on scroll (right side images)
+    function showDonateImagesOnScroll() {
+      var imgs = [document.getElementById('donate-img1'), document.getElementById('donate-img2')];
+      imgs.forEach(function(img) {
+        if (!img) return;
+        var rect = img.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80 && rect.bottom > 40) {
+          img.classList.add('visible');
+        } else {
+          img.classList.remove('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', showDonateImagesOnScroll, { passive: true });
+    window.addEventListener('DOMContentLoaded', showDonateImagesOnScroll);
+  </script>
 </body>
 </html>
