@@ -46,10 +46,21 @@
       0% { filter: brightness(1) drop-shadow(0 0 8px #00b4fa88); }
       100% { filter: brightness(1.15) drop-shadow(0 0 20px #00b4fac9); }
     }
-    .main-center {
-      max-width: 590px;
+    .main-row {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 36px 3vw 30px 3vw;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 0 3vw 40px 3vw;
+      gap: 54px;
+    }
+    .main-center {
+      flex: 2.5;
+      min-width: 320px;
+      max-width: 650px;
+      margin: 0 auto;
+      padding-top: 10px;
       position: relative;
     }
     .donate-headline {
@@ -185,11 +196,47 @@
       margin-bottom: 14px;
       margin-top: 8px;
     }
-    @media (max-width: 600px) {
-      .main-center { padding: 8vw 2vw 5vw 2vw; }
-      .ra-logo-img { width: 100px; height:100px; border-radius: 16px;}
-      .donate-headline { font-size: 1.05em;}
-      .donate-section, .claim-section { padding: 14px 3vw 10px 3vw;}
+    /* Right images */
+    .right-images-side {
+      flex: 1.2;
+      min-width: 210px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      align-items: flex-end;
+      margin-top: 35px;
+    }
+    .donate-img {
+      width: 320px;
+      max-width: 40vw;
+      min-width: 120px;
+      height: 260px;
+      border-radius: 30px;
+      background: #161922;
+      box-shadow: var(--glow);
+      border: 3px solid #00b4fa44;
+      transition: transform .25s, box-shadow .2s, opacity .8s, right .7s;
+      object-fit: cover;
+      opacity: 0;
+      right: -90px;
+      position: relative;
+    }
+    .donate-img.visible {
+      opacity: 1;
+      right: 0;
+      transform: scale(1.02);
+      box-shadow: 0 14px 54px #00b4fa88, 0 0 0 10px #191a24bb;
+    }
+    @media (max-width: 1100px) {
+      .main-row { flex-direction: column-reverse; gap: 24px; padding: 0 2vw 32px 2vw; }
+      .right-images-side { flex-direction: row; justify-content: center; align-items: flex-start; gap:18px; margin-top: 8px;}
+      .donate-img { width: 48vw; min-width:80px; max-width:98vw; height: 150px;}
+    }
+    @media (max-width: 700px) {
+      .main-row { flex-direction: column-reverse; gap: 8px; padding: 0 0vw 25px 0vw;}
+      .right-images-side { flex-direction: column; gap: 10px; align-items: center; }
+      .donate-img { width: 98vw; min-width:60px; border-radius: 16px; height: 140px;}
+      .main-center { padding: 0 0vw 15px 0vw; }
     }
     .footer-spacer { height: 30px; }
     .back-link-bottom {
@@ -220,84 +267,108 @@
   <div class="logo-top">
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-img" />
   </div>
-  <div class="main-center">
-    <div class="donate-headline">Donate & Claim Your RA Atum Tokens</div>
+  <div class="main-row">
+    <div class="main-center">
+      <div class="donate-headline">Donate & Claim Your RA Atum Tokens</div>
 
-    <!-- SECTION 1: UPI Payment -->
-    <div class="donate-section">
-      <div class="section-title"><i class="fas fa-qrcode"></i> UPI Donation (India)</div>
-      <div style="font-size:1.11em; margin-bottom:9px;">
-        <b>Support our mission for kids & kindness!</b>
+      <!-- SECTION 1: UPI Payment -->
+      <div class="donate-section">
+        <div class="section-title"><i class="fas fa-qrcode"></i> UPI Donation (India)</div>
+        <div style="font-size:1.11em; margin-bottom:9px;">
+          <b>Support our mission for kids & kindness!</b>
+        </div>
+        <img src="https://cdn.pixabay.com/photo/2017/06/09/23/22/qr-code-2389238_960_720.png" alt="UPI QR" class="upiqr" />
+        <div class="upi-id">UPI: <b>yourupiid@bank</b></div>
+        <div style="font-size:1em; color:#e7d7b6;margin-bottom:7px;">
+          (Scan or tap to pay any amount)
+        </div>
+        <div style="margin-bottom:11px;">
+          <b>After donating:</b> Share your transaction screenshot & wallet address with us via WhatsApp or Email.
+        </div>
+        <div style="font-size:1em; color:#00b4fa; margin-bottom:0;">
+          WhatsApp: <b>+91XXXXXXXXXX</b><br>
+          Email: <b>your@email.com</b>
+        </div>
       </div>
-      <img src="https://cdn.pixabay.com/photo/2017/06/09/23/22/qr-code-2389238_960_720.png" alt="UPI QR" class="upiqr" />
-      <div class="upi-id">UPI: <b>yourupiid@bank</b></div>
-      <div style="font-size:1em; color:#e7d7b6;margin-bottom:7px;">
-        (Scan or tap to pay any amount)
+
+      <!-- SECTION 2: BTCPay/Crypto Payment -->
+      <div class="donate-section">
+        <div class="section-title"><i class="fas fa-coins"></i> Donate via Crypto (BTCPay Server)</div>
+        <div>
+          Donate via BTCPay Server<br>
+          <span style="font-size:0.98em;color:#00b4fa;">(Supports BTC, BNB, USDT, and more)</span>
+        </div>
+        <a href="https://your-btcpay-server.com/i/yourinvoiceid" target="_blank">
+          <img src="https://btcpayserver.org/img/btcpay-logo.svg" alt="BTCPay QR" class="crypto-logo" />
+        </a>
+        <div style="font-size:1em; color:#00b4fa; margin-bottom:0;">
+          You can donate from anywhere using your crypto wallet!
+        </div>
       </div>
-      <div style="margin-bottom:11px;">
-        <b>After donating:</b> Share your transaction screenshot & wallet address with us via WhatsApp or Email.
+
+      <!-- SECTION 3: CLAIM TOKEN FORM -->
+      <div class="claim-section">
+        <div style="font-size:1.17em;margin-bottom:12px;text-align:center;letter-spacing:1.2px;color:#00ffd0;">
+          Claim Your RA Atum Token Reward
+        </div>
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+          <label for="fullname">Full Name</label>
+          <input type="text" name="fullname" id="fullname" placeholder="Enter your full name" required>
+
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Enter your email" required>
+
+          <label for="whatsapp">WhatsApp Number (+Country Code)</label>
+          <input type="text" name="whatsapp" id="whatsapp" placeholder="+91xxxxxxxxxx" pattern="^\+\d{8,15}$" required>
+
+          <label for="screenshot">Upload Payment Screenshot</label>
+          <input type="file" name="screenshot" id="screenshot" accept="image/*" required>
+
+          <label for="upi">UPI Reference Number</label>
+          <input type="text" name="upi" id="upi" placeholder="Enter UPI Ref No." required>
+
+          <label for="wallet">Your BSC Wallet Address</label>
+          <input type="text" name="wallet" id="wallet" placeholder="Enter your BSC wallet address" required>
+
+          <button type="submit" class="buy-btn">Submit &amp; Claim Token</button>
+        </form>
+        <div style="margin-top:13px;font-size:0.98em;color:#00b4fa;text-align:center;">
+          We will verify and send your RA Atum tokens to your wallet!
+        </div>
       </div>
-      <div style="font-size:1em; color:#00b4fa; margin-bottom:0;">
-        WhatsApp: <b>+91XXXXXXXXXX</b><br>
-        Email: <b>your@email.com</b>
+
+      <!-- Disclaimer -->
+      <div class="donate-disclaimer">
+        <b>Disclaimer:</b> Donations via UPI or Crypto are voluntary and non-refundable. RA Atum tokens, if distributed, are sent as a gesture of appreciation only and not as a sale or investment. We do not offer, trade, or sell crypto tokens directly in exchange for Indian Rupees (INR) or any fiat. No part of this site is intended as an investment platform.
       </div>
     </div>
 
-    <!-- SECTION 2: BTCPay/Crypto Payment -->
-    <div class="donate-section">
-      <div class="section-title"><i class="fas fa-coins"></i> Donate via Crypto (BTCPay Server)</div>
-      <div>
-        Donate via BTCPay Server<br>
-        <span style="font-size:0.98em;color:#00b4fa;">(Supports BTC, BNB, USDT, and more)</span>
-      </div>
-      <a href="https://your-btcpay-server.com/i/yourinvoiceid" target="_blank">
-        <img src="https://btcpayserver.org/img/btcpay-logo.svg" alt="BTCPay QR" class="crypto-logo" />
-      </a>
-      <div style="font-size:1em; color:#00b4fa; margin-bottom:0;">
-        You can donate from anywhere using your crypto wallet!
-      </div>
-    </div>
-
-    <!-- SECTION 3: CLAIM TOKEN FORM -->
-    <div class="claim-section">
-      <div style="font-size:1.17em;margin-bottom:12px;text-align:center;letter-spacing:1.2px;color:#00ffd0;">
-        Claim Your RA Atum Token Reward
-      </div>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
-        <label for="fullname">Full Name</label>
-        <input type="text" name="fullname" id="fullname" placeholder="Enter your full name" required>
-
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Enter your email" required>
-
-        <label for="whatsapp">WhatsApp Number (+Country Code)</label>
-        <input type="text" name="whatsapp" id="whatsapp" placeholder="+91xxxxxxxxxx" pattern="^\+\d{8,15}$" required>
-
-        <label for="screenshot">Upload Payment Screenshot</label>
-        <input type="file" name="screenshot" id="screenshot" accept="image/*" required>
-
-        <label for="upi">UPI Reference Number</label>
-        <input type="text" name="upi" id="upi" placeholder="Enter UPI Ref No." required>
-
-        <label for="wallet">Your BSC Wallet Address</label>
-        <input type="text" name="wallet" id="wallet" placeholder="Enter your BSC wallet address" required>
-
-        <button type="submit" class="buy-btn">Submit &amp; Claim Token</button>
-      </form>
-      <div style="margin-top:13px;font-size:0.98em;color:#00b4fa;text-align:center;">
-        We will verify and send your RA Atum tokens to your wallet!
-      </div>
-    </div>
-
-    <!-- Disclaimer -->
-    <div class="donate-disclaimer">
-      <b>Disclaimer:</b> Donations via UPI or Crypto are voluntary and non-refundable. RA Atum tokens, if distributed, are sent as a gesture of appreciation only and not as a sale or investment. We do not offer, trade, or sell crypto tokens directly in exchange for Indian Rupees (INR) or any fiat. No part of this site is intended as an investment platform.
+    <!-- Side IMAGES (always shown) -->
+    <div class="right-images-side">
+      <img src="https://i.pinimg.com/736x/88/d4/da/88d4da814dd0113c1633fdc572cfe65e.jpg" alt="Kids Support" class="donate-img" id="donate-img1" />
+      <img src="https://i.pinimg.com/736x/28/ea/1e/28ea1ef796b8dece056693eae97933e2.jpg" alt="Kindness Mission" class="donate-img" id="donate-img2" />
     </div>
   </div>
-
   <div class="footer-spacer"></div>
   <div style="text-align:center;">
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
+  <script>
+    // Image fade-in on scroll (right side images)
+    function showDonateImagesOnScroll() {
+      var imgs = [document.getElementById('donate-img1'), document.getElementById('donate-img2')];
+      imgs.forEach(function(img) {
+        if (!img) return;
+        var rect = img.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60 && rect.bottom > 40) {
+          img.classList.add('visible');
+        } else {
+          img.classList.remove('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', showDonateImagesOnScroll, { passive: true });
+    window.addEventListener('DOMContentLoaded', showDonateImagesOnScroll);
+  </script>
 </body>
 </html>
