@@ -64,7 +64,7 @@
       max-width: 740px;
     }
 
-    /* RIGHT COLUMN: Image Cover Stack Effect */
+    /* RIGHT COLUMN: Image Stack Effect */
     .image-stack-section {
       flex: 1;
       min-width: 350px;
@@ -80,27 +80,26 @@
       position: relative;
       width: 100%;
       height: 80vh;
+      margin-top: 5vh;
     }
     .cover-image {
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 80vh;
+      left: 0; top: 0;
+      width: 100%; height: 80vh;
       border-radius: 32px;
       border: 3px solid #00b4fa44;
       box-shadow: var(--glow);
       background: #181a25;
       object-fit: cover;
-      z-index: 1;
       transition: transform 0.5s cubic-bezier(.7,0,.3,1), filter .32s;
       filter: brightness(0.93) grayscale(0.09);
       will-change: transform;
       opacity: 1;
+      z-index: 1;
       pointer-events: none;
     }
     .cover-image.active {
-      z-index: 5;
+      z-index: 99;
       filter: brightness(1.05) grayscale(0);
       pointer-events: auto;
     }
@@ -428,7 +427,7 @@
         </form>
       </div>
     </div>
-    <!-- Right: Stacked image cover scroll effect -->
+    <!-- RIGHT: IMAGE STACK COVER EFFECT -->
     <div class="image-stack-section">
       <div class="image-stack-inner" id="image-stack-inner">
         <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="cover-image" id="img1">
@@ -442,7 +441,7 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Chat bot (unchanged)
+    // Chat bot logic (unchanged)
     const chatForm = document.getElementById('chatbox-form');
     const chatInput = document.getElementById('chatbox-input');
     const chatMessages = document.getElementById('chatbox-messages');
@@ -480,7 +479,7 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
-    // IMAGE STACK SCROLL COVER EFFECT
+    // IMAGE STACK SLIDE COVER EFFECT
     const images = [
       document.getElementById('img1'),
       document.getElementById('img2'),
@@ -490,18 +489,17 @@
     function coverStackScroll() {
       const stack = document.getElementById('image-stack-inner');
       const rect = stack.getBoundingClientRect();
-      const viewHeight = window.innerHeight || document.documentElement.clientHeight;
-      const sectionTop = window.scrollY + rect.top;
-      const sectionHeight = stack.offsetHeight;
-      const step = sectionHeight / images.length;
-      const scrollY = window.scrollY + viewHeight * 0.18; // Small adjust
+      const windowH = window.innerHeight;
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const stackY = rect.top + scrollTop - windowH * 0.15;
+      const stackH = stack.offsetHeight;
+      const imgH = stackH / images.length;
       for (let i = 0; i < images.length; i++) {
-        let slide = Math.min(Math.max(scrollY - sectionTop - i * step, 0), step);
+        let slide = Math.min(Math.max(scrollTop - stackY - i * imgH, 0), imgH);
         images[i].style.transform = `translateY(-${slide}px)`;
         images[i].classList.remove('active');
       }
-      // Only highlight the image currently at the top
-      let idx = Math.min(Math.floor((scrollY - sectionTop) / step), images.length - 1);
+      let idx = Math.min(Math.floor((scrollTop - stackY) / imgH), images.length - 1);
       if (idx >= 0 && idx < images.length) images[idx].classList.add('active');
     }
     window.addEventListener('scroll', coverStackScroll, { passive: true });
