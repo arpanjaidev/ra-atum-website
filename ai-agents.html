@@ -58,7 +58,7 @@
       gap: 54px;
     }
     .main-content { flex: 2; min-width: 320px; max-width: 760px; }
-    /* IMAGE STACK EFFECT WITH BIG GAP */
+    /* IMAGE STACK EFFECT WITH HUGE GAP */
     .image-stack {
       flex: 1;
       min-width: 370px;
@@ -71,8 +71,8 @@
     }
     .image-layer {
       position: relative;
-      height: 110vh;              /* Height of each image layer (much bigger) */
-      margin-bottom: -60vh;       /* Big overlap, but big gap between images! */
+      height: 120vh;           /* super tall layer! */
+      margin-bottom: -80vh;    /* huge gap for dramatic cover */
       z-index: 1;
       pointer-events: none;
     }
@@ -81,7 +81,7 @@
       position: sticky;
       top: 12vh;
       width: 100%;
-      height: 80vh;              /* Height of the image */
+      height: 80vh;
       object-fit: cover;
       border-radius: 32px;
       box-shadow: var(--glow);
@@ -102,12 +102,12 @@
       .main-flex { flex-direction: column-reverse; gap: 18px; }
       .image-stack { min-width: 97vw; max-width: 100vw;}
       .image-stack img { height: 44vw; min-height: 130px; }
-      .image-layer { height: 65vw; margin-bottom: -30vw; }
+      .image-layer { height: 80vw; margin-bottom: -45vw; }
     }
     @media (max-width: 700px) {
       .main-flex { padding: 4vw 1vw 28px 1vw; }
       .image-stack img { height: 36vw; min-height: 90px;}
-      .image-layer { height: 50vw; margin-bottom: -16vw;}
+      .image-layer { height: 55vw; margin-bottom: -15vw;}
     }
     /* Other content styling */
     .highlight-block {
@@ -416,7 +416,7 @@
         </form>
       </div>
     </div>
-    <!-- Right: Stacked Images with big gap -->
+    <!-- IMAGE STACK WITH BIG GAP -->
     <div class="image-stack">
       <div class="image-layer"><img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" id="img1"></div>
       <div class="image-layer"><img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" id="img2"></div>
@@ -466,13 +466,13 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
-    // Highlight the "top" image (covering effect)
+    // Image stack "cover" highlight logic
     function highlightImage() {
       const imgs = [img1, img2, img3, img4];
       let activeIdx = 0;
       for (let i = imgs.length - 1; i >= 0; i--) {
         const rect = imgs[i].getBoundingClientRect();
-        if (rect.top <= 90 && rect.bottom > 200) {
+        if (rect.top <= 110 && rect.bottom > 210) {
           activeIdx = i;
           break;
         }
