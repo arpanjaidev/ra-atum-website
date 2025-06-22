@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Claim RA Atum Token Reward</title>
+  <title>Donate & Claim RA Atum Tokens</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
@@ -46,44 +46,75 @@
       0% { filter: brightness(1) drop-shadow(0 0 8px #00b4fa88); }
       100% { filter: brightness(1.15) drop-shadow(0 0 20px #00b4fac9); }
     }
-    .logo-title {
-      margin-top: 11px;
-      font-size: 1.65em;
+    .main-center {
+      max-width: 590px;
+      margin: 0 auto;
+      padding: 36px 3vw 30px 3vw;
+      position: relative;
+    }
+    .donate-headline {
+      font-size: 2.07rem;
       font-weight: bold;
       letter-spacing: 1.2px;
+      margin-bottom: 18px;
+      margin-top: 10px;
       background: var(--shine-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88;
+      filter: brightness(1.19);
       text-transform: uppercase;
-      filter: brightness(1.15);
       text-align: center;
     }
-    .main-center {
-      max-width: 490px;
-      margin: 0 auto;
-      padding: 68px 3vw 34px 3vw;
-      text-align: center;
-      position: relative;
-    }
-    .claim-section {
+    .donate-section, .claim-section {
       background: var(--card-bg);
       border-radius: 18px;
       box-shadow: var(--glow);
       border: 2.2px solid #00b4fa66;
       margin-top: 28px;
-      padding: 38px 20px 28px 20px;
+      padding: 32px 20px 20px 20px;
       color: #fff;
       font-weight: bold;
-      text-align: left;
     }
-    .claim-section label {
+    .donate-section label, .claim-section label {
       color: var(--blue);
-      font-size: 1.09em;
+      font-size: 1.08em;
       margin-bottom: 6px;
       display: block;
       letter-spacing: .5px;
       font-weight: bold;
+    }
+    .donate-section img.upiqr {
+      width: 180px; height: 180px;
+      border-radius: 16px;
+      background: #fff;
+      margin: 17px 0 9px 0;
+      box-shadow: 0 2px 22px #00b4fa33;
+      border: 1.8px solid #00b4fa99;
+      display: block;
+    }
+    .upi-id {
+      font-size: 1.11em;
+      color: #00b4fa;
+      font-weight: bold;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .crypto-logo {
+      width: 98px;
+      height: 98px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 14px #00b4fa26;
+      margin: 16px 0 7px 0;
+      display: block;
+    }
+    .claim-section form {
+      display: grid;
+      gap: 7px;
+      margin-top: 16px;
     }
     .claim-section input, .claim-section textarea {
       width: 100%;
@@ -117,13 +148,13 @@
       border: none;
       border-radius: 14px;
       padding: 15px 39px;
-      font-size: 1.18em;
+      font-size: 1.15em;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 4px 22px #00b4fa33;
       transition: background .18s, color .17s, transform .13s;
       letter-spacing: 1px;
-      margin-top: 12px;
+      margin-top: 8px;
       outline: none;
       display: block;
       margin-left: auto; margin-right: auto;
@@ -133,11 +164,32 @@
       color: #002a37;
       transform: scale(1.045);
     }
+    .donate-disclaimer {
+      background: #202b3e;
+      color: #e7d7b6;
+      border-radius: 14px;
+      padding: 18px 19px;
+      font-size: 1em;
+      margin-top: 30px;
+      border-left: 4px solid #00b4fa;
+      box-shadow: 0 2px 18px #00b4fa15;
+    }
+    .section-title {
+      font-size: 1.29em;
+      background: var(--shine-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
+      text-align: left;
+      margin-bottom: 14px;
+      margin-top: 8px;
+    }
     @media (max-width: 600px) {
-      .main-center { padding: 16vw 2vw 5vw 2vw; }
-      .ra-logo-img { width: 90px; height:90px; border-radius: 16px;}
-      .logo-title { font-size:1.09em;}
-      .claim-section { padding: 16px 3vw 14px 3vw;}
+      .main-center { padding: 8vw 2vw 5vw 2vw; }
+      .ra-logo-img { width: 100px; height:100px; border-radius: 16px;}
+      .donate-headline { font-size: 1.05em;}
+      .donate-section, .claim-section { padding: 14px 3vw 10px 3vw;}
     }
     .footer-spacer { height: 30px; }
     .back-link-bottom {
@@ -167,23 +219,60 @@
 <body>
   <div class="logo-top">
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-img" />
-    <div class="logo-title">RA Atum Token Reward Claim</div>
   </div>
   <div class="main-center">
+    <div class="donate-headline">Donate & Claim Your RA Atum Tokens</div>
+
+    <!-- SECTION 1: UPI Payment -->
+    <div class="donate-section">
+      <div class="section-title"><i class="fas fa-qrcode"></i> UPI Donation (India)</div>
+      <div style="font-size:1.11em; margin-bottom:9px;">
+        <b>Support our mission for kids & kindness!</b>
+      </div>
+      <img src="https://cdn.pixabay.com/photo/2017/06/09/23/22/qr-code-2389238_960_720.png" alt="UPI QR" class="upiqr" />
+      <div class="upi-id">UPI: <b>yourupiid@bank</b></div>
+      <div style="font-size:1em; color:#e7d7b6;margin-bottom:7px;">
+        (Scan or tap to pay any amount)
+      </div>
+      <div style="margin-bottom:11px;">
+        <b>After donating:</b> Share your transaction screenshot & wallet address with us via WhatsApp or Email.
+      </div>
+      <div style="font-size:1em; color:#00b4fa; margin-bottom:0;">
+        WhatsApp: <b>+91XXXXXXXXXX</b><br>
+        Email: <b>your@email.com</b>
+      </div>
+    </div>
+
+    <!-- SECTION 2: BTCPay/Crypto Payment -->
+    <div class="donate-section">
+      <div class="section-title"><i class="fas fa-coins"></i> Donate via Crypto (BTCPay Server)</div>
+      <div>
+        Donate via BTCPay Server<br>
+        <span style="font-size:0.98em;color:#00b4fa;">(Supports BTC, BNB, USDT, and more)</span>
+      </div>
+      <a href="https://your-btcpay-server.com/i/yourinvoiceid" target="_blank">
+        <img src="https://btcpayserver.org/img/btcpay-logo.svg" alt="BTCPay QR" class="crypto-logo" />
+      </a>
+      <div style="font-size:1em; color:#00b4fa; margin-bottom:0;">
+        You can donate from anywhere using your crypto wallet!
+      </div>
+    </div>
+
+    <!-- SECTION 3: CLAIM TOKEN FORM -->
     <div class="claim-section">
-      <div style="font-size:1.21em;margin-bottom:16px;text-align:center;letter-spacing:1.2px;color:#00ffd0;">
+      <div style="font-size:1.17em;margin-bottom:12px;text-align:center;letter-spacing:1.2px;color:#00ffd0;">
         Claim Your RA Atum Token Reward
       </div>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data" style="display:grid;gap:7px;">
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
         <label for="fullname">Full Name</label>
         <input type="text" name="fullname" id="fullname" placeholder="Enter your full name" required>
-        
+
         <label for="email">Email</label>
         <input type="email" name="email" id="email" placeholder="Enter your email" required>
 
         <label for="whatsapp">WhatsApp Number (+Country Code)</label>
         <input type="text" name="whatsapp" id="whatsapp" placeholder="+91xxxxxxxxxx" pattern="^\+\d{8,15}$" required>
-        
+
         <label for="screenshot">Upload Payment Screenshot</label>
         <input type="file" name="screenshot" id="screenshot" accept="image/*" required>
 
@@ -199,7 +288,13 @@
         We will verify and send your RA Atum tokens to your wallet!
       </div>
     </div>
+
+    <!-- Disclaimer -->
+    <div class="donate-disclaimer">
+      <b>Disclaimer:</b> Donations via UPI or Crypto are voluntary and non-refundable. RA Atum tokens, if distributed, are sent as a gesture of appreciation only and not as a sale or investment. We do not offer, trade, or sell crypto tokens directly in exchange for Indian Rupees (INR) or any fiat. No part of this site is intended as an investment platform.
+    </div>
   </div>
+
   <div class="footer-spacer"></div>
   <div style="text-align:center;">
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
