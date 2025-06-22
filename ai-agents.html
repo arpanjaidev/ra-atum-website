@@ -68,7 +68,6 @@
       min-width: 350px;
       max-width: 420px;
       position: relative;
-      height: 92vh;
       display: flex;
       align-items: flex-start;
       justify-content: flex-end;
@@ -76,46 +75,49 @@
     .image-stack-inner {
       position: relative;
       width: 100%;
-      height: 88vh;
+      height: 100vh;
+      margin-top: 6vh;
     }
     .cover-image {
-      position: fixed;
-      top: 6vh;
-      right: 4vw;
-      width: 420px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 88vh;
       border-radius: 32px;
       border: 3px solid #00b4fa44;
       box-shadow: var(--glow);
       background: #181a25;
       object-fit: cover;
-      z-index: 10;
+      z-index: 0;
       opacity: 0;
       pointer-events: none;
-      transition: filter .3s, box-shadow .3s, opacity .1s;
+      transition: opacity 0.4s cubic-bezier(0.77,0,0.18,1);
     }
     .cover-image.active {
       opacity: 1;
-      filter: brightness(1.1) grayscale(0);
+      z-index: 5;
       pointer-events: auto;
       box-shadow: 0 12px 40px #00b4fa99, 0 1px 32px #00b4fa33;
+      filter: brightness(1.08) grayscale(0);
     }
+    /* Responsive tweaks */
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 22px; padding: 8vw 2vw 40px 2vw; }
-      .image-stack-section { min-width: 98vw; max-width: 100vw; height: 60vw;}
-      .image-stack-inner { height: 48vw; }
-      .cover-image { width: 96vw; min-width: 220px; }
+      .image-stack-section { min-width: 98vw; max-width: 100vw;}
+      .image-stack-inner { height: 56vw; min-height:220px;}
+      .cover-image { height: 56vw; min-height: 120px;}
     }
     @media (max-width: 700px) {
       .main-flex { padding: 5vw 1vw 30px 1vw; }
-      .image-stack-section { height: 58vw; }
-      .image-stack-inner { height: 38vw; }
-      .cover-image { height: 48vw; min-height: 110px; }
+      .image-stack-section { min-width:100vw;}
+      .image-stack-inner { height: 45vw; }
+      .cover-image { height: 45vw; min-height: 80px; }
     }
     @media (max-width: 500px) {
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
       .back-link-bottom { font-size: 0.97em; padding: 8px 8vw;}
-      .cover-image { right: 2vw; }
+      .cover-image { min-width: 170px;}
     }
     .highlight-block {
       background: var(--card-bg);
