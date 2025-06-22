@@ -24,120 +24,108 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    .header-bar {
-      width: 100%;
-      background: #171c25;
-      box-shadow: 0 2px 22px #00b4fa28;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 13px 24px;
-      position: sticky;
-      top: 0;
-      z-index: 99;
-    }
-    .header-bar .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .header-bar .logo img {
-      height: 46px;
-      width: 46px;
-      border-radius: 13px;
-      box-shadow: 0 2px 22px #00b4fa44;
-      background: #202f38;
-    }
-    .header-bar .home-btn {
-      background: linear-gradient(90deg,#00b4fa 30%,#23e6ff 90%);
-      color: #00213a;
-      border-radius: 16px;
+    .back-link-bottom {
+      display: inline-block;
+      position: relative;
+      left: 0;
+      margin: 38px auto 18px auto;
+      color: var(--blue);
+      font-size: 1.09em;
       font-family: 'Share Tech Mono', monospace;
-      border: none;
-      padding: 10px 28px;
-      font-size: 1.11em;
       font-weight: bold;
-      box-shadow: 0 3px 18px #00b4fa44;
-      letter-spacing: 1px;
       text-decoration: none;
-      margin-left: auto;
-      transition: background .15s, color .14s;
-      outline: none;
-      cursor: pointer;
+      background: #172432b3;
+      padding: 10px 24px 10px 16px;
+      border-radius: 16px;
+      box-shadow: 0 2px 15px #00b4fa33;
+      transition: background .16s, color .13s;
+      z-index: 15;
+      letter-spacing: 1.1px;
     }
-    .header-bar .home-btn:hover {
+    .back-link-bottom i {
+      margin-right: 7px;
+      font-size: 1.09em;
+    }
+    .back-link-bottom:hover {
       background: #e7d7b6;
       color: #003a5c;
       text-decoration: underline;
     }
-    .main-flex {
-      max-width: 1250px;
+    .donate-main {
+      max-width: 1150px;
       margin: 0 auto;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      padding: 44px 4vw 44px 4vw;
-      gap: 68px;
+      padding: 46px 6vw 24px 6vw;
+      gap: 44px;
       position: relative;
     }
-    .main-content {
+    .donate-content {
       flex: 2;
       min-width: 320px;
-      max-width: 690px;
     }
-    .main-images-side {
+    .donate-images-side {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 38px;
       align-items: flex-end;
-      margin-top: 16px;
+      gap: 32px;
+      margin-top: 10px;
     }
-    .main-images-side img {
-      width: 320px;
-      max-width: 32vw;
-      border-radius: 24px;
+    .donate-img {
+      width: 245px;
+      max-width: 38vw;
+      height: auto;
+      border-radius: 36px;
       background: #161922;
       box-shadow: var(--glow);
-      border: 2.5px solid #00b4fa44;
-      margin-bottom: 0;
-      transition: transform .26s;
+      border: 3px solid #00b4fa44;
+      margin-right: 0;
+      margin-left: 22px;
+      margin-top: 12px;
+      transition: transform .19s;
       object-fit: cover;
     }
-    .section-title {
-      font-size: 2.05rem;
+    .donate-img:hover {
+      transform: scale(1.04) rotate(1.5deg);
+      box-shadow: 0 18px 68px #00b4faaa, 0 0 0 18px #191a24bb;
+    }
+    .donate-headline {
+      font-size: 2.25rem;
       font-weight: bold;
+      letter-spacing: 1.2px;
+      margin-bottom: 18px;
       background: var(--shine-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: 1.3px;
       text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88;
-      margin-bottom: 14px;
+      filter: brightness(1.19);
       text-transform: uppercase;
-      text-align: left;
     }
     .donate-section {
       background: var(--card-bg);
       border-radius: 19px;
       box-shadow: var(--glow);
       border: 2.2px solid #00b4fa66;
-      padding: 34px 27px 24px 27px;
-      margin-bottom: 32px;
+      padding: 32px 28px 18px 28px;
+      margin-bottom: 28px;
       font-size: 1.13em;
       color: #fff;
       font-weight: bold;
-      line-height: 1.6;
+      line-height: 1.58;
       position: relative;
     }
     .upiqr {
-      width: 175px;
-      height: 175px;
-      border-radius: 15px;
+      width: 155px;
+      height: 155px;
+      border-radius: 14px;
       background: #fff;
       margin: 17px 0 9px 0;
       box-shadow: 0 2px 22px #00b4fa33;
       display: block;
+      border: 1.8px solid #00b4fa99;
     }
     .upi-id {
       font-size: 1.13em;
@@ -147,65 +135,52 @@
       margin-bottom: 12px;
       letter-spacing: 1px;
     }
-    .disclaimer {
+    .donate-disclaimer {
       background: #202b3e;
       color: #e7d7b6;
       border-radius: 14px;
       padding: 18px 19px;
       font-size: 1em;
-      margin-top: 40px;
+      margin-top: 30px;
       border-left: 4px solid #00b4fa;
       box-shadow: 0 2px 18px #00b4fa15;
     }
-    @media (max-width: 1100px) {
-      .main-flex { flex-direction: column-reverse; gap: 24px; padding: 7vw 2vw 44px 2vw; }
-      .main-images-side { align-items: center; }
-      .main-images-side img { max-width: 95vw; width: 95vw;}
+    @media (max-width: 950px) {
+      .donate-main { flex-direction: column-reverse; gap: 16px; padding-top: 18px; }
+      .donate-images-side { align-items: center; }
+      .donate-img { margin-left: 0; }
     }
-    @media (max-width: 700px) {
-      .main-flex { padding: 4vw 1vw 32px 1vw; }
-      .main-content { padding: 2vw;}
-      .donate-section { padding: 17px 4vw 14px 4vw;}
-      .section-title { font-size: 1.34rem; text-align:left;}
-      .main-images-side img { width: 90vw; }
+    @media (max-width: 600px) {
+      .donate-main { padding: 11vw 3vw 4vw 3vw; }
+      .donate-headline { font-size: 1.35em; }
+      .donate-section { padding: 13px 4vw 10px 4vw;}
+      .donate-img { width: 95vw; border-radius: 18px;}
+      .back-link-bottom { font-size: 0.97em; padding: 8px 14px 8px 10px;}
     }
+    .footer-spacer { height: 40px; }
   </style>
 </head>
 <body>
-  <!-- HEADER BAR with logo and back to home -->
-  <div class="header-bar">
-    <div class="logo">
-      <img src="https://i.ibb.co/5WjFqS1/ra-logo-demo.png" alt="RA Atum Logo" />
-      <span style="font-size:1.25em;font-weight:bold;letter-spacing:1px;color:#00b4fa;">RA Atum</span>
-    </div>
-    <a href="index.html" class="home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
-  </div>
-
-  <div class="main-flex">
-    <!-- LEFT: CONTENT -->
-    <div class="main-content">
-      <div class="section-title">Donate & Get RA Atum Tokens</div>
-
-      <!-- SECTION 1: UPI Donation -->
+  <div class="donate-main">
+    <div class="donate-content">
+      <div class="donate-headline">Donate & Get RA Atum Tokens</div>
       <div class="donate-section">
-        <div style="font-size:1.12em;margin-bottom:10px;">
+        <div style="font-size:1.15em;margin-bottom:9px;">
           <b>Support our mission for kids & kindness!</b>
         </div>
-        <div>
+        <div style="margin-bottom:10px;">
           Donate any amount using UPI below, and we'll send you RA Atum tokens as a thank you.
         </div>
         <img src="https://cdn.pixabay.com/photo/2017/06/09/23/22/qr-code-2389238_960_720.png" alt="UPI QR" class="upiqr" />
         <div class="upi-id">UPI: <b>yourupiid@bank</b></div>
-        <div style="font-size:1.01em;color:#e7d7b6;margin-bottom:6px;">
+        <div style="font-size:1.01em;color:#e7d7b6;margin-bottom:7px;">
           (Scan or tap to pay any amount)
         </div>
-        <div style="margin-bottom:9px;">
+        <div style="margin-bottom:11px;">
           <b>After donating:</b> Share your transaction screenshot &amp; wallet address with us via WhatsApp/Email.<br>
           You’ll receive RA Atum tokens as a thank you gift!
         </div>
       </div>
-
-      <!-- SECTION 2: CRYPTO DONATE -->
       <div class="donate-section">
         <div style="font-size:1.12em;margin-bottom:8px;">
           <b>Prefer Crypto?</b>
@@ -214,21 +189,22 @@
           Donate via BTCPay Server<br>
           <span style="font-size:0.98em;color:#00b4fa;">(Supports BTC, BNB, USDT, and more)</span>
         </div>
-        <!-- BTCPay Button or QR: Replace with your real link -->
-        <a href="https://your-btcpay-server.com/i/yourinvoiceid" target="_blank" style="display:inline-block;margin:17px 0 6px 0;">
-          <img src="https://btcpayserver.org/img/btcpay-logo.svg" alt="BTCPay QR" style="width:120px;height:120px;background:#fff;border-radius:12px;box-shadow:0 2px 14px #00b4fa26;" />
+        <a href="https://your-btcpay-server.com/i/yourinvoiceid" target="_blank" style="display:inline-block;margin:16px 0 7px 0;">
+          <img src="https://btcpayserver.org/img/btcpay-logo.svg" alt="BTCPay QR" style="width:110px;height:110px;background:#fff;border-radius:12px;box-shadow:0 2px 14px #00b4fa26;" />
         </a>
-        <div style="color:#e7d7b6;font-size:1.01em;">
+        <div class="donate-disclaimer">
           <b>Disclaimer:</b> Donations via UPI are voluntary and non-refundable. RA Atum tokens, if distributed, are sent as a gesture of appreciation only and not as a sale or investment. We do not offer, trade, or sell crypto tokens directly in exchange for Indian Rupees (INR). No part of this site is intended as an investment platform.
         </div>
       </div>
     </div>
-
-    <!-- RIGHT: 2 IMAGES FOR VIBE -->
-    <div class="main-images-side">
-      <img src="https://i.pinimg.com/736x/88/d4/da/88d4da814dd0113c1633fdc572cfe65e.jpg" alt="Kids Support" />
-      <img src="https://i.pinimg.com/736x/28/ea/1e/28ea1ef796b8dece056693eae97933e2.jpg" alt="Kindness Mission" />
+    <div class="donate-images-side">
+      <img src="https://i.pinimg.com/736x/88/d4/da/88d4da814dd0113c1633fdc572cfe65e.jpg" alt="Kids Support" class="donate-img" />
+      <img src="https://i.pinimg.com/736x/28/ea/1e/28ea1ef796b8dece056693eae97933e2.jpg" alt="Kindness Mission" class="donate-img" />
     </div>
+  </div>
+  <div class="footer-spacer"></div>
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
 </body>
 </html>
