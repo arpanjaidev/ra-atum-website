@@ -64,63 +64,60 @@
       max-width: 740px;
     }
 
-    /* RIGHT COLUMN: Image Stack Effect */
-    .image-stack-section {
+    /* Image cover effect (vertical stack) */
+    .image-cover-section {
       flex: 1;
-      min-width: 350px;
+      min-width: 340px;
       max-width: 420px;
-      position: relative;
-      margin-top: 18px;
-      height: 90vh;
       display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-    }
-    .image-stack-inner {
+      flex-direction: column;
+      gap: 0;
+      margin-top: 14px;
       position: relative;
-      width: 100%;
-      height: 80vh;
-      margin-top: 5vh;
     }
-    .cover-image {
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 80vh;
+    .cover-row {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      margin-bottom: 18px;
       border-radius: 32px;
-      border: 3px solid #00b4fa44;
       box-shadow: var(--glow);
+      border: 2.5px solid #00b4fa44;
       background: #181a25;
-      object-fit: cover;
-      transition: transform 0.5s cubic-bezier(.7,0,.3,1), filter .32s;
-      filter: brightness(0.93) grayscale(0.09);
-      will-change: transform;
-      opacity: 1;
-      z-index: 1;
-      pointer-events: none;
     }
-    .cover-image.active {
-      z-index: 99;
-      filter: brightness(1.05) grayscale(0);
-      pointer-events: auto;
+    .cover-row:last-child { margin-bottom: 0; }
+    .cover-row img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .65s cubic-bezier(.8,0,.2,1);
+      will-change: transform;
+      display: block;
+    }
+    .cover-row .cover {
+      position: absolute;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background: #0000;
+      z-index: 2;
+      pointer-events: none;
     }
 
     @media (max-width: 1100px) {
-      .main-flex { flex-direction: column-reverse; gap: 22px; padding: 8vw 2vw 40px 2vw; }
-      .image-stack-section { min-width: 98vw; max-width: 100vw; height: 55vw;}
-      .image-stack-inner { height: 45vw; }
-      .cover-image { height: 45vw; min-height: 120px; }
+      .main-flex { flex-direction: column-reverse; gap: 16px; }
+      .image-cover-section { min-width: 96vw; max-width: 100vw; }
+      .cover-row { height: 33vw; min-height: 110px;}
     }
     @media (max-width: 700px) {
-      .main-flex { padding: 5vw 1vw 30px 1vw; }
-      .image-stack-section { height: 58vw; }
-      .image-stack-inner { height: 38vw; }
-      .cover-image { height: 38vw; min-height: 70px; }
+      .main-flex { padding: 5vw 1vw 36px 1vw; }
+      .image-cover-section { margin-top: 0; }
+      .cover-row { height: 26vw; min-height: 75px;}
     }
     @media (max-width: 500px) {
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
       .back-link-bottom { font-size: 0.97em; padding: 8px 8vw;}
+      .cover-row { height: 24vw; min-height: 55px;}
     }
-    /* Content style, left */
+    /* Other styles unchanged */
     .highlight-block {
       background: var(--card-bg);
       border-radius: 19px;
@@ -415,7 +412,7 @@
           <i class="fas fa-bolt"></i> BUY TOKENS NOW
         </button>
       </div>
-      <!-- Working Chat Box -->
+      <!-- Chat Box -->
       <div class="chatbox">
         <div class="chatbox-title"><i class="fas fa-comments"></i> RA Atum Chat Bot</div>
         <div class="chatbox-messages" id="chatbox-messages">
@@ -427,21 +424,19 @@
         </form>
       </div>
     </div>
-    <!-- RIGHT: IMAGE STACK COVER EFFECT -->
-    <div class="image-stack-section">
-      <div class="image-stack-inner" id="image-stack-inner">
-        <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="cover-image" id="img1">
-        <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="cover-image" id="img2">
-        <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="cover-image" id="img3">
-        <img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" class="cover-image" id="img4">
-      </div>
+    <!-- RIGHT: IMAGE SLIDE COVER EFFECT VERTICAL -->
+    <div class="image-cover-section" id="image-cover-section">
+      <div class="cover-row"><img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="cover-image" id="img1"><div class="cover"></div></div>
+      <div class="cover-row"><img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="cover-image" id="img2"><div class="cover"></div></div>
+      <div class="cover-row"><img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="cover-image" id="img3"><div class="cover"></div></div>
+      <div class="cover-row"><img src="https://i.pinimg.com/736x/1e/9b/67/1e9b67e689507705fb1b0c8f516c76dd.jpg" alt="Highlight 3" class="cover-image" id="img4"><div class="cover"></div></div>
     </div>
   </div>
   <div style="text-align:center;">
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Chat bot logic (unchanged)
+    // --- Chat bot logic (unchanged)
     const chatForm = document.getElementById('chatbox-form');
     const chatInput = document.getElementById('chatbox-input');
     const chatMessages = document.getElementById('chatbox-messages');
@@ -479,31 +474,24 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
-    // IMAGE STACK SLIDE COVER EFFECT
-    const images = [
-      document.getElementById('img1'),
-      document.getElementById('img2'),
-      document.getElementById('img3'),
-      document.getElementById('img4')
-    ];
-    function coverStackScroll() {
-      const stack = document.getElementById('image-stack-inner');
-      const rect = stack.getBoundingClientRect();
-      const windowH = window.innerHeight;
-      const scrollTop = window.scrollY || window.pageYOffset;
-      const stackY = rect.top + scrollTop - windowH * 0.15;
-      const stackH = stack.offsetHeight;
-      const imgH = stackH / images.length;
-      for (let i = 0; i < images.length; i++) {
-        let slide = Math.min(Math.max(scrollTop - stackY - i * imgH, 0), imgH);
-        images[i].style.transform = `translateY(-${slide}px)`;
-        images[i].classList.remove('active');
+    // --- VERTICAL IMAGE COVER LOGIC ---
+    function coverImagesOnScroll() {
+      const rows = document.querySelectorAll('.cover-row');
+      const winH = window.innerHeight;
+      let lastSlide = 0;
+      for (let i = 0; i < rows.length; i++) {
+        const rect = rows[i].getBoundingClientRect();
+        let progress = (winH - rect.top) / rect.height;
+        if (progress < 0) progress = 0;
+        if (progress > 1) progress = 1;
+        // Move next row image up as you scroll into it
+        if (i > 0) {
+          rows[i-1].querySelector('img').style.transform = `translateY(${-progress * rect.height}px)`;
+        }
       }
-      let idx = Math.min(Math.floor((scrollTop - stackY) / imgH), images.length - 1);
-      if (idx >= 0 && idx < images.length) images[idx].classList.add('active');
     }
-    window.addEventListener('scroll', coverStackScroll, { passive: true });
-    window.addEventListener('DOMContentLoaded', coverStackScroll);
+    window.addEventListener('scroll', coverImagesOnScroll, { passive: true });
+    window.addEventListener('DOMContentLoaded', coverImagesOnScroll);
   </script>
 </body>
 </html>
