@@ -23,26 +23,6 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    .back-link {
-      display: inline-block;
-      margin: 30px auto 18px 36px;
-      color: var(--blue);
-      font-size: 1.15em;
-      font-family: 'Share Tech Mono', monospace;
-      font-weight: bold;
-      text-decoration: none;
-      background: #172432cc;
-      padding: 10px 26px;
-      border-radius: 16px;
-      box-shadow: 0 2px 18px #00b4fa44;
-      transition: background .16s, color .13s;
-      letter-spacing: 1.1px;
-      position: absolute;
-      top: 20px; left: 0;
-    }
-    .back-link i { margin-right: 7px; }
-    .back-link:hover { background: #e7d7b6; color: #003a5c; text-decoration: underline; }
-
     .main-center {
       max-width: 470px;
       margin: 0 auto;
@@ -65,7 +45,6 @@
       box-shadow: 0 16px 99px #00b4fa99, 0 0 0 22px #181a24b8;
       transform: scale(1.05);
     }
-
     .donate-section {
       background: var(--card-bg);
       border-radius: 18px;
@@ -79,15 +58,16 @@
     }
     .donate-section label {
       color: var(--blue);
-      font-size: 1.06em;
-      margin-bottom: 7px;
+      font-size: 1.09em;
+      margin-bottom: 6px;
       display: block;
       letter-spacing: .5px;
+      font-weight: bold;
     }
     .donate-section input, .donate-section textarea {
       width: 100%;
       padding: 11px;
-      margin-bottom: 11px;
+      margin-bottom: 14px;
       font-family: 'Share Tech Mono', monospace;
       border-radius: 8px;
       border: 1.5px solid #00b4fa88;
@@ -102,11 +82,12 @@
       border-color: #00ffd0;
     }
     .donate-section input[type="file"] {
-      padding: 6px 0;
+      padding: 5px 0 0 0;
       background: transparent;
       color: #00ffd0;
       font-size: 1em;
       border: none;
+      margin-bottom: 14px;
     }
     .buy-btn {
       background: linear-gradient(90deg, #00b4fa 10%, #00ffd0 90%);
@@ -121,7 +102,7 @@
       box-shadow: 0 4px 22px #00b4fa33;
       transition: background .18s, color .17s, transform .13s;
       letter-spacing: 1px;
-      margin-top: 10px;
+      margin-top: 12px;
       outline: none;
       display: block;
       margin-left: auto; margin-right: auto;
@@ -132,15 +113,36 @@
       transform: scale(1.045);
     }
     @media (max-width: 600px) {
-      .main-center { padding: 22vw 3vw 5vw 3vw; }
+      .main-center { padding: 20vw 3vw 5vw 3vw; }
       .big-logo { width: 120px; border-radius: 18px;}
-      .back-link { font-size: 0.98em; padding: 8px 13px; left: 10px;}
       .donate-section { padding: 18px 4vw 19px 4vw;}
+    }
+    .footer-spacer { height: 30px; }
+    .back-link-bottom {
+      display: inline-block;
+      margin: 36px auto 22px auto;
+      color: #fff;
+      background: linear-gradient(90deg,#161d29 60%,#202b3e 100%);
+      border: 2.2px solid #00b4fa;
+      border-radius: 16px;
+      font-size: 1.12em;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 13px 36px;
+      box-shadow: 0 2px 15px #00b4fa33;
+      transition: background .16s, color .13s, border .19s;
+      letter-spacing: 1.1px;
+      min-width: 150px;
+      text-align: center;
+    }
+    .back-link-bottom i { margin-right: 7px; font-size: 1.09em; }
+    .back-link-bottom:hover {
+      background: #e7d7b6; color: #003a5c; text-decoration: underline; border-color: #e7d7b6;
     }
   </style>
 </head>
 <body>
-  <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
   <div class="main-center">
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="big-logo" />
     <div class="donate-section">
@@ -148,22 +150,34 @@
         Claim Your RA Atum Token Reward
       </div>
       <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data" style="display:grid;gap:7px;">
-        <label for="wallet">Your BSC Wallet Address <span style="color:#ffdd57;">*</span></label>
-        <input type="text" name="wallet" id="wallet" placeholder="Enter your wallet address (required)" required>
+        <label for="fullname">Full Name</label>
+        <input type="text" name="fullname" id="fullname" placeholder="Enter your full name" required>
         
-        <label for="email">Email or WhatsApp (for confirmation)</label>
-        <input type="email" name="email" id="email" placeholder="Your email or WhatsApp (optional)">
-        
-        <label for="screenshot">Upload Payment Screenshot (optional)</label>
-        <input type="file" name="screenshot" id="screenshot" accept="image/*">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required>
 
-        <textarea name="message" rows="2" placeholder="Message (optional)"></textarea>
+        <label for="whatsapp">WhatsApp Number (+Country Code)</label>
+        <input type="text" name="whatsapp" id="whatsapp" placeholder="+91xxxxxxxxxx" pattern="^\+\d{8,15}$" required>
+        
+        <label for="screenshot">Upload Payment Screenshot</label>
+        <input type="file" name="screenshot" id="screenshot" accept="image/*" required>
+
+        <label for="upi">UPI Reference Number</label>
+        <input type="text" name="upi" id="upi" placeholder="Enter UPI Ref No." required>
+
+        <label for="wallet">Your BSC Wallet Address</label>
+        <input type="text" name="wallet" id="wallet" placeholder="Enter your BSC wallet address" required>
+
         <button type="submit" class="buy-btn">Submit &amp; Claim Token</button>
       </form>
-      <div style="margin-top:12px;font-size:0.97em;color:#00b4fa;text-align:center;">
-        We'll verify and send RA Atum tokens to your wallet soon!
+      <div style="margin-top:13px;font-size:0.98em;color:#00b4fa;text-align:center;">
+        We will verify and send your RA Atum tokens to your wallet!
       </div>
     </div>
+  </div>
+  <div class="footer-spacer"></div>
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
 </body>
 </html>
