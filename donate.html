@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Donate & Get RA Atum Tokens</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Claim RA Atum Token Reward</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -12,8 +12,7 @@
       --sand: #e7d7b6;
       --bg-dark: #10151b;
       --card-bg: #192332e6;
-      --glow: 0 0 24px #00b4fa55, 0 2px 32px #00b4fa33;
-      --shine-grad: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
+      --glow: 0 0 44px #00b4fa77, 0 2px 40px #00b4fa55;
     }
     body {
       margin: 0;
@@ -24,250 +23,147 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    .logo-top {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 34px;
-      margin-bottom: 28px;
-    }
-    .ra-logo-img {
-      width: 135px;
-      height: 135px;
-      max-width: 38vw;
-      border-radius: 26px;
-      box-shadow: 0 0 32px #00b4fa66, 0 3px 18px #00b4fa22;
-      background: #181a25;
-      object-fit: contain;
-      border: 3.5px solid #00b4fa90;
-      animation: logoShine 3s infinite linear alternate;
-    }
-    @keyframes logoShine {
-      0% { filter: brightness(1) drop-shadow(0 0 6px #00b4fa88); }
-      100% { filter: brightness(1.16) drop-shadow(0 0 18px #00b4fac9); }
-    }
-    .logo-title {
-      margin-top: 9px;
-      font-size: 1.35em;
-      font-weight: bold;
-      letter-spacing: 1.1px;
-      background: var(--shine-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-transform: uppercase;
-      filter: brightness(1.13);
-    }
-    .back-link-bottom {
+    .back-link {
       display: inline-block;
-      position: relative;
-      left: 0;
-      margin: 38px auto 18px auto;
+      margin: 30px auto 18px 36px;
       color: var(--blue);
-      font-size: 1.09em;
+      font-size: 1.15em;
       font-family: 'Share Tech Mono', monospace;
       font-weight: bold;
       text-decoration: none;
-      background: #172432b3;
-      padding: 10px 24px 10px 16px;
+      background: #172432cc;
+      padding: 10px 26px;
       border-radius: 16px;
-      box-shadow: 0 2px 15px #00b4fa33;
+      box-shadow: 0 2px 18px #00b4fa44;
       transition: background .16s, color .13s;
-      z-index: 15;
       letter-spacing: 1.1px;
+      position: absolute;
+      top: 20px; left: 0;
     }
-    .back-link-bottom i {
-      margin-right: 7px;
-      font-size: 1.09em;
-    }
-    .back-link-bottom:hover {
-      background: #e7d7b6;
-      color: #003a5c;
-      text-decoration: underline;
-    }
-    .donate-main {
-      max-width: 1150px;
+    .back-link i { margin-right: 7px; }
+    .back-link:hover { background: #e7d7b6; color: #003a5c; text-decoration: underline; }
+
+    .main-center {
+      max-width: 470px;
       margin: 0 auto;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      padding: 12px 6vw 24px 6vw;
-      gap: 44px;
+      padding: 68px 3vw 34px 3vw;
+      text-align: center;
       position: relative;
     }
-    .donate-content {
-      flex: 2;
-      min-width: 320px;
+    .big-logo {
+      width: 190px;
+      max-width: 95vw;
+      margin: 0 auto 24px auto;
+      border-radius: 40px;
+      box-shadow: 0 10px 68px #00b4fa88, 0 0 0 14px #191a24bb;
+      background: #151d25;
+      display: block;
+      transition: box-shadow .2s, transform .14s;
+      border: 3.5px solid #00b4fa66;
     }
-    .donate-images-side {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 45px;
-      margin-top: 18px;
-      position: relative;
+    .big-logo:hover {
+      box-shadow: 0 16px 99px #00b4fa99, 0 0 0 22px #181a24b8;
+      transform: scale(1.05);
     }
-    .donate-img {
-      width: 300px;
-      max-width: 46vw;
-      min-width: 160px;
-      height: 255px;
-      border-radius: 36px;
-      background: #161922;
-      box-shadow: var(--glow);
-      border: 3px solid #00b4fa44;
-      margin-right: 0;
-      margin-left: 22px;
-      margin-top: 12px;
-      transition: transform .28s, box-shadow .24s, opacity .7s, right .7s;
-      object-fit: cover;
-      opacity: 0;
-      right: -70px;
-      position: relative;
-    }
-    .donate-img.visible {
-      opacity: 1;
-      right: 0;
-      transform: scale(1.03);
-      box-shadow: 0 18px 68px #00b4faaa, 0 0 0 18px #191a24bb;
-    }
-    .donate-headline {
-      font-size: 2.25rem;
-      font-weight: bold;
-      letter-spacing: 1.2px;
-      margin-bottom: 18px;
-      background: var(--shine-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88;
-      filter: brightness(1.19);
-      text-transform: uppercase;
-    }
+
     .donate-section {
       background: var(--card-bg);
-      border-radius: 19px;
+      border-radius: 18px;
       box-shadow: var(--glow);
       border: 2.2px solid #00b4fa66;
-      padding: 32px 28px 18px 28px;
-      margin-bottom: 28px;
-      font-size: 1.13em;
+      margin-top: 24px;
+      padding: 38px 20px 28px 20px;
       color: #fff;
       font-weight: bold;
-      line-height: 1.58;
-      position: relative;
+      text-align: left;
     }
-    .upiqr {
-      width: 175px;
-      height: 175px;
-      border-radius: 14px;
-      background: #fff;
-      margin: 17px 0 9px 0;
-      box-shadow: 0 2px 22px #00b4fa33;
+    .donate-section label {
+      color: var(--blue);
+      font-size: 1.06em;
+      margin-bottom: 7px;
       display: block;
-      border: 1.8px solid #00b4fa99;
+      letter-spacing: .5px;
     }
-    .upi-id {
-      font-size: 1.13em;
-      color: #00b4fa;
-      font-weight: bold;
-      margin-top: 4px;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-    }
-    .donate-disclaimer {
-      background: #202b3e;
-      color: #e7d7b6;
-      border-radius: 14px;
-      padding: 18px 19px;
+    .donate-section input, .donate-section textarea {
+      width: 100%;
+      padding: 11px;
+      margin-bottom: 11px;
+      font-family: 'Share Tech Mono', monospace;
+      border-radius: 8px;
+      border: 1.5px solid #00b4fa88;
       font-size: 1em;
-      margin-top: 30px;
-      border-left: 4px solid #00b4fa;
-      box-shadow: 0 2px 18px #00b4fa15;
+      background: #161d29;
+      color: #fff;
+      outline: none;
+      box-sizing: border-box;
+      transition: border .15s;
     }
-    @media (max-width: 950px) {
-      .donate-main { flex-direction: column-reverse; gap: 16px; padding-top: 10px; }
-      .donate-images-side { align-items: center; }
-      .donate-img { margin-left: 0; }
+    .donate-section input:focus, .donate-section textarea:focus {
+      border-color: #00ffd0;
+    }
+    .donate-section input[type="file"] {
+      padding: 6px 0;
+      background: transparent;
+      color: #00ffd0;
+      font-size: 1em;
+      border: none;
+    }
+    .buy-btn {
+      background: linear-gradient(90deg, #00b4fa 10%, #00ffd0 90%);
+      color: #181a1b;
+      font-family: 'Share Tech Mono', monospace;
+      border: none;
+      border-radius: 14px;
+      padding: 15px 39px;
+      font-size: 1.18em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 22px #00b4fa33;
+      transition: background .18s, color .17s, transform .13s;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      outline: none;
+      display: block;
+      margin-left: auto; margin-right: auto;
+    }
+    .buy-btn:hover {
+      background: #e7d7b6;
+      color: #002a37;
+      transform: scale(1.045);
     }
     @media (max-width: 600px) {
-      .donate-main { padding: 3vw 2vw 2vw 2vw; }
-      .donate-headline { font-size: 1.35em; }
-      .donate-section { padding: 13px 4vw 10px 4vw;}
-      .donate-img { width: 97vw; min-width:100px; border-radius: 18px;}
-      .back-link-bottom { font-size: 0.97em; padding: 8px 14px 8px 10px;}
+      .main-center { padding: 22vw 3vw 5vw 3vw; }
+      .big-logo { width: 120px; border-radius: 18px;}
+      .back-link { font-size: 0.98em; padding: 8px 13px; left: 10px;}
+      .donate-section { padding: 18px 4vw 19px 4vw;}
     }
-    .footer-spacer { height: 40px; }
   </style>
 </head>
 <body>
-  <!-- Logo at the top -->
-  <div class="logo-top">
-    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-img" />
-    <div class="logo-title">RA Atum</div>
-  </div>
-  <div class="donate-main">
-    <div class="donate-content">
-      <div class="donate-headline">Donate & Get RA Atum Tokens</div>
-      <div class="donate-section">
-        <div style="font-size:1.15em;margin-bottom:9px;">
-          <b>Support our mission for kids & kindness!</b>
-        </div>
-        <div style="margin-bottom:10px;">
-          Donate any amount using UPI below, and we'll send you RA Atum tokens as a thank you.
-        </div>
-        <img src="https://cdn.pixabay.com/photo/2017/06/09/23/22/qr-code-2389238_960_720.png" alt="UPI QR" class="upiqr" />
-        <div class="upi-id">UPI: <b>yourupiid@bank</b></div>
-        <div style="font-size:1.01em;color:#e7d7b6;margin-bottom:7px;">
-          (Scan or tap to pay any amount)
-        </div>
-        <div style="margin-bottom:11px;">
-          <b>After donating:</b> Share your transaction screenshot &amp; wallet address with us via WhatsApp/Email.<br>
-          You’ll receive RA Atum tokens as a thank you gift!
-        </div>
+  <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
+  <div class="main-center">
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="big-logo" />
+    <div class="donate-section">
+      <div style="font-size:1.21em;margin-bottom:16px;text-align:center;letter-spacing:1.2px;color:#00ffd0;">
+        Claim Your RA Atum Token Reward
       </div>
-      <div class="donate-section">
-        <div style="font-size:1.12em;margin-bottom:8px;">
-          <b>Prefer Crypto?</b>
-        </div>
-        <div>
-          Donate via BTCPay Server<br>
-          <span style="font-size:0.98em;color:#00b4fa;">(Supports BTC, BNB, USDT, and more)</span>
-        </div>
-        <a href="https://your-btcpay-server.com/i/yourinvoiceid" target="_blank" style="display:inline-block;margin:16px 0 7px 0;">
-          <img src="https://btcpayserver.org/img/btcpay-logo.svg" alt="BTCPay QR" style="width:110px;height:110px;background:#fff;border-radius:12px;box-shadow:0 2px 14px #00b4fa26;" />
-        </a>
-        <div class="donate-disclaimer">
-          <b>Disclaimer:</b> Donations via UPI are voluntary and non-refundable. RA Atum tokens, if distributed, are sent as a gesture of appreciation only and not as a sale or investment. We do not offer, trade, or sell crypto tokens directly in exchange for Indian Rupees (INR). No part of this site is intended as an investment platform.
-        </div>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data" style="display:grid;gap:7px;">
+        <label for="wallet">Your BSC Wallet Address <span style="color:#ffdd57;">*</span></label>
+        <input type="text" name="wallet" id="wallet" placeholder="Enter your wallet address (required)" required>
+        
+        <label for="email">Email or WhatsApp (for confirmation)</label>
+        <input type="email" name="email" id="email" placeholder="Your email or WhatsApp (optional)">
+        
+        <label for="screenshot">Upload Payment Screenshot (optional)</label>
+        <input type="file" name="screenshot" id="screenshot" accept="image/*">
+
+        <textarea name="message" rows="2" placeholder="Message (optional)"></textarea>
+        <button type="submit" class="buy-btn">Submit &amp; Claim Token</button>
+      </form>
+      <div style="margin-top:12px;font-size:0.97em;color:#00b4fa;text-align:center;">
+        We'll verify and send RA Atum tokens to your wallet soon!
       </div>
     </div>
-    <div class="donate-images-side">
-      <img src="https://i.pinimg.com/736x/88/d4/da/88d4da814dd0113c1633fdc572cfe65e.jpg" alt="Kids Support" class="donate-img" id="donate-img1" />
-      <img src="https://i.pinimg.com/736x/28/ea/1e/28ea1ef796b8dece056693eae97933e2.jpg" alt="Kindness Mission" class="donate-img" id="donate-img2" />
-    </div>
   </div>
-  <div class="footer-spacer"></div>
-  <div style="text-align:center;">
-    <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
-  </div>
-  <script>
-    // Image fade-in on scroll (right side images)
-    function showDonateImagesOnScroll() {
-      var imgs = [document.getElementById('donate-img1'), document.getElementById('donate-img2')];
-      imgs.forEach(function(img) {
-        if (!img) return;
-        var rect = img.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 80 && rect.bottom > 40) {
-          img.classList.add('visible');
-        } else {
-          img.classList.remove('visible');
-        }
-      });
-    }
-    window.addEventListener('scroll', showDonateImagesOnScroll, { passive: true });
-    window.addEventListener('DOMContentLoaded', showDonateImagesOnScroll);
-  </script>
 </body>
 </html>
