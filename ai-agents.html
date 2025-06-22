@@ -63,11 +63,14 @@
       min-width: 320px;
       max-width: 740px;
     }
+    /* RIGHT COLUMN: Stacked scroll images */
     .image-stack-section {
       flex: 1;
       min-width: 350px;
       max-width: 420px;
       position: relative;
+      margin-top: 18px;
+      height: 80vh;
       display: flex;
       align-items: flex-start;
       justify-content: flex-end;
@@ -75,48 +78,49 @@
     .image-stack-inner {
       position: relative;
       width: 100%;
-      height: 95vh;
-      margin-top: 6vh;
+      height: 70vh;
     }
     .cover-image {
       position: absolute;
-      top: 0; left: 0;
+      left: 0;
       width: 100%;
-      height: 88vh;
+      height: 70vh;
       border-radius: 32px;
       border: 3px solid #00b4fa44;
       box-shadow: var(--glow);
       background: #181a25;
       object-fit: cover;
-      opacity: 0;
       z-index: 1;
-      pointer-events: none;
-      transition: opacity 0.45s cubic-bezier(.8,.01,.15,1);
-    }
-    .cover-image.visible {
+      transition: transform 0.5s cubic-bezier(.7,0,.3,1), filter .32s;
+      filter: brightness(0.93) grayscale(0.09);
+      will-change: transform;
       opacity: 1;
-      z-index: 2;
-      pointer-events: auto;
-      box-shadow: 0 12px 40px #00b4fa99, 0 1px 32px #00b4fa33;
-      filter: brightness(1.08) grayscale(0);
+      pointer-events: none;
     }
+    .cover-image.active {
+      z-index: 5;
+      filter: brightness(1.05) grayscale(0);
+      pointer-events: auto;
+    }
+
+    /* Responsive tweaks */
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 22px; padding: 8vw 2vw 40px 2vw; }
-      .image-stack-section { min-width: 98vw; max-width: 100vw;}
-      .image-stack-inner { height: 56vw; min-height:220px;}
-      .cover-image { height: 56vw; min-height: 120px;}
+      .image-stack-section { min-width: 98vw; max-width: 100vw; height: 48vw;}
+      .image-stack-inner { height: 36vw; }
+      .cover-image { height: 36vw; min-height: 120px; }
     }
     @media (max-width: 700px) {
       .main-flex { padding: 5vw 1vw 30px 1vw; }
-      .image-stack-section { min-width:100vw;}
-      .image-stack-inner { height: 45vw; }
-      .cover-image { height: 45vw; min-height: 80px; }
+      .image-stack-section { height: 52vw; }
+      .image-stack-inner { height: 29vw; }
+      .cover-image { height: 29vw; min-height: 70px; }
     }
     @media (max-width: 500px) {
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
       .back-link-bottom { font-size: 0.97em; padding: 8px 8vw;}
-      .cover-image { min-width: 170px;}
     }
+    /* Content style, left */
     .highlight-block {
       background: var(--card-bg);
       border-radius: 19px;
@@ -423,9 +427,9 @@
         </form>
       </div>
     </div>
-    <!-- Right: Image "cover" stacking scroll effect -->
+    <!-- Right: Stacked image cover scroll effect -->
     <div class="image-stack-section">
-      <div class="image-stack-inner" id="imageStackInner">
+      <div class="image-stack-inner" id="image-stack-inner">
         <img src="https://i.pinimg.com/736x/da/9b/8b/da9b8bdf623094bbee3c6366de289faf.jpg" alt="AI Agent" class="cover-image" id="img1">
         <img src="https://i.pinimg.com/736x/51/e4/8b/51e48b6735070407336300c0a37afc99.jpg" alt="Highlight 1" class="cover-image" id="img2">
         <img src="https://i.pinimg.com/736x/62/ca/db/62cadbd4d6340da2afab480f83d55929.jpg" alt="Highlight 2" class="cover-image" id="img3">
@@ -437,7 +441,7 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Chat box logic (unchanged)
+    // Chat bot (unchanged)
     const chatForm = document.getElementById('chatbox-form');
     const chatInput = document.getElementById('chatbox-input');
     const chatMessages = document.getElementById('chatbox-messages');
@@ -475,35 +479,34 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
-    // Sticky image stack scroll effect
+    // IMAGE STACK SCROLL EFFECT
     const images = [
       document.getElementById('img1'),
       document.getElementById('img2'),
       document.getElementById('img3'),
       document.getElementById('img4')
     ];
-    const imageStackInner = document.getElementById('imageStackInner');
+    function coverStackScroll() {
+      const stack = document.getElementById('image-stack-inner');
+      const rect = stack.getBoundingClientRect();
+      const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+      const startY = rect.top + window.scrollY - viewHeight * 0.20;
+      const stackHeight = rect.height;
+      const step = stackHeight / images.length;
 
-    function updateImageStack() {
-      const rect = imageStackInner.getBoundingClientRect();
-      const sectionTop = rect.top + window.scrollY;
-      const sectionHeight = rect.height;
-      const viewportHeight = window.innerHeight;
-      const imgCount = images.length;
-      // The scroll distance over which all images will animate
-      const scrollDistance = sectionHeight - viewportHeight + 1;
-      const scrollTop = Math.max(0, Math.min(window.scrollY - sectionTop, scrollDistance));
-      // Calculate which image should be visible (only one image visible at a time)
-      let activeIdx = Math.floor((scrollTop / scrollDistance) * imgCount);
-      if (activeIdx < 0) activeIdx = 0;
-      if (activeIdx > imgCount - 1) activeIdx = imgCount - 1;
-      images.forEach((img, idx) => {
-        img.classList.toggle('visible', idx === activeIdx);
-      });
+      const scrollTop = window.scrollY - startY;
+      for (let i = 0; i < images.length; i++) {
+        // Each image will slide up by its step as you scroll into the next step
+        let offset = Math.min(Math.max(scrollTop - i * step, 0), step);
+        images[i].style.transform = `translateY(-${offset}px)`;
+        images[i].classList.remove('active');
+      }
+      // Highlight topmost visible image for glow
+      let idx = Math.min(Math.floor(scrollTop / step), images.length - 1);
+      if (idx >= 0 && idx < images.length) images[idx].classList.add('active');
     }
-    window.addEventListener('scroll', updateImageStack, { passive: true });
-    window.addEventListener('DOMContentLoaded', updateImageStack);
-    window.addEventListener('resize', updateImageStack);
+    window.addEventListener('scroll', coverStackScroll, { passive: true });
+    window.addEventListener('DOMContentLoaded', coverStackScroll);
   </script>
 </body>
 </html>
