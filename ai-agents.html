@@ -63,14 +63,15 @@
       min-width: 320px;
       max-width: 740px;
     }
-    /* RIGHT COLUMN: Stacked scroll images */
+
+    /* RIGHT COLUMN: Image Cover Stack Effect */
     .image-stack-section {
       flex: 1;
       min-width: 350px;
       max-width: 420px;
       position: relative;
       margin-top: 18px;
-      height: 80vh;
+      height: 90vh;
       display: flex;
       align-items: flex-start;
       justify-content: flex-end;
@@ -78,13 +79,14 @@
     .image-stack-inner {
       position: relative;
       width: 100%;
-      height: 70vh;
+      height: 80vh;
     }
     .cover-image {
       position: absolute;
       left: 0;
+      top: 0;
       width: 100%;
-      height: 70vh;
+      height: 80vh;
       border-radius: 32px;
       border: 3px solid #00b4fa44;
       box-shadow: var(--glow);
@@ -103,18 +105,17 @@
       pointer-events: auto;
     }
 
-    /* Responsive tweaks */
     @media (max-width: 1100px) {
       .main-flex { flex-direction: column-reverse; gap: 22px; padding: 8vw 2vw 40px 2vw; }
-      .image-stack-section { min-width: 98vw; max-width: 100vw; height: 48vw;}
-      .image-stack-inner { height: 36vw; }
-      .cover-image { height: 36vw; min-height: 120px; }
+      .image-stack-section { min-width: 98vw; max-width: 100vw; height: 55vw;}
+      .image-stack-inner { height: 45vw; }
+      .cover-image { height: 45vw; min-height: 120px; }
     }
     @media (max-width: 700px) {
       .main-flex { padding: 5vw 1vw 30px 1vw; }
-      .image-stack-section { height: 52vw; }
-      .image-stack-inner { height: 29vw; }
-      .cover-image { height: 29vw; min-height: 70px; }
+      .image-stack-section { height: 58vw; }
+      .image-stack-inner { height: 38vw; }
+      .cover-image { height: 38vw; min-height: 70px; }
     }
     @media (max-width: 500px) {
       .highlight-block, .main-content, .chatbox { padding: 10px 1vw 12px 1vw; }
@@ -479,7 +480,7 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
-    // IMAGE STACK SCROLL EFFECT
+    // IMAGE STACK SCROLL COVER EFFECT
     const images = [
       document.getElementById('img1'),
       document.getElementById('img2'),
@@ -490,19 +491,17 @@
       const stack = document.getElementById('image-stack-inner');
       const rect = stack.getBoundingClientRect();
       const viewHeight = window.innerHeight || document.documentElement.clientHeight;
-      const startY = rect.top + window.scrollY - viewHeight * 0.20;
-      const stackHeight = rect.height;
-      const step = stackHeight / images.length;
-
-      const scrollTop = window.scrollY - startY;
+      const sectionTop = window.scrollY + rect.top;
+      const sectionHeight = stack.offsetHeight;
+      const step = sectionHeight / images.length;
+      const scrollY = window.scrollY + viewHeight * 0.18; // Small adjust
       for (let i = 0; i < images.length; i++) {
-        // Each image will slide up by its step as you scroll into the next step
-        let offset = Math.min(Math.max(scrollTop - i * step, 0), step);
-        images[i].style.transform = `translateY(-${offset}px)`;
+        let slide = Math.min(Math.max(scrollY - sectionTop - i * step, 0), step);
+        images[i].style.transform = `translateY(-${slide}px)`;
         images[i].classList.remove('active');
       }
-      // Highlight topmost visible image for glow
-      let idx = Math.min(Math.floor(scrollTop / step), images.length - 1);
+      // Only highlight the image currently at the top
+      let idx = Math.min(Math.floor((scrollY - sectionTop) / step), images.length - 1);
       if (idx >= 0 && idx < images.length) images[idx].classList.add('active');
     }
     window.addEventListener('scroll', coverStackScroll, { passive: true });
