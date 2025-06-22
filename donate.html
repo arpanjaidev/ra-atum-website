@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Donate & Get Reward – RA Atum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #00b4fa;
+      --sand: #e7d7b6;
+      --bg-dark: #10151b;
+      --card-bg: #192332e6;
+      --glow: 0 0 24px #00b4fa55, 0 2px 32px #00b4fa33;
+      --shine-grad: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Share Tech Mono', monospace;
+      background: var(--bg-dark);
+      color: var(--sand);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .main-flex {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 38px;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 34px 10px 34px 10px;
+    }
+    .donate-block {
+      flex: 2 1 350px;
+      background: var(--card-bg);
+      border-radius: 19px;
+      box-shadow: var(--glow);
+      border: 2.2px solid #00b4fa66;
+      padding: 34px 27px 24px 27px;
+      font-size: 1.09em;
+      color: #fff;
+      font-weight: bold;
+      line-height: 1.7;
+      min-width: 290px;
+      max-width: 480px;
+      position: relative;
+    }
+    .donate-block h2 {
+      background: var(--shine-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1.2px;
+      margin: 0 0 16px 0;
+      text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88;
+      text-transform: uppercase;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .qr-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 15px;
+      margin: 36px 0 16px 0;
+    }
+    .qr-img {
+      width: 210px;
+      height: 210px;
+      border-radius: 28px;
+      background: #fff;
+      box-shadow: 0 6px 32px #00b4fa33;
+      border: 3px solid #00b4fa55;
+      object-fit: contain;
+    }
+    .upi-id {
+      color: #00b4fa;
+      font-size: 1.09em;
+      font-weight: bold;
+      margin: 4px 0 0 0;
+      letter-spacing: 1.2px;
+      word-break: break-all;
+    }
+    .or-divider {
+      text-align: center;
+      color: #00b4fa;
+      margin: 32px 0 16px 0;
+      font-weight: bold;
+      letter-spacing: 1.1px;
+    }
+    .btcpay-block {
+      text-align: center;
+      margin: 24px 0 0 0;
+      border-top: 1px solid #00b4fa22;
+      padding-top: 22px;
+    }
+    .btcpay-qr {
+      width: 140px;
+      height: 140px;
+      border-radius: 19px;
+      background: #fff;
+      box-shadow: 0 4px 20px #00b4fa33;
+      border: 2px solid #00b4fa44;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+    .btcpay-btn {
+      background: linear-gradient(90deg, #00b4fa 10%, #00ffd0 90%);
+      color: #181a1b;
+      border: none;
+      border-radius: 16px;
+      padding: 13px 38px;
+      font-size: 1.1em;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 16px #00b4fa22;
+      letter-spacing: 1px;
+      outline: none;
+      margin-top: 4px;
+      transition: background .18s, color .17s, transform .13s;
+    }
+    .btcpay-btn:hover {
+      background: #e7d7b6;
+      color: #003a5c;
+      transform: scale(1.045);
+    }
+    .disclaimer-block {
+      margin: 32px 0 0 0;
+      background: #171c27;
+      border: 1.7px solid #00b4fa33;
+      border-radius: 16px;
+      box-shadow: 0 2px 15px #00b4fa22;
+      padding: 17px 18px;
+      color: #ffd1b3;
+      font-size: 0.97em;
+      line-height: 1.6;
+    }
+    .law-block {
+      margin: 36px 0 0 0;
+      background: #181d26;
+      border: 1.7px solid #00b4fa33;
+      border-radius: 16px;
+      box-shadow: 0 2px 15px #00b4fa22;
+      padding: 17px 18px;
+      color: #e7d7b6;
+      font-size: 1em;
+      line-height: 1.6;
+    }
+    .law-block h3 {
+      color: #00b4fa;
+      font-size: 1.18em;
+      margin: 0 0 8px 0;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 700px) {
+      .main-flex { flex-direction: column; gap: 10px; padding: 16px 2vw 40px 2vw; }
+      .donate-block { padding: 16px 4vw 17px 4vw;}
+      .qr-img, .btcpay-qr { width: 120px; height: 120px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="main-flex">
+    <div class="donate-block">
+      <h2><i class="fas fa-heart"></i> Donate & Get RA Atum Tokens</h2>
+      <p>
+        <b>Support our mission for kids & kindness!<br>
+        Donate any amount using UPI below, and we'll send you RA Atum tokens as a thank you.</b>
+      </p>
+      <div class="qr-block">
+        <!-- Use your own UPI QR code here -->
+        <img src="https://i.imgur.com/kX6fXZH.png" class="qr-img" alt="UPI QR Code" />
+        <div class="upi-id"><i class="fas fa-rupee-sign"></i> UPI: <b>yourupiid@bank</b></div>
+        <div style="font-size:0.93em;color:#00b4fa;margin-top:7px;">
+          (Scan or tap to pay any amount)
+        </div>
+      </div>
+      <div style="margin-top:8px;font-size:0.97em;color:#00b4fa;">
+        <i class="fas fa-info-circle"></i>
+        <b>After donating:</b> Share your transaction screenshot & wallet address with us via WhatsApp/Email. You’ll receive RA Atum tokens as a thank you gift!
+      </div>
+      <div class="or-divider">or</div>
+      <div class="btcpay-block">
+        <img src="https://bitcoinqrcodemaker.com/api/?style=bitcoin&address=bc1qexamplebtcaddresshere" class="btcpay-qr" alt="BTC Donate QR" />
+        <div style="color:#00b4fa; font-size:1em; margin:8px 0 11px 0;">
+          <b>Prefer Crypto?</b>
+        </div>
+        <a href="https://your-btcpay-server.com/invoice?id=exampleid" target="_blank">
+          <button class="btcpay-btn"><i class="fab fa-btc"></i> Donate via BTCPay Server</button>
+        </a>
+        <div style="color:#aaa;font-size:0.92em;margin-top:6px;">(Supports BTC, BNB, USDT, and more)</div>
+      </div>
+      <div class="disclaimer-block">
+        <b>Disclaimer:</b> Donations via UPI are voluntary and non-refundable. RA Atum tokens, if distributed, are sent as a gesture of appreciation only and not as a sale or investment. We do not offer, trade, or sell crypto tokens directly in exchange for Indian Rupees (INR). No part of this site is intended as an investment platform.
+      </div>
+      <div class="law-block">
+        <h3>Crypto Law in India</h3>
+        <ul>
+          <li>Donations using UPI are allowed for social causes, shops, and registered NGOs.</li>
+          <li>Selling or trading crypto directly for INR using Indian payment gateways (UPI, Razorpay, Paytm, etc.) is not allowed.</li>
+          <li>RA Atum tokens are sent only as a thank you for donations, not as a sale, trade, or investment.</li>
+          <li>Crypto payments are allowed through crypto wallets (like BTCPay, MetaMask, Binance, etc.).</li>
+        </ul>
+        <div style="color:#00b4fa;margin-top:9px;font-size:1em;">
+          Questions? <b>Email: info@ra-atum.com</b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin:40px 0 20px 0;">
+    <a href="index.html" class="btcpay-btn" style="padding: 12px 28px; font-size: 1em;"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
+</body>
+</html>
