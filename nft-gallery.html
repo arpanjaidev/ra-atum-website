@@ -393,6 +393,22 @@
       letter-spacing: 1px;
       font-family: var(--digital-font), monospace;
     }
+    /* --- Footer links neon theme --- */
+    .footer-links {
+      margin: 18px auto 0 auto;
+    }
+    .footer-links a {
+      color: var(--blue);
+      text-decoration: underline;
+      font-weight: bold;
+      margin: 0 8px;
+      letter-spacing: 0.5px;
+      transition: color .18s;
+      cursor: pointer;
+    }
+    .footer-links a:hover {
+      color: var(--sand-dark);
+    }
   </style>
 </head>
 <body>
@@ -406,7 +422,7 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
-      <a id="support-link" style="pointer-events:none;opacity:0.6;">Support</a>
+      <!-- Support removed from header/nav -->
     </nav>
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
@@ -416,7 +432,7 @@
         <a href="#about" onclick="closeMobileNav()">About</a>
         <a href="#contact" onclick="closeMobileNav()">Contact</a>
         <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
-        <a id="mobile-support-link" style="pointer-events:none;opacity:0.6;">Support</a>
+        <!-- Support removed from mobile menu -->
       </div>
     </div>
   </header>
@@ -496,6 +512,19 @@
   <section id="about" style="background:none;box-shadow:none;padding:0;margin:0;max-width:none;"></section>
   <section id="contact" style="background:none;box-shadow:none;padding:0;margin:0;max-width:none;"></section>
 
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="nft-gallery.html">NFT Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DApp</a>
+      <a href="#support" id="footer-support-link"><i class="fas fa-life-ring"></i> Support</a>
+    </div>
+    <div style="margin-top:14px;">
+      &copy; 2025 RA Atum. All Rights Reserved.
+    </div>
+  </footer>
   <script>
     // Hamburger menu logic
     const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -504,6 +533,7 @@
     hamburgerBtn.onclick = () => { mobileNavOverlay.classList.add('active'); }
     closeMobileNavBtn.onclick = () => { mobileNavOverlay.classList.remove('active'); }
     function closeMobileNav() { mobileNavOverlay.classList.remove('active'); }
+
     // Zigzag support images scroll-in effect
     function supportInView() {
       const isMobile = window.innerWidth < 650;
@@ -521,6 +551,7 @@
     window.addEventListener('scroll', supportInView);
     window.addEventListener('resize', supportInView);
     window.addEventListener('DOMContentLoaded', supportInView);
+
     // On mobile, always fade/slide up
     function updateSupportRowsForMobile() {
       const isMobile = window.innerWidth < 650;
@@ -534,9 +565,12 @@
     }
     window.addEventListener('resize', updateSupportRowsForMobile);
     window.addEventListener('DOMContentLoaded', updateSupportRowsForMobile);
+
+    // Smooth scroll for footer support link
+    document.getElementById('footer-support-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('support').scrollIntoView({ behavior: 'smooth' });
+    });
   </script>
-  <footer>
-    &copy; 2025 RA Atum. All Rights Reserved.
-  </footer>
 </body>
 </html>
