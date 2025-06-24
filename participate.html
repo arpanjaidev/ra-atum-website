@@ -47,7 +47,7 @@
       max-width: 1200px;
       margin: 32px auto 0 auto;
       display: flex;
-      align-items: flex-start;
+      align-items: stretch;
       gap: 60px;
       flex-wrap: wrap;
       padding: 0 4vw 54px 4vw;
@@ -59,6 +59,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      height: auto;
     }
     .image-section-align {
       flex: 1.1;
@@ -66,13 +67,12 @@
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
-      height: 100%;
-      /* No background, border, or box-shadow */
+      padding: 0;
+      margin: 0;
       background: none;
       border: none;
       box-shadow: none;
-      padding: 0;
-      margin: 0;
+      /* Height will be set by JS to match participate-content */
     }
     .image-stack-aligner {
       display: flex;
@@ -95,6 +95,7 @@
       background: #162b39;
       margin: 0 0;
       position: relative;
+      min-height: 100px;
     }
     .gallery-img-vertical.visible {
       opacity: 1;
@@ -102,18 +103,16 @@
       filter: none;
       z-index: 1;
     }
-    /* When not visible, image slides back out */
     .gallery-img-vertical:not(.visible) {
       opacity: 0;
       transform: translateX(70px) scale(0.98);
       filter: grayscale(0.18) blur(0.5px) brightness(0.99);
       z-index: 0;
     }
-    /* Responsive: image column fills width on mobile */
     @media (max-width: 1100px) {
       .main-participate-flex { flex-direction: column; gap: 28px;}
       .image-section-align { margin: 0 auto; width: 100%; }
-      .gallery-img-vertical { max-width: 99vw; }
+      .gallery-img-vertical { max-width: 99vw; min-height: 100px;}
       .image-stack-aligner { height: auto; }
     }
     @media (max-width: 700px) {
@@ -299,6 +298,7 @@
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" />
   </div>
   <div class="main-participate-flex">
+    <!-- Content section -->
     <div class="participate-content" id="participate-section">
       <div class="hero-title">Participate in RA Atum Presale</div>
       <div class="presale-info-line">
@@ -344,11 +344,11 @@
           </li>
         </ul>
         <div style="text-align:center;margin-top:18px;">
-          <a href="index.html#buy-section" class="buy-btn"><i class="fa-solid fa-ticket"></i> Participate in Presale</a>
+          <a href="index.html#buy-section" id="participate-button" class="buy-btn"><i class="fa-solid fa-ticket"></i> Participate in Presale</a>
         </div>
       </div>
     </div>
-    <!-- Gallery section: vertically fills to match content height, but now has NO bg or border -->
+    <!-- Gallery section: perfectly matches content section height -->
     <div class="image-section-align">
       <div class="image-stack-aligner" id="image-stack-aligner">
         <img src="https://i.pinimg.com/736x/b0/42/3a/b0423a2ff37093cfff3503dad412e2dc.jpg" class="gallery-img-vertical" alt="RA Atum Graph 1" id="vimg1">
@@ -362,7 +362,7 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Align image stack height to content
+    // Set image stack height to match participate-content section
     function alignImageStackHeight() {
       var content = document.getElementById('participate-section');
       var stack = document.getElementById('image-stack-aligner');
@@ -370,13 +370,34 @@
         stack.style.height = content.offsetHeight + "px";
       }
     }
-    window.addEventListener('resize', alignImageStackHeight);
-    window.addEventListener('DOMContentLoaded', function() {
+
+    // Also re-align after all images load
+    function imagesLoaded(callback) {
+      var images = document.querySelectorAll('.gallery-img-vertical');
+      var loaded = 0;
+      if (images.length === 0) return callback();
+      images.forEach(function(img) {
+        if (img.complete) loaded++;
+        else img.addEventListener('load', function() {
+          loaded++;
+          if (loaded === images.length) callback();
+        });
+      });
+      if (loaded === images.length) callback();
+    }
+
+    function alignAll() {
       alignImageStackHeight();
       animateVerticalImgs();
+    }
+
+    window.addEventListener('resize', alignAll);
+    window.addEventListener('DOMContentLoaded', function() {
+      imagesLoaded(alignAll);
+      alignAll();
     });
 
-    // Animate images in when visible and out when leaving viewport
+    // Animate images in/out when scrolling
     function isInViewport(element) {
       const rect = element.getBoundingClientRect();
       return (
