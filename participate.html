@@ -57,26 +57,31 @@
       flex: 2;
       min-width: 340px;
       max-width: 650px;
-    }
-    .participate-gallery-vertical {
-      flex: 1.2;
-      min-width: 320px;
-      max-width: 410px;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: flex-start;
-      margin-top: 18px;
-      gap: 24px;
-      height: 590px;
-      position: relative;
-      z-index: 5;
+    }
+    .image-section-align {
+      flex: 1.1;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      /* match padding/margin to parent content */
+    }
+    .image-stack-aligner {
+      /* Forces images to fill the available height of content */
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      /* Each image will space out perfectly */
     }
     .gallery-img-vertical {
-      width: 98%;
-      max-width: 370px;
-      min-height: 118px;
-      max-height: 212px;
+      width: 100%;
+      max-width: 375px;
+      min-height: 88px;
+      max-height: 170px;
       object-fit: cover;
       border-radius: 24px;
       box-shadow: var(--glow), 0 8px 38px #111c;
@@ -88,22 +93,25 @@
       transition: opacity 1.2s cubic-bezier(.5,1.7,.4,1), transform 1.2s cubic-bezier(.4,1.7,.4,1), filter 1.2s;
       will-change: opacity, transform;
       background: #1a2333;
+      margin-top: 0;
+      margin-bottom: 0;
+      /* Remove gaps, image stack fills parent's height */
     }
     .gallery-img-vertical.visible {
       opacity: 1;
       transform: translateX(0) scale(1.03);
       filter: none;
     }
-    /* Responsive for vertical gallery */
     @media (max-width: 1150px) {
       .main-participate-flex { flex-direction: column; gap: 18px;}
-      .participate-gallery-vertical { margin: 0 auto; height: auto;}
+      .image-section-align { margin: 0 auto; }
       .gallery-img-vertical { max-width: 97vw; }
+      .image-stack-aligner { height: auto; }
     }
     @media (max-width: 700px) {
       .features-grid { grid-template-columns: 1fr; }
-      .participate-gallery-vertical { max-width: 97vw;}
-      .gallery-img-vertical { min-height: 64px; max-height: 123px; }
+      .image-section-align { max-width: 97vw;}
+      .gallery-img-vertical { min-height: 60px; max-height: 90px; }
     }
     .hero-title {
       font-size: 2.18rem;
@@ -282,7 +290,7 @@
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" />
   </div>
   <div class="main-participate-flex">
-    <div class="participate-content">
+    <div class="participate-content" id="participate-section">
       <div class="hero-title">Participate in RA Atum Presale</div>
       <div class="presale-info-line">
         <i class="fa-solid fa-ticket"></i>
@@ -331,18 +339,35 @@
         </div>
       </div>
     </div>
-    <div class="participate-gallery-vertical">
-      <img src="https://i.pinimg.com/736x/b0/42/3a/b0423a2ff37093cfff3503dad412e2dc.jpg" class="gallery-img-vertical" alt="RA Atum Graph 1" id="vimg1">
-      <img src="https://i.pinimg.com/736x/16/50/95/16509554aa2e43b71fb9c8a6eaf3033b.jpg" class="gallery-img-vertical" alt="RA Atum Graph 2" id="vimg2">
-      <img src="https://i.pinimg.com/736x/44/93/77/449377fa38ce96cb739d3951c0fb7c38.jpg" class="gallery-img-vertical" alt="RA Atum Graph 3" id="vimg3">
-      <img src="https://i.pinimg.com/736x/01/65/ef/0165ef32ff73611b6b09f3a6319ce9b6.jpg" class="gallery-img-vertical" alt="RA Atum Graph 4" id="vimg4">
+    <!-- Gallery section: vertically fills to match content height -->
+    <div class="image-section-align">
+      <div class="image-stack-aligner" id="image-stack-aligner">
+        <img src="https://i.pinimg.com/736x/b0/42/3a/b0423a2ff37093cfff3503dad412e2dc.jpg" class="gallery-img-vertical" alt="RA Atum Graph 1" id="vimg1">
+        <img src="https://i.pinimg.com/736x/16/50/95/16509554aa2e43b71fb9c8a6eaf3033b.jpg" class="gallery-img-vertical" alt="RA Atum Graph 2" id="vimg2">
+        <img src="https://i.pinimg.com/736x/44/93/77/449377fa38ce96cb739d3951c0fb7c38.jpg" class="gallery-img-vertical" alt="RA Atum Graph 3" id="vimg3">
+        <img src="https://i.pinimg.com/736x/01/65/ef/0165ef32ff73611b6b09f3a6319ce9b6.jpg" class="gallery-img-vertical" alt="RA Atum Graph 4" id="vimg4">
+      </div>
     </div>
   </div>
   <div style="text-align:center;">
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Animate vertical images in when they appear in viewport
+    // Make image stack match the height of the participate section (for perfect alignment)
+    function alignImageStackHeight() {
+      var content = document.getElementById('participate-section');
+      var stack = document.getElementById('image-stack-aligner');
+      if (content && stack) {
+        stack.style.height = content.offsetHeight + "px";
+      }
+    }
+    window.addEventListener('resize', alignImageStackHeight);
+    window.addEventListener('DOMContentLoaded', function() {
+      alignImageStackHeight();
+      animateVerticalImgs();
+    });
+
+    // Animate images in when visible
     function isInViewport(element) {
       const rect = element.getBoundingClientRect();
       return (
@@ -359,7 +384,6 @@
       }
     }
     window.addEventListener('scroll', animateVerticalImgs, {passive:true});
-    window.addEventListener('DOMContentLoaded', animateVerticalImgs);
   </script>
 </body>
 </html>
