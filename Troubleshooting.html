@@ -12,8 +12,9 @@
       --blue-glow: #0fffc7;
       --sand: #e7d7b6;
       --black: #171818;
-      --card-bg: #222127ee;
+      --card-bg: #181a1b;
       --accent: #00b4fa;
+      --accent2: #23e6ff;
       --digital-font: 'Share Tech Mono', monospace;
     }
     html, body {
@@ -28,63 +29,74 @@
     body::before {
       content: "";
       position: fixed; top:0; left:0; right:0; bottom:0;
-      background: linear-gradient(120deg, #101015dd 0%, #1d2b3add 100%);
-      z-index: 0; pointer-events: none; opacity: 0.85;
+      background: linear-gradient(120deg, #101015ee 0%, #1d2b3add 100%);
+      z-index: 0; pointer-events: none; opacity: 0.86;
       mix-blend-mode: multiply;
     }
     .ra-logo-glow {
       display: flex; justify-content: center; align-items: center;
-      margin: 48px 0 22px 0;
+      margin: 44px 0 24px 0;
+    }
+    .ra-logo-glow a {
+      display: block;
     }
     .ra-logo-glow img {
-      width: 112px; height: 112px;
+      width: 122px; height: 122px;
       border-radius: 50%;
       background: #191b28;
-      box-shadow: 0 0 32px 10px #00b4fa99, 0 0 28px #0fffc7cc;
-      border: 3.5px solid #00b4fa;
+      box-shadow: 0 0 38px 14px #00b4fa99, 0 0 22px #0fffc7cc;
+      border: 4px solid #00b4fa;
       animation: logo-glow 3.5s linear infinite alternate;
       object-fit: cover;
+      transition: box-shadow 0.22s, transform 0.18s;
+    }
+    .ra-logo-glow img:hover {
+      box-shadow: 0 0 68px 24px #0fffc799, 0 0 56px #00b4faee;
+      transform: scale(1.06) rotate(-2deg);
     }
     @keyframes logo-glow {
-      0% { box-shadow: 0 0 32px 8px #0fffc799, 0 0 16px #00b4fa99; }
-      100% { box-shadow: 0 0 56px 24px #0fffc799, 0 0 36px #00b4faee; }
+      0% { box-shadow: 0 0 36px 10px #0fffc799, 0 0 16px #00b4fa99; }
+      100% { box-shadow: 0 0 68px 24px #0fffc799, 0 0 36px #00b4faee; }
     }
     .help-title {
       text-align: center;
       color: var(--blue);
-      font-size: 2.5rem;
-      letter-spacing: 1.5px;
-      margin-bottom: 13px;
-      text-shadow: 0 2px 20px #0fffc755;
+      font-size: 2.1rem;
+      letter-spacing: 1.4px;
+      margin-bottom: 12px;
+      margin-top: 3px;
+      text-shadow: 0 2px 20px #0fffc755,0 0 14px #0fffc711;
       font-family: var(--digital-font), monospace;
-      background: linear-gradient(90deg, #fff 10%, #00b4fa 90%);
+      background: linear-gradient(90deg, #fff 12%, #00b4fa 75%, #23e6ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      filter: brightness(1.13) drop-shadow(0 0 3px #00e6ff99);
     }
     .help-center-container {
-      max-width: 780px;
+      max-width: 740px;
       margin: 0 auto;
       background: var(--card-bg);
-      border-radius: 20px;
-      box-shadow: 0 4px 32px #00b4fa55;
-      padding: 36px 22px 22px 22px;
+      border-radius: 24px;
+      box-shadow: 0 6px 28px #00b4fa33;
+      padding: 38px 24px 24px 24px;
       position: relative;
       z-index: 2;
-      border: 2.3px solid #0fffc7cc;
-      margin-bottom: 38px;
+      border: 2.7px solid #0fffc7cc;
+      margin-bottom: 40px;
     }
     .accordion-section {
-      margin-bottom: 26px;
+      margin-bottom: 23px;
       border-radius: 13px;
       overflow: hidden;
-      border: 1.8px solid #00b4fa99;
-      background: #232238f2;
-      box-shadow: 0 2px 14px #00b4fa33;
+      border: 1.5px solid #00b4fa99;
+      background: #232238ee;
+      box-shadow: 0 2px 10px #00b4fa22;
+      transition: box-shadow 0.15s, border 0.15s;
     }
     .accordion-header {
       cursor: pointer;
-      padding: 19px 16px 19px 23px;
-      font-size: 1.19rem;
+      padding: 18px 17px 18px 25px;
+      font-size: 1.14rem;
       color: var(--blue);
       font-weight: bold;
       display: flex;
@@ -92,50 +104,47 @@
       border: none;
       background: none;
       outline: none;
-      transition: background 0.15s;
+      transition: background 0.14s;
       user-select: none;
       letter-spacing: 0.4px;
     }
-    .accordion-header:hover {
-      background: #171e2f88;
-      color: var(--blue-glow);
-      box-shadow: 0 0 12px #0fffc799;
+    .accordion-header:hover, .accordion-header.active {
+      background: #181a1b;
     }
     .accordion-arrow {
       margin-right: 13px;
       font-size: 1.17em;
-      transition: transform 0.28s cubic-bezier(.59,1.2,.48,1.1), color .18s;
-      color: var(--blue);
+      transition: transform 0.28s cubic-bezier(.59,1.2,.48,1.1);
+      color: var(--blue-glow);
     }
     .accordion-header.active .accordion-arrow {
-      transform: rotate(90deg) scale(1.21);
-      color: var(--blue-glow);
-      text-shadow: 0 0 10px #0fffc799;
+      transform: rotate(90deg) scale(1.19);
+      color: var(--accent2);
     }
     .accordion-content {
-      padding: 12px 24px 19px 46px;
+      padding: 11px 22px 19px 48px;
       display: none;
       color: var(--sand);
       font-size: 1.09rem;
-      line-height: 1.73;
+      line-height: 1.7;
       background: none;
       border-top: 1.2px solid #00b4fa33;
       animation: fadeIn 0.36s;
     }
     .accordion-content.active {
       display: block;
-      animation: fadeIn 0.46s;
+      animation: fadeIn 0.41s;
     }
     @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
     .email-support, .telegram-support {
-      margin-top: 16px; font-size: 1.13rem;
+      margin-top: 14px; font-size: 1.08rem;
       color: var(--blue-glow);
-      display: flex; align-items: center; gap: 9px;
+      display: flex; align-items: center; gap: 7px;
       font-weight: bold;
     }
     .email-support i, .telegram-support i {
-      font-size: 1.25em;
-      margin-right: 5px;
+      font-size: 1.23em;
+      margin-right: 6px;
       color: var(--blue);
     }
     .back-home-btn {
@@ -146,36 +155,38 @@
       color: #101016;
       font-family: var(--digital-font), monospace;
       font-weight: bold;
-      font-size: 1.21rem;
+      font-size: 1.18rem;
       border: none;
       border-radius: 16px;
       box-shadow: 0 0 10px #00b4fa66;
-      margin: 44px auto 32px auto;
-      padding: 18px 48px;
+      margin: 44px auto 30px auto;
+      padding: 17px 48px;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.15s, color 0.18s, box-shadow 0.22s;
-      letter-spacing: 1.3px;
+      transition: background 0.13s, color 0.13s, box-shadow 0.19s;
+      letter-spacing: 1.2px;
+      outline: none;
     }
     .back-home-btn:hover {
       background: linear-gradient(90deg, #0fffc7 0%, #00b4fa 100%);
       color: #111c1c;
       box-shadow: 0 0 28px #0fffc799;
+      filter: brightness(1.15);
     }
     @media (max-width: 700px) {
-      .help-center-container { padding: 19px 4vw 14px 4vw; }
-      .ra-logo-glow img { width: 78px; height: 78px; }
-      .help-title { font-size: 1.45rem; }
-      .accordion-header { font-size: 1.02rem; padding: 15px 8px 15px 17px; }
-      .accordion-content { font-size: 0.98rem; padding-left: 24px; }
-      .back-home-btn { padding: 15px 12vw; font-size: 1.03rem; }
+      .help-center-container { padding: 16px 2vw 10px 2vw; }
+      .ra-logo-glow img { width: 74px; height: 74px; }
+      .help-title { font-size: 1.22rem; }
+      .accordion-header { font-size: 0.99rem; padding: 13px 6px 13px 15px; }
+      .accordion-content { font-size: 0.98rem; padding-left: 18px; }
+      .back-home-btn { padding: 12px 12vw; font-size: 0.99rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Logo with glow -->
+  <!-- Logo with glow (clickable to home) -->
   <div class="ra-logo-glow">
-    <img src="https://i.ibb.co/w6J7Xmy/RA-Atum-Logo.png" alt="RA Atum Logo">
+    <a href="index.html"><img src="https://i.ibb.co/w6J7Xmy/RA-Atum-Logo.png" alt="RA Atum Logo"></a>
   </div>
   <div class="help-title">RA Atum Help Center</div>
   <div class="help-center-container">
@@ -184,11 +195,11 @@
     <div class="accordion-section">
       <button class="accordion-header active"><span class="accordion-arrow"><i class="fa-solid fa-chevron-right"></i></span>Welcome to RA Atum Troubleshooting</button>
       <div class="accordion-content active">
-        <b>Encountering an issue?</b> No worries! This guide addresses the most common questions and problems, step-by-step, for everything on the RA Atum platform—wallet connection, token transactions, agent setup, and more.<br><br>
+        <b>Encountering an issue?</b> No worries! This guide addresses the most common questions and problems, step-by-step, for everything on the RA Atum platform—wallet connection, token transactions, automation setup, and more.<br><br>
         <ul>
           <li>Get tips for connecting your wallet</li>
           <li>Solve token display or transfer issues</li>
-          <li>Troubleshoot rewards, dashboard, and agent automation</li>
+          <li>Troubleshoot rewards, dashboard, and automation</li>
           <li>Find support contacts and quick fixes</li>
         </ul>
         <div style="margin:16px 0 6px 0; color:var(--blue-glow); font-weight:600;">Let’s keep your experience smooth and rewarding!</div>
@@ -223,7 +234,7 @@
 
     <!-- 3. Rewards & Automation (Agent) Issues -->
     <div class="accordion-section">
-      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-robot"></i></span>Agent, Reward, or Automation Issues</button>
+      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-robot"></i></span>Rewards & Automation</button>
       <div class="accordion-content">
         <b>Agent not working, or auto-rewards not sent?</b>
         <ul>
