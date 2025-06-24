@@ -12,7 +12,6 @@
       --sand: #e7d7b6;
       --bg-dark: #10151b;
       --card-bg: #192332e6;
-      --glow: 0 0 32px #00b4fa88, 0 2px 38px #00b4fa33;
       --shine-grad: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
     }
     body {
@@ -68,15 +67,12 @@
       align-items: stretch;
       justify-content: flex-start;
       height: 100%;
-      /* Glow & border */
-      border: 4px solid var(--blue);
-      border-radius: 28px;
-      box-shadow: 0 0 36px 8px #00b4fa40, 0 4px 36px 0 #00324f66, var(--glow);
-      background: linear-gradient(120deg, #0e192bb5 80%, #1e3a5277 100%);
-      position: relative;
-      overflow: visible;
-      /* Added padding for image gap with border */
-      padding: 18px 10px;
+      /* No background, border, or box-shadow */
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
     }
     .image-stack-aligner {
       display: flex;
@@ -87,53 +83,44 @@
     }
     .gallery-img-vertical {
       width: 100%;
-      min-height: 0;
-      /* Use flex-grow for equal heights! */
       flex: 1 1 0;
-      max-width: 100%;
       object-fit: cover;
       border-radius: 20px;
-      box-shadow: 0 4px 32px #00b4fa28, 0 6px 20px #00315533;
-      border: 2.3px solid #00c3ff77;
+      box-shadow: 0 4px 32px #00b4fa22, 0 6px 20px #00315533;
+      border: none;
       opacity: 0;
       transform: translateX(70px) scale(0.98);
-      filter: grayscale(0.21) blur(0.7px) brightness(0.99);
-      transition: opacity 1.2s cubic-bezier(.5,1.7,.4,1), transform 1.2s cubic-bezier(.4,1.7,.4,1), filter 1.2s;
-      will-change: opacity, transform;
+      filter: grayscale(0.18) blur(0.5px) brightness(0.99);
+      transition: opacity 1.1s cubic-bezier(.5,1.7,.4,1), transform 1.05s cubic-bezier(.4,1.7,.4,1), filter 1.05s;
       background: #162b39;
       margin: 0 0;
       position: relative;
-      /* Overlay via ::after */
     }
     .gallery-img-vertical.visible {
       opacity: 1;
-      transform: translateX(0) scale(1.045);
+      transform: translateX(0) scale(1.03);
       filter: none;
       z-index: 1;
     }
-    .gallery-img-vertical::after {
-      /* Blue gradient glass overlay */
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0; top: 0; width: 100%; height: 100%;
-      border-radius: 18px;
-      pointer-events: none;
-      background: linear-gradient(102deg, rgba(19,40,72,0.28) 16%, rgba(0,180,250,0.15) 60%, rgba(255,255,255,0.12) 100%);
-      mix-blend-mode: lighten;
-      z-index: 2;
+    /* When not visible, image slides back out */
+    .gallery-img-vertical:not(.visible) {
+      opacity: 0;
+      transform: translateX(70px) scale(0.98);
+      filter: grayscale(0.18) blur(0.5px) brightness(0.99);
+      z-index: 0;
     }
-    /* Responsive */
-    @media (max-width: 1150px) {
-      .main-participate-flex { flex-direction: column; gap: 18px;}
-      .image-section-align { margin: 0 auto; }
-      .gallery-img-vertical { max-width: 97vw; }
+    /* Responsive: image column fills width on mobile */
+    @media (max-width: 1100px) {
+      .main-participate-flex { flex-direction: column; gap: 28px;}
+      .image-section-align { margin: 0 auto; width: 100%; }
+      .gallery-img-vertical { max-width: 99vw; }
       .image-stack-aligner { height: auto; }
     }
     @media (max-width: 700px) {
       .features-grid { grid-template-columns: 1fr; }
-      .image-section-align { max-width: 97vw;}
-      .gallery-img-vertical { min-height: 60px; max-height: 110px; }
+      .image-section-align { max-width: 100vw; }
+      .gallery-img-vertical { min-height: 140px; max-height: 40vh; width: 100vw; }
+      .image-stack-aligner { gap: 16px; }
     }
     .hero-title {
       font-size: 2.18rem;
@@ -155,7 +142,7 @@
       border-radius: 13px;
       font-size: 1.11em;
       padding: 12px 22px;
-      box-shadow: var(--glow);
+      box-shadow: 0 0 20px #00b4fa30;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
@@ -205,7 +192,7 @@
     .highlight-block {
       background: var(--card-bg);
       border-radius: 18px;
-      box-shadow: var(--glow);
+      box-shadow: 0 0 28px #00b4fa22;
       border: 2.2px solid #00b4fa66;
       padding: 24px 18px 18px 18px;
       margin: 30px 0 23px 0;
@@ -361,7 +348,7 @@
         </div>
       </div>
     </div>
-    <!-- Gallery section: vertically fills to match content height -->
+    <!-- Gallery section: vertically fills to match content height, but now has NO bg or border -->
     <div class="image-section-align">
       <div class="image-stack-aligner" id="image-stack-aligner">
         <img src="https://i.pinimg.com/736x/b0/42/3a/b0423a2ff37093cfff3503dad412e2dc.jpg" class="gallery-img-vertical" alt="RA Atum Graph 1" id="vimg1">
@@ -375,7 +362,7 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Make image stack match the height of the participate section (for perfect alignment)
+    // Align image stack height to content
     function alignImageStackHeight() {
       var content = document.getElementById('participate-section');
       var stack = document.getElementById('image-stack-aligner');
@@ -389,7 +376,7 @@
       animateVerticalImgs();
     });
 
-    // Animate images in when visible
+    // Animate images in when visible and out when leaving viewport
     function isInViewport(element) {
       const rect = element.getBoundingClientRect();
       return (
@@ -402,6 +389,8 @@
         if (!img) continue;
         if (isInViewport(img)) {
           img.classList.add('visible');
+        } else {
+          img.classList.remove('visible');
         }
       }
     }
