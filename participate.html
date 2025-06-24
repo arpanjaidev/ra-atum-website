@@ -12,7 +12,7 @@
       --sand: #e7d7b6;
       --bg-dark: #10151b;
       --card-bg: #192332e6;
-      --glow: 0 0 24px #00b4fa55, 0 2px 32px #00b4fa33;
+      --glow: 0 0 32px #00b4fa88, 0 2px 38px #00b4fa33;
       --shine-grad: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
     }
     body {
@@ -26,42 +26,117 @@
     }
     .centered-logo {
       text-align: center;
-      margin-top: 36px;
+      margin-top: 48px;
       margin-bottom: 0;
     }
     .centered-logo img {
-      max-width: 130px;
-      filter: drop-shadow(0 0 16px #00b4fa77);
+      max-width: 210px;
+      width: 38vw;
+      filter: drop-shadow(0 0 34px #00b4fa) drop-shadow(0 0 16px #00b4fa77);
+      border-radius: 28px;
+      transition: transform .35s cubic-bezier(.7,1.65,.55,.85);
+      animation: logo-float 3.8s ease-in-out infinite;
+      background: #232c33cc;
     }
+    @keyframes logo-float {
+      0%,100% { transform: translateY(0px) scale(1);}
+      35% { transform: translateY(-19px) scale(1.04);}
+      55% { transform: translateY(6px) scale(0.99);}
+      80% { transform: translateY(-9px) scale(1.03);}
+    }
+
     .main-participate-flex {
-      max-width: 1050px;
-      margin: 24px auto 0 auto;
+      max-width: 1200px;
+      margin: 30px auto 0 auto;
       display: flex;
       align-items: flex-start;
-      gap: 48px;
+      gap: 60px;
       flex-wrap: wrap;
-      padding: 0 4vw 44px 4vw;
+      padding: 0 4vw 54px 4vw;
     }
     .participate-content {
       flex: 2;
+      min-width: 340px;
+      max-width: 650px;
+    }
+    .participate-gallery {
+      flex: 1.2;
       min-width: 320px;
-      max-width: 620px;
+      max-width: 470px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 24px;
+      gap: 0;
+      height: 500px;
+      position: relative;
+      z-index: 5;
+      /* prevent scroll overflow */
     }
-    .participate-img {
-      flex: 1;
-      min-width: 310px;
-      max-width: 390px;
-      text-align: center;
-      margin-top: 10px;
+    .gallery-stack {
+      width: 100%;
+      height: 470px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0;
     }
-    .participate-img img {
+    .gallery-img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scale(1.02);
+      border-radius: 30px;
+      box-shadow: var(--glow), 0 8px 38px #111c;
+      border: 4px solid #00b4fa33;
       width: 92%;
-      max-width: 370px;
-      border-radius: 26px;
-      box-shadow: var(--glow);
-      border: 3px solid #00b4fa44;
-      margin-top: 16px;
+      max-width: 420px;
+      max-height: 320px;
+      opacity: 0.16;
+      pointer-events: none;
+      transition: opacity 1.2s, filter .65s, transform 1.1s cubic-bezier(.68,1.4,.44,.9);
+      filter: grayscale(0.4) blur(1.5px) brightness(0.92);
+      z-index: 1;
     }
+    .gallery-img.active {
+      opacity: 1;
+      filter: none;
+      pointer-events: auto;
+      z-index: 10;
+      animation: img-float 5s ease-in-out infinite;
+    }
+    .gallery-controls {
+      margin: 30px 0 0 0;
+      text-align: center;
+      z-index: 15;
+    }
+    .gallery-btn {
+      background: var(--blue);
+      color: #181a1b;
+      border: none;
+      font-size: 1.45em;
+      font-weight: bold;
+      border-radius: 18px;
+      padding: 8px 23px;
+      margin: 0 9px;
+      cursor: pointer;
+      box-shadow: 0 3px 20px #00b4fa44;
+      transition: background .17s, color .11s, transform .13s;
+      opacity: .81;
+    }
+    .gallery-btn:active, .gallery-btn:focus {
+      background: #e7d7b6;
+      color: #003a5c;
+      opacity: 1;
+    }
+    @keyframes img-float {
+      0%,100% { transform: translateX(-50%) scale(1.03);}
+      30% { transform: translateX(-50%) scale(1.08);}
+      60% { transform: translateX(-50%) scale(0.99);}
+    }
+
     .hero-title {
       font-size: 2.18rem;
       font-weight: bold;
@@ -232,20 +307,22 @@
       text-decoration: underline;
       border-color: #e7d7b6;
     }
-    @media (max-width: 1050px) {
+    @media (max-width: 1150px) {
       .main-participate-flex { flex-direction: column; gap: 8px;}
-      .participate-img { margin: 0 auto; }
+      .participate-gallery { margin: 0 auto; }
       .participate-content { max-width: 98vw;}
     }
     @media (max-width: 700px) {
       .features-grid { grid-template-columns: 1fr; }
-      .participate-img img { max-width: 98vw; }
+      .gallery-stack { height: 300px;}
+      .participate-gallery { min-width: 100vw; max-width: 100vw;}
+      .gallery-img { max-width: 97vw; max-height: 190px;}
     }
   </style>
 </head>
 <body>
   <div class="centered-logo">
-    <!-- CHANGE THIS src TO YOUR LOGO PATH! -->
+    <!-- CHANGE THIS src TO YOUR LOGO PATH/URL! -->
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" />
   </div>
   <div class="main-participate-flex">
@@ -298,12 +375,38 @@
         </div>
       </div>
     </div>
-    <div class="participate-img">
-      <img src="https://i.pinimg.com/736x/b0/42/3a/b0423a2ff37093cfff3503dad412e2dc.jpg" alt="RA Atum Presale Hero">
+    <div class="participate-gallery">
+      <div class="gallery-stack" id="gallery-stack">
+        <img src="https://i.pinimg.com/736x/b0/42/3a/b0423a2ff37093cfff3503dad412e2dc.jpg" class="gallery-img active" id="img1" alt="RA Atum Graph Hero 1">
+        <img src="https://i.pinimg.com/736x/16/50/95/16509554aa2e43b71fb9c8a6eaf3033b.jpg" class="gallery-img" id="img2" alt="RA Atum Graph Hero 2">
+        <img src="https://i.pinimg.com/736x/44/93/77/449377fa38ce96cb739d3951c0fb7c38.jpg" class="gallery-img" id="img3" alt="RA Atum Graph Hero 3">
+      </div>
+      <div class="gallery-controls">
+        <button class="gallery-btn" onclick="switchImg(-1)" aria-label="Previous image"><i class="fas fa-arrow-left"></i></button>
+        <button class="gallery-btn" onclick="switchImg(1)" aria-label="Next image"><i class="fas fa-arrow-right"></i></button>
+      </div>
     </div>
   </div>
   <div style="text-align:center;">
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
+  <script>
+    // Parallax/floating hero image carousel for 3 images
+    let currentImg = 1;
+    function showImg(idx) {
+      for (let i = 1; i <= 3; ++i) {
+        document.getElementById('img' + i).classList.remove('active');
+      }
+      document.getElementById('img' + idx).classList.add('active');
+    }
+    function switchImg(dir) {
+      currentImg += dir;
+      if (currentImg < 1) currentImg = 3;
+      if (currentImg > 3) currentImg = 1;
+      showImg(currentImg);
+    }
+    // Optionally, auto-rotate every 7s
+    setInterval(() => { switchImg(1); }, 7000);
+  </script>
 </body>
 </html>
