@@ -3,311 +3,244 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Help Center & Troubleshooting – RA Atum</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>RA Atum – Troubleshooting & Help</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Digital font for all text -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
-      --digital-blue: #00c3ff;
-      --digital-blue-outline: #0fffc7;
-      --sea-green: #0fffc7;
-      --sand: #e7d7b6;
-      --black: #171818;
+      --main-bg: #0e1018;
       --card-bg: #181a1b;
-      --accent: #00b4fa;
-      --accent2: #23e6ff;
+      --digital-blue: #00b4fa;
+      --digital-cyan: #23e6ff;
+      --sand: #e7d7b6;
+      --accent: #00ffd0;
       --digital-font: 'Share Tech Mono', monospace;
+      --outline: #00b4fa;
+      --outline2: #23e6ff;
     }
-    html, body {
-      margin: 0; padding: 0; min-height: 100vh;
+    body {
+      background: var(--main-bg);
+      color: #fff;
       font-family: var(--digital-font), monospace;
-      background: url('https://e1.pxfuel.com/desktop-wallpaper/767/930/desktop-wallpaper-printed-circuit-board-video-motherboard-blue-and-purple-digital-circuit-board-background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      background-attachment: fixed;
-      color: var(--sand);
-      overflow-x: hidden;
+      margin: 0;
+      min-height: 100vh;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    body::before {
-      content: "";
-      position: fixed; top:0; left:0; right:0; bottom:0;
-      background: linear-gradient(120deg, #101015ee 0%, #1d2b3add 100%);
-      z-index: 0; pointer-events: none; opacity: 0.86;
-      mix-blend-mode: multiply;
+    .logo-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 38px;
+      margin-bottom: 12px;
+      text-decoration: none;
     }
-    .ra-logo-glow {
-      display: flex; justify-content: center; align-items: center;
-      margin: 44px 0 22px 0;
-    }
-    .ra-logo-glow a {
+    .ra-logo-big {
+      width: 158px;
+      height: 158px;
+      border-radius: 35px;
+      object-fit: contain;
+      background: #191b2a;
+      box-shadow: 0 8px 48px #00b4fa88, 0 0 0 7px #191a2477;
+      border: 3px solid var(--outline);
+      transition: transform .22s, box-shadow .22s;
       display: block;
     }
-    .ra-logo-glow img {
-      width: 122px; height: 122px;
-      border-radius: 50%;
-      background: #191b28;
-      box-shadow: 0 0 38px 14px var(--digital-blue), 0 0 32px var(--sea-green);
-      border: 4px solid var(--digital-blue-outline);
-      animation: logo-glow 3.5s linear infinite alternate;
-      object-fit: cover;
-      transition: box-shadow 0.22s, transform 0.18s;
+    .ra-logo-big:hover {
+      transform: scale(1.04) rotate(-2deg);
+      box-shadow: 0 18px 68px #00b4faaa, 0 0 0 12px #191a24bb;
+      border: 3.5px solid var(--digital-cyan);
     }
-    .ra-logo-glow img:hover {
-      box-shadow: 0 0 82px 34px var(--sea-green), 0 0 52px var(--digital-blue);
-      transform: scale(1.07) rotate(-2deg);
-    }
-    @keyframes logo-glow {
-      0% { box-shadow: 0 0 40px 12px var(--sea-green), 0 0 30px var(--digital-blue); }
-      100% { box-shadow: 0 0 82px 34px var(--sea-green), 0 0 52px var(--digital-blue); }
-    }
-    .help-title {
+    .headline {
       text-align: center;
-      color: var(--digital-blue);
-      font-size: 2.1rem;
-      letter-spacing: 1.4px;
-      margin-bottom: 12px;
-      margin-top: 3px;
-      text-shadow: 0 2px 20px var(--sea-green),0 0 14px var(--digital-blue);
+      margin-bottom: 20px;
+      font-size: 1.22em;
       font-family: var(--digital-font), monospace;
-      background: linear-gradient(90deg, #fff 15%, var(--digital-blue) 75%, var(--sea-green) 100%);
+      font-weight: bold;
+      background: linear-gradient(90deg,#fff 8%,#00b4fa 60%,#23e6ff 98%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: brightness(1.13) drop-shadow(0 0 3px var(--sea-green));
+      background-clip: text;
+      text-shadow: 0 2px 18px #22213866,0 0 8px #00b4fa88,0 0 18px #00b4fa99;
+      filter: brightness(1.16) drop-shadow(0 0 3px #00e6ff99);
+      letter-spacing: 1.1px;
+      min-height: 1.7em;
     }
-    .help-center-container {
-      max-width: 740px;
-      margin: 0 auto 60px auto;
+    .troubleshoot-container {
       background: var(--card-bg);
-      border-radius: 22px;
-      box-shadow: 0 6px 28px var(--digital-blue-outline);
-      padding: 38px 24px 24px 24px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px #00b4fa33;
+      border: 2.5px solid var(--outline);
+      padding: 35px 18px 28px 18px;
+      max-width: 620px;
+      width: 96vw;
+      margin: 0 auto 30px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .trouble-section {
+      margin-bottom: 30px;
+      border: 2px solid var(--outline2);
+      border-radius: 15px;
+      background: #181a1bcc;
+      padding: 25px 16px 18px 16px;
+      box-shadow: 0 2px 16px #00b4fa33;
       position: relative;
-      z-index: 2;
-      border: 2.7px solid var(--digital-blue-outline);
+      transition: box-shadow .17s, border-color .17s;
     }
-    .accordion-section {
-      margin-bottom: 23px;
-      border-radius: 13px;
-      overflow: hidden;
-      border: 2px solid var(--sea-green);
-      background: #232238ee;
-      box-shadow: 0 2px 10px var(--digital-blue-outline);
-      transition: box-shadow 0.15s, border 0.15s;
+    .trouble-section:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 26px #00b4fa88;
     }
-    .accordion-header {
-      cursor: pointer;
-      padding: 18px 17px 18px 25px;
-      font-size: 1.14rem;
+    .trouble-title {
       color: var(--digital-blue);
+      font-size: 1.3em;
       font-weight: bold;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 12px #00b4fa44;
+      letter-spacing: 1.1px;
+    }
+    .trouble-list {
+      margin: 0 0 0 8px;
+      padding: 0;
+      list-style: none;
+      font-size: 1.05em;
+    }
+    .trouble-list li {
+      margin-bottom: 9px;
+      position: relative;
+      padding-left: 26px;
+    }
+    .trouble-list li::before {
+      content: "⦿";
+      color: var(--digital-cyan);
+      font-size: 1.1em;
+      position: absolute;
+      left: 0; top: 1px;
+    }
+    .faq-links {
       display: flex;
-      align-items: center;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .faq-btn {
+      background: linear-gradient(90deg, var(--digital-blue) 0%, var(--digital-cyan) 100%);
+      color: #181a1b;
       border: none;
-      background: none;
-      outline: none;
-      transition: background 0.14s;
-      user-select: none;
-      letter-spacing: 0.4px;
-    }
-    .accordion-header:hover, .accordion-header.active {
-      background: #181a1b;
-      color: var(--sea-green);
-    }
-    .accordion-arrow {
-      margin-right: 13px;
-      font-size: 1.17em;
-      transition: transform 0.28s cubic-bezier(.59,1.2,.48,1.1);
-      color: var(--sea-green);
-    }
-    .accordion-header.active .accordion-arrow {
-      transform: rotate(90deg) scale(1.19);
-      color: var(--digital-blue-outline);
-    }
-    .accordion-content {
-      padding: 11px 22px 19px 48px;
-      display: none;
-      color: var(--sand);
-      font-size: 1.09rem;
-      line-height: 1.7;
-      background: none;
-      border-top: 1.2px solid var(--sea-green);
-      animation: fadeIn 0.36s;
-    }
-    .accordion-content.active {
-      display: block;
-      animation: fadeIn 0.41s;
-    }
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-    .email-support, .telegram-support {
-      margin-top: 14px; font-size: 1.08rem;
-      color: var(--digital-blue-outline);
-      display: flex; align-items: center; gap: 7px;
+      border-radius: 9px;
+      padding: 10px 24px;
+      font-size: 1em;
       font-weight: bold;
-    }
-    .email-support i, .telegram-support i {
-      font-size: 1.23em;
-      margin-right: 6px;
-      color: var(--digital-blue);
-    }
-    /* Back to Home button fixed at bottom */
-    .back-home-btn {
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      z-index: 3000;
-      width: 100vw;
-      max-width: 100vw;
-      background: linear-gradient(90deg, var(--digital-blue) 0%, var(--sea-green) 100%);
-      color: #101016;
+      cursor: pointer;
+      box-shadow: 0 2px 18px #00b4fa33;
+      transition: background .17s, color .17s, transform .12s;
       font-family: var(--digital-font), monospace;
-      font-weight: bold;
-      font-size: 1.18rem;
-      border: none;
-      border-radius: 0;
-      box-shadow: 0 0 26px var(--digital-blue-outline);
-      padding: 19px 0 17px 0;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.13s, color 0.13s, box-shadow 0.19s;
-      letter-spacing: 1.2px;
+      opacity: 0.97;
       outline: none;
+      margin-bottom: 6px;
+    }
+    .faq-btn:hover {
+      background: #e7d7b6;
+      color: #002a37;
+      transform: scale(1.045);
+    }
+    .contact-block {
+      margin-top: 16px;
+      color: #e7d7b6;
+      font-size: 1.08em;
+      text-align: left;
+      background: #151821b5;
+      padding: 13px 17px;
+      border-radius: 8px;
+      border: 1.7px solid var(--digital-blue);
+      box-shadow: 0 1px 7px #00b4fa28;
+      letter-spacing: 0.3px;
+    }
+    .back-btn-wrap {
+      width: 100%;
       display: flex;
-      align-items: center;
       justify-content: center;
+      margin-top: 32px;
+      margin-bottom: 20px;
     }
-    .back-home-btn:hover {
-      background: linear-gradient(90deg, var(--sea-green) 0%, var(--digital-blue) 100%);
-      color: #111c1c;
-      box-shadow: 0 0 38px var(--sea-green);
-      filter: brightness(1.15);
+    .back-btn {
+      background: linear-gradient(90deg, #00b4fa 0%, #00ffd0 100%);
+      color: #181a1b;
+      border: none;
+      border-radius: 9px;
+      padding: 13px 38px;
+      font-size: 1.11em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 18px #00b4fa33;
+      transition: background .17s, color .17s, transform .12s;
+      font-family: var(--digital-font), monospace;
+      letter-spacing: 1.1px;
+      display: block;
+      text-align: center;
     }
-    @media (max-width: 700px) {
-      .help-center-container { padding: 16px 2vw 10px 2vw; }
-      .ra-logo-glow img { width: 80px; height: 80px; }
-      .help-title { font-size: 1.24rem; }
-      .accordion-header { font-size: 1rem; padding: 13px 6px 13px 15px; }
-      .accordion-content { font-size: 0.97rem; padding-left: 15px; }
-      .back-home-btn { font-size: 1.05rem; padding: 15px 0 13px 0;}
+    .back-btn:hover {
+      background: #e7d7b6;
+      color: #002a37;
+      transform: scale(1.045);
+    }
+    @media (max-width: 600px) {
+      .troubleshoot-container { padding: 13vw 4vw 10vw 4vw; }
+      .trouble-section { padding: 16px 7px 14px 7px;}
+      .headline { font-size: 1em; }
+      .faq-btn { padding: 8px 11px; font-size: 0.93em;}
+      .back-btn { padding: 12px 18px; font-size: 0.98em;}
+      .logo-link { margin-top: 18px; }
+      .ra-logo-big { width: 92px; height: 92px;}
     }
   </style>
 </head>
 <body>
-  <!-- Logo with glow (clickable to home) -->
-  <div class="ra-logo-glow">
-    <a href="index.html"><img src="https://i.ibb.co/w6J7Xmy/RA-Atum-Logo.png" alt="RA Atum Logo"></a>
-  </div>
-  <div class="help-title">RA Atum Help Center</div>
-  <div class="help-center-container">
-
-    <!-- 1. Intro -->
-    <div class="accordion-section">
-      <button class="accordion-header active"><span class="accordion-arrow"><i class="fa-solid fa-chevron-right"></i></span>Welcome to RA Atum Troubleshooting</button>
-      <div class="accordion-content active">
-        <b>Encountering an issue?</b> No worries! This guide addresses the most common questions and problems, step-by-step, for everything on the RA Atum platform—wallet connection, token transactions, automation setup, and more.<br><br>
-        <ul>
-          <li>Get tips for connecting your wallet</li>
-          <li>Solve token display or transfer issues</li>
-          <li>Troubleshoot rewards, dashboard, and automation</li>
-          <li>Find support contacts and quick fixes</li>
-        </ul>
-        <div style="margin:16px 0 6px 0; color:var(--digital-blue-outline); font-weight:600;">Let’s keep your experience smooth and rewarding!</div>
-      </div>
+  <a href="index.html" class="logo-link" title="Back to Home">
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-big"/>
+  </a>
+  <div class="headline">Troubleshooting & Help Center</div>
+  <div class="troubleshoot-container">
+    <div class="trouble-section">
+      <div class="trouble-title"><i class="fa-solid fa-plug"></i> Wallet & Token Issues</div>
+      <ul class="trouble-list">
+        <li><b>Wallet not connecting?</b> Make sure MetaMask or Trust Wallet is installed and connected to Binance Smart Chain. Try refreshing and reconnecting your wallet.</li>
+        <li><b>Tokens not showing?</b> Add your RA Atum token contract address manually in your wallet and ensure you're on the right network.</li>
+        <li><b>Failed transactions?</b> Check your gas fee, ensure you have enough BNB, and try again. Network congestion may cause delays.</li>
+      </ul>
     </div>
-
-    <!-- 2. Wallet & Token Issues -->
-    <div class="accordion-section">
-      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-wallet"></i></span>Wallet & Token Issues</button>
-      <div class="accordion-content">
-        <b>Wallet not connecting?</b> Make sure:
-        <ul>
-          <li>You have MetaMask, Trust Wallet, or WalletConnect installed</li>
-          <li>Your internet is stable and wallet is unlocked</li>
-          <li>Your wallet is set to Binance Smart Chain or supported network</li>
-        </ul>
-        <b>Tokens not showing?</b>
-        <ul>
-          <li>Add RA Atum token’s contract address in your wallet (see Tokenomics page)</li>
-          <li>Ensure you’re on the right network</li>
-          <li>Double-check your transaction on BscScan if needed</li>
-        </ul>
-        <b>Failed or pending transactions?</b>
-        <ul>
-          <li>Ensure enough BNB for gas fees</li>
-          <li>Try again with a lower amount if the network is busy</li>
-          <li>Refresh and reconnect your wallet</li>
-        </ul>
-        <div class="email-support"><i class="fa-solid fa-envelope"></i>Need help? <a href="mailto:info@ra-atum.com" style="color:var(--digital-blue);">Email us</a></div>
-      </div>
+    <div class="trouble-section">
+      <div class="trouble-title"><i class="fa-solid fa-robot"></i> Agent & Platform Issues</div>
+      <ul class="trouble-list">
+        <li><b>Agent not working?</b> Check that your wallet is connected and all platform settings are saved before deploying agents or interacting with NFTs.</li>
+        <li><b>Performance errors?</b> Refresh your browser and clear cache. If problems persist, try another device or browser.</li>
+      </ul>
     </div>
-
-    <!-- 3. Rewards & Automation (Agent) Issues -->
-    <div class="accordion-section">
-      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-robot"></i></span>Rewards & Automation</button>
-      <div class="accordion-content">
-        <b>Agent not working, or auto-rewards not sent?</b>
-        <ul>
-          <li>Ensure your wallet is connected and has enough RA Atum tokens</li>
-          <li>Review the agent’s configuration in your DApp dashboard</li>
-          <li>Check if the platform or channel (Telegram, Discord, etc.) is connected and permissions are granted</li>
-          <li>Try restarting your agent, or reach out to support</li>
-        </ul>
-        <div class="email-support"><i class="fa-solid fa-envelope"></i>Contact: <a href="mailto:info@ra-atum.com" style="color:var(--digital-blue);">info@ra-atum.com</a></div>
-      </div>
+    <div class="trouble-section">
+      <div class="trouble-title"><i class="fa-solid fa-database"></i> Dashboard, Access & Analytics</div>
+      <ul class="trouble-list">
+        <li><b>Stats not loading?</b> Sometimes blockchain data may take a while to update. Wait a minute and refresh.</li>
+        <li><b>Account or access issues?</b> Double check your wallet address, internet, and browser compatibility. Disable VPN if needed.</li>
+        <li><b>Leaderboard/Referral errors?</b> Check your referrals and ensure all qualifying transactions have been completed and confirmed.</li>
+      </ul>
     </div>
-
-    <!-- 4. Account & Access Issues -->
-    <div class="accordion-section">
-      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-user-lock"></i></span>Account & Access</button>
-      <div class="accordion-content">
-        <b>Problems connecting, or accessing your dashboard?</b>
-        <ul>
-          <li>Make sure your browser is up-to-date (Chrome, Firefox recommended)</li>
-          <li>On mobile? Use WalletConnect, or try desktop for full features</li>
-          <li>Disable conflicting extensions, clear your cache, and retry</li>
-          <li>Check your network and wallet address is correct</li>
-        </ul>
-        <div class="telegram-support"><i class="fa-brands fa-telegram"></i>Telegram: <a href="https://t.me/supportraatum" style="color:var(--digital-blue-outline);" target="_blank">@supportraatum</a></div>
-      </div>
+    <div class="faq-links">
+      <button class="faq-btn" onclick="window.location.href='mailto:info@ra-atum.com'"><i class="fa-solid fa-envelope"></i> Email Support</button>
+      <button class="faq-btn" onclick="window.open('https://t.me/raatum', '_blank')"><i class="fab fa-telegram"></i> Telegram Support</button>
+      <button class="faq-btn" onclick="window.location.href='faq.html'"><i class="fa-regular fa-circle-question"></i> Frequently Asked Questions</button>
     </div>
-
-    <!-- 5. Dashboard & Analytics -->
-    <div class="accordion-section">
-      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-chart-line"></i></span>Dashboard & Analytics</button>
-      <div class="accordion-content">
-        <b>Not seeing updated data?</b>
-        <ul>
-          <li>Refresh the dashboard—data can take a few minutes to sync</li>
-          <li>Ensure your wallet is connected to the correct network</li>
-          <li>Check your referral link and minimum requirements for rewards</li>
-          <li>Contact support if issues persist</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 6. Still Need Help? -->
-    <div class="accordion-section">
-      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-headset"></i></span>Still Need Help?</button>
-      <div class="accordion-content">
-        <div style="margin-bottom:10px;"><b>Describe your issue and contact our team:</b></div>
-        <div class="email-support"><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:info@ra-atum.com" style="color:var(--digital-blue);">info@ra-atum.com</a></div>
-        <div class="telegram-support"><i class="fa-brands fa-telegram"></i> Telegram: <a href="https://t.me/supportraatum" style="color:var(--digital-blue-outline);" target="_blank">@supportraatum</a></div>
-      </div>
+    <div class="contact-block">
+      <b>Still need help?</b> Email us with your wallet address, issue details, and screenshots if possible.<br/>
+      <b>Email:</b> <a href="mailto:info@ra-atum.com" style="color:var(--digital-blue);">info@ra-atum.com</a>
     </div>
   </div>
-
-  <a class="back-home-btn" href="index.html"><i class="fa-solid fa-house"></i> Back to Home</a>
-
-  <script>
-    // Accordion logic
-    document.querySelectorAll('.accordion-header').forEach((header, idx) => {
-      header.addEventListener('click', function() {
-        document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
-        document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
-        this.classList.add('active');
-        this.nextElementSibling.classList.add('active');
-      });
-    });
-    // Keep the first open on load
-    document.querySelector('.accordion-header').classList.add('active');
-    document.querySelector('.accordion-content').classList.add('active');
-  </script>
+  <div class="back-btn-wrap">
+    <button class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i> Back to Home</button>
+  </div>
 </body>
 </html>
