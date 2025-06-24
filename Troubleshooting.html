@@ -3,240 +3,295 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RA Atum Troubleshooting</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Help Center & Troubleshooting – RA Atum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: #0e1018;
-      color: #e7d7b6;
-      font-family: 'Share Tech Mono', monospace;
-      margin: 0;
-      min-height: 100vh;
-      padding: 0;
-      letter-spacing: .03em;
+    :root {
+      --blue: #00b4fa;
+      --blue-glow: #0fffc7;
+      --sand: #e7d7b6;
+      --black: #171818;
+      --card-bg: #222127ee;
+      --accent: #00b4fa;
+      --digital-font: 'Share Tech Mono', monospace;
+    }
+    html, body {
+      margin: 0; padding: 0; min-height: 100vh;
+      font-family: var(--digital-font), monospace;
+      background: url('https://e1.pxfuel.com/desktop-wallpaper/767/930/desktop-wallpaper-printed-circuit-board-video-motherboard-blue-and-purple-digital-circuit-board-background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      color: var(--sand);
       overflow-x: hidden;
     }
-    .trouble-logo-top {
-      width: 130px;
-      height: 130px;
-      display: block;
-      margin: 32px auto 0 auto;
-      object-fit: contain;
-      border-radius: 22px;
-      background: #191b2a;
-      box-shadow: 0 8px 38px #00b4fa77, 0 0 0 6px #191a2440;
-      border: 2.5px solid #00b4fa33;
-      transition: transform .19s;
+    body::before {
+      content: "";
+      position: fixed; top:0; left:0; right:0; bottom:0;
+      background: linear-gradient(120deg, #101015dd 0%, #1d2b3add 100%);
+      z-index: 0; pointer-events: none; opacity: 0.85;
+      mix-blend-mode: multiply;
     }
-    .trouble-logo-top:hover {
-      transform: scale(1.035) rotate(-2deg);
-      box-shadow: 0 18px 64px #00b4faaa, 0 0 0 11px #191a24bb;
+    .ra-logo-glow {
+      display: flex; justify-content: center; align-items: center;
+      margin: 48px 0 22px 0;
     }
-    .trouble-headline {
+    .ra-logo-glow img {
+      width: 112px; height: 112px;
+      border-radius: 50%;
+      background: #191b28;
+      box-shadow: 0 0 32px 10px #00b4fa99, 0 0 28px #0fffc7cc;
+      border: 3.5px solid #00b4fa;
+      animation: logo-glow 3.5s linear infinite alternate;
+      object-fit: cover;
+    }
+    @keyframes logo-glow {
+      0% { box-shadow: 0 0 32px 8px #0fffc799, 0 0 16px #00b4fa99; }
+      100% { box-shadow: 0 0 56px 24px #0fffc799, 0 0 36px #00b4faee; }
+    }
+    .help-title {
       text-align: center;
-      margin-top: 18px;
-      margin-bottom: 16px;
-      font-size: 1.35em;
-      font-family: 'Share Tech Mono', monospace;
-      font-weight: bold;
-      text-transform: uppercase;
-      background: linear-gradient(90deg,#fff 8%,#00b4fa 60%,#23e6ff 98%);
+      color: var(--blue);
+      font-size: 2.5rem;
+      letter-spacing: 1.5px;
+      margin-bottom: 13px;
+      text-shadow: 0 2px 20px #0fffc755;
+      font-family: var(--digital-font), monospace;
+      background: linear-gradient(90deg, #fff 10%, #00b4fa 90%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 18px #22213866,0 0 8px #00b4fa88,0 0 18px #00b4fa99;
-      filter: brightness(1.16) drop-shadow(0 0 3px #00e6ff99);
-      letter-spacing: 1.1px;
-      min-height: 1.7em;
     }
-    .trouble-container {
-      background: #181a1b;
-      border-radius: 18px;
-      box-shadow: 0 8px 32px #00b4fa33;
-      width: 97vw;
-      max-width: 540px;
-      margin: 0 auto 34px auto;
-      padding: 34px 22px 24px 22px;
-      border: 2.5px solid #00b4fa;
+    .help-center-container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 4px 32px #00b4fa55;
+      padding: 36px 22px 22px 22px;
       position: relative;
       z-index: 2;
-      font-family: 'Share Tech Mono', monospace;
-      margin-top: 12px;
+      border: 2.3px solid #0fffc7cc;
+      margin-bottom: 38px;
     }
-    .trouble-section {
-      margin-bottom: 28px;
-    }
-    .trouble-section:last-child { margin-bottom: 0;}
-    .trouble-section h2 {
-      color: #00b4fa;
-      font-size: 1.15em;
-      margin-bottom: 9px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border-left: 5px solid #00b4fa;
-      padding-left: 12px;
-      margin-top: 0;
-      background: #191a24;
-      border-radius: 7px;
-      box-shadow: 0 2px 12px #00b4fa22;
-      display: inline-block;
-    }
-    .faq-list {
-      margin: 10px 0 0 8px;
-      padding-left: 0;
-      list-style: none;
-    }
-    .faq-link {
-      color: #23e6ff;
-      background: #10141a;
-      display: block;
-      padding: 13px 14px;
-      margin-bottom: 12px;
-      border-radius: 8px;
+    .accordion-section {
+      margin-bottom: 26px;
+      border-radius: 13px;
+      overflow: hidden;
+      border: 1.8px solid #00b4fa99;
+      background: #232238f2;
       box-shadow: 0 2px 14px #00b4fa33;
-      font-size: 1.09em;
-      font-weight: bold;
+    }
+    .accordion-header {
       cursor: pointer;
-      border: 1.5px solid #00b4fa60;
-      transition: background .19s, color .19s;
-      position: relative;
-    }
-    .faq-link:hover {
-      background: #00b4fa;
-      color: #0e1018;
-    }
-    .faq-answer {
-      display: none;
-      background: #222543;
-      color: #e7d7b6;
-      border-radius: 8px;
-      margin-top: 3px;
-      margin-bottom: 9px;
-      padding: 14px 18px;
-      font-size: 1em;
-      box-shadow: 0 2px 8px #00b4fa22;
-      border-left: 4px solid #00b4fa;
-    }
-    .faq-link.active + .faq-answer { display: block; }
-    .trouble-back-btn {
-      margin: 46px auto 24px auto;
-      background: linear-gradient(90deg, #00b4fa 0%, #00ffd0 100%);
-      color: #181a1b;
+      padding: 19px 16px 19px 23px;
+      font-size: 1.19rem;
+      color: var(--blue);
+      font-weight: bold;
+      display: flex;
+      align-items: center;
       border: none;
-      border-radius: 9px;
-      padding: 12px 32px;
-      font-size: 1.09em;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 2px 18px #00b4fa33;
-      transition: background .17s, color .17s, transform .13s;
-      font-family: 'Share Tech Mono', monospace;
-      letter-spacing: 1.1px;
-      display: block;
-      max-width: 250px;
-      text-align: center;
-    }
-    .trouble-back-btn:hover { background: #e7d7b6; color: #002a37; transform: scale(1.04);}
-    @media (max-width: 650px) {
-      .trouble-container { max-width: 99vw; padding: 11vw 2vw 12vw 2vw; }
-      .trouble-headline { font-size: 1.1em; }
-      .trouble-logo-top { width: 80px; height: 80px; }
-      .trouble-back-btn { font-size: 0.99em; padding: 11px 10vw;}
-    }
-    /* Link Home logo style */
-    .home-logo-link {
-      position: absolute;
-      top: 13px; left: 17px;
-      z-index: 40;
       background: none;
-      border: none;
       outline: none;
+      transition: background 0.15s;
+      user-select: none;
+      letter-spacing: 0.4px;
+    }
+    .accordion-header:hover {
+      background: #171e2f88;
+      color: var(--blue-glow);
+      box-shadow: 0 0 12px #0fffc799;
+    }
+    .accordion-arrow {
+      margin-right: 13px;
+      font-size: 1.17em;
+      transition: transform 0.28s cubic-bezier(.59,1.2,.48,1.1), color .18s;
+      color: var(--blue);
+    }
+    .accordion-header.active .accordion-arrow {
+      transform: rotate(90deg) scale(1.21);
+      color: var(--blue-glow);
+      text-shadow: 0 0 10px #0fffc799;
+    }
+    .accordion-content {
+      padding: 12px 24px 19px 46px;
+      display: none;
+      color: var(--sand);
+      font-size: 1.09rem;
+      line-height: 1.73;
+      background: none;
+      border-top: 1.2px solid #00b4fa33;
+      animation: fadeIn 0.36s;
+    }
+    .accordion-content.active {
+      display: block;
+      animation: fadeIn 0.46s;
+    }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    .email-support, .telegram-support {
+      margin-top: 16px; font-size: 1.13rem;
+      color: var(--blue-glow);
+      display: flex; align-items: center; gap: 9px;
+      font-weight: bold;
+    }
+    .email-support i, .telegram-support i {
+      font-size: 1.25em;
+      margin-right: 5px;
+      color: var(--blue);
+    }
+    .back-home-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(90deg, #00b4fa 0%, #0fffc7 100%);
+      color: #101016;
+      font-family: var(--digital-font), monospace;
+      font-weight: bold;
+      font-size: 1.21rem;
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 0 10px #00b4fa66;
+      margin: 44px auto 32px auto;
+      padding: 18px 48px;
       cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, color 0.18s, box-shadow 0.22s;
+      letter-spacing: 1.3px;
     }
-    .home-logo-link img {
-      width: 44px; height: 44px; object-fit: contain; border-radius: 11px;
-      box-shadow: 0 2px 14px #00b4fa33;
-      background: #181a1b;
-      border: 1.8px solid #00b4fa88;
-      transition: transform .16s;
+    .back-home-btn:hover {
+      background: linear-gradient(90deg, #0fffc7 0%, #00b4fa 100%);
+      color: #111c1c;
+      box-shadow: 0 0 28px #0fffc799;
     }
-    .home-logo-link img:hover { transform: scale(1.09) rotate(-3deg);}
+    @media (max-width: 700px) {
+      .help-center-container { padding: 19px 4vw 14px 4vw; }
+      .ra-logo-glow img { width: 78px; height: 78px; }
+      .help-title { font-size: 1.45rem; }
+      .accordion-header { font-size: 1.02rem; padding: 15px 8px 15px 17px; }
+      .accordion-content { font-size: 0.98rem; padding-left: 24px; }
+      .back-home-btn { padding: 15px 12vw; font-size: 1.03rem; }
+    }
   </style>
 </head>
 <body>
-  <a class="home-logo-link" href="index.html" title="Back to Home">
-    <img src="RA-ATUM-LOGO.png" alt="RA Atum Home" />
-  </a>
-  <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="trouble-logo-top" />
-  <div class="trouble-headline">Troubleshooting & Help Center</div>
-  <div class="trouble-container">
-    <div class="trouble-section">
-      <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-      <div class="faq-list">
-        <div class="faq-link">How do I connect my wallet?</div>
-        <div class="faq-answer">
-          1. Make sure MetaMask (or your wallet app) is installed and unlocked.<br>
-          2. Click "Connect Wallet" on the main page.<br>
-          3. Approve the connection prompt in your wallet.<br>
-          <span style="color:#23e6ff">If you’re on mobile, use WalletConnect or open in the MetaMask app browser.</span>
-        </div>
-        <div class="faq-link">My RA Atum tokens aren’t showing up!</div>
-        <div class="faq-answer">
-          <ul>
-            <li>Check that your wallet is on Binance Smart Chain.</li>
-            <li>Import the token: <span style="color:#00b4fa">0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A</span></li>
-            <li>Click "Import Tokens" in MetaMask and paste the contract address above.</li>
-            <li>If you purchased tokens recently, please wait for blockchain confirmations.</li>
-          </ul>
-        </div>
-        <div class="faq-link">I have a failed transaction. What should I do?</div>
-        <div class="faq-answer">
-          <ul>
-            <li>Make sure you have enough BNB for gas fees.</li>
-            <li>Try again with a smaller amount.</li>
-            <li>Clear cache, refresh, and reconnect wallet if issues continue.</li>
-          </ul>
-        </div>
-        <div class="faq-link">How can I get support?</div>
-        <div class="faq-answer">
-          Email us at <a href="mailto:info@ra-atum.com" style="color:#23e6ff">info@ra-atum.com</a><br>
-          Or reach out in our DApp’s support section.<br>
-        </div>
-      </div>
-    </div>
-    <div class="trouble-section">
-      <h2><i class="fas fa-tools"></i> Common Issues & Solutions</h2>
-      <div class="faq-list">
-        <div class="faq-link">Wallet won’t connect?</div>
-        <div class="faq-answer">
-          - Ensure your browser supports wallet extensions (like Chrome).<br>
-          - Reload your wallet and the site.<br>
-          - Double check that you’re on the correct network.<br>
-        </div>
-        <div class="faq-link">Token balance incorrect?</div>
-        <div class="faq-answer">
-          - Re-sync your wallet.<br>
-          - Make sure you are connected to the correct account.<br>
-          - Wait a few minutes for the blockchain to update.<br>
-        </div>
-        <div class="faq-link">Having trouble buying tokens?</div>
-        <div class="faq-answer">
-          - Confirm you have enough BNB for the transaction and gas.<br>
-          - If the issue persists, reach out to support.<br>
-        </div>
-      </div>
-    </div>
-    <button class="trouble-back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i> Back to Home</button>
+  <!-- Logo with glow -->
+  <div class="ra-logo-glow">
+    <img src="https://i.ibb.co/w6J7Xmy/RA-Atum-Logo.png" alt="RA Atum Logo">
   </div>
+  <div class="help-title">RA Atum Help Center</div>
+  <div class="help-center-container">
+
+    <!-- 1. Intro -->
+    <div class="accordion-section">
+      <button class="accordion-header active"><span class="accordion-arrow"><i class="fa-solid fa-chevron-right"></i></span>Welcome to RA Atum Troubleshooting</button>
+      <div class="accordion-content active">
+        <b>Encountering an issue?</b> No worries! This guide addresses the most common questions and problems, step-by-step, for everything on the RA Atum platform—wallet connection, token transactions, agent setup, and more.<br><br>
+        <ul>
+          <li>Get tips for connecting your wallet</li>
+          <li>Solve token display or transfer issues</li>
+          <li>Troubleshoot rewards, dashboard, and agent automation</li>
+          <li>Find support contacts and quick fixes</li>
+        </ul>
+        <div style="margin:16px 0 6px 0; color:var(--blue-glow); font-weight:600;">Let’s keep your experience smooth and rewarding!</div>
+      </div>
+    </div>
+
+    <!-- 2. Wallet & Token Issues -->
+    <div class="accordion-section">
+      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-wallet"></i></span>Wallet & Token Issues</button>
+      <div class="accordion-content">
+        <b>Wallet not connecting?</b> Make sure:
+        <ul>
+          <li>You have MetaMask, Trust Wallet, or WalletConnect installed</li>
+          <li>Your internet is stable and wallet is unlocked</li>
+          <li>Your wallet is set to Binance Smart Chain or supported network</li>
+        </ul>
+        <b>Tokens not showing?</b>
+        <ul>
+          <li>Add RA Atum token’s contract address in your wallet (see Tokenomics page)</li>
+          <li>Ensure you’re on the right network</li>
+          <li>Double-check your transaction on BscScan if needed</li>
+        </ul>
+        <b>Failed or pending transactions?</b>
+        <ul>
+          <li>Ensure enough BNB for gas fees</li>
+          <li>Try again with a lower amount if the network is busy</li>
+          <li>Refresh and reconnect your wallet</li>
+        </ul>
+        <div class="email-support"><i class="fa-solid fa-envelope"></i>Need help? <a href="mailto:info@ra-atum.com" style="color:var(--blue);">Email us</a></div>
+      </div>
+    </div>
+
+    <!-- 3. Rewards & Automation (Agent) Issues -->
+    <div class="accordion-section">
+      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-robot"></i></span>Agent, Reward, or Automation Issues</button>
+      <div class="accordion-content">
+        <b>Agent not working, or auto-rewards not sent?</b>
+        <ul>
+          <li>Ensure your wallet is connected and has enough RA Atum tokens</li>
+          <li>Review the agent’s configuration in your DApp dashboard</li>
+          <li>Check if the platform or channel (Telegram, Discord, etc.) is connected and permissions are granted</li>
+          <li>Try restarting your agent, or reach out to support</li>
+        </ul>
+        <div class="email-support"><i class="fa-solid fa-envelope"></i>Contact: <a href="mailto:info@ra-atum.com" style="color:var(--blue);">info@ra-atum.com</a></div>
+      </div>
+    </div>
+
+    <!-- 4. Account & Access Issues -->
+    <div class="accordion-section">
+      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-user-lock"></i></span>Account & Access</button>
+      <div class="accordion-content">
+        <b>Problems connecting, or accessing your dashboard?</b>
+        <ul>
+          <li>Make sure your browser is up-to-date (Chrome, Firefox recommended)</li>
+          <li>On mobile? Use WalletConnect, or try desktop for full features</li>
+          <li>Disable conflicting extensions, clear your cache, and retry</li>
+          <li>Check your network and wallet address is correct</li>
+        </ul>
+        <div class="telegram-support"><i class="fa-brands fa-telegram"></i>Telegram: <a href="https://t.me/supportraatum" style="color:var(--blue-glow);" target="_blank">@supportraatum</a></div>
+      </div>
+    </div>
+
+    <!-- 5. Dashboard & Analytics -->
+    <div class="accordion-section">
+      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-chart-line"></i></span>Dashboard & Analytics</button>
+      <div class="accordion-content">
+        <b>Not seeing updated data?</b>
+        <ul>
+          <li>Refresh the dashboard—data can take a few minutes to sync</li>
+          <li>Ensure your wallet is connected to the correct network</li>
+          <li>Check your referral link and minimum requirements for rewards</li>
+          <li>Contact support if issues persist</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6. Still Need Help? -->
+    <div class="accordion-section">
+      <button class="accordion-header"><span class="accordion-arrow"><i class="fa-solid fa-headset"></i></span>Still Need Help?</button>
+      <div class="accordion-content">
+        <div style="margin-bottom:10px;"><b>Describe your issue and contact our team:</b></div>
+        <div class="email-support"><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:info@ra-atum.com" style="color:var(--blue);">info@ra-atum.com</a></div>
+        <div class="telegram-support"><i class="fa-brands fa-telegram"></i> Telegram: <a href="https://t.me/supportraatum" style="color:var(--blue-glow);" target="_blank">@supportraatum</a></div>
+      </div>
+    </div>
+  </div>
+
+  <a class="back-home-btn" href="index.html"><i class="fa-solid fa-house"></i> Back to Home</a>
+
   <script>
-    // Toggle FAQ answers
-    document.querySelectorAll('.faq-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        document.querySelectorAll('.faq-link').forEach(l => { if(l!==link) l.classList.remove('active'); });
-        link.classList.toggle('active');
+    // Accordion logic
+    document.querySelectorAll('.accordion-header').forEach((header, idx) => {
+      header.addEventListener('click', function() {
+        // Only one open at a time (except first section)
+        document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+        document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        this.nextElementSibling.classList.add('active');
       });
     });
+    // Keep the first open on load
+    document.querySelector('.accordion-header').classList.add('active');
+    document.querySelector('.accordion-content').classList.add('active');
   </script>
 </body>
 </html>
