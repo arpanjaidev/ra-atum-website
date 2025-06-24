@@ -3,249 +3,307 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>How to Participate – RA Atum Presale</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Participate in Presale – RA Atum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
-      --neon1: #0fffc7;
-      --neon2: #00c3ff;
-      --black: #171818;
-      --card-bg: #232224e6;
-      --main-bg: linear-gradient(120deg, #101015 0%, #232347 100%);
+      --blue: #00b4fa;
+      --sand: #e7d7b6;
+      --bg-dark: #10151b;
+      --card-bg: #192332e6;
+      --glow: 0 0 24px #00b4fa55, 0 2px 32px #00b4fa33;
+      --shine-grad: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
     }
     body {
-      background: var(--main-bg);
-      color: var(--neon1);
-      font-family: 'Share Tech Mono', monospace;
       margin: 0;
       padding: 0;
+      font-family: 'Share Tech Mono', monospace;
+      background: var(--bg-dark);
+      color: var(--sand);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      overflow-x: hidden;
     }
-    .container {
-      max-width: 520px;
-      margin: 32px auto 0;
-      background: var(--card-bg);
-      border-radius: 20px;
-      box-shadow: 0 4px 48px #0fffc766;
-      padding: 32px 18px 24px 18px;
+    .centered-logo {
       text-align: center;
+      margin-top: 36px;
+      margin-bottom: 0;
     }
-    .logo-glow {
-      margin-top: 0;
-      margin-bottom: 16px;
-      filter: drop-shadow(0 0 15px var(--neon2));
-      max-width: 120px;
+    .centered-logo img {
+      max-width: 130px;
+      filter: drop-shadow(0 0 16px #00b4fa77);
     }
-    .hero-img {
-      width: 88%;
-      max-width: 320px;
-      margin: 0 auto 24px auto;
-      display: block;
-      border-radius: 20px;
-      box-shadow: 0 0 18px var(--neon2);
+    .main-participate-flex {
+      max-width: 1050px;
+      margin: 24px auto 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 48px;
+      flex-wrap: wrap;
+      padding: 0 4vw 44px 4vw;
     }
-    h1 {
-      font-size: 2.1rem;
-      color: var(--neon2);
-      margin: 0 0 8px 0;
-      letter-spacing: 1.5px;
-      text-shadow: 0 0 8px var(--neon2), 0 0 1px #fff;
+    .participate-content {
+      flex: 2;
+      min-width: 320px;
+      max-width: 620px;
     }
-    .tagline {
-      font-size: 1.03rem;
-      color: #fff;
-      margin-bottom: 22px;
+    .participate-img {
+      flex: 1;
+      min-width: 310px;
+      max-width: 390px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .participate-img img {
+      width: 92%;
+      max-width: 370px;
+      border-radius: 26px;
+      box-shadow: var(--glow);
+      border: 3px solid #00b4fa44;
+      margin-top: 16px;
+    }
+    .hero-title {
+      font-size: 2.18rem;
       font-weight: bold;
-      text-shadow: 0 0 5px #008e6b;
-    }
-    .step-card {
-      background: rgba(20, 22, 38, 0.92);
-      border: 1px solid var(--neon2);
-      border-radius: 16px;
-      box-shadow: 0 0 18px #00c3ff22;
-      padding: 22px 16px 20px 16px;
-      margin: 24px 0 0 0;
-      text-align: left;
-      color: #fff;
-    }
-    .step-card h2 {
-      margin-top: 0;
-      color: var(--neon1);
-      font-size: 1.3rem;
+      background: var(--shine-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       letter-spacing: 1.2px;
-      text-shadow: 0 0 5px var(--neon1);
+      text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88;
+      text-align: left;
+      margin-bottom: 12px;
+      text-transform: uppercase;
     }
-    .step-num {
-      background: var(--neon2);
-      color: #171818;
+    .presale-info-line {
+      color: #fff;
+      background: linear-gradient(90deg,#161d29 60%,#202b3e 100%);
+      border: 2px solid #00b4fa;
+      border-radius: 13px;
+      font-size: 1.11em;
+      padding: 12px 22px;
+      box-shadow: var(--glow);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
       font-weight: bold;
-      border-radius: 8px;
-      padding: 4px 15px;
-      font-size: 1.07rem;
-      margin-right: 11px;
-      box-shadow: 0 0 9px var(--neon2);
+      letter-spacing: 0.8px;
     }
-    .step-card ul {
-      margin: 14px 0 0 0;
-      padding: 0 0 0 22px;
-      color: #e8ffff;
-    }
-    .step-card li {
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
-    .step-icon {
+    .presale-info-line i {
+      color: #00b4fa;
       font-size: 1.5em;
-      margin-right: 7px;
-      color: var(--neon2);
-      vertical-align: middle;
-      filter: drop-shadow(0 0 5px var(--neon2));
+      margin-right: 8px;
+      filter: drop-shadow(0 2px 8px #00b4fa99);
     }
-    .presale-live {
-      margin: 28px 0 14px 0;
-      background: linear-gradient(90deg, var(--neon2) 10%, var(--neon1) 90%);
-      color: #171818;
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 18px 0 23px 0;
+    }
+    .feature-card {
+      background: #222b36e9;
+      border-radius: 13px;
+      box-shadow: 0 4px 20px #00b4fa22;
+      border: 1.6px solid #00b4fa44;
+      padding: 18px 13px 13px 13px;
+      color: #fff;
       font-weight: bold;
-      font-size: 1.2rem;
-      border-radius: 11px;
-      box-shadow: 0 0 15px var(--neon1);
-      padding: 11px 0;
-      letter-spacing: 1px;
-      text-shadow: 0 0 4px #fff;
+      font-size: 1.01em;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-height: 90px;
+    }
+    .feature-card i {
+      font-size: 1.35em;
+      color: #00b4fa;
+      margin-top: 4px;
+      filter: drop-shadow(0 2px 8px #00b4fa44);
+      flex-shrink: 0;
+    }
+    .feature-card strong {
+      color: #00b4fa;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 1.06em;
+    }
+    .highlight-block {
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: var(--glow);
+      border: 2.2px solid #00b4fa66;
+      padding: 24px 18px 18px 18px;
+      margin: 30px 0 23px 0;
+      font-size: 1.10em;
+      color: #fff;
+      font-weight: bold;
+      line-height: 1.6;
+      position: relative;
     }
     .buy-btn {
-      margin-top: 16px;
-      background: linear-gradient(90deg, var(--neon2), var(--neon1));
-      color: #171818;
-      font-weight: bold;
+      background: linear-gradient(90deg, #00b4fa 10%, #00ffd0 90%);
+      color: #181a1b;
+      font-family: 'Share Tech Mono', monospace;
       border: none;
-      border-radius: 10px;
-      font-size: 1.2rem;
-      padding: 13px 0;
-      width: 100%;
-      box-shadow: 0 0 12px var(--neon2);
+      border-radius: 16px;
+      padding: 16px 44px;
+      font-size: 1.13em;
+      font-weight: bold;
       cursor: pointer;
-      transition: transform 0.13s;
-      text-shadow: 0 1px 0 #fff;
+      box-shadow: 0 6px 32px #00b4fa22;
+      transition: background .18s, color .17s, transform .13s;
       letter-spacing: 1px;
+      margin-top: 0;
+      outline: none;
+      display: inline-block;
     }
-    .buy-btn:active {
-      transform: scale(0.98);
+    .buy-btn i {
+      margin-right: 9px;
+      font-size: 1.13em;
     }
-    footer {
-      margin-top: auto;
-      background: transparent;
-      text-align: center;
-      padding: 24px 0 12px 0;
+    .buy-btn:hover {
+      background: #e7d7b6;
+      color: #003a5c;
+      transform: scale(1.045);
     }
-    .footer-link {
-      color: var(--neon1);
+    .section-title {
+      font-size: 1.22rem;
+      font-weight: bold;
+      background: var(--shine-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1.1px;
+      text-align: left;
+      margin-bottom: 13px;
+      text-transform: uppercase;
+    }
+    .how-to-steps {
+      list-style: none;
+      margin: 0 0 0 0;
+      padding: 0;
+    }
+    .how-to-steps li {
+      margin-bottom: 18px;
+      background: #192332;
+      border-left: 4px solid #00b4fa;
+      border-radius: 8px;
+      padding: 16px 19px 12px 18px;
+      color: #e7d7b6;
+      box-shadow: 0 2px 13px #00b4fa15;
+      font-size: 1.07em;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .how-to-steps li i {
+      font-size: 1.25em;
+      color: #00b4fa;
+      margin-right: 5px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .back-link-bottom {
+      display: inline-block;
+      margin: 38px auto 28px auto;
+      color: #fff;
+      background: linear-gradient(90deg,#161d29 60%,#202b3e 100%);
+      border: 2.2px solid #00b4fa;
+      border-radius: 16px;
+      font-size: 1.09em;
+      font-family: 'Share Tech Mono', monospace;
       font-weight: bold;
       text-decoration: none;
-      font-size: 1.03rem;
-      transition: color 0.18s;
+      padding: 13px 34px;
+      box-shadow: 0 2px 15px #00b4fa33;
+      transition: background .16s, color .13s, border .19s;
+      letter-spacing: 1.1px;
+      min-width: 140px;
     }
-    .footer-link:hover {
-      color: var(--neon2);
-      text-shadow: 0 0 5px var(--neon2);
+    .back-link-bottom i {
+      margin-right: 7px;
+      font-size: 1.05em;
     }
-    @media (max-width: 650px) {
-      .container {
-        max-width: 96vw;
-        padding: 16px 4vw 20px 4vw;
-      }
-      .logo-glow {
-        max-width: 84px;
-      }
-      .hero-img {
-        max-width: 93vw;
-        min-width: 0;
-      }
+    .back-link-bottom:hover {
+      background: #e7d7b6;
+      color: #003a5c;
+      text-decoration: underline;
+      border-color: #e7d7b6;
+    }
+    @media (max-width: 1050px) {
+      .main-participate-flex { flex-direction: column; gap: 8px;}
+      .participate-img { margin: 0 auto; }
+      .participate-content { max-width: 98vw;}
+    }
+    @media (max-width: 700px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .participate-img img { max-width: 98vw; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Logo (Replace src with your latest logo if you want) -->
-    <img src="https://online-ra.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fra-atum-logo-glow.3b42922f.png&w=256&q=75" alt="RA Atum Logo" class="logo-glow" />
-    
-    <!-- Hero Graphic -->
-    <img src="https://i.pinimg.com/736x/b0/42/3a/b0423a2ff37093cfff3503dad412e2dc.jpg" alt="Crypto Presale Hero" class="hero-img" />
-
-    <h1>Participate in the RA Atum Presale</h1>
-    <div class="tagline">
-      Limited-Time Opportunity to Be Part of Something Big!<br>
-      <span style="color:var(--neon2)">PRESALE IS NOW LIVE</span>
+  <div class="centered-logo">
+    <!-- CHANGE THIS src TO YOUR LOGO PATH! -->
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" />
+  </div>
+  <div class="main-participate-flex">
+    <div class="participate-content">
+      <div class="hero-title">Participate in RA Atum Presale</div>
+      <div class="presale-info-line">
+        <i class="fa-solid fa-ticket"></i>
+        Limited-Time Presale • BNB Only • No Whitelist Needed
+      </div>
+      <div class="features-grid">
+        <div class="feature-card"><i class="fas fa-bolt"></i>
+          <div><strong>Instant Entry</strong>
+            No waiting, no forms—just connect and join!
+          </div>
+        </div>
+        <div class="feature-card"><i class="fas fa-gift"></i>
+          <div><strong>Token Rewards</strong>
+            Every purchase powers the mission & rewards your wallet.
+          </div>
+        </div>
+        <div class="feature-card"><i class="fas fa-wallet"></i>
+          <div><strong>BNB & MetaMask</strong>
+            Seamless BNB purchases, fully on Binance Smart Chain.
+          </div>
+        </div>
+        <div class="feature-card"><i class="fas fa-shield-alt"></i>
+          <div><strong>Safe & Transparent</strong>
+            Funds are secure and contract is on-chain—always!
+          </div>
+        </div>
+      </div>
+      <div class="highlight-block">
+        <div class="section-title">How to Participate</div>
+        <ul class="how-to-steps">
+          <li><i class="fa-solid fa-download"></i>
+            <b>Get MetaMask:</b> <br>Download & install MetaMask on your browser (desktop preferred) or use WalletConnect in a supported mobile wallet.
+          </li>
+          <li><i class="fa-solid fa-wallet"></i>
+            <b>Fund with BNB:</b> <br>Transfer BNB (Binance Smart Chain) to your wallet for presale purchase.
+          </li>
+          <li><i class="fa-solid fa-link"></i>
+            <b>Connect & Buy:</b> <br>Click “Connect Wallet” on our site, choose MetaMask or WalletConnect, enter your BNB amount, and confirm to buy.
+          </li>
+          <li><i class="fa-solid fa-gift"></i>
+            <b>Receive Tokens:</b> <br>Tokens will be airdropped to your wallet after presale ends. Stay tuned for announcements!
+          </li>
+        </ul>
+        <div style="text-align:center;margin-top:18px;">
+          <a href="index.html#buy-section" class="buy-btn"><i class="fa-solid fa-ticket"></i> Participate in Presale</a>
+        </div>
+      </div>
     </div>
-    <div class="presale-live">
-      <i class="fa-solid fa-bolt step-icon"></i>
-      BUY TOKENS NOW
-    </div>
-
-    <!-- Step 1 -->
-    <div class="step-card">
-      <span class="step-num">STEP 1</span>
-      <h2><i class="fa-solid fa-wallet step-icon"></i>Setup Your Wallet</h2>
-      <ul>
-        <li>
-          Download and install <b>MetaMask</b> (for desktop browser) or use <b>WalletConnect</b> (for supported mobile wallets).
-        </li>
-        <li>
-          Make sure you’re on the <b>Binance Smart Chain (BSC)</b> network.
-        </li>
-        <li>
-          Fund your wallet with <b>BNB</b> (Smart Chain), which you’ll use to buy RA Atum tokens.
-        </li>
-        <li>
-          <a href="https://metamask.io/download/" target="_blank" class="footer-link">Get MetaMask</a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Step 2 -->
-    <div class="step-card">
-      <span class="step-num">STEP 2</span>
-      <h2><i class="fa-solid fa-link step-icon"></i>Connect and Buy</h2>
-      <ul>
-        <li>
-          Click the <b>“Connect Wallet”</b> button on the Presale page.
-        </li>
-        <li>
-          Choose <b>MetaMask</b> (for desktop) or <b>WalletConnect</b> (for mobile wallets).
-        </li>
-        <li>
-          Enter the amount of RA Atum tokens you wish to purchase (minimum: <b>$15</b>).
-        </li>
-        <li>
-          Click <b>“Buy with BNB”</b> and approve the transaction in your wallet.
-        </li>
-        <li>
-          Wait for confirmation (may take a few seconds).
-        </li>
-      </ul>
-      <button class="buy-btn" onclick="window.location.href='/presale';"><i class="fa-brands fa-btc step-icon"></i>Buy With BNB</button>
-    </div>
-
-    <!-- Step 3 -->
-    <div class="step-card">
-      <span class="step-num">STEP 3</span>
-      <h2><i class="fa-solid fa-gift step-icon"></i>Claim Your Tokens</h2>
-      <ul>
-        <li>
-          After the presale ends, RA Atum tokens will be airdropped directly to your connected wallet.
-        </li>
-        <li>
-          Official airdrop date and instructions will be announced via our channels. Follow us for updates!
-        </li>
-      </ul>
+    <div class="participate-img">
+      <img src="https://i.pinimg.com/736x/b0/42/3a/b0423a2ff37093cfff3503dad412e2dc.jpg" alt="RA Atum Presale Hero">
     </div>
   </div>
-
-  <footer>
-    <a href="/" class="footer-link"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-  </footer>
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
 </body>
 </html>
