@@ -1053,51 +1053,53 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
 
     // --- BUY TOKEN LOGIC (connect MetaMask, show presale info) ---
     // Addresses (update if needed)
-    const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
-    const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
-    const treasuryWallet = "0x27a2C4F65fd4E3Ae249C061468342f9A5D7cb89D";
-    const presaleStart = 1750178782 * 1000;
-    const presaleEnd = 1765730782 * 1000;
-    let provider, signer;
 
-    // Enable buy button only if presale is live and price is set
-    function updatePresaleInfo() {
-      // Status, timer
-      let now = Date.now();
-      let status = "NOT STARTED";
-      let btn = document.getElementById('buy-btn');
-      if (now < presaleStart) {
-        status = "Not Started";
-        if(btn) btn.disabled = true;
-      }
-      else if (now > presaleEnd) {
-        status = "Ended";
-        if(btn) btn.disabled = true;
-      }
-      else {
-        status = "LIVE";
-        if(btn) btn.disabled = false;
-      }
-      document.getElementById('presale-status').innerText = "Status: " + status;
-      // Time left
-      let diff = Math.max(0, presaleEnd - now);
-      let d = Math.floor(diff / (24*60*60*1000));
-      let h = Math.floor((diff % (24*60*60*1000))/(60*60*1000));
-      let m = Math.floor((diff % (60*60*1000))/(60*1000));
-      let s = Math.floor((diff % (60*1000))/1000);
-      let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
-      document.getElementById('presale-timer').innerText = timerText;
-      setTimeout(updatePresaleInfo, 1000);
-    }
-    updatePresaleInfo();
+// === RA ATUM PRESALE BUY SECTION ===
 
-    // --- Buy Form Logic ---
-   // --- Buy Form Logic (call buyTokens) ---
+// Addresses (update if needed)
+const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
+const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
+const treasuryWallet = "0x27a2C4F65fd4E3Ae249C061468342f9A5D7cb89D";
+const presaleStart = 1750178782 * 1000;
+const presaleEnd = 1765730782 * 1000;
+let provider, signer;
+
+// Enable buy button only if presale is live and price is set
+function updatePresaleInfo() {
+  let now = Date.now();
+  let status = "NOT STARTED";
+  let btn = document.getElementById('buy-btn');
+  if (now < presaleStart) {
+    status = "Not Started";
+    if (btn) btn.disabled = true;
+  }
+  else if (now > presaleEnd) {
+    status = "Ended";
+    if (btn) btn.disabled = true;
+  }
+  else {
+    status = "LIVE";
+    if (btn) btn.disabled = false;
+  }
+  document.getElementById('presale-status').innerText = "Status: " + status;
+  // Time left
+  let diff = Math.max(0, presaleEnd - now);
+  let d = Math.floor(diff / (24*60*60*1000));
+  let h = Math.floor((diff % (24*60*60*1000))/(60*60*1000));
+  let m = Math.floor((diff % (60*60*1000))/(60*1000));
+  let s = Math.floor((diff % (60*1000))/1000);
+  let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
+  document.getElementById('presale-timer').innerText = timerText;
+  setTimeout(updatePresaleInfo, 1000);
+}
+updatePresaleInfo();
+
+// --- Presale ABI
 const presaleABI = [
   "function buyTokens() public payable"
 ];
 
-
+// --- BUY FORM LOGIC ---
 document.getElementById('buy-form').onsubmit = async function(e) {
   e.preventDefault();
   if (!window.ethereum) return alert("MetaMask not found!");
@@ -1118,15 +1120,28 @@ document.getElementById('buy-form').onsubmit = async function(e) {
       "✅ Success! <a href='https://bscscan.com/tx/" + tx.hash +
       "' style='color:var(--blue);' target='_blank'>View on BscScan</a>";
   } catch (err) {
-    // Handle "insufficient funds" and other errors
     let msg = (err?.error?.message || err?.data?.message || err?.message || err).toString();
-       if (msg.toLowerCase().includes("insufficient funds")) {
+    if (msg.toLowerCase().includes("insufficient funds")) {
       msg = "❌ Not enough BNB for purchase.";
     }
     document.getElementById('buy-message').innerText = "Failed: " + msg;
   }
-}; // <-- SCRIPT ENDS HERE!
-</script> <!-- <-- Make sure you close the script tag!! -->
+};
+
+// === MOBILE METAMASK WARNING (FlyX Style) ===
+function isMobile() {
+  return /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+}
+function isMetaMaskAppBrowser() {
+  let ua = navigator.userAgent || '';
+  return (window.ethereum && window.ethereum.isMetaMask) ||
+         ua.includes('MetaMaskMobile');
+}
+if (isMobile() && !isMetaMaskAppBrowser()) {
+  document.getElementById('mobile-warning').style.display = 'block';
+}
+</script>
+
 
 <!-- MetaMask Mobile Browser Warning (FlyX Style) -->
 <div id="mobile-warning"
