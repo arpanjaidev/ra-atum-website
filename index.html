@@ -1128,25 +1128,31 @@ document.getElementById('buy-form').onsubmit = async function(e) {
 }; // <-- SCRIPT ENDS HERE!
 </script> <!-- <-- Make sure you close the script tag!! -->
 
-<!-- NOW HTML CAN START AGAIN! -->
-<div id="mobile-warning" style="display:none;position:fixed;bottom:0;left:0;width:90vw;background:#181a1bee;color:#fff;padding:17px 5vw;z-index:9999;font-weight:bold;text-align:center;">
-  <span>For full token purchase, please open this site in the MetaMask app browser.</span><br>
-  <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html" style="color:#00b4fa;text-decoration:underline;font-size:1.16em;">Open in MetaMask</a>
+<!-- MetaMask Mobile Browser Warning (FlyX Style) -->
+<div id="mobile-warning"
+     style="display:none;position:fixed;bottom:0;left:0;width:97vw;max-width:500px;margin:0 auto;right:0;left:0;background:#181a1bee;color:#fff;padding:17px 2vw 17px 2vw;z-index:9999;font-weight:bold;text-align:center;border-radius:10px 10px 0 0;box-shadow:0 -2px 12px #00b4fa66;">
+  <span style="font-size:1.08em;">For secure token purchase, open this site in the <b>MetaMask app browser</b>:</span><br>
+  <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/"
+     style="color:#00b4fa;text-decoration:underline;font-size:1.18em;display:inline-block;margin:7px 0 0 0;font-weight:bold;">
+    🚀 Open in MetaMask
+  </a>
+  <div style="font-size:0.96em;color:#8ef;">Menu → Browser → paste this link if needed</div>
 </div>
 <script>
   function isMobile() {
-    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    return /android|iphone|ipad|ipod/i.test(navigator.userAgent);
   }
-  if (isMobile() && !window.ethereum) {
+  function isMetaMaskAppBrowser() {
+    let ua = navigator.userAgent || '';
+    return (window.ethereum && window.ethereum.isMetaMask) ||
+           ua.includes('MetaMaskMobile');
+  }
+  if (isMobile() && !isMetaMaskAppBrowser()) {
     document.getElementById('mobile-warning').style.display = 'block';
   }
 </script>
 
-}
-if (isMobile() && !window.ethereum) {
-  document.getElementById('mobile-warning').style.display = 'block';
-}
-</script>
+
 
 <!-- === RA ATUM MEGA FOOTER START === -->
 <footer>
