@@ -768,11 +768,143 @@
 .footer-links a:hover {
   color: #00b4fa !important;
   text-decoration: underline;
+}#ra-wallet-modal-bg {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(14,24,42,0.97);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+#ra-wallet-modal {
+  background: linear-gradient(120deg, #161a24 65%, #00b4fa22 100%);
+  border-radius: 24px;
+  box-shadow: 0 8px 44px #00c3ff55, 0 0 0 6px #00c3ff15;
+  padding: 38px 24px 24px 24px;
+  min-width: 310px; max-width: 98vw;
+  text-align: center;
+  position: relative;
+  animation: modal-pop 0.5s cubic-bezier(.55,2.3,.5,1) 1;
+}
+@keyframes modal-pop {
+  0% { transform: scale(0.7) translateY(44px); opacity:0; }
+  90% { transform: scale(1.04) translateY(-9px); }
+  100% { transform: scale(1) translateY(0); opacity:1; }
+}
+.wallet-logo {
+  width: 82px; height: 82px;
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: 0 6px 24px #00b4fa70;
+  margin-bottom: 16px;
+  background: #1119;
+}
+.wallet-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--blue);
+  letter-spacing: 1px;
+  text-shadow: 0 2px 14px #00c3ff66;
+  margin-bottom: 8px;
+}
+.wallet-desc {
+  font-size: 1.09em;
+  color: var(--sand);
+  margin-bottom: 22px;
+}
+.wallet-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 9px;
+}
+.wallet-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 1.1em;
+  background: linear-gradient(90deg, #00b4fa 0%, #0fffc7 100%);
+  color: #171818;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: background .22s, color .14s, transform .13s;
+  box-shadow: 0 4px 22px #00b4fa33;
+  letter-spacing: 0.9px;
+}
+.wallet-btn .icon {
+  width: 28px; height: 28px; margin-right: 8px; border-radius: 8px;
+  background: #fff;
+  padding: 2px;
+}
+.wallet-btn:hover {
+  background: linear-gradient(90deg, #23e6ff 20%, #00b4fa 100%);
+  color: #222;
+  transform: translateY(-2px) scale(1.05);
+}
+.wallet-btn.copylink {
+  background: linear-gradient(90deg, #232224 0%, #00b4fa33 100%);
+  color: #fff;
+  border: 1.7px solid #00b4fa;
+}
+.wallet-btn.copylink:hover {
+  background: linear-gradient(90deg, #00b4fa 0%, #232224 100%);
+  color: #161a24;
+}
+.wallet-close {
+  position: absolute; right: 13px; top: 9px;
+  background: none;
+  border: none;
+  font-size: 2.1rem;
+  color: var(--blue);
+  cursor: pointer;
+  font-weight: bold;
+}
+.wallet-msg {
+  color: #00ffae;
+  margin: 9px 0 0 0;
+  font-size: 1em;
+  min-height: 24px;
+}
+@media (max-width: 500px) {
+  #ra-wallet-modal { padding: 18px 3vw 16px 3vw; min-width: 90vw; }
+  .wallet-logo { width: 64px; height: 64px; }
+  .wallet-title { font-size: 1.22rem; }
 }
 
 
+
   </style>
-</head>
+</head><script>
+function openWalletModal() {
+  document.getElementById('ra-wallet-modal-bg').style.display = 'flex';
+}
+function closeWalletModal() {
+  document.getElementById('ra-wallet-modal-bg').style.display = 'none';
+}
+function connectMetaMask() {
+  window.open("https://metamask.app.link/dapp/ra-atum-website.vercel.app/", "_blank");
+  document.getElementById('wallet-modal-msg').innerText = "Check MetaMask App or Browser.";
+}
+function connectTrust() {
+  window.open("https://link.trustwallet.com/open_url?coin_id=60&url=https://ra-atum-website.vercel.app/", "_blank");
+  document.getElementById('wallet-modal-msg').innerText = "Check Trust Wallet App.";
+}
+function copyDappLink() {
+  const url = "https://ra-atum-website.vercel.app/";
+  navigator.clipboard.writeText(url).then(function() {
+    document.getElementById('wallet-modal-msg').innerText = "DApp link copied!";
+  }, function() {
+    document.getElementById('wallet-modal-msg').innerText = "Failed to copy link.";
+  });
+}
+</script>
+
 <body>
   <header>
     <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
@@ -1194,7 +1326,28 @@ function isMetaMaskAppBrowser() {
     }
   }
 })();
-</script>
+</script><!-- RA Atum Connect Wallet Modal -->
+<div id="ra-wallet-modal-bg" style="display:none;">
+  <div id="ra-wallet-modal">
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="wallet-logo" />
+    <div class="wallet-title">Connect Your Wallet</div>
+    <div class="wallet-desc">Choose your wallet to get started:</div>
+    <div class="wallet-btns">
+      <button onclick="connectMetaMask()" class="wallet-btn metamask">
+        <img src="https://cryptologos.cc/logos/metamask-fox-logo.png" alt="MetaMask" class="icon" /> MetaMask
+      </button>
+      <button onclick="connectTrust()" class="wallet-btn trust">
+        <img src="https://cryptologos.cc/logos/trust-wallet-trust-logo.png" alt="Trust Wallet" class="icon" /> Trust Wallet
+      </button>
+      <button onclick="copyDappLink()" class="wallet-btn copylink">
+        <i class="fa fa-link"></i> Copy DApp Link
+      </button>
+    </div>
+    <div id="wallet-modal-msg" class="wallet-msg"></div>
+    <button onclick="closeWalletModal()" class="wallet-close">&times;</button>
+  </div>
+</div>
+
 
 
 
@@ -1304,8 +1457,5 @@ typeFooterLine();
 
 
 
-</body>
-</html>
->
 </body>
 </html>
