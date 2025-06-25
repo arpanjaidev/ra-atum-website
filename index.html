@@ -1348,7 +1348,35 @@ function isMetaMaskAppBrowser() {
     <div id="wallet-modal-msg" class="wallet-msg"></div>
     <button onclick="closeWalletModal()" class="wallet-close">&times;</button>
   </div>
-</div>
+</div><!-- WalletConnect Web3Modal (load ONCE before you use it) -->
+<script src="https://unpkg.com/@web3modal/html@2.5.1/dist/index.js"></script>
+
+<!-- Test WalletConnect Button -->
+<button class="connect-btn" id="w3m-test-btn"
+  style="background: #0fffc7; color: #171818; border-radius:14px; padding:14px 34px; margin: 50px auto 30px auto; font-size:1.11rem; font-family:'Share Tech Mono',monospace; font-weight:bold; display:block; box-shadow:0 0 20px #0fffc799;">
+  Test WalletConnect
+</button>
+
+<script>
+const projectId = "12d853ddc01d124d1788bce412bd3020"; // Your real project ID!
+const { Web3Modal } = window.web3modal;
+const modal = new Web3Modal({
+  projectId,
+  themeMode: "dark",
+  standaloneChains: [56] // BSC Mainnet chainId
+});
+
+document.getElementById("w3m-test-btn").onclick = async () => {
+  try {
+    const provider = await modal.connect();
+    alert("Wallet Connected! You can use provider for further actions.");
+    // Further logic: show wallet address, use ethers.js, etc.
+  } catch (e) {
+    alert("Wallet connection cancelled or failed.");
+  }
+};
+</script>
+
 
 
 
