@@ -919,7 +919,8 @@ function copyDappLink() {
       <a href="#about">ABOUT US</a>
       <a href="#contact">CONTACT & SOCIALS</a>
       <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
-      <a href="wallet.html" class="connect-wallet-btn">Connect Wallet</a>
+      <a href="javascript:void(0)" class="connect-wallet-btn" onclick="closeMobileNav(); openWalletModal();">Connect Wallet</a>
+
     </nav>
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
@@ -932,7 +933,8 @@ function copyDappLink() {
   <a href="#about" onclick="closeMobileNav()">ABOUT US</a>
   <a href="#contact" onclick="closeMobileNav()">CONTACT & SOCIALS</a>
   <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" onclick="closeMobileNav()">DAPP</a>
-  <a href="wallet.html" class="connect-wallet-btn" onclick="closeMobileNav()">Connect Wallet</a>
+  <a href="javascript:void(0)" class="connect-wallet-btn" onclick="openWalletModal()">Connect Wallet</a>
+
   <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html" target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
 </div>
 
