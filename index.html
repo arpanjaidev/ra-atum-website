@@ -1132,10 +1132,19 @@ document.getElementById('buy-form').onsubmit = async function(e) {
 </script>
 
 
-<!-- FlyX-Style MetaMask Mobile Auto-Redirect -->
-<div id="mobile-metamask-popup" style="display:none;position:fixed;bottom:0;left:0;width:98vw;max-width:520px;margin:0 auto;right:0;left:0;background:#161a21e0;color:#fff;padding:22px 2vw 24px 2vw;z-index:9999;font-weight:bold;text-align:center;border-radius:12px 12px 0 0;box-shadow:0 -2px 14px #00b4fa44;">
-  <div style="font-size:1.16em;">
-    <b>For secure token purchase,<br>please continue in the MetaMask app browser.</b>
+<!-- MOBILE METAMASK POPUP WITH GRAPHIC -->
+<div id="mobile-metamask-popup" style="display:none;position:fixed;bottom:0;left:0;width:96vw;max-width:440px;right:0;margin:0 auto;background:#181a1bee;color:#fff;padding:22px 2vw 24px 2vw;z-index:9999;font-weight:bold;text-align:center;border-radius:16px 16px 0 0;box-shadow:0 -2px 18px #00b4fa80;">
+  <div style="margin-bottom:14px;">
+    <!-- Simple SVG animation: phone and wallet -->
+    <svg width="64" height="64" viewBox="0 0 64 64" style="margin:0 auto 9px;display:block;">
+      <rect x="14" y="12" width="36" height="40" rx="8" fill="#00b4fa" opacity="0.22"/>
+      <rect x="18" y="16" width="28" height="32" rx="6" fill="#232224" stroke="#00b4fa" stroke-width="2"/>
+      <circle cx="32" cy="36" r="7" fill="#00b4fa" opacity="0.36">
+        <animate attributeName="r" values="7;11;7" dur="1.6s" repeatCount="indefinite"/>
+      </circle>
+      <rect x="28" y="40" width="8" height="4" rx="2" fill="#fff" opacity="0.8"/>
+    </svg>
+    <b style="font-size:1.15em;">For secure token purchase,<br>please continue in the MetaMask app browser.</b>
   </div>
   <div style="margin:12px 0 8px 0;">
     <span style="color:#8ef;font-size:1.02em;">Redirecting in <span id="mm-timer">4</span> seconds...</span>
@@ -1146,6 +1155,9 @@ document.getElementById('buy-form').onsubmit = async function(e) {
   </a>
   <br>
   <button id="mm-cancel" style="margin-top:10px;background:#333;color:#fff;border-radius:8px;border:none;padding:7px 23px;cursor:pointer;font-weight:bold;font-size:1em;">Cancel Redirect</button>
+  <br>
+  <button id="copy-dapp-link" style="margin-top:11px;background:#00b4fa;color:#171818;border-radius:8px;border:none;padding:6px 17px;cursor:pointer;font-weight:bold;font-size:0.98em;">Copy DApp Link</button>
+  <div style="margin-top:10px;font-size:0.95em;color:#99e7ff;">Menu → Browser → Paste link in MetaMask app if not auto-redirected.</div>
 </div>
 <script>
 function isMobile() {
@@ -1160,8 +1172,9 @@ function isMetaMaskAppBrowser() {
     var popup = document.getElementById('mobile-metamask-popup');
     var timerEl = document.getElementById('mm-timer');
     var cancelBtn = document.getElementById('mm-cancel');
+    var copyBtn = document.getElementById('copy-dapp-link');
     popup.style.display = 'block';
-    var t = 4; // seconds
+    var t = 4;
     var interval = setInterval(function() {
       t--;
       timerEl.textContent = t;
@@ -1174,6 +1187,11 @@ function isMetaMaskAppBrowser() {
       popup.style.display = 'none';
       clearInterval(interval);
     };
+    copyBtn.onclick = function() {
+      navigator.clipboard.writeText('https://ra-atum-website.vercel.app/');
+      copyBtn.innerText = "Copied!";
+      setTimeout(()=>{copyBtn.innerText = "Copy DApp Link"}, 1800);
+    }
   }
 })();
 </script>
