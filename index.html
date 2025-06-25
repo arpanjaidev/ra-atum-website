@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Web3Modal UI & WalletConnect -->
-<script src="https://unpkg.com/@walletconnect/web3modal@2.12.0/dist/web3modal.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RA Atum – Where Every Gift Creates Value</title>
@@ -14,6 +9,8 @@
   <!-- Digital font for all text -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
+    /* Place your CSS here */
+
     :root {
       --sand: #e7d7b6;
       --sand-dark: #bda76a;
@@ -1182,85 +1179,113 @@ We reward every donor with RA Atum Tokens, our unique digital token of appreciat
       const typingEl = document.getElementById('about-typing');
       if (typingEl) typeAboutText(aboutTypingText, typingEl);
     });
+<!-- WalletConnect and Ethers.js -->
+<script src="https://unpkg.com/@walletconnect/web3modal@2.12.0/dist/web3modal.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+<script>
+  // --- WALLET GLOBALS ---
+  let web3Modal, web3Provider, signer, userAddress = "";
 
-    // --- BUY TOKEN LOGIC (connect MetaMask, show presale info) ---
-    // Addresses (update if needed)
+  // --- Presale Constants ---
+  const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
+  const presaleABI = ["function buyTokens() public payable"];
+  const presaleStart = 1750178782 * 1000;
+  const presaleEnd = 1765730782 * 1000;
 
-// === RA ATUM PRESALE BUY SECTION ===
-
-// Addresses (update if needed)
-const presaleAddress = "0xEbd8c8E89c64618E699eDb6f339331425d95EE3f";
-const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
-const treasuryWallet = "0x27a2C4F65fd4E3Ae249C061468342f9A5D7cb89D";
-const presaleStart = 1750178782 * 1000;
-const presaleEnd = 1765730782 * 1000;
-let provider, signer;
-
-// Enable buy button only if presale is live and price is set
-function updatePresaleInfo() {
-  let now = Date.now();
-  let status = "NOT STARTED";
-  let btn = document.getElementById('buy-btn');
-  if (now < presaleStart) {
-    status = "Not Started";
-    if (btn) btn.disabled = true;
-  }
-  else if (now > presaleEnd) {
-    status = "Ended";
-    if (btn) btn.disabled = true;
-  }
-  else {
-    status = "LIVE";
-    if (btn) btn.disabled = false;
-  }
-  document.getElementById('presale-status').innerText = "Status: " + status;
-  // Time left
-  let diff = Math.max(0, presaleEnd - now);
-  let d = Math.floor(diff / (24*60*60*1000));
-  let h = Math.floor((diff % (24*60*60*1000))/(60*60*1000));
-  let m = Math.floor((diff % (60*60*1000))/(60*1000));
-  let s = Math.floor((diff % (60*1000))/1000);
-  let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
-  document.getElementById('presale-timer').innerText = timerText;
-  setTimeout(updatePresaleInfo, 1000);
-}
-updatePresaleInfo();
-
-// --- Presale ABI
-const presaleABI = [
-  "function buyTokens() public payable"
-];
-
-// --- BUY FORM LOGIC ---
-document.getElementById('buy-form').onsubmit = async function(e) {
-  e.preventDefault();
-  if (!window.ethereum) return alert("MetaMask not found!");
-  provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-  await provider.send("eth_requestAccounts", []);
-  signer = provider.getSigner();
-  const presaleContract = new ethers.Contract(
-    presaleAddress, presaleABI, signer
-  );
-  let amt = document.getElementById('buy-amount').value;
-  if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) return;
-  document.getElementById('buy-message').innerText = "Sending...";
-  try {
-    let tx = await presaleContract.buyTokens({
-      value: ethers.utils.parseEther(amt)
-    });
-    document.getElementById('buy-message').innerHTML =
-      "✅ Success! <a href='https://bscscan.com/tx/" + tx.hash +
-      "' style='color:var(--blue);' target='_blank'>View on BscScan</a>";
-  } catch (err) {
-    let msg = (err?.error?.message || err?.data?.message || err?.message || err).toString();
-    if (msg.toLowerCase().includes("insufficient funds")) {
-      msg = "❌ Not enough BNB for purchase.";
+  // --- Web3Modal Setup ---
+  async function showWeb3Modal() {
+    if (!web3Modal) {
+      web3Modal = new window.Web3Modal.default({
+        projectId: "12d853ddc01d124d1788bce412bd3020",
+        themeMode: "dark",
+        walletConnectParameters: { showQrModal: true },
+        chain: { id: 56, rpcUrl: "https://bsc-dataseed.binance.org/" }
+      });
     }
-    document.getElementById('buy-message').innerText = "Failed: " + msg;
+    try {
+      const instance = await web3Modal.connect();
+      web3Provider = new ethers.providers.Web3Provider(instance, "any");
+      signer = web3Provider.getSigner();
+      userAddress = await signer.getAddress();
+      document.getElementById('wallet-modal-msg').innerText = `✅ Connected: ${userAddress.slice(0,6)}...${userAddress.slice(-4)}`;
+      document.getElementById('buy-btn').disabled = false;
+      document.getElementById('presale-status').innerText = "Status: Connected";
+    } catch (err) {
+      document.getElementById('wallet-modal-msg').innerText = "❌ Wallet connection cancelled.";
+    }
   }
-};
 
+  function openWalletModal() {
+    document.getElementById('ra-wallet-modal-bg').style.display = 'flex';
+  }
+  function closeWalletModal() {
+    document.getElementById('ra-wallet-modal-bg').style.display = 'none';
+  }
+  function copyDappLink() {
+    const url = "https://ra-atum-website.vercel.app/";
+    navigator.clipboard.writeText(url).then(function() {
+      document.getElementById('wallet-modal-msg').innerText = "DApp link copied!";
+    }, function() {
+      document.getElementById('wallet-modal-msg').innerText = "Failed to copy link.";
+    });
+  }
 
+  // --- BUY TOKEN LOGIC ---
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('buy-form').onsubmit = async function(e) {
+      e.preventDefault();
+      if (!signer) {
+        openWalletModal();
+        return;
+      }
+      let amt = document.getElementById('buy-amount').value;
+      if (!amt || isNaN(amt) || parseFloat(amt) < 0.01) return;
+      document.getElementById('buy-message').innerText = "Sending...";
+      try {
+        const presaleContract = new ethers.Contract(presaleAddress, presaleABI, signer);
+        let tx = await presaleContract.buyTokens({ value: ethers.utils.parseEther(amt) });
+        document.getElementById('buy-message').innerHTML =
+          "✅ Success! <a href='https://bscscan.com/tx/" + tx.hash +
+          "' style='color:var(--blue);' target='_blank'>View on BscScan</a>";
+      } catch (err) {
+        let msg = (err?.error?.message || err?.data?.message || err?.message || err).toString();
+        if (msg.toLowerCase().includes("insufficient funds")) {
+          msg = "❌ Not enough BNB for purchase.";
+        }
+        document.getElementById('buy-message').innerText = "Failed: " + msg;
+      }
+    };
+  });
+
+  // --- PRESALE INFO TIMER ---
+  function updatePresaleInfo() {
+    let now = Date.now();
+    let status = "NOT STARTED";
+    let btn = document.getElementById('buy-btn');
+    if (now < presaleStart) {
+      status = "Not Started";
+      if (btn) btn.disabled = true;
+    }
+    else if (now > presaleEnd) {
+      status = "Ended";
+      if (btn) btn.disabled = true;
+    }
+    else {
+      if (signer) btn.disabled = false;
+      status = signer ? "Connected" : "LIVE";
+    }
+    document.getElementById('presale-status').innerText = "Status: " + status;
+    // Time left
+    let diff = Math.max(0, presaleEnd - now);
+    let d = Math.floor(diff / (24*60*60*1000));
+    let h = Math.floor((diff % (24*60*60*1000))/(60*60*1000));
+    let m = Math.floor((diff % (60*60*1000))/(60*1000));
+    let s = Math.floor((diff % (60*1000))/1000);
+    let timerText = status === "Ended" ? "Sale Ended" : `Time left: ${d}d ${h}h ${m}m ${s}s`;
+    document.getElementById('presale-timer').innerText = timerText;
+    setTimeout(updatePresaleInfo, 1000);
+  }
+  updatePresaleInfo();
 </script>
 
 
@@ -1404,7 +1429,9 @@ function isMetaMaskAppBrowser() {
       <h4 class="footer-title-shine">HELP CENTER</h4>
       <a href="nft-gallery.html#support">Support</a>
      <a href="Troubleshooting.html" target="_blank" style="color:#00b4fa;font-weight:bold;text-decoration:underline;">Support & Troubleshooting</a>
-       <a href="#contact">Contact Us</a>
+
+
+     <a href="#contact">Contact Us</a>
     </div>
   </div>
   <div style="text-align:center;color:#00b4fa;margin-top:6px;margin-bottom:9px;">
