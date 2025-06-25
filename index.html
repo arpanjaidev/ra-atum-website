@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Web3Modal UI & WalletConnect -->
+<script src="https://unpkg.com/@walletconnect/web3modal@2.12.0/dist/web3modal.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RA Atum – Where Every Gift Creates Value</title>
@@ -887,14 +892,7 @@ function openWalletModal() {
 function closeWalletModal() {
   document.getElementById('ra-wallet-modal-bg').style.display = 'none';
 }
-function connectMetaMask() {
-  window.open("https://metamask.app.link/dapp/ra-atum-website.vercel.app/", "_blank");
-  document.getElementById('wallet-modal-msg').innerText = "Check MetaMask App or Browser.";
-}
-function connectTrust() {
-  window.open("https://link.trustwallet.com/open_url?coin_id=60&url=https://ra-atum-website.vercel.app/", "_blank");
-  document.getElementById('wallet-modal-msg').innerText = "Check Trust Wallet App.";
-}
+
 function copyDappLink() {
   const url = "https://ra-atum-website.vercel.app/";
   navigator.clipboard.writeText(url).then(function() {
@@ -1329,17 +1327,15 @@ function isMetaMaskAppBrowser() {
   }
 })();
 </script><!-- RA Atum Connect Wallet Modal -->
+<!-- RA Atum Connect Wallet Modal (Web3Modal style) -->
 <div id="ra-wallet-modal-bg" style="display:none;">
   <div id="ra-wallet-modal">
     <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="wallet-logo" />
     <div class="wallet-title">Connect Your Wallet</div>
-    <div class="wallet-desc">Choose your wallet to get started:</div>
+    <div class="wallet-desc">Choose any wallet below to connect:</div>
     <div class="wallet-btns">
-      <button onclick="connectMetaMask()" class="wallet-btn metamask">
-        <img src="https://cryptologos.cc/logos/metamask-fox-logo.png" alt="MetaMask" class="icon" /> MetaMask
-      </button>
-      <button onclick="connectTrust()" class="wallet-btn trust">
-        <img src="https://cryptologos.cc/logos/trust-wallet-trust-logo.png" alt="Trust Wallet" class="icon" /> Trust Wallet
+      <button onclick="showWeb3Modal()" class="wallet-btn" style="font-size:1.11em">
+        <img src="https://cryptologos.cc/logos/walletconnect-walletconnect-logo.png" alt="WalletConnect" class="icon" style="background:none;border:none;"/> All Wallets (Web3Modal)
       </button>
       <button onclick="copyDappLink()" class="wallet-btn copylink">
         <i class="fa fa-link"></i> Copy DApp Link
@@ -1348,8 +1344,8 @@ function isMetaMaskAppBrowser() {
     <div id="wallet-modal-msg" class="wallet-msg"></div>
     <button onclick="closeWalletModal()" class="wallet-close">&times;</button>
   </div>
-</div><!-- WalletConnect Web3Modal (load ONCE before you use it) -->
-<script src="https://unpkg.com/@web3modal/html@2.5.1/dist/index.js"></script>
+</div>
+
 
 
 
@@ -1458,6 +1454,51 @@ setInterval(function() {
 }, 410);
 
 typeFooterLine();
+</script>
+<script>
+// --- Web3Modal Setup (reown/flyx style) ---
+let web3Modal, web3Provider;
+async function showWeb3Modal() {
+  // Setup only once
+  if (!web3Modal) {
+    web3Modal = new window.Web3Modal.default({
+      projectId: "12d853ddc01d124d1788bce412bd3020",
+      themeMode: "dark",
+      walletConnectParameters: {
+        showQrModal: true,
+      },
+      chain: {
+        id: 56, // BSC Mainnet (change if needed)
+        rpcUrl: "https://bsc-dataseed.binance.org/",
+      },
+    });
+  }
+  try {
+    const instance = await web3Modal.connect();
+    web3Provider = new ethers.providers.Web3Provider(instance);
+    const signer = web3Provider.getSigner();
+    const address = await signer.getAddress();
+    document.getElementById('wallet-modal-msg').innerText = `✅ Connected: ${address.slice(0,6)}...${address.slice(-4)}`;
+    // You can trigger your buy logic, etc, here!
+  } catch (err) {
+    document.getElementById('wallet-modal-msg').innerText = "❌ Wallet connection cancelled.";
+  }
+}
+
+function openWalletModal() {
+  document.getElementById('ra-wallet-modal-bg').style.display = 'flex';
+}
+function closeWalletModal() {
+  document.getElementById('ra-wallet-modal-bg').style.display = 'none';
+}
+function copyDappLink() {
+  const url = "https://ra-atum-website.vercel.app/";
+  navigator.clipboard.writeText(url).then(function() {
+    document.getElementById('wallet-modal-msg').innerText = "DApp link copied!";
+  }, function() {
+    document.getElementById('wallet-modal-msg').innerText = "Failed to copy link.";
+  });
+}
 </script>
 
 
