@@ -282,7 +282,7 @@
       box-shadow: 0 2px 10px #00b4fa22;
     }
     .calc-footer-link:hover { background: #00b4fa; color: #222; text-decoration: underline;}
- </style>
+  </style>
 </head>
 <body>
   <div class="wallet-headline" id="wallet-typing-shine"></div>
@@ -300,7 +300,7 @@
         <span id="referral-earnings">–</span>
       </div>
       <div class="wallet-btn-row">
-        <button class="wallet-connect-btn" id="12d853ddc01d124d1788bce412bd3020"><i class="fa-solid fa-link"></i> Connect Wallet</button>
+        <button class="wallet-connect-btn" id="connect-wallet-btn"><i class="fa-solid fa-link"></i> Connect Wallet</button>
         <button class="wallet-buy-btn" onclick="window.location.href='index.html#buy-section'"><i class="fas fa-bolt"></i> Buy RA Atum</button>
       </div>
       <div class="wallet-msg" id="wallet-msg"></div>
@@ -338,7 +338,6 @@
       <div class="calc-footer-space"></div>
     </div>
   </div>
-
   <!-- BOTTOM BACK TO HOME BUTTON -->
   <div class="bottom-back-home">
     <a href="index.html" class="calc-footer-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
@@ -346,6 +345,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   <script>
+    // Typing effect headline
     const walletTypingText = "Join RA Atum to shape the future of blockchain-powered kindness.";
     const walletTypingElem = document.getElementById("wallet-typing-shine");
     let wIndex = 0, wTypingForward = true, wBlinkOn = true;
@@ -371,15 +371,16 @@
         }
       }
     }
-    setInterval(() => { wBlinkOn = !wBlinkOn; }, 410);
+    setInterval(function() { wBlinkOn = !wBlinkOn; }, 410);
     typeWalletLine();
 
+    // Wallet connect logic
     const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
     const erc20ABI = [
       "function balanceOf(address owner) view returns (uint256)",
       "function decimals() view returns (uint8)"
     ];
-    document.getElementById('12d853ddc01d124d1788bce412bd3020').onclick = async function () {
+    document.getElementById('connect-wallet-btn').onclick = async function() {
       const walletMsg = document.getElementById('wallet-msg');
       walletMsg.innerText = "Connecting...";
       if (window.ethereum && /MetaMask/i.test(window.ethereum.isMetaMask ? 'MetaMask' : navigator.userAgent)) {
@@ -388,8 +389,9 @@
           await provider.send("eth_requestAccounts", []);
           const signer = provider.getSigner();
           const address = await signer.getAddress();
-          document.getElementById('wallet-address').innerText = "Address: " + address.slice(0, 7) + "..." + address.slice(-4);
+          document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
           walletMsg.innerText = "✅ Wallet connected!";
+          // Fetch and display actual token balance
           const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
           const [rawBalance, decimals] = await Promise.all([
             tokenContract.balanceOf(address),
@@ -397,6 +399,7 @@
           ]);
           const balance = ethers.utils.formatUnits(rawBalance, decimals);
           document.getElementById('token-balance').innerText = balance;
+          // Dummy value for referral earnings (customize as needed)
           document.getElementById('referral-earnings').innerText = "0.00";
         } catch (err) {
           walletMsg.innerText = "❌ Wallet connection failed.";
@@ -410,19 +413,23 @@
       }
     };
 
+    // Calculator logic
     const startingPrice = { rs: 0.55, usd: 0.01, bnb: 0.00001 };
-    const launchPrice = { rs: 15, usd: 0.17, bnb: 0.0003 };
+    const launchPrice   = { rs: 15,   usd: 0.17, bnb: 0.0003 };
 
     function calcUpdate() {
       let amount = parseFloat(document.getElementById('calc-ra').value) || 0;
-      document.getElementById('rs-start').innerText = "₹" + (amount * startingPrice.rs).toFixed(2);
+      document.getElementById('rs-start').innerText  = "₹" + (amount * startingPrice.rs).toFixed(2);
       document.getElementById('usd-start').innerText = "$" + (amount * startingPrice.usd).toFixed(2);
       document.getElementById('bnb-start').innerText = (amount * startingPrice.bnb).toFixed(5);
-      document.getElementById('rs-launch').innerText = "₹" + (amount * launchPrice.rs).toFixed(2);
+
+      document.getElementById('rs-launch').innerText  = "₹" + (amount * launchPrice.rs).toFixed(2);
       document.getElementById('usd-launch').innerText = "$" + (amount * launchPrice.usd).toFixed(2);
       document.getElementById('bnb-launch').innerText = (amount * launchPrice.bnb).toFixed(5);
     }
     document.getElementById('calc-ra').addEventListener('input', calcUpdate);
+
+    // Set default value for demo
     document.getElementById('calc-ra').value = "100";
     calcUpdate();
   </script>
