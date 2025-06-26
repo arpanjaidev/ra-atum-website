@@ -811,7 +811,8 @@
   <section id="buy-section">
     <div class="presale-title">BUY RA TOKENS – PRESALE LIVE!</div>
 
-    <div class="presale-info">
+    <div class="presale-info">  
+      <w3m-button label="Buy Now"></w3m-button>
       <span id="presale-status">Status: Connect Wallet</span>
       <span id="presale-price">Price: 0.01 BNB</span>
       <span id="presale-timer">Time left: ...</span>
@@ -1129,6 +1130,7 @@ document.getElementById('buy-form').onsubmit = async function(e) {
 };
 
 
+
 </script>
 
 
@@ -1283,6 +1285,35 @@ setInterval(function() {
 typeFooterLine();
 </script>
 
+
+<!-- Web3Modal UI -->
+<script src="https://unpkg.com/@web3modal/html"></script>
+<!-- Wagmi & Viem for wallet management -->
+<script src="https://unpkg.com/viem"></script>
+<script src="https://unpkg.com/wagmi"></script><script>
+  const projectId = '12d853ddc01d124d1788bce412bd3020'; // Your Web3Modal project ID
+
+  const chains = [
+    {
+      id: 56,
+      name: 'BNB Chain',
+      rpcUrls: ['https://bsc-dataseed.binance.org/']
+    }
+  ];
+
+  const wagmiConfig = window.Wagmi.createConfig({
+    chains: chains,
+    transports: {
+      56: window.Wagmi.http('https://bsc-dataseed.binance.org/'),
+    }
+  });
+
+  window.Web3Modal.init({
+    projectId,
+    wagmiConfig,
+    enableAnalytics: false
+  });
+</script>
 
 
 
