@@ -1,50 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Demo Wallet Connect</title>
-  <script src="https://unpkg.com/@web3modal/html@3"></script>
-  <style>
-    body { background: #10131a; color: #fff; font-family: monospace; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;}
-    .container { background: #191d2a; border-radius: 18px; padding: 40px 32px 24px 32px; box-shadow: 0 8px 32px #00b4fa33; }
-    .connect-btn { background: linear-gradient(90deg,#0fffc7,#00c3ff); color: #11131a; border: none; border-radius: 30px; font-size: 1.2rem; padding: 18px 38px; cursor: pointer; }
-    .connect-btn:hover { background: linear-gradient(90deg,#00c3ff,#0fffc7);}
-    .address { color: #0fffc7; margin-top: 22px; font-size: 1.1em;}
-  </style>
+  <title>Web3Modal v2 Demo</title>
+  <script src="https://unpkg.com/@web3modal/html@2.3.4"></script>
 </head>
 <body>
-  <div class="container">
-    <h2>WalletConnect Demo</h2>
-    <button class="connect-btn" id="connect-wallet-btn">Connect Wallet</button>
-    <div class="address" id="wallet-address">Not connected</div>
-  </div>
+  <button id="connect-wallet-btn">Connect Wallet</button>
+  <div id="wallet-address"></div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // THIS IS CORRECT:
       const modal = window.Web3Modal({
         projectId: "12d853ddc01d124d1788bce412bd3020",
         chains: [
-          {
-            chainId: 1,
-            name: 'Ethereum',
-            rpcUrl: 'https://mainnet.infura.io/v3/'
-          },
-          {
-            chainId: 56,
-            name: 'Binance Smart Chain',
-            rpcUrl: 'https://bsc-dataseed.binance.org/'
-          }
+          { chainId: 1, name: 'Ethereum', rpcUrl: 'https://mainnet.infura.io/v3/' },
+          { chainId: 56, name: 'Binance Smart Chain', rpcUrl: 'https://bsc-dataseed.binance.org/' }
         ]
       });
       document.getElementById('connect-wallet-btn').onclick = async function() {
-        const addressDiv = document.getElementById('wallet-address');
-        addressDiv.innerText = "Connecting...";
         try {
           const connection = await modal.connect();
           const accounts = await connection.accounts();
-          addressDiv.innerText = "Address: " + accounts[0].slice(0,7) + "..." + accounts[0].slice(-4);
+          document.getElementById('wallet-address').innerText =
+            "Address: " + accounts[0].slice(0, 7) + "..." + accounts[0].slice(-4);
         } catch (err) {
-          addressDiv.innerText = "❌ Connection canceled";
+          document.getElementById('wallet-address').innerText = "❌ Connection canceled";
         }
       }
     });
