@@ -170,33 +170,35 @@
       "function decimals() view returns (uint8)"
     ];
 
-    document.getElementById('connect-wallet-btn').onclick = async function() {
-      const walletMsg = document.getElementById('wallet-msg');
-      walletMsg.innerText = "Connecting...";
-      try {
-        // Web3Modal connect
-        const connection = await modal.connect();
-        const accounts = await connection.accounts();
-        const address = accounts[0];
-        document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
-        walletMsg.innerText = "✅ Wallet connected!";
-        // Use ethers.js for balance
-        const provider = new ethers.providers.Web3Provider(connection.provider, "any");
-        const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
-        const [rawBalance, decimals] = await Promise.all([
-          tokenContract.balanceOf(address),
-          tokenContract.decimals()
-        ]);
-        const balance = ethers.utils.formatUnits(rawBalance, decimals);
-        document.getElementById('token-balance').innerText = balance;
-        document.getElementById('referral-earnings').innerText = "0.00"; // customize if you want real earnings
-      } catch (err) {
-        walletMsg.innerText = "❌ Wallet connection failed or canceled.";
-        document.getElementById('wallet-address').innerText = "Not connected";
-        document.getElementById('token-balance').innerText = "–";
-        document.getElementById('referral-earnings').innerText = "–";
-      }
-    };
+  document.getElementById('connect-wallet-btn').onclick = async function() {
+  const walletMsg = document.getElementById('wallet-msg');
+  walletMsg.innerText = "Connecting...";
+  try {
+    // Web3Modal connect
+    const connection = await modal.connect();
+    const accounts = await connection.accounts();
+    const address = accounts[0];
+    document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
+    walletMsg.innerText = "✅ Wallet connected!";
+    // FIX: get provider for ethers.js
+    const provider = new ethers.providers.Web3Provider(connection.provider ?? connection, "any");
+    const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
+    const [rawBalance, decimals] = await Promise.all([
+      tokenContract.balanceOf(address),
+      tokenContract.decimals()
+    ]);
+    const balance = ethers.utils.formatUnits(rawBalance, decimals);
+    document.getElementById('token-balance').innerText = balance;
+    document.getElementById('referral-earnings').innerText = "0.00";
+  } catch (err) {
+    walletMsg.innerText = "❌ Wallet connection failed or canceled.";
+    document.getElementById('wallet-address').innerText = "Not connected";
+    document.getElementById('token-balance').innerText = "–";
+    document.getElementById('referral-earnings').innerText = "–";
+    // Optional: console.log(err);
+  }
+};
+
 
     // Calculator logic
     const startingPrice = { rs: 0.55, usd: 0.01, bnb: 0.00001 };
