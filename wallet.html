@@ -7,17 +7,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: #0e1018;
-      color: #fff;
-      font-family: 'Share Tech Mono', monospace;
-      margin: 0;
-      min-height: 100vh;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-    }
-    .wallet-headline { text-align: center; margin-top: 38px; margin-bottom: 35px; font-size: 1.18em; font-family: 'Share Tech Mono', monospace; font-weight: bold; text-transform: uppercase; background: linear-gradient(90deg,#fff 8%,#00b4fa 60%,#23e6ff 98%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 2px 18px #22213866,0 0 8px #00b4fa88,0 0 18px #00b4fa99; filter: brightness(1.15) drop-shadow(0 0 3px #00e6ff99); letter-spacing: 1.1px; min-height: 1.7em;}
+    /* All your CSS, unchanged... */
+    body { background: #0e1018; color: #fff; font-family: 'Share Tech Mono', monospace; margin: 0; min-height: 100vh; padding: 0; display: flex; flex-direction: column; }
+    .wallet-headline { text-align: center; margin-top: 38px; margin-bottom: 35px; font-size: 1.18em; font-weight: bold; text-transform: uppercase; background: linear-gradient(90deg,#fff 8%,#00b4fa 60%,#23e6ff 98%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 2px 18px #22213866,0 0 8px #00b4fa88,0 0 18px #00b4fa99; filter: brightness(1.15) drop-shadow(0 0 3px #00e6ff99); letter-spacing: 1.1px; min-height: 1.7em;}
     .wallet-full-row { display: flex; align-items: flex-start; justify-content: center; gap: 44px; padding: 16px 0 0 0; max-width: 1250px; margin: 0 auto 48px auto; flex-wrap: nowrap; }
     .ra-logo-big { width: 170px; height: 170px; max-width: 35vw; border-radius: 35px; object-fit: contain; background: #191b2a; box-shadow: 0 8px 48px #00b4fa88, 0 0 0 7px #191a2477; border: 3px solid #00b4fa44; margin-top: 8px; margin-left: 8px; display: block; transition: transform .22s; }
     .ra-logo-big:hover { transform: scale(1.04) rotate(-2deg); box-shadow: 0 18px 68px #00b4faaa, 0 0 0 12px #191a24bb; }
@@ -107,114 +99,114 @@
   <div class="bottom-back-home">
     <a href="index.html" class="calc-footer-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
-  <!-- SCRIPTS: Put after all HTML to guarantee everything loads in time -->
+
+  <!-- IMPORTANT: JS libraries FIRST, THEN your code in DOMContentLoaded block -->
   <script src="https://unpkg.com/@web3modal/html@3"></script>
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Typing effect headline
-      const walletTypingText = "Join RA Atum to shape the future of blockchain-powered kindness.";
-      const walletTypingElem = document.getElementById("wallet-typing-shine");
-      let wIndex = 0, wTypingForward = true, wBlinkOn = true;
-      function typeWalletLine() {
-        if (!walletTypingElem) return;
-        if (wTypingForward) {
-          if (wIndex <= walletTypingText.length) {
-            walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.15em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
-            wIndex++;
-            setTimeout(typeWalletLine, 37);
-          } else {
-            wTypingForward = false;
-            setTimeout(typeWalletLine, 1300);
-          }
+  document.addEventListener("DOMContentLoaded", function() {
+    // Typing effect headline (unchanged)
+    const walletTypingText = "Join RA Atum to shape the future of blockchain-powered kindness.";
+    const walletTypingElem = document.getElementById("wallet-typing-shine");
+    let wIndex = 0, wTypingForward = true, wBlinkOn = true;
+    function typeWalletLine() {
+      if (!walletTypingElem) return;
+      if (wTypingForward) {
+        if (wIndex <= walletTypingText.length) {
+          walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.15em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
+          wIndex++;
+          setTimeout(typeWalletLine, 37);
         } else {
-          if (wIndex >= 0) {
-            walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.15em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
-            wIndex--;
-            setTimeout(typeWalletLine, 16);
-          } else {
-            wTypingForward = true;
-            setTimeout(typeWalletLine, 750);
-          }
+          wTypingForward = false;
+          setTimeout(typeWalletLine, 1300);
+        }
+      } else {
+        if (wIndex >= 0) {
+          walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.15em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
+          wIndex--;
+          setTimeout(typeWalletLine, 16);
+        } else {
+          wTypingForward = true;
+          setTimeout(typeWalletLine, 750);
         }
       }
-      setInterval(function() { wBlinkOn = !wBlinkOn; }, 410);
-      typeWalletLine();
+    }
+    setInterval(function() { wBlinkOn = !wBlinkOn; }, 410);
+    typeWalletLine();
 
-      // --- Web3Modal for all wallets ---
-      const projectId = "12d853ddc01d124d1788bce412bd3020";
-      const chains = [
-        { chainId: 1, name: 'Ethereum', rpcUrl: 'https://mainnet.infura.io/v3/' },
-        { chainId: 56, name: 'Binance Smart Chain', rpcUrl: 'https://bsc-dataseed.binance.org/' }
-      ];
-      let modal;
-      if (typeof window !== "undefined" && window.Web3Modal) {
-        modal = new window.Web3Modal({
-          projectId,
-          chains: chains.map(chain => ({
-            id: chain.chainId,
-            name: chain.name,
-            rpcUrl: chain.rpcUrl
-          })),
-          themeMode: 'dark',
-          themeVariables: {
-            '--w3m-accent': '#0fffc7',
-            '--w3m-background': '#11131a',
-          }
-        });
-      }
-      const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
-      const erc20ABI = [
-        "function balanceOf(address owner) view returns (uint256)",
-        "function decimals() view returns (uint8)"
-      ];
-      document.getElementById('connect-wallet-btn').onclick = async function() {
-        const walletMsg = document.getElementById('wallet-msg');
-        walletMsg.innerText = "Connecting...";
-        try {
-          const connection = await modal.connect();
-          const accounts = await connection.accounts();
-          const address = accounts[0];
-          document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
-          walletMsg.innerText = "✅ Wallet connected!";
-          // Get correct provider for ethers.js
-          const provider = new ethers.providers.Web3Provider(
-            connection.provider ? connection.provider : connection,
-            "any"
-          );
-          const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
-          const [rawBalance, decimals] = await Promise.all([
-            tokenContract.balanceOf(address),
-            tokenContract.decimals()
-          ]);
-          const balance = ethers.utils.formatUnits(rawBalance, decimals);
-          document.getElementById('token-balance').innerText = balance;
-          document.getElementById('referral-earnings').innerText = "0.00";
-        } catch (err) {
-          walletMsg.innerText = "❌ Wallet connection failed or canceled.";
-          document.getElementById('wallet-address').innerText = "Not connected";
-          document.getElementById('token-balance').innerText = "–";
-          document.getElementById('referral-earnings').innerText = "–";
-          console.log("Wallet connect error:", err); // See error in console!
+    // --- Web3Modal for all wallets ---
+    const projectId = "12d853ddc01d124d1788bce412bd3020";
+    const chains = [
+      { chainId: 1, name: 'Ethereum', rpcUrl: 'https://mainnet.infura.io/v3/' },
+      { chainId: 56, name: 'Binance Smart Chain', rpcUrl: 'https://bsc-dataseed.binance.org/' }
+    ];
+    let modal;
+    if (typeof window !== "undefined" && window.Web3Modal) {
+      modal = new window.Web3Modal({
+        projectId,
+        chains: chains.map(chain => ({
+          id: chain.chainId,
+          name: chain.name,
+          rpcUrl: chain.rpcUrl
+        })),
+        themeMode: 'dark',
+        themeVariables: {
+          '--w3m-accent': '#0fffc7',
+          '--w3m-background': '#11131a',
         }
-      };
-
-      // Calculator logic
-      const startingPrice = { rs: 0.55, usd: 0.01, bnb: 0.00001 };
-      const launchPrice   = { rs: 15,   usd: 0.17, bnb: 0.0003 };
-      function calcUpdate() {
-        let amount = parseFloat(document.getElementById('calc-ra').value) || 0;
-        document.getElementById('rs-start').innerText  = "₹" + (amount * startingPrice.rs).toFixed(2);
-        document.getElementById('usd-start').innerText = "$" + (amount * startingPrice.usd).toFixed(2);
-        document.getElementById('bnb-start').innerText = (amount * startingPrice.bnb).toFixed(5);
-        document.getElementById('rs-launch').innerText  = "₹" + (amount * launchPrice.rs).toFixed(2);
-        document.getElementById('usd-launch').innerText = "$" + (amount * launchPrice.usd).toFixed(2);
-        document.getElementById('bnb-launch').innerText = (amount * launchPrice.bnb).toFixed(5);
+      });
+    }
+    const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
+    const erc20ABI = [
+      "function balanceOf(address owner) view returns (uint256)",
+      "function decimals() view returns (uint8)"
+    ];
+    document.getElementById('connect-wallet-btn').onclick = async function() {
+      const walletMsg = document.getElementById('wallet-msg');
+      walletMsg.innerText = "Connecting...";
+      try {
+        const connection = await modal.connect();
+        const accounts = await connection.accounts();
+        const address = accounts[0];
+        document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
+        walletMsg.innerText = "✅ Wallet connected!";
+        const provider = new ethers.providers.Web3Provider(
+          connection.provider ? connection.provider : connection,
+          "any"
+        );
+        const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
+        const [rawBalance, decimals] = await Promise.all([
+          tokenContract.balanceOf(address),
+          tokenContract.decimals()
+        ]);
+        const balance = ethers.utils.formatUnits(rawBalance, decimals);
+        document.getElementById('token-balance').innerText = balance;
+        document.getElementById('referral-earnings').innerText = "0.00";
+      } catch (err) {
+        walletMsg.innerText = "❌ Wallet connection failed or canceled.";
+        document.getElementById('wallet-address').innerText = "Not connected";
+        document.getElementById('token-balance').innerText = "–";
+        document.getElementById('referral-earnings').innerText = "–";
+        console.log("Wallet connect error:", err); // See exact error in console!
       }
-      document.getElementById('calc-ra').addEventListener('input', calcUpdate);
-      document.getElementById('calc-ra').value = "100";
-      calcUpdate();
-    });
+    };
+
+    // Calculator logic (unchanged)
+    const startingPrice = { rs: 0.55, usd: 0.01, bnb: 0.00001 };
+    const launchPrice   = { rs: 15,   usd: 0.17, bnb: 0.0003 };
+    function calcUpdate() {
+      let amount = parseFloat(document.getElementById('calc-ra').value) || 0;
+      document.getElementById('rs-start').innerText  = "₹" + (amount * startingPrice.rs).toFixed(2);
+      document.getElementById('usd-start').innerText = "$" + (amount * startingPrice.usd).toFixed(2);
+      document.getElementById('bnb-start').innerText = (amount * startingPrice.bnb).toFixed(5);
+      document.getElementById('rs-launch').innerText  = "₹" + (amount * launchPrice.rs).toFixed(2);
+      document.getElementById('usd-launch').innerText = "$" + (amount * launchPrice.usd).toFixed(2);
+      document.getElementById('bnb-launch').innerText = (amount * launchPrice.bnb).toFixed(5);
+    }
+    document.getElementById('calc-ra').addEventListener('input', calcUpdate);
+    document.getElementById('calc-ra').value = "100";
+    calcUpdate();
+  });
   </script>
 </body>
 </html>
