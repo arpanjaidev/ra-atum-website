@@ -1,88 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Buy Now – RA Atum</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #0f1822;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      font-family: 'Segoe UI', 'Arial', sans-serif;
-    }
-    #main {
-      flex: 1 0 auto;
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 60vh;
-    }
-    footer {
-      width: 100vw;
-      background: #151e2b;
-      color: #00b4fa;
-      text-align: center;
-      padding: 26px 0 18px 0;
-      font-size: 1.15em;
-      font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 -4px 24px #00b4fa11;
-      flex-shrink: 0;
-      margin-top: auto;
-    }
-    .buy-label {
-      font-size: 2.1rem;
-      font-weight: bold;
-      margin: 60px 0 24px 0;
-      color: #00b4fa;
-      text-shadow: 0 2px 16px #002f4977;
-      letter-spacing: 2px;
-    }
-    /* Optional: Style for Web3Modal buy button */
-    #w3m-buy-btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 40px;
-      margin-top: 14px;
-      min-height: 80px;
-    }
-  </style>
-</head>
-<body>
-  <div id="main">
-    <div class="buy-label">Buy RA Atum Token</div>
+  <head>
+    <title>Buy RA Atum Now</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body style="background:#111; color:#fff; font-family:sans-serif; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+    <h2>Buy RA Atum Now</h2>
     <div id="w3m-buy-btn"></div>
-  </div>
-  <footer>
-    Buy now and join the future of blockchain-powered kindness! 🚀
-  </footer>
-  <!-- Web3Modal & scripts -->
-  <script src="https://unpkg.com/@web3modal/html"></script>
-  <script src="https://unpkg.com/viem"></script>
-  <script src="https://unpkg.com/wagmi"></script>
-  <script>
-    const projectId = '12d853ddc01d124d1788bce412bd3020';
-    const chains = [{ id: 56, name: 'BNB Chain', rpcUrls: ['https://bsc-dataseed.binance.org/'] }];
-    const wagmiConfig = window.Wagmi.createConfig({ chains, transports: { 56: window.Wagmi.http('https://bsc-dataseed.binance.org/') } });
-    window.Web3Modal.init({ projectId, wagmiConfig, enableAnalytics: false });
-    function waitForW3mButton(cb, tries = 0) {
-      if (window.customElements && customElements.get('w3m-button')) cb();
-      else if (tries < 50) setTimeout(() => waitForW3mButton(cb, tries + 1), 200);
-    }
-    waitForW3mButton(() => {
-      const btnParent = document.getElementById('w3m-buy-btn');
-      if (btnParent && !btnParent.querySelector('w3m-button')) {
-        btnParent.innerHTML = '<w3m-button label="Buy Now"></w3m-button>';
+    <script src="https://unpkg.com/@web3modal/html"></script>
+    <script src="https://unpkg.com/viem"></script>
+    <script src="https://unpkg.com/wagmi"></script>
+    <script>
+      const projectId = '12d853ddc01d124d1788bce412bd3020';
+      const chains = [{ id: 56, name: 'BNB Chain', rpcUrls: ['https://bsc-dataseed.binance.org/'] }];
+      const wagmiConfig = window.Wagmi.createConfig({ chains, transports: { 56: window.Wagmi.http('https://bsc-dataseed.binance.org/') } });
+      window.Web3Modal.init({ projectId, wagmiConfig, enableAnalytics: false });
+      function waitForW3mButton(cb, tries = 0) {
+        if (window.customElements && customElements.get('w3m-button')) cb();
+        else if (tries < 50) setTimeout(() => waitForW3mButton(cb, tries + 1), 200);
       }
-    });
-  </script>
-</body>
+      waitForW3mButton(() => {
+        const btnParent = document.getElementById('w3m-buy-btn');
+        if (btnParent && !btnParent.querySelector('w3m-button')) {
+          btnParent.innerHTML = '<w3m-button label="Buy Now"></w3m-button>';
+        }
+      });
+    </script>
+  </body>
 </html>
