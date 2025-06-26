@@ -1,32 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Web3Modal v2 Demo</title>
-  <script src="https://unpkg.com/@web3modal/html@2.3.4"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wallet – RA Atum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@web3modal/html@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <style>
+    /* -- your style unchanged -- */
+    body {
+      background: #0e1018;
+      color: #fff;
+      font-family: 'Share Tech Mono', monospace;
+      margin: 0;
+      min-height: 100vh;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .wallet-headline { /* ... unchanged ... */ text-align: center; margin-top: 38px; margin-bottom: 35px; font-size: 1.18em; font-family: 'Share Tech Mono', monospace; font-weight: bold; text-transform: uppercase; background: linear-gradient(90deg,#fff 8%,#00b4fa 60%,#23e6ff 98%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 2px 18px #22213866,0 0 8px #00b4fa88,0 0 18px #00b4fa99; filter: brightness(1.15) drop-shadow(0 0 3px #00e6ff99); letter-spacing: 1.1px; min-height: 1.7em;}
+    .wallet-full-row { display: flex; align-items: flex-start; justify-content: center; gap: 44px; padding: 16px 0 0 0; max-width: 1250px; margin: 0 auto 48px auto; flex-wrap: nowrap; }
+    .ra-logo-big { width: 170px; height: 170px; max-width: 35vw; border-radius: 35px; object-fit: contain; background: #191b2a; box-shadow: 0 8px 48px #00b4fa88, 0 0 0 7px #191a2477; border: 3px solid #00b4fa44; margin-top: 8px; margin-left: 8px; display: block; transition: transform .22s; }
+    .ra-logo-big:hover { transform: scale(1.04) rotate(-2deg); box-shadow: 0 18px 68px #00b4faaa, 0 0 0 12px #191a24bb; }
+    .wallet-container { background: #181a1b; border-radius: 18px; box-shadow: 0 8px 32px #00b4fa33; width: 320px; min-width: 230px; margin: 0; padding: 30px 22px 24px 22px; border: 2.5px solid #00b4fa; position: relative; z-index: 2; font-family: 'Share Tech Mono', monospace; display: flex; flex-direction: column; align-items: center; }
+    .wallet-title { font-size: 1.33rem; letter-spacing: 1.4px; font-weight: bold; margin-bottom: 16px; background: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 2px 18px #22213866, 0 0 8px #00b4fa88, 0 0 18px #00b4fa99; filter: brightness(1.16) drop-shadow(0 0 3px #00e6ff99); text-transform: uppercase; text-align: center; width: 100%; }
+    .wallet-info-row { display: flex; justify-content: space-between; width: 100%; margin: 13px 0; font-size: 1.04rem; font-weight: bold; color: #e7d7b6; border-bottom: 1px solid #202f38; padding-bottom: 5px; }
+    .wallet-info-row:last-child { border-bottom: none; }
+    .wallet-address { margin: 8px 0 17px 0; font-size: 0.98rem; color: #00b4fa; word-break: break-all; letter-spacing: 0.6px; min-height: 20px; background: #23243b; border-radius: 7px; padding: 6px 10px; font-weight: bold; display: inline-block; box-shadow: 0 2px 16px #00b4fa33; border: 1.5px solid #00b4fa44; font-family: 'Share Tech Mono', monospace; text-align: center; width: 100%; align-self: center; }
+    .wallet-btn-row { display: flex; gap: 10px; width: 100%; justify-content: center; margin-top: 8px; margin-bottom: 16px; }
+    .wallet-connect-btn, .wallet-buy-btn { background: linear-gradient(90deg, #00b4fa 0%, #00ffd0 100%); color: #181a1b; border: none; border-radius: 9px; padding: 10px 22px; font-size: 1rem; font-weight: bold; cursor: pointer; box-shadow: 0 2px 18px #00b4fa33; transition: background .17s, color .17s, transform .12s; letter-spacing: 1px; font-family: 'Share Tech Mono', monospace; opacity: 0.97; outline: none; min-width: 110px; max-width: 46%; display: inline-block; text-align: center; }
+    .wallet-connect-btn:hover, .wallet-buy-btn:hover { background: #e7d7b6; color: #002a37; transform: scale(1.045); }
+    .wallet-msg { margin: 4px 0 0 0; min-height: 22px; font-size: 1rem; align-self: center;}
+    .wallet-calc-container { max-width: 400px; background: #181a1b; border-radius: 18px; box-shadow: 0 8px 32px #00b4fa33; border: 2.5px solid #00b4fa; margin: 0; padding: 28px 20px 22px 20px; font-family: 'Share Tech Mono', monospace; color: #fff; text-align: center; z-index: 2; display: flex; flex-direction: column; align-items: center; min-width: 270px; }
+    .calc-title-shine { font-size: 1.13em; font-weight: bold; text-transform: uppercase; background: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 2px 18px #22213866,0 0 8px #00b4fa88,0 0 18px #00b4fa99; filter: brightness(1.15) drop-shadow(0 0 3px #00e6ff99); letter-spacing: 1.1px; margin-bottom: 16px; }
+    .calc-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 18px; }
+    .calc-row label { color: #00b4fa; font-size: 1em; font-weight: bold; letter-spacing: .3px; min-width: 70px; text-align: right; }
+    .calc-input { border-radius: 6px; border: 1.5px solid #00b4fa77; background: #222941; color: #fff; padding: 8px 14px; font-size: 1em; font-family: 'Share Tech Mono', monospace; width: 120px; margin-left: 8px; outline: none; }
+    .calc-results-table { width: 100%; border-collapse: collapse; margin: 14px 0 0 0; }
+    .calc-results-table th, .calc-results-table td { font-size: 0.97em; padding: 7px 2px; border-bottom: 1px solid #263344; color: #e7d7b6; }
+    .calc-results-table th { color: #00b4fa; font-weight: bold; background: none; }
+    .calc-results-table tr:last-child td { border-bottom: none; }
+    .calc-footer-space { min-height: 38px; }
+    @media (max-width: 1100px) { .wallet-full-row { gap: 22px; } .ra-logo-big { width: 115px; height: 115px;} }
+    @media (max-width: 900px) { .wallet-full-row { gap: 6vw;} .ra-logo-big { width: 95px; height: 95px;} .wallet-container { max-width: 320px;} .wallet-calc-container { max-width: 290px;} }
+    @media (max-width: 800px) { .wallet-full-row { flex-direction: column; align-items: center; gap: 18px;} .ra-logo-big { margin: 0 auto 14px auto; } .wallet-container { align-items: center; width: 98vw; max-width: 340px;} .wallet-title, .wallet-msg, .wallet-buy-btn, .wallet-connect-btn, .wallet-address, .wallet-info-row { align-self: center !important;} .wallet-btn-row { justify-content: center;} .wallet-calc-container { padding: 16px 5vw 14px 5vw; margin-top: 18px;} }
+    @media (max-width: 480px) { .wallet-container { padding: 12px 3vw 12px 3vw;} .wallet-title { font-size: 1rem;} .ra-logo-big { width: 80px; height: 80px;} .wallet-calc-container { padding: 11px 2vw 10px 2vw; } }
+    .bottom-back-home { margin: 0 auto 32px auto; text-align: center; width: 100%; display: flex; justify-content: center; }
+    .calc-footer-link { color: #00b4fa; margin-top: 28px; display: inline-block; font-size: 1.07em; border-radius: 7px; padding: 12px 36px; background: #23243b; text-decoration: none; transition: background 0.14s, color 0.14s; font-family: 'Share Tech Mono', monospace; border: 1.5px solid #00b4fa44; font-weight: bold; box-shadow: 0 2px 10px #00b4fa22; }
+    .calc-footer-link:hover { background: #00b4fa; color: #222; text-decoration: underline;}
+  </style>
 </head>
 <body>
-  <button id="connect-wallet-btn">Connect Wallet</button>
-  <div id="wallet-address"></div>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const modal = window.Web3Modal({
-        projectId: "12d853ddc01d124d1788bce412bd3020",
-        chains: [
-          { chainId: 1, name: 'Ethereum', rpcUrl: 'https://mainnet.infura.io/v3/' },
-          { chainId: 56, name: 'Binance Smart Chain', rpcUrl: 'https://bsc-dataseed.binance.org/' }
-        ]
-      });
-      document.getElementById('connect-wallet-btn').onclick = async function() {
-        try {
-          const connection = await modal.connect();
-          const accounts = await connection.accounts();
-          document.getElementById('wallet-address').innerText =
-            "Address: " + accounts[0].slice(0, 7) + "..." + accounts[0].slice(-4);
-        } catch (err) {
-          document.getElementById('wallet-address').innerText = "❌ Connection canceled";
-        }
+  <div class="wallet-headline" id="wallet-typing-shine"></div>
+  <div class="wallet-full-row">
+    <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="ra-logo-big" />
+    <div class="wallet-container">
+      <div class="wallet-title"><i class="fas fa-wallet"></i> Wallet Overview</div>
+      <div id="wallet-address" class="wallet-address">Not connected</div>
+      <div class="wallet-info-row">
+        <span>Token Balance</span>
+        <span id="token-balance">–</span>
+      </div>
+      <div class="wallet-info-row">
+        <span>Referral Earnings</span>
+        <span id="referral-earnings">–</span>
+      </div>
+      <div class="wallet-btn-row">
+        <button class="wallet-connect-btn" id="connect-wallet-btn"><i class="fa-solid fa-link"></i> Connect Wallet</button>
+        <button class="wallet-buy-btn" onclick="window.location.href='index.html#buy-section'"><i class="fas fa-bolt"></i> Buy RA Atum</button>
+      </div>
+      <div class="wallet-msg" id="wallet-msg"></div>
+    </div>
+    <div class="wallet-calc-container">
+      <div class="calc-title-shine">CALCULATE THIS PROFIT</div>
+      <div class="calc-row">
+        <label for="calc-ra">Enter RA ATUM</label>
+        <input id="calc-ra" class="calc-input" type="number" min="0" placeholder="100" />
+      </div>
+      <table class="calc-results-table">
+        <tr>
+          <th></th>
+          <th>RS</th>
+          <th>USD</th>
+          <th>BNB</th>
+        </tr>
+        <tr>
+          <td>Starting Price</td>
+          <td id="rs-start">₹0.00</td>
+          <td id="usd-start">$0.00</td>
+          <td id="bnb-start">0.00000</td>
+        </tr>
+        <tr>
+          <td>Launch Price</td>
+          <td id="rs-launch">₹0.00</td>
+          <td id="usd-launch">$0.00</td>
+          <td id="bnb-launch">0.00000</td>
+        </tr>
+      </table>
+      <div style="font-size:0.98em; color:#bda76a; margin-top:12px; letter-spacing:.2px;">
+        Starting: ₹0.55 | $0.01 | BNB 0.00001<br>
+        Launch: ₹15 | $0.17 | BNB 0.0003
+      </div>
+      <div class="calc-footer-space"></div>
+    </div>
+  </div>
+  <!-- BOTTOM BACK TO HOME BUTTON -->
+  <div class="bottom-back-home">
+    <a href="index.html" class="calc-footer-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
+
+ <script>
+  // Typing effect headline (unchanged)
+  const walletTypingText = "Join RA Atum to shape the future of blockchain-powered kindness.";
+  const walletTypingElem = document.getElementById("wallet-typing-shine");
+  let wIndex = 0, wTypingForward = true, wBlinkOn = true;
+  function typeWalletLine() {
+    if (!walletTypingElem) return;
+    if (wTypingForward) {
+      if (wIndex <= walletTypingText.length) {
+        walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.15em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
+        wIndex++;
+        setTimeout(typeWalletLine, 37);
+      } else {
+        wTypingForward = false;
+        setTimeout(typeWalletLine, 1300);
+      }
+    } else {
+      if (wIndex >= 0) {
+        walletTypingElem.innerHTML = walletTypingText.substring(0, wIndex) + '<span style="color:#00b4fa;font-weight:bold;font-size:1.15em;">' + (wBlinkOn ? "|" : "&nbsp;") + '</span>';
+        wIndex--;
+        setTimeout(typeWalletLine, 16);
+      } else {
+        wTypingForward = true;
+        setTimeout(typeWalletLine, 750);
+      }
+    }
+  }
+  setInterval(function() { wBlinkOn = !wBlinkOn; }, 410);
+  typeWalletLine();
+
+  // --- Web3Modal ---
+  const projectId = "12d853ddc01d124d1788bce412bd3020";
+  const chains = [
+    { chainId: 1, name: 'Ethereum', rpcUrl: 'https://mainnet.infura.io/v3/' },
+    { chainId: 56, name: 'Binance Smart Chain', rpcUrl: 'https://bsc-dataseed.binance.org/' }
+  ];
+  let modal;
+  if (typeof window !== "undefined" && window.Web3Modal) {
+    modal = new window.Web3Modal({
+      projectId,
+      chains: chains.map(chain => ({
+        id: chain.chainId,
+        name: chain.name,
+        rpcUrl: chain.rpcUrl
+      })),
+      themeMode: 'dark',
+      themeVariables: {
+        '--w3m-accent': '#0fffc7',
+        '--w3m-background': '#11131a',
       }
     });
-  </script>
+  }
+  const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
+  const erc20ABI = [
+    "function balanceOf(address owner) view returns (uint256)",
+    "function decimals() view returns (uint8)"
+  ];
+
+  document.getElementById('connect-wallet-btn').onclick = async function() {
+    const walletMsg = document.getElementById('wallet-msg');
+    walletMsg.innerText = "Connecting...";
+    try {
+      const connection = await modal.connect();
+      const accounts = await connection.accounts();
+      const address = accounts[0];
+      document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
+      walletMsg.innerText = "✅ Wallet connected!";
+
+      // FIX: Always prefer .provider if present
+      const provider = new ethers.providers.Web3Provider(
+        connection.provider ? connection.provider : connection,
+        "any"
+      );
+      const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
+      const [rawBalance, decimals] = await Promise.all([
+        tokenContract.balanceOf(address),
+        tokenContract.decimals()
+      ]);
+      const balance = ethers.utils.formatUnits(rawBalance, decimals);
+      document.getElementById('token-balance').innerText = balance;
+      document.getElementById('referral-earnings').innerText = "0.00";
+    } catch (err) {
+      walletMsg.innerText = "❌ Wallet connection failed or canceled.";
+      document.getElementById('wallet-address').innerText = "Not connected";
+      document.getElementById('token-balance').innerText = "–";
+      document.getElementById('referral-earnings').innerText = "–";
+      console.log("Wallet connect error:", err); // See exact error in console!
+    }
+  };
+
+  // Calculator logic (unchanged)
+  const startingPrice = { rs: 0.55, usd: 0.01, bnb: 0.00001 };
+  const launchPrice   = { rs: 15,   usd: 0.17, bnb: 0.0003 };
+  function calcUpdate() {
+    let amount = parseFloat(document.getElementById('calc-ra').value) || 0;
+    document.getElementById('rs-start').innerText  = "₹" + (amount * startingPrice.rs).toFixed(2);
+    document.getElementById('usd-start').innerText = "$" + (amount * startingPrice.usd).toFixed(2);
+    document.getElementById('bnb-start').innerText = (amount * startingPrice.bnb).toFixed(5);
+    document.getElementById('rs-launch').innerText  = "₹" + (amount * launchPrice.rs).toFixed(2);
+    document.getElementById('usd-launch').innerText = "$" + (amount * launchPrice.usd).toFixed(2);
+    document.getElementById('bnb-launch').innerText = (amount * launchPrice.bnb).toFixed(5);
+  }
+  document.getElementById('calc-ra').addEventListener('input', calcUpdate);
+  document.getElementById('calc-ra').value = "100";
+  calcUpdate();
+</script>
+
 </body>
 </html>
