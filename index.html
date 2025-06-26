@@ -1317,20 +1317,23 @@ typeFooterLine();
 </script>
 <script>
 window.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function(){
-    const btnParent = document.getElementById('w3m-buy-btn');
-    if (btnParent && window.customElements && customElements.get('w3m-button')) {
-      btnParent.innerHTML = '<w3m-button label="Buy Now"></w3m-button>';
-    } else {
-      setTimeout(() => {
-        if (btnParent && window.customElements && customElements.get('w3m-button')) {
-          btnParent.innerHTML = '<w3m-button label="Buy Now"></w3m-button>';
-        }
-      }, 800);
+  function waitForW3mButton(cb, tries = 0) {
+    if (window.customElements && customElements.get('w3m-button')) {
+      cb();
+    } else if (tries < 50) { // Try up to 10 seconds
+      setTimeout(() => waitForW3mButton(cb, tries + 1), 200);
     }
-  }, 600);
+  }
+
+  waitForW3mButton(() => {
+    const btnParent = document.getElementById('w3m-buy-btn');
+    if (btnParent && !btnParent.querySelector('w3m-button')) {
+      btnParent.innerHTML = '<w3m-button label="Buy Now"></w3m-button>';
+    }
+  });
 });
 </script>
+
 
 
 
