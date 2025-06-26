@@ -258,6 +258,7 @@
       .ra-logo-big { width: 80px; height: 80px;}
       .wallet-calc-container { padding: 11px 2vw 10px 2vw; }
     }
+    /* --- Bottom Back to Home Button --- */
     .bottom-back-home {
       margin: 0 auto 32px auto;
       text-align: center;
@@ -282,11 +283,6 @@
     }
     .calc-footer-link:hover { background: #00b4fa; color: #222; text-decoration: underline;}
   </style>
-  <!-- Reown AppKit loader (ESM) -->
-  <script type="module">
-    import { createAppKit } from 'https://cdn.jsdelivr.net/npm/@reown/appkit@1.7.11/dist/appkit.browser.esm.js';
-    window.__createAppKit = createAppKit;
-  </script>
 </head>
 <body>
   <div class="wallet-headline" id="wallet-typing-shine"></div>
@@ -342,71 +338,12 @@
       <div class="calc-footer-space"></div>
     </div>
   </div>
+  <!-- BOTTOM BACK TO HOME BUTTON -->
   <div class="bottom-back-home">
     <a href="index.html" class="calc-footer-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
 
-  <!-- Ethers.js -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <!-- Reown wallet connect logic -->
-  <script type="module">
-    import { EthersAdapter } from 'https://cdn.jsdelivr.net/npm/@reown/appkit-adapter-wagmi@1.7.11/dist/adapter-wagmi.esm.js';
-    import { mainnet, bsc } from 'https://cdn.jsdelivr.net/npm/@reown/appkit@1.7.11/dist/networks.esm.js';
-
-    const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
-    const erc20ABI = [
-      "function balanceOf(address owner) view returns (uint256)",
-      "function decimals() view returns (uint8)"
-    ];
-
-    (async () => {
-      const adapter = new EthersAdapter({ networks: [mainnet, bsc] });
-      const reownModal = await window.__createAppKit({
-        adapters: [adapter],
-        networks: [mainnet, bsc],
-        metadata: {
-          name: 'RA Atum Wallet',
-          description: 'Connect your wallet to RA Atum DApp',
-          url: window.location.origin,
-          icons: [window.location.origin + '/RA-ATUM-LOGO.png']
-        },
-        themeMode: 'dark'
-      });
-
-      document.getElementById('connect-wallet-btn').addEventListener('click', () => reownModal.open());
-
-      reownModal.on('connect', async ({ accounts, chain }) => {
-        const address = accounts[0];
-        document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
-        document.getElementById('wallet-msg').innerText = `✅ Connected on chain ${chain.id}`;
-
-        const provider = reownModal.getProvider();
-        const ethersProvider = new ethers.providers.Web3Provider(provider, 'any');
-        const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, ethersProvider);
-
-        try {
-          const [rawBalance, decimals] = await Promise.all([
-            tokenContract.balanceOf(address),
-            tokenContract.decimals()
-          ]);
-          const balance = ethers.utils.formatUnits(rawBalance, decimals);
-          document.getElementById('token-balance').innerText = balance;
-          document.getElementById('referral-earnings').innerText = "0.00";
-        } catch (err) {
-          document.getElementById('token-balance').innerText = "–";
-          document.getElementById('referral-earnings').innerText = "–";
-        }
-      });
-
-      reownModal.on('disconnect', () => {
-        document.getElementById('wallet-msg').innerText = "";
-        document.getElementById('wallet-address').innerText = "Not connected";
-        document.getElementById('token-balance').innerText = "–";
-        document.getElementById('referral-earnings').innerText = "–";
-      });
-    })();
-  </script>
-  <!-- Typing headline + calculator -->
   <script>
     // Typing effect headline
     const walletTypingText = "Join RA Atum to shape the future of blockchain-powered kindness.";
@@ -437,6 +374,45 @@
     setInterval(function() { wBlinkOn = !wBlinkOn; }, 410);
     typeWalletLine();
 
+    // Wallet connect logic
+    const tokenAddress = "0xcE06aDbB070c2f0d90Ba109E77c0c2Ff83F9Ff3A";
+    const erc20ABI = [
+      "function balanceOf(address owner) view returns (uint256)",
+      "function decimals() view returns (uint8)"
+    ];
+    document.getElementById('connect-wallet-btn').onclick = async function() {
+      const walletMsg = document.getElementById('wallet-msg');
+      walletMsg.innerText = "Connecting...";
+      if (window.ethereum && /MetaMask/i.test(window.ethereum.isMetaMask ? 'MetaMask' : navigator.userAgent)) {
+        try {
+          const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+          await provider.send("eth_requestAccounts", []);
+          const signer = provider.getSigner();
+          const address = await signer.getAddress();
+          document.getElementById('wallet-address').innerText = "Address: " + address.slice(0,7) + "..." + address.slice(-4);
+          walletMsg.innerText = "✅ Wallet connected!";
+          // Fetch and display actual token balance
+          const tokenContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
+          const [rawBalance, decimals] = await Promise.all([
+            tokenContract.balanceOf(address),
+            tokenContract.decimals()
+          ]);
+          const balance = ethers.utils.formatUnits(rawBalance, decimals);
+          document.getElementById('token-balance').innerText = balance;
+          // Dummy value for referral earnings (customize as needed)
+          document.getElementById('referral-earnings').innerText = "0.00";
+        } catch (err) {
+          walletMsg.innerText = "❌ Wallet connection failed.";
+          document.getElementById('wallet-address').innerText = "Not connected";
+          document.getElementById('token-balance').innerText = "–";
+          document.getElementById('referral-earnings').innerText = "–";
+        }
+      } else {
+        walletMsg.innerText = "";
+        window.location.href = "https://metamask.app.link/dapp/ra-wallet-dapp.vercel.app";
+      }
+    };
+
     // Calculator logic
     const startingPrice = { rs: 0.55, usd: 0.01, bnb: 0.00001 };
     const launchPrice   = { rs: 15,   usd: 0.17, bnb: 0.0003 };
@@ -452,6 +428,8 @@
       document.getElementById('bnb-launch').innerText = (amount * launchPrice.bnb).toFixed(5);
     }
     document.getElementById('calc-ra').addEventListener('input', calcUpdate);
+
+    // Set default value for demo
     document.getElementById('calc-ra').value = "100";
     calcUpdate();
   </script>
