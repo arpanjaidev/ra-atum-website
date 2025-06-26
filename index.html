@@ -812,7 +812,8 @@
     <div class="presale-title">BUY RA TOKENS – PRESALE LIVE!</div>
 
     <div class="presale-info">  
-      <w3m-button label="Buy Now"></w3m-button>
+      <div id="w3m-buy-btn"></div>
+
       <span id="presale-status">Status: Connect Wallet</span>
       <span id="presale-price">Price: 0.01 BNB</span>
       <span id="presale-timer">Time left: ...</span>
@@ -1314,11 +1315,24 @@ typeFooterLine();
     enableAnalytics: false
   });
 </script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function(){
+    const btnParent = document.getElementById('w3m-buy-btn');
+    if (btnParent && window.customElements && customElements.get('w3m-button')) {
+      btnParent.innerHTML = '<w3m-button label="Buy Now"></w3m-button>';
+    } else {
+      setTimeout(() => {
+        if (btnParent && window.customElements && customElements.get('w3m-button')) {
+          btnParent.innerHTML = '<w3m-button label="Buy Now"></w3m-button>';
+        }
+      }, 800);
+    }
+  }, 600);
+});
+</script>
 
 
 
-</body>
-</html>
->
 </body>
 </html>
