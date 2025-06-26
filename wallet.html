@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Test Web3Modal</title>
+  <meta charset="UTF-8" />
+  <title>Demo Wallet Connect</title>
   <script src="https://unpkg.com/@web3modal/html@3"></script>
+  <style>
+    body { background: #10131a; color: #fff; font-family: monospace; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+    .container { background: #191d2a; border-radius: 18px; padding: 40px 32px 24px 32px; box-shadow: 0 8px 32px #00b4fa33; }
+    .connect-btn { background: linear-gradient(90deg,#0fffc7,#00c3ff); color: #11131a; border: none; border-radius: 30px; font-size: 1.2rem; padding: 18px 38px; cursor: pointer; }
+    .connect-btn:hover { background: linear-gradient(90deg,#00c3ff,#0fffc7);}
+    .address { color: #0fffc7; margin-top: 22px; font-size: 1.1em;}
+  </style>
 </head>
 <body>
-  <button id="connect-wallet-btn">Connect Wallet</button>
+  <div class="container">
+    <h2>WalletConnect Demo</h2>
+    <button class="connect-btn" id="connect-wallet-btn">Connect Wallet</button>
+    <div class="address" id="wallet-address">Not connected</div>
+  </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Web3Modal v3 HTML SDK: function, NOT a constructor!
-      const modal = window.Web3Modal({
+      // IMPORTANT: Use window.Web3ModalHtml, NOT window.Web3Modal
+      const modal = window.Web3ModalHtml({
         projectId: "12d853ddc01d124d1788bce412bd3020",
         chains: [
           {
@@ -25,12 +37,14 @@
         ]
       });
       document.getElementById('connect-wallet-btn').onclick = async function() {
+        const addressDiv = document.getElementById('wallet-address');
+        addressDiv.innerText = "Connecting...";
         try {
-          const session = await modal.connect();
-          // Session is connected!
-          alert('Wallet connected: ' + (await session.accounts())[0]);
+          const connection = await modal.connect();
+          const accounts = await connection.accounts();
+          addressDiv.innerText = "Address: " + accounts[0].slice(0,7) + "..." + accounts[0].slice(-4);
         } catch (err) {
-          alert('Connection canceled.');
+          addressDiv.innerText = "❌ Connection canceled";
         }
       }
     });
