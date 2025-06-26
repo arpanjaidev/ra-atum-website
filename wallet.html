@@ -8,9 +8,30 @@
   <button id="connect-wallet-btn">Connect Wallet</button>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      let modal = new window.Web3Modal({ projectId: "12d853ddc01d124d1788bce412bd3020", chains: [] });
+      // Web3Modal v3 HTML SDK: function, NOT a constructor!
+      const modal = window.Web3Modal({
+        projectId: "12d853ddc01d124d1788bce412bd3020",
+        chains: [
+          {
+            chainId: 1,
+            name: 'Ethereum',
+            rpcUrl: 'https://mainnet.infura.io/v3/'
+          },
+          {
+            chainId: 56,
+            name: 'Binance Smart Chain',
+            rpcUrl: 'https://bsc-dataseed.binance.org/'
+          }
+        ]
+      });
       document.getElementById('connect-wallet-btn').onclick = async function() {
-        await modal.connect();
+        try {
+          const session = await modal.connect();
+          // Session is connected!
+          alert('Wallet connected: ' + (await session.accounts())[0]);
+        } catch (err) {
+          alert('Connection canceled.');
+        }
       }
     });
   </script>
