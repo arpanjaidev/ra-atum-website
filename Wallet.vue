@@ -1,30 +1,77 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Buy RA Atum Now</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body style="background:#111; color:#fff; font-family:sans-serif; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-    <h2>Buy RA Atum Now</h2>
-    <div id="w3m-buy-btn"></div>
-    <script src="https://unpkg.com/@web3modal/html"></script>
-    <script src="https://unpkg.com/viem"></script>
-    <script src="https://unpkg.com/wagmi"></script>
-    <script>
-      const projectId = '12d853ddc01d124d1788bce412bd3020';
-      const chains = [{ id: 56, name: 'BNB Chain', rpcUrls: ['https://bsc-dataseed.binance.org/'] }];
-      const wagmiConfig = window.Wagmi.createConfig({ chains, transports: { 56: window.Wagmi.http('https://bsc-dataseed.binance.org/') } });
-      window.Web3Modal.init({ projectId, wagmiConfig, enableAnalytics: false });
-      function waitForW3mButton(cb, tries = 0) {
-        if (window.customElements && customElements.get('w3m-button')) cb();
-        else if (tries < 50) setTimeout(() => waitForW3mButton(cb, tries + 1), 200);
-      }
-      waitForW3mButton(() => {
-        const btnParent = document.getElementById('w3m-buy-btn');
-        if (btnParent && !btnParent.querySelector('w3m-button')) {
-          btnParent.innerHTML = '<w3m-button label="Buy Now"></w3m-button>';
-        }
-      });
-    </script>
-  </body>
-</html>
+<template>
+  <div style="background:#11131a;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0fffc7">
+    <h2>RA Atum – Vue Wallet Connect</h2>
+    <button class="connect-btn" @click="connectWallet">Connect Wallet</button>
+    <div v-if="address" style="margin-top:18px;">Connected: {{ shortAddress }}</div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+
+// Use your WalletConnect Project ID
+const projectId = "f3ef3bd3e385e3eaf6e73a71c18556e1";
+
+const chains = [
+  {
+    chainId: 1,
+    name: 'Ethereum',
+    rpcUrl: 'https://mainnet.infura.io/v3/'
+  },
+  {
+    chainId: 56,
+    name: 'Binance Smart Chain',
+    rpcUrl: 'https://bsc-dataseed.binance.org/'
+  }
+]
+
+const address = ref("");
+
+// Only create modal if running in browser
+let modal;
+if (typeof window !== "undefined" && window.Web3Modal) {
+  modal = new window.Web3Modal({
+    projectId,
+    chains: chains.map(chain => ({
+      id: chain.chainId,
+      name: chain.name,
+      rpcUrl: chain.rpcUrl
+    })),
+    themeMode: 'dark',
+    themeVariables: {
+      '--w3m-accent': '#0fffc7',
+      '--w3m-background': '#11131a',
+    }
+  });
+}
+
+const connectWallet = async () => {
+  try {
+    const connection = await modal.connect();
+    const accounts = await connection.accounts();
+    address.value = accounts[0];
+  } catch (e) {
+    address.value = "";
+  }
+};
+
+const shortAddress = computed(() =>
+  address.value ? `${address.value.slice(0, 6)}...${address.value.slice(-4)}` : ''
+)
+</script>
+
+<style>
+.connect-btn {
+  padding: 16px 34px;
+  background: linear-gradient(90deg, #0fffc7, #00c3ff);
+  color: #11131a;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+.connect-btn:hover {
+  background: linear-gradient(90deg, #00c3ff, #0fffc7);
+}
+</style>
