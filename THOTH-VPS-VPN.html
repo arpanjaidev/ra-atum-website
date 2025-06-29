@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>THOTH • India's VPS, VPN & Security</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for hamburger icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <style>
     :root {
       --primary: #2de8ee;
@@ -38,7 +40,111 @@
       0% { background-position: 0 0, 0 0; }
       100% { background-position: 70px 70px, 70px 70px; }
     }
-
+    /* Header Navigation */
+    header {
+      width: 100%;
+      background: #181c23ee;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0 0 0;
+      border-bottom: 1.5px solid #242d3d99;
+    }
+    nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      font-size: 1.12rem;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 20px 0 18px 0;
+      position: relative;
+      letter-spacing: .8px;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--highlight);
+    }
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-left: 14px;
+      cursor: pointer;
+      z-index: 15;
+    }
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #14181fcc;
+      z-index: 50;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      background: #181c23ee;
+      min-width: 68vw;
+      max-width: 94vw;
+      padding: 40px 30px 30px 30px;
+      margin-top: 0;
+      margin-right: 0;
+      border-radius: 0 0 24px 0;
+      box-shadow: 0 6px 30px #2de8ee22;
+    }
+    .mobile-nav a {
+      color: var(--primary);
+      font-size: 1.25rem;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 0;
+      letter-spacing: .7px;
+      transition: color 0.18s;
+    }
+    .mobile-nav a:hover {
+      color: var(--highlight);
+    }
+    .mobile-nav-close {
+      background: none;
+      border: none;
+      font-size: 2.3rem;
+      color: #ff5c8a;
+      padding: 12px 25px 10px 10px;
+      cursor: pointer;
+      align-self: flex-end;
+    }
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+        margin-top: 10px;
+      }
+      .header {
+        margin-top: 35px;
+      }
+    }
+    @media (max-width: 600px) {
+      .logo { width: 97vw; }
+      .features { gap: 16px; }
+      .feature { max-width: 99vw; }
+      .header { margin-top: 25px; }
+    }
+    /* Main Header styles */
     .header {
       z-index: 1;
       position: relative;
@@ -210,19 +316,41 @@
       position: relative;
       text-shadow: 0 0 8px #2de8ee61;
     }
-    @media (max-width: 900px) {
-      .features { flex-direction: column; align-items: center; }
-    }
-    @media (max-width: 600px) {
-      .logo { width: 97vw; }
-      .features { gap: 16px; }
-      .feature { max-width: 99vw; }
-      .header { margin-top: 25px; }
-    }
   </style>
 </head>
 <body>
   <div class="grid-bg"></div>
+  <!-- HEADER NAV START -->
+  <header>
+    <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav>
+      <a href="index.html">HOME</a>
+      <a href="#vps">VPS</a>
+      <a href="#vpn">VPN</a>
+      <a href="#pricing">PRICING</a>
+      <a href="#technology">TECHNOLOGY</a>
+      <a href="#about">ABOUT US</a>
+      <a href="#contact">CONTACT</a>
+      <a href="#login">LOGIN</a>
+    </nav>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
+      <div class="mobile-nav">
+        <a href="index.html" onclick="closeMobileNav()">HOME</a>
+        <a href="#vps" onclick="closeMobileNav()">VPS</a>
+        <a href="#vpn" onclick="closeMobileNav()">VPN</a>
+        <a href="#pricing" onclick="closeMobileNav()">PRICING</a>
+        <a href="#technology" onclick="closeMobileNav()">TECHNOLOGY</a>
+        <a href="#about" onclick="closeMobileNav()">ABOUT US</a>
+        <a href="#contact" onclick="closeMobileNav()">CONTACT</a>
+        <a href="#login" onclick="closeMobileNav()">LOGIN</a>
+      </div>
+    </div>
+  </header>
+  <!-- HEADER NAV END -->
+
   <div class="header">
     <img src="THOTH_LOGO_HD_RADAR.png" alt="THOTH Logo" class="logo">
     <h1>THOTH</h1>
@@ -266,6 +394,27 @@
       setTimeout(()=>{
         document.querySelector('.about-section').classList.add('visible');
       }, 1300);
+    });
+
+    // Hamburger menu
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+    const closeMobileNavBtn = document.getElementById('close-mobile-nav');
+
+    function openMobileNav() {
+      mobileNavOverlay.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+    function closeMobileNav() {
+      mobileNavOverlay.style.display = "none";
+      document.body.style.overflow = "";
+    }
+    hamburgerBtn.addEventListener('click', openMobileNav);
+    closeMobileNavBtn.addEventListener('click', closeMobileNav);
+
+    // Also close when any mobile link is clicked
+    document.querySelectorAll('.mobile-nav a').forEach(link=>{
+      link.addEventListener('click', closeMobileNav);
     });
   </script>
 </body>
