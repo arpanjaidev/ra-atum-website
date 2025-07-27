@@ -1194,10 +1194,10 @@ function isMetaMaskAppBrowser() {
    <div class="footer-links">
   <h4 class="footer-title-shine">ABOUT</h4>
   <a href="#">Who We Are</a>
-  <a href="our-story.html" style="color:#00b4fa;font-weight:bold;text-decoration:underline;margin-bottom:7px;">Our Story</a>
+  <a href="our-story.html">Our Story</a>
   <a href="#features">Key Features</a>
   <a href="#roadmap">Roadmap</a>
-  <a href="our-story.html" style="color:#00b4fa;font-weight:bold;text-decoration:underline;margin-bottom:7px;">Mission & Vision</a>
+  <a href="our-story.html">Mission & Vision</a>
   <a href="#">Community</a>
   
 </div>
@@ -1270,10 +1270,10 @@ function typeFooterLine() {
     if (ftIndex >= 0) {
       footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
       ftIndex--;
-      setTimeout(typeFooterLine, 17); // erasing is faster
+      setTimeout(typeFooterLine, 13); // erasing is faster
     } else {
       typingForward = true;
-      setTimeout(typeFooterLine, 850); // pause before typing again
+      setTimeout(typeFooterLine, 1200); // pause before typing again
     }
   }
 }
