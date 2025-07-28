@@ -1246,30 +1246,31 @@ function typeFooterLine() {
   if (typingForward) {
     if (ftIndex <= footerTypingText.length) {
       ftIndex++;
-      setTimeout(typeFooterLine, 115); // slower typing
+      setTimeout(typeFooterLine, 180); // ultra slow typing 🐢
     } else {
       typingForward = false;
-      setTimeout(typeFooterLine, 1800); // pause before erase
+      setTimeout(typeFooterLine, 2400); // pause before erase
     }
   } else {
     if (ftIndex >= 0) {
       ftIndex--;
-      setTimeout(typeFooterLine, 35); // erase slightly faster
+      setTimeout(typeFooterLine, 60); // erasing speed
     } else {
       typingForward = true;
-      setTimeout(typeFooterLine, 1500); // pause before retyping
+      setTimeout(typeFooterLine, 2200); // pause before retyping
     }
   }
 }
 
-// Blinking cursor
+// Blinking cursor effect
 setInterval(() => {
   blinkOn = !blinkOn;
-}, 480);
+}, 550); // slower blinking
 
 // Start typing
 typeFooterLine();
 </script>
+
 
 
 
