@@ -1239,33 +1239,38 @@ let blinkOn = true;
 
 function typeFooterLine() {
   if (!footerTypingElem) return;
+
+  const cursor = '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
+  footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + cursor;
+
   if (typingForward) {
     if (ftIndex <= footerTypingText.length) {
-      footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
       ftIndex++;
-      setTimeout(typeFooterLine, 37);
+      setTimeout(typeFooterLine, 115); // slower typing
     } else {
       typingForward = false;
-      setTimeout(typeFooterLine, 1300); // pause before erase
+      setTimeout(typeFooterLine, 1800); // pause before erase
     }
   } else {
     if (ftIndex >= 0) {
-      footerTypingElem.innerHTML = footerTypingText.substring(0, ftIndex) + '<span class="footer-typing-cursor">' + (blinkOn ? "|" : "&nbsp;") + '</span>';
       ftIndex--;
-      setTimeout(typeFooterLine, 13); // erasing is faster
+      setTimeout(typeFooterLine, 35); // erase slightly faster
     } else {
       typingForward = true;
-      setTimeout(typeFooterLine, 1200); // pause before typing again
+      setTimeout(typeFooterLine, 1500); // pause before retyping
     }
   }
 }
-// Blinking cursor interval
-setInterval(function() {
-  blinkOn = !blinkOn;
-}, 410);
 
+// Blinking cursor
+setInterval(() => {
+  blinkOn = !blinkOn;
+}, 480);
+
+// Start typing
 typeFooterLine();
 </script>
+
 
 
 
