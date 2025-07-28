@@ -1161,51 +1161,7 @@ document.getElementById('buy-form').onsubmit = async function(e) {
 </script>
 
 
-<!-- FlyX-Style MetaMask Mobile Auto-Redirect -->
-<div id="mobile-metamask-popup" style="display:none;position:fixed;bottom:0;left:0;width:98vw;max-width:520px;margin:0 auto;right:0;left:0;background:#161a21e0;color:#fff;padding:22px 2vw 24px 2vw;z-index:9999;font-weight:bold;text-align:center;border-radius:12px 12px 0 0;box-shadow:0 -2px 14px #00b4fa44;">
-  <div style="font-size:1.16em;">
-    <b>For secure token purchase,<br>please continue in the MetaMask app browser.</b>
-  </div>
-  <div style="margin:12px 0 8px 0;">
-    <span style="color:#8ef;font-size:1.02em;">Redirecting in <span id="mm-timer">4</span> seconds...</span>
-  </div>
-  <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/"
-     style="color:#00b4fa;text-decoration:underline;font-size:1.13em;display:inline-block;margin:8px 0 0 0;font-weight:bold;" target="_blank">
-    🚀 Open in MetaMask now
-  </a>
-  <br>
-  <button id="mm-cancel" style="margin-top:10px;background:#333;color:#fff;border-radius:8px;border:none;padding:7px 23px;cursor:pointer;font-weight:bold;font-size:1em;">Cancel Redirect</button>
-</div>
-<script>
-function isMobile() {
-  return /android|iphone|ipad|ipod/i.test(navigator.userAgent);
-}
-function isMetaMaskAppBrowser() {
-  let ua = navigator.userAgent || '';
-  return (window.ethereum && window.ethereum.isMetaMask) || ua.includes('MetaMaskMobile');
-}
-(function() {
-  if (isMobile() && !isMetaMaskAppBrowser()) {
-    var popup = document.getElementById('mobile-metamask-popup');
-    var timerEl = document.getElementById('mm-timer');
-    var cancelBtn = document.getElementById('mm-cancel');
-    popup.style.display = 'block';
-    var t = 4; // seconds
-    var interval = setInterval(function() {
-      t--;
-      timerEl.textContent = t;
-      if (t === 0) {
-        clearInterval(interval);
-        window.location = "https://metamask.app.link/dapp/ra-atum-website.vercel.app/";
-      }
-    }, 1000);
-    cancelBtn.onclick = function() {
-      popup.style.display = 'none';
-      clearInterval(interval);
-    };
-  }
-})();
-</script>
+
 
 
 
