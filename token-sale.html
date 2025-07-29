@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
+    /* ... ALL YOUR STYLES SAME AS BEFORE ... */
+    /* KEEP YOUR FULL STYLE BLOCK FROM YOUR PASTE! */
     :root {
       --blue: #00b4fa;
       --sand: #e7d7b6;
@@ -107,7 +109,6 @@
       transform: scale(1.04) rotate(2deg);
       box-shadow: 0 18px 68px #00b4faaa, 0 0 0 18px #191a24bb;
     }
-    /* --------- NEW: Image to the right of "No Preferential Allocations" --------- */
     .token-supply-row-img {
       display: flex;
       flex-direction: row;
@@ -379,11 +380,16 @@
       <!-- Centered Price Section -->
       <div class="token-price-section">
         <div class="token-price-label">Presale Price</div>
-        <div class="token-price-val">₹0.55 | $0.01 | BNB 0.00001 per RA</div>
+        <div class="token-price-val">
+          ₹0.55 | $0.01 | <span id="presale-bnb-price">BNB ...</span> per RA
+        </div>
         <div class="token-price-label">Launch Price</div>
-        <div class="token-price-val">₹15 | $0.17 | BNB 0.0003 per RA</div>
+        <div class="token-price-val">
+          ₹15 | $0.17 | <span id="launch-bnb-price">BNB ...</span> per RA
+        </div>
         <div class="token-uplift-label">Uplift</div>
         <div class="token-uplift-val">27× at launch</div>
+        <div id="bnb-live-row" style="margin-top:14px; color:#00ffd0; font-size:1.08em; font-weight:bold;"></div>
       </div>
       <div class="token-label">How To Participate?</div>
       <div class="token-how">
@@ -394,7 +400,7 @@
           <li>Mint RA Atum tokens in the presale portal</li>
         </ul>
       </div>
-      <a href="https://bscscan.com/address/0xEbd8c8E89c64618E699eDb6f339331425d95EE3f" target="_blank" class="token-contract-link">
+      <a href="https://bscscan.com/address/0x0424d65Ef97A6cCd269c39c2b8A3c1c31cBb7416" target="_blank" class="token-contract-link">
         <i class="fas fa-file-contract"></i> View Presale on BscScan
       </a>
       <div class="why-btn-row" style="margin-top:30px;">
@@ -412,7 +418,7 @@
     <a href="index.html" class="back-link-bottom"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
   <script>
-    // Scroll in/out effect for side image
+    // Scroll effect for side image
     function checkImageInView() {
       var el = document.getElementById('scroll-img');
       var row = document.querySelector('.token-supply-row-img');
@@ -427,6 +433,24 @@
     window.addEventListener('scroll', checkImageInView, { passive: true });
     window.addEventListener('resize', checkImageInView);
     window.addEventListener('DOMContentLoaded', checkImageInView);
+
+    // Live BNB Price & Dynamic BNB price for Presale/Launch in USD
+    async function fetchBNBPrice() {
+      try {
+        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd,inr');
+        const data = await res.json();
+        const bnbUsd = data.binancecoin.usd;
+        const bnbInr = data.binancecoin.inr;
+        // Update live price display
+        document.getElementById("bnb-live-row").textContent = `1 BNB = ₹${bnbInr.toLocaleString()} / $${bnbUsd.toLocaleString()}`;
+        // Dynamic BNB for presale/launch
+        document.getElementById("presale-bnb-price").textContent = (0.01 / bnbUsd).toFixed(5);
+        document.getElementById("launch-bnb-price").textContent = (0.17 / bnbUsd).toFixed(5);
+      } catch {}
+    }
+    fetchBNBPrice();
+    setInterval(fetchBNBPrice, 30000); // Update every 30 sec
+
   </script>
 </body>
 </html>
