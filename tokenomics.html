@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
+    /* --- All your original styles --- */
     :root {
       --blue: #00b4fa;
       --blue-dark: #004aad;
@@ -84,7 +85,6 @@
       cursor: pointer;
       z-index: 201;
     }
-    /* Hamburger overlay */
     .mobile-nav-overlay {
       display: none;
       position: fixed;
@@ -133,8 +133,6 @@
       nav { display: none; }
       .hamburger { display: block; }
     }
-
-    /* TOKENOMICS SECTION */
     #tokenomics {
       background: var(--highlight-bg);
       border: var(--highlight-border);
@@ -311,8 +309,6 @@
     @media (max-width: 900px) {
       .tokenomics-details { flex-direction: column; align-items: center; gap: 15px; }
     }
-
-    /* FOOTER */
     footer {
       text-align: center;
       color: var(--blue-dark);
@@ -381,6 +377,7 @@
         <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="chart-logo-center" />
       </div>
     </div>
+    <div id="bnb-live-row" style="text-align:center;margin-top:6px;color:#00ffd0;font-size:1.08em;font-weight:bold;"></div>
     <div class="tokenomics-details">
       <div class="tokenomics-percent" id="detail-1"></div>
       <div class="tokenomics-percent" id="detail-2"></div>
@@ -406,35 +403,7 @@
       window.onclick = e => { if (e.target === mobileNavOverlay) mobileNavOverlay.classList.remove('active'); }
     }
 
-    // --- Numbers and conversion (change here if needed) ---
-    const BNB_TO_INR = 48000;
-    const USD_TO_INR = 86;
-
-    // Prices
-    const supplyTxt = '21,000,000 (MILLON) RA ATUM';
-    const startPriceInr = 0.55;
-    const startPriceUsd = (startPriceInr / USD_TO_INR).toFixed(2);
-    const startPriceBnb = (startPriceInr / BNB_TO_INR).toFixed(5);
-
-    const launchPriceInr = 15;
-    const launchPriceUsd = (launchPriceInr / USD_TO_INR).toFixed(2);
-    const launchPriceBnb = (launchPriceInr / BNB_TO_INR).toFixed(4);
-
-    const launchX = (launchPriceInr / startPriceInr).toFixed(1);
-
-    // Details
-    const details = [
-      `<b>60%</b> – Presale (Marketing)<br>
-      Allocated for early promotional efforts and awareness campaigns prior to the public sale. These tokens are used to attract strategic partners, create early buzz, and build initial momentum for RA ATUM. Vesting schedules may apply to maintain long-term promotional consistency.`,
-      `<b>25%</b> – Liquidity<br>
-      Dedicated to providing liquidity on decentralized and centralized exchanges to ensure smooth trading experiences. These tokens help stabilize price movements, support healthy market activity, and enhance accessibility for the community.`,
-      `<b>10%</b> – Post Presale Marketing<br>
-      Reserved to sustain and expand marketing initiatives after the presale. These tokens support branding, influencer collaborations, exchange listings, and long-term user acquisition strategies to grow the RA ATUM ecosystem.`,
-      `<b>5%</b> – Team<br>
-      Allocated to the core team and strategic contributors to incentivize long-term commitment and sustained development. These tokens are subject to a vesting schedule to ensure alignment with the project's growth and roadmap milestones.`
-    ];
-
-    // --- Chart animation ---
+    // Chart Data
     let chartInstance;
     let chartCurrent = [0,0,0,0];
     const chartTarget = [60,25,10,5];
@@ -455,6 +424,56 @@
       }
     }
 
+    // Prices: Supply, Details
+    const supplyTxt = '21,000,000 (MILLON) RA ATUM';
+    const details = [
+      `<b>60%</b> – Presale (Marketing)<br>
+      Allocated for early promotional efforts and awareness campaigns prior to the public sale. These tokens are used to attract strategic partners, create early buzz, and build initial momentum for RA ATUM. Vesting schedules may apply to maintain long-term promotional consistency.`,
+      `<b>25%</b> – Liquidity<br>
+      Dedicated to providing liquidity on decentralized and centralized exchanges to ensure smooth trading experiences. These tokens help stabilize price movements, support healthy market activity, and enhance accessibility for the community.`,
+      `<b>10%</b> – Post Presale Marketing<br>
+      Reserved to sustain and expand marketing initiatives after the presale. These tokens support branding, influencer collaborations, exchange listings, and long-term user acquisition strategies to grow the RA ATUM ecosystem.`,
+      `<b>5%</b> – Team<br>
+      Allocated to the core team and strategic contributors to incentivize long-term commitment and sustained development. These tokens are subject to a vesting schedule to ensure alignment with the project's growth and roadmap milestones.`
+    ];
+
+    // LIVE BNB LOGIC
+    async function renderPrices() {
+      let bnbInr = 48000, bnbUsd = 575; // fallback
+      try {
+        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd,inr');
+        const data = await res.json();
+        bnbInr = data.binancecoin.inr;
+        bnbUsd = data.binancecoin.usd;
+      } catch {}
+      // Show live row
+      document.getElementById("bnb-live-row").innerHTML = `<span style="color:#00ffd0;font-weight:bold;">1 BNB = ₹${bnbInr.toLocaleString()} / $${bnbUsd.toLocaleString()}</span>`;
+      // Now for price display
+      const startPriceInr = 0.55;
+      const startPriceUsd = (startPriceInr / bnbInr * bnbUsd).toFixed(2);
+      const startPriceBnb = (startPriceInr / bnbInr).toFixed(5);
+
+      const launchPriceInr = 15;
+      const launchPriceUsd = (launchPriceInr / bnbInr * bnbUsd).toFixed(2);
+      const launchPriceBnb = (launchPriceInr / bnbInr).toFixed(5);
+
+      const launchX = (launchPriceInr / startPriceInr).toFixed(1);
+
+      // Supply
+      slowType(`<span class="content">${supplyTxt}</span>`, document.getElementById('supply-typing'));
+      slowType(`<span class="content">₹${startPriceInr}</span><span class="subvalue">$${startPriceUsd} &nbsp; BNB ${startPriceBnb}</span>`, document.getElementById('startprice-typing'));
+      slowType(`<span class="content">₹${launchPriceInr}</span><span class="subvalue">$${launchPriceUsd} &nbsp; BNB ${launchPriceBnb}</span><span class="x-multiplier">(${launchX}x↑ from start)</span>`, document.getElementById('launchprice-typing'));
+    }
+
+    // Typing helper
+    function slowType(txt, el, cb, idx=0) {
+      if (!el) return;
+      if (idx <= txt.length) {
+        el.innerHTML = txt.slice(0, idx);
+        setTimeout(() => slowType(txt, el, cb, idx+1), 19 + Math.random()*24);
+      } else if(cb) cb();
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       // Chart.js
       const ctx = document.getElementById('tokenomicsChart').getContext('2d');
@@ -468,7 +487,7 @@
             'Team – 5%'
           ],
           datasets: [{
-            data: [0,0,0,0], // will animate
+            data: [0,0,0,0],
             backgroundColor: [
               'rgba(255,106,213,0.92)', // Pink
               'rgba(0,180,250,0.98)',   // Blue
@@ -492,25 +511,16 @@
           }
         }
       });
-      setTimeout(()=>animateChartStep(0), 350); // delay before play
+      setTimeout(()=>animateChartStep(0), 350);
 
-      // Live-typing for top 3 rows
-      function slowType(txt, el, cb, idx=0) {
-        if (idx <= txt.length) {
-          el.innerHTML = txt.slice(0, idx);
-          setTimeout(() => slowType(txt, el, cb, idx+1), 19 + Math.random()*24);
-        } else if(cb) cb();
-      }
-      slowType(`<span class="content">${supplyTxt}</span>`, document.getElementById('supply-typing'));
-      slowType(`<span class="content">₹${startPriceInr}</span><span class="subvalue">$${startPriceUsd} &nbsp; BNB ${startPriceBnb}</span>`, document.getElementById('startprice-typing'));
-      slowType(`<span class="content">₹${launchPriceInr}</span><span class="subvalue">$${launchPriceUsd} &nbsp; BNB ${launchPriceBnb}</span><span class="x-multiplier">(${launchX}x↑ from start)</span>`, document.getElementById('launchprice-typing'));
-
-      // Details section, live typing, slow
+      // Details (static, slow typing)
       details.forEach((t, idx) => {
-        setTimeout(()=>{
-          slowType(t, document.getElementById('detail-'+(idx+1)));
-        }, 210*idx+1000);
+        setTimeout(()=>{ slowType(t, document.getElementById('detail-'+(idx+1))); }, 210*idx+1000);
       });
+
+      // Live BNB price logic (and every 30s)
+      renderPrices();
+      setInterval(renderPrices, 30000);
     });
   </script>
 </body>
