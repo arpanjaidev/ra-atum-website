@@ -1,55 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Terms of Service | RA Atum</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<style>
-:root {
---blue: #00b4fa; --sand: #e7d7b6; --bg-dark: #10151b; --card-bg: #192332e6;
---glow: 0 0 24px #00b4fa55, 0 2px 32px #00b4fa33;
---shine-grad: linear-gradient(90deg, #fff 8%, #00b4fa 60%, #23e6ff 98%);
-}
-*{box-sizing:border-box}
-body{margin:0;padding:0;font-family:'Share Tech Mono',monospace;background:var(--bg-dark);color:var(--sand);min-height:100vh;overflow-x:hidden}
-.legal-main{max-width:1100px;margin:0 auto;display:flex;gap:48px;align-items:flex-start;justify-content:space-between;padding:50px 6vw 24px}
-.legal-content{flex:3;min-width:320px}
-.legal-aside{flex:1;position:sticky;top:20px}
-.logo{width:180px;max-width:40vw;height:auto;border-radius:24px;background:#161922;box-shadow:var(--glow);border:2px solid #00b4fa44}
-.headline{font-size:2.2rem;font-weight:bold;letter-spacing:1.2px;margin:0 0 10px;background:var(--shine-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 2px 18px #22213866,0 0 8px #00b4fa88;filter:brightness(1.19);text-transform:uppercase}
-.sub{color:#9ddff7;font-weight:bold;margin:6px 0 26px}
-.card{background:var(--card-bg);border-radius:17px;box-shadow:var(--glow);border:1.8px solid #00b4fa55;padding:22px 22px 8px;margin:0 0 22px}
-.card h2{margin:0 0 10px;color:#fff;font-size:1.25rem}
-.card p, .card li{line-height:1.55}
-.toc a{display:block;color:#00b4fa;text-decoration:none;margin:6px 0;padding:8px 12px;border-radius:10px;background:#172432b3;box-shadow:0 2px 10px #00b4fa33}
-.toc a:hover{background:#e7d7b6;color:#003a5c;text-decoration:underline}
-.back-link{display:inline-block;margin:24px 0 12px;color:#00b4fa;font-weight:bold;text-decoration:none;background:#172432b3;padding:10px 16px;border-radius:12px;box-shadow:0 2px 15px #00b4fa33}
-.back-link:hover{background:#e7d7b6;color:#003a5c}
-.footer-spacer{height:40px}
-@media (max-width:980px){.legal-main{flex-direction:column-reverse;gap:22px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms of Service | RA Atum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#00b4fa; --sand:#e7d7b6; --bg-dark:#10151b; --card-bg:#192332e6;
+      --glow:0 0 24px #00b4fa55,0 2px 32px #00b4fa33;
+      --shine-grad:linear-gradient(90deg,#fff 8%,#00b4fa 60%,#23e6ff 98%)
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family:'Share Tech Mono',monospace;background:var(--bg-dark);color:var(--sand);min-height:100vh;overflow-x:hidden}
+    a{color:var(--blue)}
+    .wrap{max-width:1100px;margin:0 auto;display:flex;gap:48px;align-items:flex-start;justify-content:space-between;padding:32px 6vw 48px}
+    .content{flex:3;min-width:320px}
+    .aside{flex:1;position:sticky;top:18px}
+    .headline{font-size:2.25rem;font-weight:bold;letter-spacing:1.2px;margin:6px 0 8px;
+      background:var(--shine-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      text-shadow:0 2px 18px #22213866,0 0 8px #00b4fa88;filter:brightness(1.15);text-transform:uppercase}
+    .sub{color:#9ddff7;font-weight:bold;margin:4px 0 18px}
+    .topbar{display:flex;gap:12px;align-items:center;margin:8px 0 18px}
+    .back{display:inline-flex;gap:8px;align-items:center;color:var(--blue);font-weight:bold;text-decoration:none;
+      background:#172432b3;padding:10px 14px;border-radius:12px;box-shadow:0 2px 15px #00b4fa33}
+    .back:hover{background:#e7d7b6;color:#003a5c;text-decoration:underline}
+    .logo{width:180px;max-width:40vw;border-radius:24px;background:#161922;box-shadow:var(--glow);border:2px solid #00b4fa44}
+    .card{background:var(--card-bg);border-radius:17px;box-shadow:var(--glow);border:1.8px solid #00b4fa55;
+      padding:22px 22px 10px;margin:0 0 22px}
+    .card h2{margin:0 0 10px;color:#fff;font-size:1.25rem}
+    .card p,.card li{line-height:1.6}
+    .toc a{display:block;color:#00b4fa;text-decoration:none;margin:6px 0;padding:8px 12px;border-radius:10px;background:#172432b3;box-shadow:0 2px 10px #00b4fa33}
+    .toc a:hover{background:#e7d7b6;color:#003a5c;text-decoration:underline}
+    .footer-spacer{height:30px}
+    @media (max-width:980px){.wrap{flex-direction:column-reverse;gap:22px}}
+  </style>
 </head>
 <body>
-<div class="legal-main">
-<div class="legal-content">
-<h1 class="headline">Terms of Service</h1>
-<div class="sub">Effective Date: <span id="eff">[Insert Date]</span> • Last Updated: <span id="upd">[Insert Date]</span></div>
+  <div class="wrap">
+    <main class="content">
+      <div class="topbar">
+        <a href="index.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+      </div>
 
+      <h1 class="headline">Terms of Service</h1>
+      <div class="sub">
+        Effective Date: <strong>August 27, 2025</strong> • Last Updated: <strong>August 27, 2025</strong>
+      </div>
 
-<div class="card" id="eligibility">
-<h2><i class="fa-solid fa-user-check"></i> 1. Eligibility</h2>
-<p>You must be at least 18 years old (or the age of legal majority in your jurisdiction) to use the website, DApp, and services of RA Atum ("RA Atum," "we," "our," "us"). By using our services, you represent that you meet this requirement and have capacity to enter into these Terms.</p>
-</div>
+      <div class="card" id="intro">
+        <h2><i class="fa-solid fa-circle-info"></i> Introduction</h2>
+        <p>Welcome to RA Atum Token (“<strong>RA Atum</strong>,” “we,” “our,” “us”). By accessing or using our website, DApp, or related services, you agree to these Terms of Service (“<strong>Terms</strong>”). Please read carefully.</p>
+      </div>
 
+      <div class="card" id="eligibility">
+        <h2><i class="fa-solid fa-user-check"></i> 1. Eligibility</h2>
+        <ul>
+          <li>You must be at least 18 years old or the legal age in your jurisdiction.</li>
+          <li>By using our services, you represent that you are legally allowed to do so.</li>
+        </ul>
+      </div>
 
-<div class="card" id="services">
-<h2><i class="fa-solid fa-layer-group"></i> 2. Services</h2>
-<p>We provide a blockchain-based ecosystem that includes token utilities, donation rewards, presale participation, NFT features, and community tools. We do not provide investment, financial, or legal advice, and no content on our site constitutes such advice.</p>
-</div>
+      <div class="card" id="services">
+        <h2><i class="fa-solid fa-layer-group"></i> 2. Services</h2>
+        <ul>
+          <li>RA Atum provides blockchain-based tokens, presale participation, donation rewards, and community engagement tools.</li>
+          <li>We do <strong>not</strong> provide investment, financial, or legal advice.</li>
+        </ul>
+      </div>
 
+      <div class="card" id="accounts">
+        <h2><i class="fa-solid fa-id-badge"></i> 3. Accounts & Access</h2>
+        <ul>
+          <li>You are responsible for the security of your devices and internet connection.</li>
+          <li>You agree not to attempt unauthorized access or interfere with our systems.</li>
+        </ul>
+      </div>
 
-<div class="card" id="wallet">
-<h2><i class="fa-solid fa-wallet"></i> 3. Wallet & Blockchain Use</h2>
+      <div class="card" id="wallet">
+        <h2><i class="fa-solid fa-wallet"></i> 4. Wallet & Blockchain Use</h2>
+        <ul>
+          <li>Users connect third-party wallets (e.g., MetaMask) at their own risk.</li>
+          <li>All blockchain transactions are <strong>irreversible</strong> and <strong>non-refundable</strong>.</li>
+          <li>You are solely responsible for safeguarding your wallet and private keys.</li>
+        </ul>
+      </div>
+
+      <div class="card" id="donations">
+        <h2><i class="fa-solid fa-gift"></i> 5. Donations & Rewards</h2>
+        <ul>
+          <li>Donations (toys, clothes, funds) may be rewarded with RA Atum tokens as a community initiative.</li>
+          <li>Rewards are discretionary, not guaranteed, and impose no monetary obligation on RA Atum.</li>
+        </ul>
+      </div>
+
+      <div class="card" id="token">
+        <h2><i class="fa-solid fa-coins"></i> 6. Token Disclaimer</h2>
+        <ul>
+          <li>RA Atum Token is <strong>not</strong> a security, share, or regulated investment.</li>
+          <li>The token’s value may fluctuate; we are not liable for gains or losses.</li>
+          <li>No promise of profit or future value is made.</li>
+        </ul>
+      </div>
+
+      <div class="card" id="fees">
+        <h2><i class="fa-solid fa-receipt"></i> 7. Fees & Taxes</h2>
+        <ul>
+          <li>You are responsible for all network (“gas”) fees associated with transactions.</li>
+          <li>You are responsible for any taxes that may apply to your activities.</li>
+        </ul>
+      </div>
+
+      <div class="card" id="prohibited">
+        <h2><i class="fa-solid fa-ban"></i> 8. Prohibited Use</h2>
+        <p>You may not use RA Atum for illegal activities (including money laundering, fraud, terrorism financing, or activities that violate sanctions/AML/CFT laws). We may suspend access if you violate laws or these Terms.</p>
+      </div>
+
+      <div class="card" id="risks">
+        <h2><i class="fa-solid fa-triangle-exclamation"></i> 9. Risk Disclosure</h2>
+        <ul>
+          <li>Smart contracts may contain bugs or be subject to exploits.</li>
+          <li>Digital assets are volatile and may lose value rapidly.</li>
+          <li>Third-party failures (wallets, bridges, networks) can result in loss.</li>
+        </ul>
+      </div>
+
+      <div class="card" id="thirdparties">
+        <h2><i class="fa-solid fa-plug"></i> 10. Third-Party Services</h2>
+        <p>We may link to or rely on third-party services (wallets, analytics, CDNs). We do not control and are not responsible for those services or their policies.</p>
+      </div>
+
+      <div class="card" id="ip">
+        <h2><i class="fa-solid fa-copyright"></i> 11. Intellectual Property</h2>
+        <p>All site content, logos, and trademarks are owned by RA Atum or its licensors and protected by applicable IP laws. You may not copy, modify, or distribute without permission.</p>
+      </div>
+
+      <div class="card" id="termination">
+        <h2><i class="fa-solid fa-power-off"></i> 12. Suspension & Termination</h2>
+        <p>We may suspend or terminate access for violations of these Terms or to comply with law. Sections that by nature should survive termination will survive.</p>
+      </div>
+
+      <div class="card" id="indemnity">
+        <h2><i class="fa-solid fa-handshake-angle"></i> 13. Indemnification</h2>
+        <p>You agree to defend, indemnify, and hold harmless RA Atum from claims arising out of your use of the services or violation of these Terms.</p>
+      </div>
+
+      <div class="card" id="liability">
+        <h2><i class="fa-solid fa-shield-halved"></i> 14. Limitation of Liability</h2>
+        <p>Services are provided “<strong>AS IS</strong>.” To the maximum extent permitted by law, RA Atum will not be liable for indirect, incidental, special, consequential, or exemplary damages; nor for losses from hacks, wallet mismanagement, smart-contract bugs, third-party services, or market volatility.</p>
+      </div>
+
+      <div class="card" id="disclaimer">
+        <h2><i class="fa-solid fa-circle-exclamation"></i> 15. Disclaimers</h2>
+        <p>We disclaim all warranties, express or implied, including merchantability, fitness for a particular purpose, and non-infringement. We do not warrant uninterrupted or error-free operation.</p>
+      </div>
+
+      <div class="card" id="changes">
+        <h2><i class="fa-solid fa-pen"></i> 16. Changes to Terms</h2>
+        <p>We may update these Terms periodically. Material changes will be indicated by the updated “Last Updated” date. Continued use constitutes acceptance of the changes.</p>
+      </div>
+
+      <div class="card" id="law">
+        <h2><i class="fa-solid fa-scale-balanced"></i> 17. Governing Law & Venue</h2>
+        <p>These Terms are governed by the laws of <strong>India</strong>, without regard to conflict of laws rules. Exclusive jurisdiction and venue lie with the competent courts located in India.</p>
+      </div>
+
+      <div class="card" id="misc">
+        <h2><i class="fa-regular fa-file-lines"></i> 18. Miscellaneous</h2>
+        <ul>
+          <li><strong>Entire Agreement:</strong> These Terms constitute the entire agreement between you and RA Atum regarding the services.</li>
+          <li><strong>Severability:</strong> If any provision is unenforceable, the remaining provisions remain in effect.</li>
+          <li><strong>No Waiver:</strong> Failure to enforce a provision is not a waiver of our rights.</li>
+        </ul>
+      </div>
+
+      <a href="index.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+      <div class="footer-spacer"></div>
+    </main>
+
+    <aside class="aside">
+      <img src="RA-ATUM-LOGO.png" alt="RA Atum Logo" class="logo" />
+      <div class="card toc">
+        <h2><i class="fa-solid fa-list"></i> Quick Nav</h2>
+        <a href="#intro">Introduction</a>
+        <a href="#eligibility">1. Eligibility</a>
+        <a href="#services">2. Services</a>
+        <a href="#accounts">3. Accounts & Access</a>
+        <a href="#wallet">4. Wallet & Blockchain</a>
+        <a href="#donations">5. Donations & Rewards</a>
+        <a href="#token">6. Token Disclaimer</a>
+        <a href="#fees">7. Fees & Taxes</a>
+        <a href="#prohibited">8. Prohibited Use</a>
+        <a href="#risks">9. Risk Disclosure</a>
+        <a href="#thirdparties">10. Third-Party Services</a>
+        <a href="#ip">11. Intellectual Property</a>
+        <a href="#termination">12. Suspension & Termination</a>
+        <a href="#indemnity">13. Indemnification</a>
+        <a href="#liability">14. Liability</a>
+        <a href="#disclaimer">15. Disclaimers</a>
+        <a href="#changes">16. Changes</a>
+        <a href="#law">17. Governing Law</a>
+        <a href="#misc">18. Miscellaneous</a>
+      </div>
+      <div class="card toc">
+        <h2><i class="fa-solid fa-link"></i> Related</h2>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
+      </div>
+    </aside>
+  </div>
+</body>
 </html>
