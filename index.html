@@ -799,12 +799,101 @@
   color: #00b4fa !important;
   text-decoration: underline;
 }
+    /* === TOP TICKER BANNER === */
+.top-ticker {
+  position: sticky;
+  top: 0;
+  z-index: 200; /* stays above header (z:100) and below mobile overlay (z:1200) */
+  height: 36px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #0e1626, #003b66 45%, #0e1626);
+  border-bottom: 1px solid #00b4fa55;
+  box-shadow: 0 4px 18px #00b4fa33;
+}
+
+.top-ticker .ticker {
+  display: flex;
+  gap: 60px;            /* space between the two rows */
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ticker-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0 30px;
+  color: #fff;
+  letter-spacing: .6px;
+  font-weight: 800;
+  animation: ra-marquee 28s linear infinite;
+}
+.ticker-row:nth-child(2) { animation-delay: -14s; } /* stagger for seamless loop */
+.ticker-row:hover { animation-play-state: paused; }
+
+.ticker-pill {
+  background: var(--blue, #00b4fa);
+  color: var(--black, #171818);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  box-shadow: 0 0 12px #00b4fa55;
+}
+.ticker-sep { opacity: .65; }
+.ticker-link {
+  color: var(--sand, #e7d7b6);
+  text-decoration: none;
+  border-bottom: 1px dashed currentColor;
+}
+.ticker-link:hover { color: var(--blue, #00b4fa); }
+
+@keyframes ra-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 560px) {
+  .top-ticker { height: 34px; }
+  .ticker-row { gap: 14px; padding: 0 18px; font-size: .93rem; }
+  .ticker-pill { padding: 3px 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-row { animation: none; }
+}
+
 
 
   </style>
 </head>
 <body>
   <header>
+    <!-- === RA ATUM TOP TICKER === -->
+<div class="top-ticker" role="region" aria-label="RA Atum announcement">
+  <div class="ticker">
+    <!-- Row A -->
+    <div class="ticker-row">
+      <span>🚀 Missed Bitcoin? <strong>Don’t miss RA ATUM.</strong></span>
+      <span class="ticker-sep">•</span>
+      <span class="ticker-pill">Starting ₹0.55 ($0.01)</span>
+      <span class="ticker-sep">•</span>
+      <span class="ticker-pill">Launch ₹15 ($0.17)</span>
+      <span class="ticker-sep">•</span>
+      <a class="ticker-link" href="https://ra-atum-wallet.vercel.app/" target="_blank" rel="noopener">Presale Live – Buy Now</a>
+    </div>
+    <!-- Row B (duplicate for seamless scroll) -->
+    <div class="ticker-row" aria-hidden="true">
+      <span>🚀 Missed Bitcoin? <strong>Don’t miss RA ATUM.</strong></span>
+      <span class="ticker-sep">•</span>
+      <span class="ticker-pill">Starting ₹0.55 ($0.01)</span>
+      <span class="ticker-sep">•</span>
+      <span class="ticker-pill">Launch ₹15 ($0.17)</span>
+      <span class="ticker-sep">•</span>
+      <a class="ticker-link" href="https://ra-atum-wallet.vercel.app/" target="_blank" rel="noopener">Presale Live – Buy Now</a>
+    </div>
+  </div>
+</div>
+
     <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
       <i class="fas fa-bars"></i>
     </button>
