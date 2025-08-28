@@ -821,86 +821,88 @@ nav a:hover {
   color: #00b4fa !important;
   text-decoration: underline;
 }
-/* === TOP TICKER BANNER === */
-.top-ticker {
+/* === BLOCK A: default sticky banner (when placed ABOVE <header>) === */
+.top-ticker{
   position: sticky;
   top: 0;
-  z-index: 200; /* stays above header (z:100) and below mobile overlay (z:1200) */
+  z-index: 200;                 /* above header (z:100), below mobile overlay */
   height: 36px;
   overflow: hidden;
-  background: linear-gradient(90deg, #0e1626, #003b66 45%, #0e1626);
+  background: linear-gradient(90deg,#0e1626,#003b66 45%,#0e1626);
   border-bottom: 1px solid #00b4fa55;
   box-shadow: 0 4px 18px #00b4fa33;
 }
 
-/* === TOP TICKER (glitch-free continuous scroll) === */
-.top-ticker {
-  position: relative;
-  height: 36px;
-  overflow: hidden;
-  background: linear-gradient(90deg, #0e1626, #003b66 45%, #0e1626);
-  border-bottom: 1px solid #00b4fa55;
-  box-shadow: 0 4px 18px #00b4fa33;
+/* === BLOCK B: override when ticker is INSIDE <header> (full-bleed) === */
+header .top-ticker{
+  position: relative;           /* overrides sticky */
+  top: auto;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;           /* pull out of header padding */
+  margin-right: -50vw;
+  width: 100vw;                 /* edge-to-edge across viewport */
 }
 
-/* The TRACK moves, not each row */
-.top-ticker .ticker {
-  --ticker-speed: 28s;                 /* adjust speed here */
+/* === TRACK moves (glitch-free continuous scroll) === */
+.top-ticker .ticker{
+  --ticker-speed: 28s;
   display: flex;
-  gap: 0;                              /* no extra gap between the two copies */
-  width: max-content;                  /* shrink to content, then slide left */
+  gap: 0;
+  width: max-content;
   align-items: center;
   white-space: nowrap;
   animation: ra-track var(--ticker-speed) linear infinite;
   will-change: transform;
 }
-.top-ticker:hover .ticker { animation-play-state: paused; } /* pause on hover */
+.top-ticker:hover .ticker{ animation-play-state: paused; }
 
-/* One copy of the content (you already have two .ticker-row in HTML) */
-.ticker-row {
+/* one copy (you have two .ticker-row in HTML) */
+.ticker-row{
   display: inline-flex;
   align-items: center;
   gap: 22px;
-  padding: 0 30px;
+  padding: 0 30px 0 0;          /* left 0 for true edge; adjust if you want a tiny inset */
   color: #fff;
   letter-spacing: .6px;
   font-weight: 800;
   white-space: nowrap;
-  min-width: 100vw;                    /* ensures each copy is at least full width */
+  min-width: 100vw;             /* each copy at least full width */
 }
 
-/* Pills & links (unchanged) */
-.ticker-pill {
-  background: var(--blue, #00b4fa);
-  color: var(--black, #171818);
+/* pills & links */
+.ticker-pill{
+  background: var(--blue,#00b4fa);
+  color: var(--black,#171818);
   padding: 4px 10px;
   border-radius: 999px;
   font-weight: 900;
   box-shadow: 0 0 12px #00b4fa55;
 }
-.ticker-sep { opacity: .65; }
-.ticker-link {
-  color: var(--sand, #e7d7b6);
+.ticker-sep{ opacity:.65; }
+.ticker-link{
+  color: var(--sand,#e7d7b6);
   text-decoration: none;
   border-bottom: 1px dashed currentColor;
 }
-.ticker-link:hover { color: var(--blue, #00b4fa); }
+.ticker-link:hover{ color: var(--blue,#00b4fa); }
 
-/* Track animation = slide left by exactly one copy (half the total width) */
-@keyframes ra-track {
+/* continuous slide of exactly one copy */
+@keyframes ra-track{
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-/* Small tweaks on narrow screens */
-@media (max-width: 560px){
-  .top-ticker { height: 34px; }
-  .ticker-row { gap: 14px; padding: 0 18px; font-size: .93rem; }
-  .ticker-pill { padding: 3px 8px; }
+/* small screens */
+@media (max-width:560px){
+  .top-ticker{ height:34px; }
+  .ticker-row{ gap:14px; padding:0 18px 0 0; font-size:.93rem; }
+  .ticker-pill{ padding:3px 8px; }
 }
-@media (prefers-reduced-motion: reduce){
-  .top-ticker .ticker { animation: none; }
+@media (prefers-reduced-motion:reduce){
+  .top-ticker .ticker{ animation:none; }
 }
+
 
 
   </style>
