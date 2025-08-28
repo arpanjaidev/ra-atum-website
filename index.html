@@ -59,44 +59,66 @@
       mix-blend-mode: multiply;
     }
     * { font-family: var(--digital-font), monospace !important; }
-    header {
-      position: sticky; top: 0;
-      width: 100%;
-      background: rgba(23, 22, 22, 0.99);
-      box-shadow: 0 2px 18px #00b4fa44;
-      z-index: 100;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 16px 3vw;
-      min-height: 48px;
-      transition: padding 0.2s, min-height 0.2s;
-    }
-    nav {
-      display: flex;
-      gap: 16px;
-      justify-content: flex-start;
-      align-items: center;
-      width: 100%;
-      z-index: 102;
-    }
-    nav a {
-      color: var(--blue);
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 1rem;
-      border-radius: 6px;
-      padding: 10px 16px;
-      transition: background .19s, color .19s, font-size .19s, padding .19s;
-      letter-spacing: 0.5px;
-      line-height: 1;
-      cursor: pointer;
-      background: none;
-    }
-    nav a:hover {
-      background: var(--sand-dark);
-      color: var(--black);
-    }
+   /* === HEADER / NAV (one-line menu, ticker on its own row) === */
+header {
+  position: sticky; top: 0;
+  width: 100%;
+  background: rgba(23, 22, 22, 0.99);
+  box-shadow: 0 2px 18px #00b4fa44;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;               /* allow ticker to be its own row */
+  align-items: center;
+  align-content: flex-start;
+  padding: 16px 3vw;
+  min-height: 48px;
+  transition: padding 0.2s, min-height 0.2s;
+}
+
+/* if your top ticker is inside <header>, give it its own full-width row */
+.top-ticker {
+  order: -1;                     /* show first row */
+  flex: 1 0 100%;                /* full width */
+  margin-bottom: 6px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: nowrap;             /* DON'T wrap items */
+  white-space: nowrap;           /* keep each item on one line */
+  gap: 16px;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  z-index: 102;
+
+  /* allow gentle horizontal scroll if the row gets too long */
+  overflow-x: auto;
+  scrollbar-width: none;         /* Firefox hide scrollbar */
+  -webkit-overflow-scrolling: touch;
+}
+nav::-webkit-scrollbar { display: none; } /* WebKit hide scrollbar */
+
+nav a {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  padding: 10px 16px;
+  transition: background .19s, color .19s, font-size .19s, padding .19s;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  cursor: pointer;
+  background: none;
+
+  white-space: nowrap;           /* prevent internal breaks */
+  flex: 0 0 auto;                /* don’t shrink */
+}
+nav a:hover {
+  background: var(--sand-dark);
+  color: var(--black);
+}
     .hamburger {
       display: none;
       cursor: pointer;
