@@ -821,55 +821,52 @@ nav a:hover {
   color: #00b4fa !important;
   text-decoration: underline;
 }
-    /* === TOP TICKER BANNER === */
-.top-ticker {
-  position: sticky;
-  top: 0;
-  z-index: 200; /* stays above header (z:100) and below mobile overlay (z:1200) */
-  height: 36px;
-  overflow: hidden;
-  background: linear-gradient(90deg, #0e1626, #003b66 45%, #0e1626);
-  border-bottom: 1px solid #00b4fa55;
-  box-shadow: 0 4px 18px #00b4fa33;
-}
-
-/* === TOP TICKER (glitch-free continuous scroll) === */
+/* === TOP TICKER (final, full-bleed, glitch-free) === */
 .top-ticker{
+  /* header is already sticky; keep this relative */
   position: relative;
   height: 36px;
   overflow: hidden;
   background: linear-gradient(90deg, #0e1626, #003b66 45%, #0e1626);
   border-bottom: 1px solid #00b4fa55;
   box-shadow: 0 4px 18px #00b4fa33;
+
+  /* full-bleed across viewport even inside padded header */
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
 }
 
 /* The TRACK moves, not each row */
 .top-ticker .ticker{
-  --ticker-speed: 28s;                 /* adjust speed here */
+  --ticker-speed: 28s;               /* adjust speed if you like */
   display: flex;
-  gap: 0;                              /* no extra gap between the two copies */
-  width: max-content;                  /* shrink to content, then slide left */
+  gap: 0;
+  width: max-content;
   align-items: center;
   white-space: nowrap;
   animation: ra-track var(--ticker-speed) linear infinite;
   will-change: transform;
 }
-.top-ticker:hover .ticker{ animation-play-state: paused; } /* pause on hover */
+.top-ticker:hover .ticker{ animation-play-state: paused; }
 
-/* One copy of the content (you already have two .ticker-row in HTML) */
+/* One copy of the content (use two .ticker-row in HTML) */
 .ticker-row{
   display: inline-flex;
   align-items: center;
   gap: 22px;
-  padding: 0 30px;
+  /* left pad small so text starts near the edge; right pad keeps spacing */
+  padding: 0 30px 0 8px;
   color: #fff;
   letter-spacing: .6px;
   font-weight: 800;
   white-space: nowrap;
-  min-width: 100vw;                    /* ensures each copy is at least full width */
+  min-width: 100vw;                  /* each copy at least full width */
 }
 
-/* Pills & links (unchanged) */
+/* Pills & links */
 .ticker-pill{
   background: var(--blue, #00b4fa);
   color: var(--black, #171818);
@@ -886,22 +883,21 @@ nav a:hover {
 }
 .ticker-link:hover{ color: var(--blue, #00b4fa); }
 
-/* Track animation = slide left by exactly one copy (half the total width) */
+/* Slide left by exactly one copy (half of total width) */
 @keyframes ra-track{
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-/* Small tweaks on narrow screens */
+/* Small tweaks */
 @media (max-width: 560px){
   .top-ticker { height: 34px; }
-  .ticker-row { gap: 14px; padding: 0 18px; font-size: .93rem; }
+  .ticker-row { gap: 14px; padding: 0 18px 0 8px; font-size: .93rem; }
   .ticker-pill { padding: 3px 8px; }
 }
 @media (prefers-reduced-motion: reduce){
   .top-ticker .ticker { animation: none; }
 }
-
 
 
   </style>
