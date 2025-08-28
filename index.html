@@ -833,14 +833,31 @@ nav a:hover {
   box-shadow: 0 4px 18px #00b4fa33;
 }
 
-.top-ticker .ticker {
-  display: flex;
-  gap: 60px;            /* space between the two rows */
-  align-items: center;
-  white-space: nowrap;
+/* === TOP TICKER (glitch-free continuous scroll) === */
+.top-ticker{
+  position: relative;
+  height: 36px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #0e1626, #003b66 45%, #0e1626);
+  border-bottom: 1px solid #00b4fa55;
+  box-shadow: 0 4px 18px #00b4fa33;
 }
 
-.ticker-row {
+/* The TRACK moves, not each row */
+.top-ticker .ticker{
+  --ticker-speed: 28s;                 /* adjust speed here */
+  display: flex;
+  gap: 0;                              /* no extra gap between the two copies */
+  width: max-content;                  /* shrink to content, then slide left */
+  align-items: center;
+  white-space: nowrap;
+  animation: ra-track var(--ticker-speed) linear infinite;
+  will-change: transform;
+}
+.top-ticker:hover .ticker{ animation-play-state: paused; } /* pause on hover */
+
+/* One copy of the content (you already have two .ticker-row in HTML) */
+.ticker-row{
   display: inline-flex;
   align-items: center;
   gap: 22px;
@@ -848,12 +865,12 @@ nav a:hover {
   color: #fff;
   letter-spacing: .6px;
   font-weight: 800;
-  animation: ra-marquee 28s linear infinite;
+  white-space: nowrap;
+  min-width: 100vw;                    /* ensures each copy is at least full width */
 }
-.ticker-row:nth-child(2) { animation-delay: -14s; } /* stagger for seamless loop */
-.ticker-row:hover { animation-play-state: paused; }
 
-.ticker-pill {
+/* Pills & links (unchanged) */
+.ticker-pill{
   background: var(--blue, #00b4fa);
   color: var(--black, #171818);
   padding: 4px 10px;
@@ -861,27 +878,28 @@ nav a:hover {
   font-weight: 900;
   box-shadow: 0 0 12px #00b4fa55;
 }
-.ticker-sep { opacity: .65; }
-.ticker-link {
+.ticker-sep{ opacity: .65; }
+.ticker-link{
   color: var(--sand, #e7d7b6);
   text-decoration: none;
   border-bottom: 1px dashed currentColor;
 }
-.ticker-link:hover { color: var(--blue, #00b4fa); }
+.ticker-link:hover{ color: var(--blue, #00b4fa); }
 
-@keyframes ra-marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+/* Track animation = slide left by exactly one copy (half the total width) */
+@keyframes ra-track{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-@media (max-width: 560px) {
+/* Small tweaks on narrow screens */
+@media (max-width: 560px){
   .top-ticker { height: 34px; }
   .ticker-row { gap: 14px; padding: 0 18px; font-size: .93rem; }
   .ticker-pill { padding: 3px 8px; }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .ticker-row { animation: none; }
+@media (prefers-reduced-motion: reduce){
+  .top-ticker .ticker { animation: none; }
 }
 
 
