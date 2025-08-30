@@ -1387,6 +1387,27 @@ setInterval(() => {
 // Start typing
 typeFooterLine();
 </script>
+  <script>
+  (function () {
+    var API = 'https://api.raatumtoken.com';
+    try {
+      var url = new URL(window.location.href);
+      var ref = url.searchParams.get('ref');
+      if (ref && /^0x[a-fA-F0-9]{40}$/.test(ref)) {
+        // store for 30 days on base domain
+        document.cookie = 'ra_ref=' + ref + '; path=/; max-age=' + (60*60*24*30) + '; domain=.raatumtoken.com; samesite=Lax';
+        try { localStorage.setItem('ra_ref', ref); } catch(e) {}
+        // record the visit
+        fetch(API + '/api/ref/visit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ referrer: ref, path: location.pathname, ua: navigator.userAgent })
+        }).catch(function(){});
+      }
+    } catch(e) {}
+  })();
+</script>
+
 
 
 
