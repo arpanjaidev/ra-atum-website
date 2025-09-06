@@ -886,6 +886,48 @@ header{
 @media (prefers-reduced-motion: reduce){
   .top-ticker .ticker{ animation: none; }
 }
+    /* push the badge to the right */
+.spacer { flex: 1 1 auto; }
+
+/* right-side BNB badge */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chain-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #101524 80%, #212e43 100%);
+  border: 1.8px solid #f0b90b;           /* BNB yellow */
+  box-shadow: 0 3px 16px #f0b90b22;
+  color: var(--sand);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: .3px;
+  white-space: nowrap;
+}
+.chain-badge img {
+  width: 22px; height: 22px; display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(240,185,11,.25));
+}
+.chain-badge b { color: #f0b90b; }
+
+/* keep header tidy on small screens */
+@media (max-width: 800px){
+  .header-right { display: none; }
+}
+
+/* let the nav shrink so the badge fits on the right (desktop) */
+@media (min-width: 801px){
+  header nav { width: auto; flex: 0 1 auto; }
+}
+
 
 
   </style>
@@ -934,6 +976,23 @@ header{
       <a href="https://ra-atum-wallet.vercel.app/" class="connect-wallet-btn" target="_blank">CONNECT WALLET</a>
 
     </nav>
+    <!-- right-side badge -->
+<div class="spacer"></div>
+<div class="header-right">
+  <a class="chain-badge"
+     href="https://www.bnbchain.org/en/smartChain"
+     target="_blank" rel="noopener"
+     aria-label="Powered by BNB Smart Chain">
+    <picture>
+      <!-- Use your SVG if you have it -->
+      <source srcset="bnb-chain-binance-smart-chain-logo.svg" type="image/svg+xml">
+      <!-- PNG fallback (rename if your file name is different) -->
+      <img src="bnb-chain-binance-smart-chain-logo.png" alt="BNB Smart Chain logo">
+    </picture>
+    <span>Powered by <b>BNB Smart Chain</b></span>
+  </a>
+</div>
+
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
       <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
      <div class="mobile-nav">
