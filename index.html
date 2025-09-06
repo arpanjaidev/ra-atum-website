@@ -886,18 +886,24 @@ header{
 @media (prefers-reduced-motion: reduce){
   .top-ticker .ticker{ animation: none; }
 }
-/* === GOLDEN PILL BADGE (desktop look) === */
+
+
+
+    /* === GOLDEN PILL BADGE (desktop look) === */
 .chain-badge{
   --bnb:#f0b90b;
   display:inline-flex; align-items:center;
   gap:8px; padding:6px 14px; border-radius:999px;
   background:linear-gradient(180deg,#151a22 0%,#0b1118 100%);
   border:2px solid var(--bnb);
-  box-shadow:0 0 0 3px rgba(240,185,11,.18),0 8px 28px rgba(240,185,11,.28),inset 0 1px 0 rgba(255,255,255,.08);
+  box-shadow:0 0 0 3px rgba(240,185,11,.18),
+             0 8px 28px rgba(240,185,11,.28),
+             inset 0 1px 0 rgba(255,255,255,.08);
   color:#eaeff7; font-weight:800; font-size:.95rem; letter-spacing:.25px;
   white-space:nowrap; text-decoration:none; line-height:1;
 }
 .chain-badge b{ color:var(--bnb); }
+
 .bnb-logo{
   width:16px; height:16px; padding:3px; border-radius:999px;
   background:radial-gradient(120% 120% at 30% 20%, #1c2430 0%, #0b1118 70%);
