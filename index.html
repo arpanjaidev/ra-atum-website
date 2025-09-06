@@ -888,56 +888,65 @@ header{
 }
 
 
-/* === GOLDEN PILL DESIGN for the BNB badge (no layout changes) === */
+/* === GOLDEN PILL DESIGN — COMPACT VERSION === */
 .chain-badge{
   --bnb:#f0b90b;
   display:inline-flex; align-items:center;
-  gap:8px;
-  padding:6px 14px;                 /* pill size */
+  gap:6px;                          /* was 8px */
+  padding:4px 10px;                 /* was 6px 14px */
   border-radius:999px;
-  background:linear-gradient(180deg,#151a22 0%,#0b1118 100%); /* dark inner pill */
-  border:2px solid var(--bnb);      /* golden rim */
+  background:linear-gradient(180deg,#151a22 0%,#0b1118 100%);
+  border:1.6px solid var(--bnb);    /* was 2px */
   box-shadow:
-    0 0 0 3px rgba(240,185,11,.18), /* soft outer glow ring */
-    0 8px 28px rgba(240,185,11,.28),/* drop glow */
+    0 0 0 2px rgba(240,185,11,.16),
+    0 6px 20px rgba(240,185,11,.24),
     inset 0 1px 0 rgba(255,255,255,.08);
-  color:#eaeff7;                    /* "Powered by" */
+  color:#eaeff7;
   font-weight:800;
-  font-size:.95rem;
-  letter-spacing:.25px;
+  font-size:.88rem;                 /* was .95rem */
+  letter-spacing:.22px;
   white-space:nowrap;
+  line-height:1;                    /* tighter */
   text-decoration:none;
 }
-.chain-badge b{ color:var(--bnb); }  /* "BNB Smart Chain" in gold */
+.chain-badge b{ color:var(--bnb); }
 
-/* Icon in a golden mini-badge */
+/* Icon (compact) */
 .bnb-logo{
-  width:16px; height:16px;
-  padding:3px;                      /* space for the circle rim */
+  width:14px; height:14px;          /* was 16 */
+  padding:2px;                      /* was 3 */
   border-radius:999px;
   background:radial-gradient(120% 120% at 30% 20%, #1c2430 0%, #0b1118 70%);
-  border:1.6px solid var(--bnb);
-  box-shadow:0 0 8px rgba(240,185,11,.45), inset 0 1px 0 rgba(255,255,255,.08);
-  object-fit:contain;
-  display:block;
-  filter:drop-shadow(0 0 6px rgba(240,185,11,.35));
+  border:1.2px solid var(--bnb);    /* was 1.6 */
+  box-shadow:0 0 6px rgba(240,185,11,.38), inset 0 1px 0 rgba(255,255,255,.08);
+  object-fit:contain; display:block;
+  filter:drop-shadow(0 0 5px rgba(240,185,11,.3));
 }
 
-/* Hover polish */
+/* Softer hover + tiny lift */
 .chain-badge:hover{
   box-shadow:
-    0 0 0 4px rgba(240,185,11,.22),
-    0 12px 36px rgba(240,185,11,.38),
+    0 0 0 3px rgba(240,185,11,.20),
+    0 10px 28px rgba(240,185,11,.32),
     inset 0 1px 0 rgba(255,255,255,.10);
-  transform:translateY(-1px);
+  transform:translateY(-0.5px);
 }
 
-/* Responsive keep the look, just scale a bit */
+/* Tablet and down — a bit smaller again */
 @media (max-width:980px){
-  .chain-badge{ padding:5px 10px; gap:6px; font-size:.88rem; border-width:1.6px; }
-  .bnb-logo{ width:14px; height:14px; padding:2.5px; border-width:1.4px; }
+  .chain-badge{ padding:3px 9px; gap:5px; font-size:.84rem; border-width:1.4px; }
+  .bnb-logo{ width:13px; height:13px; padding:2px; border-width:1.1px; }
 }
 
+/* Phones — keep it readable and inside the screen */
+@media (max-width:640px){
+  .chain-badge{
+    padding:3px 8px; font-size:.80rem;
+    max-width:58vw;                 /* prevent overflow */
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .bnb-logo{ width:12px; height:12px; padding:1.8px; }
+}
 
   </style>
 </head>
