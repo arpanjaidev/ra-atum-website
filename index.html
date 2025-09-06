@@ -887,72 +887,41 @@ header{
   .top-ticker .ticker{ animation: none; }
 }
 
-/* push the badge to the right */
-.spacer { flex: 1 1 auto; }
+/* === FIX: don't cut the "Powered by BNB Smart Chain" badge === */
 
-/* right-side BNB badge */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* smaller */
-}
+/* keep header content on one row */
+header{ flex-wrap: nowrap; }
 
-.chain-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;                 /* was 8px */
-  padding: 4px 10px;        /* was 6px 12px */
-  border-radius: 999px;
-  background: linear-gradient(90deg, #101524 80%, #212e43 100%);
-  border: 1.4px solid #f0b90b;   /* was 1.8px */
-  box-shadow: 0 2px 10px #f0b90b22;
-  color: var(--sand);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.92rem;       /* smaller text */
-  letter-spacing: .2px;
-  white-space: nowrap;
-}
-
-.bnb-logo,
-.chain-badge img {
-  width: 18px;              /* was 22px */
-  height: 18px;             /* was 22px */
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 0 4px rgba(240,185,11,.25));
-}
-
-.chain-badge b { color: #f0b90b; }
-
-/* === KEEP OLD HEADER; JUST MAKE ROOM SO BADGE DOESN'T CUT === */
+/* let the nav shrink/scroll instead of pushing the badge off-screen */
 header nav{
-  width: auto !important;   /* allow space for the badge */
-  flex: 1 1 auto;           /* nav shares row with badge */
-  min-width: 0;             /* CRITICAL: let nav shrink */
-  overflow-x: auto;         /* scroll long menus instead of pushing badge out */
+  flex: 1 1 auto;      /* share space with the badge */
+  min-width: 0;        /* CRITICAL: allow shrink below content width */
+  overflow-x: auto;    /* if items are long, they can scroll horizontally */
   -webkit-overflow-scrolling: touch;
 }
 
-/* mobile (<=800px): even smaller, remove spacer gap */
-@media (max-width: 800px){
-  .header-right { display: flex; }
-  .spacer { display: none; }
-  .chain-badge { padding: 3px 8px; border-width: 1.2px; gap: 5px; font-size: 0.85rem; }
-  .chain-badge span { font-size: 0.85rem; }
-  .bnb-logo,
-  .chain-badge img { width: 16px; height: 16px; }
-}
+/* neutralize the spacer and push the badge to the far right */
+.spacer{ flex: 0 0 0; width: 0; }
+.header-right{ margin-left: auto; flex: 0 0 auto; }
 
-/* desktop: tiny trim on nav pills to free a few px */
+/* compact badge (keeps your current smaller size) */
+.chain-badge{
+  padding: 4px 10px;
+  border-width: 1.4px;
+  gap: 6px;
+  font-size: .92rem;
+  letter-spacing: .2px;
+}
+.chain-badge img, .bnb-logo{ width:18px; height:18px; }
+
+/* free a few pixels on desktop so everything fits comfortably */
 @media (min-width: 801px){
-  header nav { width: auto; flex: 1 1 auto; }
-  nav a { padding: 8px 12px; } /* was 10px 16px */
+  nav a{ padding: 8px 12px; } /* was 10px 16px */
 }
 
-/* extra safety: on very narrow screens, show icon-only to avoid clipping */
+/* ultra-narrow phones: show icon only so nothing ever clips */
 @media (max-width: 640px){
-  .chain-badge span { display: none; }
+  .chain-badge span{ display: none; }
 }
 
 
