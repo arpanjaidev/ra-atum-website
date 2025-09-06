@@ -936,6 +936,37 @@ header{
   .bnb-logo{ width:14px; height:14px; padding:2.5px; border-width:1.4px; }
 }
 
+    /* === MOBILE VISIBILITY PATCH for the golden BNB badge === */
+@media (max-width: 800px){
+  /* nav is hidden on mobile, but keep the badge visible */
+  .header-right{
+    display: flex !important;   /* force show */
+    margin-left: auto;          /* stick to the right edge */
+    align-items: center;
+  }
+  .spacer{ display: none !important; }  /* no empty gap */
+
+  /* keep the pill readable on phones (no clipping) */
+  .chain-badge{
+    padding: 4px 8px;           /* smaller, tighter */
+    gap: 6px;
+    border-width: 1.6px;
+    font-size: 0.86rem;         /* shrink text, but keep it visible */
+    line-height: 1;
+    max-width: calc(100vw - 130px); /* never spill off-screen */
+    white-space: nowrap;
+  }
+  .chain-badge span{            /* ensure text is NOT hidden on mobile */
+    display: inline !important;
+  }
+  .bnb-logo{
+    width: 14px; height: 14px;
+    padding: 2px;               /* smaller inner icon circle */
+    border-width: 1.2px;
+  }
+}
+
+
   </style>
 </head>
 <body>
