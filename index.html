@@ -889,7 +889,15 @@ header{
 
 
 
-  /* === GOLDEN PILL BADGE (desktop look) === */
+  /* Header layout so nav can shrink and badge stays visible */
+header{ display:flex; align-items:center; flex-wrap:nowrap; }
+header nav{ flex:1 1 auto; min-width:0; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+nav::-webkit-scrollbar{ display:none; }
+
+/* Desktop right-side badge */
+.header-right{ margin-left:auto; display:flex; align-items:center; }
+
+/* === GOLDEN PILL BADGE (desktop look) === */
 .chain-badge{
   --bnb:#f0b90b;
   display:inline-flex; align-items:center;
@@ -913,32 +921,21 @@ header{
   filter:drop-shadow(0 0 6px rgba(240,185,11,.35));
 }
 
-/* Keep nav able to shrink so badge never clips */
-header{ flex-wrap: nowrap; }
-header nav{ flex:1 1 auto; min-width:0; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-nav .chain-badge{ margin-left:auto; flex:0 0 auto; }
+/* One badge at a time */
+.chain-badge--mobile{ display:none; }
 
-/* ======= ONE badge at a time ======= */
-.chain-badge--mobile{ display:none; }            /* hidden by default (desktop) */
-
+/* ===== Phones & small tablets ===== */
 @media (max-width:800px){
-  /* Nav is hidden on phones, so hide its badge... */
-  nav .chain-badge{ display:none !important; }
+  /* Hide desktop badge */
+  .header-right{ display:none !important; }
 
-  /* ...and show the mobile copy inside the overlay */
+  /* Show mobile copy inside the overlay (top-right) */
   .mobile-nav .chain-badge--mobile{
     display:inline-flex !important;
-    align-self:flex-end;                         /* top-right of the column */
+    align-self:flex-end;
     margin:10px 16px 8px auto;
-  }
-
-  /* Override .mobile-nav a defaults so it doesn't look like a menu item */
-  .mobile-nav .chain-badge{
-    width:auto !important;
-    display:inline-flex !important;
     padding:6px 12px !important;
     border-bottom:none !important;
-    background:linear-gradient(180deg,#151a22 0%,#0b1118 100%) !important;
     font-size:.9rem !important;
     gap:6px;
   }
@@ -996,21 +993,22 @@ nav .chain-badge{ margin-left:auto; flex:0 0 auto; }
   <a href="THOTH-VPS-VPN.html">THOTH VPS VPN</a>
   <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
   <a href="https://ra-atum-wallet.vercel.app/" class="connect-wallet-btn" target="_blank">CONNECT WALLET</a>
+</nav>
 
-  <!-- DESKTOP badge (lives in nav) -->
+<!-- DESKTOP badge (separate from nav so it never gets cut) -->
+<div class="header-right">
   <a class="chain-badge"
      href="https://www.bnbchain.org/en/bnb-smart-chain"
      target="_blank" rel="noopener" aria-label="Powered by BNB Smart Chain">
     <img src="./bnb-chain-binance-smart-chain-logo.png" alt="BNB Smart Chain logo" class="bnb-logo">
     <span class="chain-badge-text">Powered by <b>BNB Smart Chain</b></span>
   </a>
-</nav>
+</div>
 
 <div class="mobile-nav-overlay" id="mobile-nav-overlay">
   <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
 
   <div class="mobile-nav">
-    <!-- MOBILE menu items -->
     <a href="#features" onclick="closeMobileNav()">FEATURES</a>
     <a href="#roadmap" onclick="closeMobileNav()">ROADMAP</a>
     <a href="nft-gallery.html" onclick="closeMobileNav()">NFT GALLERY</a>
@@ -1018,10 +1016,9 @@ nav .chain-badge{ margin-left:auto; flex:0 0 auto; }
     <a href="THOTH-VPS-VPN.html" onclick="closeMobileNav()">THOTH VPS VPN</a>
     <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" onclick="closeMobileNav()">DAPP</a>
     <a href="https://ra-atum-wallet.vercel.app/" class="CONNECT-WALLET-btn" target="_blank">CONNECT WALLET</a>
-    <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html"
-       target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
+    <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html" target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
 
-    <!-- MOBILE-ONLY badge (inside the overlay) -->
+    <!-- MOBILE-ONLY badge (must live INSIDE .mobile-nav) -->
     <a class="chain-badge chain-badge--mobile"
        href="https://www.bnbchain.org/en/bnb-smart-chain"
        target="_blank" rel="noopener">
