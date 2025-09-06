@@ -889,7 +889,7 @@ header{
 
 
 
-    /* === GOLDEN PILL BADGE (desktop look) === */
+  /* === GOLDEN PILL BADGE (desktop look) === */
 .chain-badge{
   --bnb:#f0b90b;
   display:inline-flex; align-items:center;
@@ -913,58 +913,43 @@ header{
   filter:drop-shadow(0 0 6px rgba(240,185,11,.35));
 }
 
-/* === MOBILE VISIBILITY & POSITION (<=800px) === */
+/* Keep nav able to shrink so badge never clips */
+header{ flex-wrap: nowrap; }
+header nav{ flex:1 1 auto; min-width:0; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+nav .chain-badge{ margin-left:auto; flex:0 0 auto; }
+
+/* ======= ONE badge at a time ======= */
+.chain-badge--mobile{ display:none; }            /* hidden by default (desktop) */
+
 @media (max-width:800px){
-  /* make header a reliable positioning parent on iOS */
-  header{ position: sticky; top:0; overflow: visible; }
+  /* Nav is hidden on phones, so hide its badge... */
+  nav .chain-badge{ display:none !important; }
 
-  /* always show the badge on phones */
-  .header-right{
-    display:flex !important;
-    position:absolute;                 /* anchor inside header */
-    right: max(8px, env(safe-area-inset-right));
-    top: 50%;
-    transform: translateY(-50%);       /* vertical center in header */
-    margin-left:0; z-index: 120;       /* above header bg */
-    align-items:center;
+  /* ...and show the mobile copy inside the overlay */
+  .mobile-nav .chain-badge--mobile{
+    display:inline-flex !important;
+    align-self:flex-end;                         /* top-right of the column */
+    margin:10px 16px 8px auto;
   }
 
-  /* remove spacer so it doesn't push anything */
-  .spacer{ display:none !important; flex:0 0 0 !important; width:0 !important; }
-
-  /* scale the pill so it never runs off the screen */
-  .chain-badge{
-    padding:4px 10px; gap:6px; border-width:1.6px;
-    font-size:.86rem; max-width:62vw;       /* keep text on-screen */
-    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  /* Override .mobile-nav a defaults so it doesn't look like a menu item */
+  .mobile-nav .chain-badge{
+    width:auto !important;
+    display:inline-flex !important;
+    padding:6px 12px !important;
+    border-bottom:none !important;
+    background:linear-gradient(180deg,#151a22 0%,#0b1118 100%) !important;
+    font-size:.9rem !important;
+    gap:6px;
   }
-  .bnb-logo{ width:14px; height:14px; padding:2px; border-width:1.2px; }
+
+  .mobile-nav .bnb-logo{ width:14px; height:14px; padding:2px; border-width:1.2px; }
 }
 
-/* EXTRA small phones (<=480px): a touch smaller but still visible */
-@media (max-width:480px){
-  .chain-badge{ font-size:.82rem; padding:3px 8px; max-width:58vw; }
-  .bnb-logo{ width:13px; height:13px; padding:2px; }
-}
-
-    /* Show exactly ONE badge */
-@media (min-width: 801px){
-  /* Desktop: use the badge INSIDE <nav> */
-  .header-right { display: none !important; }     /* hide the second copy */
-}
-
-@media (max-width: 800px){
-  /* Mobile: nav is hidden, so show the header-right copy */
-  nav .chain-badge { display: none !important; }  /* hide the nav copy */
-  .header-right { 
-    display: flex !important;
-    position: absolute;
-    right: max(8px, env(safe-area-inset-right));
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 120;
-    align-items: center;
-  }
+/* Slight trim on mid-width tablets */
+@media (max-width:980px){
+  .chain-badge{ padding:5px 10px; gap:6px; font-size:.88rem; border-width:1.6px; }
+  .bnb-logo{ width:14px; height:14px; }
 }
 
 
@@ -1003,7 +988,7 @@ header{
     <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
       <i class="fas fa-bars"></i>
     </button>
-  <nav>
+<nav>
   <a href="#features">FEATURES</a>
   <a href="#roadmap">ROADMAP</a>
   <a href="nft-gallery.html">NFT GALLERY</a>
@@ -1012,7 +997,7 @@ header{
   <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
   <a href="https://ra-atum-wallet.vercel.app/" class="connect-wallet-btn" target="_blank">CONNECT WALLET</a>
 
-  <!-- badge moved inside nav so it never gets cut -->
+  <!-- DESKTOP badge (lives in nav) -->
   <a class="chain-badge"
      href="https://www.bnbchain.org/en/bnb-smart-chain"
      target="_blank" rel="noopener" aria-label="Powered by BNB Smart Chain">
@@ -1021,30 +1006,29 @@ header{
   </a>
 </nav>
 
-    <!-- mobile-only badge -->
-<a class="chain-badge chain-badge--mobile"
-   href="https://www.bnbchain.org/en/bnb-smart-chain"
-   target="_blank" rel="noopener">
-  <img src="./bnb-chain-binance-smart-chain-logo.png" alt="BNB Smart Chain logo" class="bnb-logo">
-  <span class="chain-badge-text">Powered by <b>BNB Smart Chain</b></span>
-</a>
+<div class="mobile-nav-overlay" id="mobile-nav-overlay">
+  <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
 
+  <div class="mobile-nav">
+    <!-- MOBILE menu items -->
+    <a href="#features" onclick="closeMobileNav()">FEATURES</a>
+    <a href="#roadmap" onclick="closeMobileNav()">ROADMAP</a>
+    <a href="nft-gallery.html" onclick="closeMobileNav()">NFT GALLERY</a>
+    <a href="tokenomics.html" onclick="closeMobileNav()">TOKENOMICS</a>
+    <a href="THOTH-VPS-VPN.html" onclick="closeMobileNav()">THOTH VPS VPN</a>
+    <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" onclick="closeMobileNav()">DAPP</a>
+    <a href="https://ra-atum-wallet.vercel.app/" class="CONNECT-WALLET-btn" target="_blank">CONNECT WALLET</a>
+    <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html"
+       target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
 
-
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-      <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
-     <div class="mobile-nav">
-  <a href="#features" onclick="closeMobileNav()">FEATURES</a>
-  <a href="#roadmap" onclick="closeMobileNav()">ROADMAP</a>
-  <a href="nft-gallery.html" onclick="closeMobileNav()">NFT GALLERY</a>
-       <a href="tokenomics.html" onclick="closeMobileNav()">TOKENOMICS</a>
-
-  <a href="THOTH-VPS-VPN.html" onclick="closeMobileNav()">THOTH VPS VPN</a>
-
-  <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" onclick="closeMobileNav()">DAPP</a>
-  <a href="https://ra-atum-wallet.vercel.app/" class="CONNECT-WALLET-btn" target="_blank">CONNECT WALLET</a>
-
-  <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html" target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
+    <!-- MOBILE-ONLY badge (inside the overlay) -->
+    <a class="chain-badge chain-badge--mobile"
+       href="https://www.bnbchain.org/en/bnb-smart-chain"
+       target="_blank" rel="noopener">
+      <img src="./bnb-chain-binance-smart-chain-logo.png" alt="BNB Smart Chain logo" class="bnb-logo">
+      <span class="chain-badge-text">Powered by <b>BNB Smart Chain</b></span>
+    </a>
+  </div>
 </div>
 
     </div>  
