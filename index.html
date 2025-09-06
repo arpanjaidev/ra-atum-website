@@ -887,41 +887,29 @@ header{
   .top-ticker .ticker{ animation: none; }
 }
 
-/* === FIX: don't cut the "Powered by BNB Smart Chain" badge === */
-
-/* keep header content on one row */
+/* keep header on one row; let nav shrink/scroll instead of cutting the badge */
 header{ flex-wrap: nowrap; }
-
-/* let the nav shrink/scroll instead of pushing the badge off-screen */
 header nav{
-  flex: 1 1 auto;      /* share space with the badge */
-  min-width: 0;        /* CRITICAL: allow shrink below content width */
-  overflow-x: auto;    /* if items are long, they can scroll horizontally */
+  flex: 1 1 auto;
+  min-width: 0;                /* critical: allow shrink */
+  overflow-x: auto;            /* long menus scroll */
   -webkit-overflow-scrolling: touch;
 }
 
-/* neutralize the spacer and push the badge to the far right */
-.spacer{ flex: 0 0 0; width: 0; }
-.header-right{ margin-left: auto; flex: 0 0 auto; }
+/* push the badge to the far right inside nav */
+nav .chain-badge{ margin-left: auto; flex: 0 0 auto; }
 
-/* compact badge (keeps your current smaller size) */
-.chain-badge{
-  padding: 4px 10px;
-  border-width: 1.4px;
-  gap: 6px;
-  font-size: .92rem;
-  letter-spacing: .2px;
-}
-.chain-badge img, .bnb-logo{ width:18px; height:18px; }
+/* compact badge so it fits neatly */
+.chain-badge{ padding: 4px 10px; border-width: 1.4px; gap: 6px; font-size: .92rem; letter-spacing: .2px; }
+.bnb-logo{ width: 18px; height: 18px; }
 
-/* free a few pixels on desktop so everything fits comfortably */
-@media (min-width: 801px){
-  nav a{ padding: 8px 12px; } /* was 10px 16px */
-}
+/* free a few px on desktop so everything fits comfortably */
+@media (min-width: 801px){ nav a{ padding: 8px 12px; } }
 
-/* ultra-narrow phones: show icon only so nothing ever clips */
+/* ultra-narrow phones: icon-only (prevents any clipping) */
 @media (max-width: 640px){
-  .chain-badge span{ display: none; }
+  .chain-badge-text{ display: none; }
+  .chain-badge{ padding: 4px; }
 }
 
 
@@ -959,30 +947,24 @@ header nav{
     <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
       <i class="fas fa-bars"></i>
     </button>
-    <nav>
-      <a href="#features">FEATURES</a>
-      <a href="#roadmap">ROADMAP</a>
-      <a href="nft-gallery.html">NFT GALLERY</a>
-      <a href="tokenomics.html">TOKENOMICS</a>
+  <nav>
+  <a href="#features">FEATURES</a>
+  <a href="#roadmap">ROADMAP</a>
+  <a href="nft-gallery.html">NFT GALLERY</a>
+  <a href="tokenomics.html">TOKENOMICS</a>
+  <a href="THOTH-VPS-VPN.html">THOTH VPS VPN</a>
+  <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
+  <a href="https://ra-atum-wallet.vercel.app/" class="connect-wallet-btn" target="_blank">CONNECT WALLET</a>
 
-      <a href="THOTH-VPS-VPN.html">THOTH VPS VPN</a>
-      
-      <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
-      <a href="https://ra-atum-wallet.vercel.app/" class="connect-wallet-btn" target="_blank">CONNECT WALLET</a>
-
-    </nav>
-    <!-- right-side badge -->
-<!-- right-side badge -->
-<div class="spacer"></div>
-<div class="header-right">
+  <!-- badge moved inside nav so it never gets cut -->
   <a class="chain-badge"
      href="https://www.bnbchain.org/en/bnb-smart-chain"
-     target="_blank" rel="noopener"
-     aria-label="Powered by BNB Smart Chain">
+     target="_blank" rel="noopener" aria-label="Powered by BNB Smart Chain">
     <img src="./bnb-chain-binance-smart-chain-logo.png" alt="BNB Smart Chain logo" class="bnb-logo">
-    <span>Powered by <b>BNB Smart Chain</b></span>
+    <span class="chain-badge-text">Powered by <b>BNB Smart Chain</b></span>
   </a>
-</div>
+</nav>
+
 
 
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
