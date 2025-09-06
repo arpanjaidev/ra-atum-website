@@ -947,6 +947,27 @@ header{
   .bnb-logo{ width:13px; height:13px; padding:2px; }
 }
 
+    /* Show exactly ONE badge */
+@media (min-width: 801px){
+  /* Desktop: use the badge INSIDE <nav> */
+  .header-right { display: none !important; }     /* hide the second copy */
+}
+
+@media (max-width: 800px){
+  /* Mobile: nav is hidden, so show the header-right copy */
+  nav .chain-badge { display: none !important; }  /* hide the nav copy */
+  .header-right { 
+    display: flex !important;
+    position: absolute;
+    right: max(8px, env(safe-area-inset-right));
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 120;
+    align-items: center;
+  }
+}
+
+
 
   </style>
 </head>
