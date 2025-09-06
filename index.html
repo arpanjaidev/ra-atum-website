@@ -888,15 +888,6 @@ header{
 }
 
 
-
-  /* Header layout so nav can shrink and badge stays visible */
-header{ display:flex; align-items:center; flex-wrap:nowrap; }
-header nav{ flex:1 1 auto; min-width:0; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-nav::-webkit-scrollbar{ display:none; }
-
-/* Desktop right-side badge */
-.header-right{ margin-left:auto; display:flex; align-items:center; }
-
 /* === GOLDEN PILL DESIGN for the BNB badge (no layout changes) === */
 .chain-badge{
   --bnb:#f0b90b;
@@ -946,7 +937,6 @@ nav::-webkit-scrollbar{ display:none; }
   .chain-badge{ padding:5px 10px; gap:6px; font-size:.88rem; border-width:1.6px; }
   .bnb-logo{ width:14px; height:14px; padding:2.5px; border-width:1.4px; }
 }
-
 
 
   </style>
