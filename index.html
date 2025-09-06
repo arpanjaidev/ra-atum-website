@@ -886,29 +886,52 @@ header{
 @media (prefers-reduced-motion: reduce){
   .top-ticker .ticker{ animation: none; }
 }
+/* === FIX: keep golden badge, don't clip, no design changes === */
 
-/* keep header on one row; let nav shrink/scroll instead of cutting the badge */
-header{ flex-wrap: nowrap; }
+/* keep header on one row */
+header{
+  display: flex;
+  flex-wrap: nowrap;          /* important: single row */
+  align-items: center;
+}
+
+/* let the nav share the row AND shrink if needed */
 header nav{
-  flex: 1 1 auto;
-  min-width: 0;                /* critical: allow shrink */
-  overflow-x: auto;            /* long menus scroll */
+  width: auto !important;     /* was 100% in older CSS */
+  flex: 1 1 auto;             /* takes remaining space but can shrink */
+  min-width: 0;               /* CRITICAL: allow shrink otherwise it pushes badge out */
+  overflow-x: auto;           /* long menus can scroll instead of pushing the badge */
   -webkit-overflow-scrolling: touch;
 }
 
-/* push the badge to the far right inside nav */
-nav .chain-badge{ margin-left: auto; flex: 0 0 auto; }
+/* push the badge to the far right with margin-left:auto instead of spacer growth */
+.spacer{ flex: 0 0 0 !important; width: 0 !important; }  /* neutralize spacer */
+.header-right{
+  margin-left: auto;          /* move to right edge */
+  flex: 0 0 auto;
+}
 
-/* compact badge so it fits neatly */
-.chain-badge{ padding: 4px 10px; border-width: 1.4px; gap: 6px; font-size: .92rem; letter-spacing: .2px; }
-.bnb-logo{ width: 18px; height: 18px; }
+/* keep the full text in one line (no mid-word wrap) */
+.chain-badge span{ white-space: nowrap; }
 
-/* free a few px on desktop so everything fits comfortably */
-@media (min-width: 801px){ nav a{ padding: 8px 12px; } }
+/* compact badge so it fits neatly, keeping your golden style */
+.chain-badge{
+  padding: 4px 10px;          /* a bit smaller */
+  border-width: 1.4px;
+  gap: 6px;
+  font-size: .92rem;
+  letter-spacing: .2px;
+}
+.bnb-logo{ width:18px; height:18px; }
 
-/* ultra-narrow phones: icon-only (prevents any clipping) */
+/* free a few pixels on desktop so everything fits */
+@media (min-width: 801px){
+  nav a{ padding: 8px 12px; } /* was 10px 16px */
+}
+
+/* ultra-narrow phones: keep icon only so it can never clip */
 @media (max-width: 640px){
-  .chain-badge-text{ display: none; }
+  .chain-badge span{ display: none; }
   .chain-badge{ padding: 4px; }
 }
 
