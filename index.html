@@ -886,61 +886,54 @@ header{
 @media (prefers-reduced-motion: reduce){
   .top-ticker .ticker{ animation: none; }
 }
-/* === Placement FIX: keep golden pill but position like old version === */
-
-/* your header already has padding: 16px 3vw; so we pin the badge
-   to the right edge of that padding and center it vertically */
-.header-right{
-  margin-left: auto;          /* push to the far right */
-  display: flex;
-  align-items: center;        /* vertical center to header */
-  padding-right: 0;           /* no extra gap beyond header padding */
-}
-
-/* if you moved the badge inside <nav>, this keeps it pinned right there too */
-nav .chain-badge{ margin-left: auto; }
-
-/* make sure nav can shrink so it never pushes the badge off */
-header{ flex-wrap: nowrap; }
-header nav{
-  flex: 1 1 auto;
-  min-width: 0;               /* CRITICAL: allow shrink */
-  overflow-x: auto;           /* long menus scroll instead of clipping */
-  -webkit-overflow-scrolling: touch;
-}
-
-/* exact baseline alignment like old text (tiny nudge) */
-.chain-badge{
-  line-height: 1;             /* remove extra inner height */
-}
-@media (min-width: 801px){
-  .chain-badge{ transform: translateY(-1px); }  /* 1px up to match nav baseline */
-}
-
-/* keep your golden look & compact size from design #2 (safe re-asserts) */
+/* === GOLDEN PILL DESIGN for the BNB badge (no layout changes) === */
 .chain-badge{
   --bnb:#f0b90b;
-  background: linear-gradient(180deg,#151a22 0%,#0b1118 100%);
-  border: 2px solid var(--bnb);
-  padding: 6px 14px;
-  gap: 8px;
-  font-weight: 800;
-  font-size: .95rem;
-  letter-spacing: .25px;
-  color: #eaeff7;
-  white-space: nowrap;
+  display:inline-flex; align-items:center;
+  gap:8px;
+  padding:6px 14px;                 /* pill size */
+  border-radius:999px;
+  background:linear-gradient(180deg,#151a22 0%,#0b1118 100%); /* dark inner pill */
+  border:2px solid var(--bnb);      /* golden rim */
+  box-shadow:
+    0 0 0 3px rgba(240,185,11,.18), /* soft outer glow ring */
+    0 8px 28px rgba(240,185,11,.28),/* drop glow */
+    inset 0 1px 0 rgba(255,255,255,.08);
+  color:#eaeff7;                    /* "Powered by" */
+  font-weight:800;
+  font-size:.95rem;
+  letter-spacing:.25px;
+  white-space:nowrap;
+  text-decoration:none;
 }
-.chain-badge b{ color: var(--bnb); }
-.bnb-logo{ width: 18px; height: 18px; filter: drop-shadow(0 0 6px rgba(240,185,11,.45)); }
+.chain-badge b{ color:var(--bnb); }  /* "BNB Smart Chain" in gold */
 
-/* mobile trims so it never clips; remove the last block if you want full text always */
-@media (max-width: 980px){
-  .chain-badge{ padding: 5px 10px; gap: 6px; border-width: 1.6px; font-size: .88rem; transform:none; }
-  .bnb-logo{ width: 16px; height: 16px; }
+/* Icon in a golden mini-badge */
+.bnb-logo{
+  width:16px; height:16px;
+  padding:3px;                      /* space for the circle rim */
+  border-radius:999px;
+  background:radial-gradient(120% 120% at 30% 20%, #1c2430 0%, #0b1118 70%);
+  border:1.6px solid var(--bnb);
+  box-shadow:0 0 8px rgba(240,185,11,.45), inset 0 1px 0 rgba(255,255,255,.08);
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 0 6px rgba(240,185,11,.35));
 }
-@media (max-width: 640px){
-  .chain-badge span{ display: none; }  /* icon-only on ultra narrow */
-  .chain-badge{ padding: 4px; }
+
+/* Hover polish */
+.chain-badge:hover{
+  box-shadow:
+    0 0 0 4px rgba(240,185,11,.22),
+    0 12px 36px rgba(240,185,11,.38),
+    inset 0 1px 0 rgba(255,255,255,.10);
+  transform:translateY(-1px);
+}
+
+/* Responsive keep the look, just scale a bit */
+@media (max-width:980px){
+  .chain-badge{ padding:5px 10px; gap:6px; font-size:.88rem; border-width:1.6px; }
+  .bnb-logo{ width:14px; height:14px; padding:2.5px; border-width:1.4px; }
 }
 
   </style>
