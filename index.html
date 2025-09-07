@@ -119,18 +119,20 @@ nav a:hover {
   background: var(--sand-dark);
   color: var(--black);
 }
-    .hamburger {
-      display: none;
-      cursor: pointer;
-      font-size: 2rem;
-      background: none;
-      border: none;
-      color: var(--blue);
-      z-index: 110;
-      margin-right: 6px;
-      margin-left: 0;
-    }  
-    .open-metamask-link { display: none; }
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: var(--blue);
+  z-index: 110;
+  margin-right: 6px;
+  margin-left: 0;
+}
+
+.open-metamask-link { display: none; }
 @media (max-width: 800px) {
   .open-metamask-link {
     display: block;
@@ -144,70 +146,82 @@ nav a:hover {
   }
 }
 
-    .mobile-nav-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(18,18,22,0.99);
-      z-index: 1200;
-      justify-content: center;
-      align-items: flex-start;
-      flex-direction: column;
-      transition: opacity 0.2s;
-    }
-    .mobile-nav-overlay.active {
-      display: flex !important;
-    }
-    .mobile-nav {
-      display: flex;
-      flex-direction: column;
-      width: 100vw;
-      margin-top: 60px;
-      gap: 6px;
-    }
-    .mobile-nav a {
-      color: var(--blue);
-      background: none;
-      text-align: left;
-      font-size: 1.55rem;
-      padding: 22px 24px;
-      border-radius: 0;
-      width: 100%;
-      display: block;
-      border-bottom: 1px solid #203860;
-      transition: background 0.14s, color 0.14s;
-      font-weight: 700;
-      letter-spacing: 0.7px;
-    }
-    .mobile-nav a:last-child { border-bottom: none;}
-    .mobile-nav a:hover {
-      background: var(--sand-dark);
-      color: var(--black);
-    }
-    .mobile-nav-close {
-      position: absolute;
-      right: 24px; top: 18px;
-      background: none;
-      border: none;
-      font-size: 2.6rem;
-      color: var(--blue);
-      cursor: pointer;
-    }
-    @media (max-width: 800px) {
-      nav { display: none; }
-      .hamburger { display: block; }
-      header {
-        min-height: 62px;
-        padding: 7px 2vw 7px 2vw;
-        justify-content: flex-start;
-      }
-    }
-    @media (max-width: 500px) {
-      .mobile-nav a {
-        font-size: 1.17rem;
-        padding: 14px 14px;
-      }
-    }
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(18,18,22,0.99);
+  z-index: 1200;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  transition: opacity 0.2s;
+}
+.mobile-nav-overlay.active {
+  display: flex !important;
+}
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  margin-top: 60px;
+  gap: 6px;
+}
+.mobile-nav a {
+  color: var(--blue);
+  background: none;
+  text-align: left;
+  font-size: 1.55rem;
+  padding: 22px 24px;
+  border-radius: 0;
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid #203860;
+  transition: background 0.14s, color 0.14s;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a:hover {
+  background: var(--sand-dark);
+  color: var(--black);
+}
+.mobile-nav-close {
+  position: absolute;
+  right: 24px; top: 18px;
+  background: none;
+  border: none;
+  font-size: 2.6rem;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+/* === MOBILE LAYOUT: put hamburger on the RIGHT === */
+@media (max-width: 800px) {
+  nav { display: none; }              /* hide desktop nav */
+  .hamburger{
+    display: block;
+    order: 3;                         /* ensure it's last in the flex row */
+    margin-left: auto;                /* push to the right edge */
+    margin-right: 6px;
+    padding: 6px 10px;                /* nicer tap target */
+    line-height: 1;
+  }
+  .header-right { display: none; }    /* desktop BNB badge hidden on mobile (mobile copy is in overlay) */
+  header {
+    min-height: 62px;
+    padding: 7px 2vw;
+    justify-content: flex-end;        /* align items to the right */
+  }
+}
+
+@media (max-width: 500px) {
+  .mobile-nav a {
+    font-size: 1.17rem;
+    padding: 14px 14px;
+  }
+}
+
 
     /* === HIGHLIGHT/CARD STYLE FOR ALL SECTIONS === */
     section, #buy-section, #audits {
