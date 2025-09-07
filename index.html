@@ -60,167 +60,106 @@
     }
     * { font-family: var(--digital-font), monospace !important; }
    /* === HEADER / NAV (one-line menu, ticker on its own row) === */
-header {
-  position: sticky; top: 0;
+/* === HEADER (clean) ============================================== */
+header{
+  position: sticky; top: 0; z-index: 100;
   width: 100%;
-  background: rgba(23, 22, 22, 0.99);
+  display: flex; flex-wrap: wrap; align-items: center; align-content: flex-start;
+  padding: 16px 3vw; min-height: 48px;
+  background: rgba(23,22,22,.99);
   box-shadow: 0 2px 18px #00b4fa44;
-  z-index: 100;
-  display: flex;
-  flex-wrap: wrap;               /* allow ticker to be its own row */
-  align-items: center;
-  align-content: flex-start;
-  padding: 16px 3vw;
-  min-height: 48px;
-  transition: padding 0.2s, min-height 0.2s;
+  transition: padding .2s, min-height .2s;
 }
 
-/* if your top ticker is inside <header>, give it its own full-width row */
-.top-ticker {
-  order: -1;                     /* show first row */
-  flex: 1 0 100%;                /* full width */
-  margin-bottom: 6px;
+/* If your ticker sits inside <header>, make it a full-width first row */
+.top-ticker{ order:-1; flex:1 0 100%; margin-bottom:6px; }
+
+/* === DESKTOP NAV ================================================== */
+nav{
+  display:flex; gap:16px; align-items:center;
+  flex-wrap:nowrap; white-space:nowrap; width:100%;
+  overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+nav::-webkit-scrollbar{ display:none; }
+
+nav a{
+  flex:0 0 auto;
+  color:var(--blue); background:none; text-decoration:none;
+  font-weight:700; font-size:1rem; line-height:1;
+  padding:10px 16px; border-radius:6px;
+  transition:background .19s, color .19s, font-size .19s, padding .19s;
+}
+nav a:hover{ background:var(--sand-dark); color:var(--black); }
+
+/* === HAMBURGER ==================================================== */
+.hamburger{
+  display:none; cursor:pointer;
+  font-size:2rem; line-height:1;
+  background:none; border:none; color:var(--blue);
+  z-index:110; margin-left:0; margin-right:6px;
 }
 
-nav {
-  display: flex;
-  flex-wrap: nowrap;             /* DON'T wrap items */
-  white-space: nowrap;           /* keep each item on one line */
-  gap: 16px;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  z-index: 102;
+/* === DESKTOP BADGE (right side) ================================== */
+.header-right{ margin-left:auto; display:flex; align-items:center; gap:10px; }
 
-  /* allow gentle horizontal scroll if the row gets too long */
-  overflow-x: auto;
-  scrollbar-width: none;         /* Firefox hide scrollbar */
-  -webkit-overflow-scrolling: touch;
+/* === MOBILE OVERLAY ============================================== */
+.mobile-nav-overlay{
+  display:none; position:fixed; inset:0; z-index:1200;
+  background:rgba(18,18,22,.99);
+  justify-content:center; align-items:flex-start; flex-direction:column;
+  transition:opacity .2s;
 }
-nav::-webkit-scrollbar { display: none; } /* WebKit hide scrollbar */
+.mobile-nav-overlay.active{ display:flex!important; }
 
-nav a {
-  color: var(--blue);
-  font-weight: 700;
-  text-decoration: none;
-  font-size: 1rem;
-  border-radius: 6px;
-  padding: 10px 16px;
-  transition: background .19s, color .19s, font-size .19s, padding .19s;
-  letter-spacing: 0.5px;
-  line-height: 1;
-  cursor: pointer;
-  background: none;
-
-  white-space: nowrap;           /* prevent internal breaks */
-  flex: 0 0 auto;                /* don’t shrink */
+.mobile-nav{
+  display:flex; flex-direction:column; width:100vw;
+  gap:6px; margin-top:60px;
 }
-nav a:hover {
-  background: var(--sand-dark);
-  color: var(--black);
+.mobile-nav a{
+  display:block; width:100%; text-align:left;
+  color:var(--blue); background:none; font-weight:700; letter-spacing:.7px;
+  font-size:1.55rem; padding:22px 24px; border-bottom:1px solid #203860;
+  transition:background .14s, color .14s;
+}
+.mobile-nav a:last-child{ border-bottom:none; }
+.mobile-nav a:hover{ background:var(--sand-dark); color:var(--black); }
+.mobile-nav-close{
+  position:absolute; top:18px; right:24px;
+  background:none; border:none; font-size:2.6rem; color:var(--blue); cursor:pointer;
 }
 
-.hamburger {
-  display: none;
-  cursor: pointer;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: var(--blue);
-  z-index: 110;
-  margin-right: 6px;
-  margin-left: 0;
-}
-
-.open-metamask-link { display: none; }
-@media (max-width: 800px) {
-  .open-metamask-link {
-    display: block;
-    background: #00b4fa;
-    color: #171818 !important;
-    font-weight: bold;
-    margin-top: 8px;
-    border-radius: 7px;
-    padding: 11px 16px;
-    text-align: center;
+/* MetaMask deep link button (mobile only) */
+.open-metamask-link{ display:none; }
+@media (max-width:800px){
+  .open-metamask-link{
+    display:block; text-align:center;
+    background:#00b4fa; color:#171818!important; font-weight:700;
+    margin-top:8px; border-radius:7px; padding:11px 16px;
   }
 }
 
-.mobile-nav-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(18,18,22,0.99);
-  z-index: 1200;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-  transition: opacity 0.2s;
-}
-.mobile-nav-overlay.active {
-  display: flex !important;
-}
-.mobile-nav {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  margin-top: 60px;
-  gap: 6px;
-}
-.mobile-nav a {
-  color: var(--blue);
-  background: none;
-  text-align: left;
-  font-size: 1.55rem;
-  padding: 22px 24px;
-  border-radius: 0;
-  width: 100%;
-  display: block;
-  border-bottom: 1px solid #203860;
-  transition: background 0.14s, color 0.14s;
-  font-weight: 700;
-  letter-spacing: 0.7px;
-}
-.mobile-nav a:last-child { border-bottom: none; }
-.mobile-nav a:hover {
-  background: var(--sand-dark);
-  color: var(--black);
-}
-.mobile-nav-close {
-  position: absolute;
-  right: 24px; top: 18px;
-  background: none;
-  border: none;
-  font-size: 2.6rem;
-  color: var(--blue);
-  cursor: pointer;
-}
+/* === MOBILE LAYOUT (hamburger on the RIGHT) ====================== */
+@media (max-width:800px){
+  nav{ display:none; }                 /* hide desktop nav */
+  .header-right{ display:none; }       /* desktop BNB badge hidden (mobile copy is in overlay) */
 
-/* === MOBILE LAYOUT: put hamburger on the RIGHT === */
-@media (max-width: 800px) {
-  nav { display: none; }              /* hide desktop nav */
   .hamburger{
-    display: block;
-    order: 3;                         /* ensure it's last in the flex row */
-    margin-left: auto;                /* push to the right edge */
-    margin-right: 6px;
-    padding: 6px 10px;                /* nicer tap target */
-    line-height: 1;
+    display:block;
+    order:3;                           /* make it last in the row */
+    margin-left:auto; margin-right:6px;
+    padding:6px 10px;                  /* better tap target */
   }
-  .header-right { display: none; }    /* desktop BNB badge hidden on mobile (mobile copy is in overlay) */
-  header {
-    min-height: 62px;
-    padding: 7px 2vw;
-    justify-content: flex-end;        /* align items to the right */
+
+  header{
+    min-height:62px; padding:7px 2vw;
+    justify-content:flex-end;          /* align items to the right */
   }
 }
 
-@media (max-width: 500px) {
-  .mobile-nav a {
-    font-size: 1.17rem;
-    padding: 14px 14px;
-  }
+@media (max-width:500px){
+  .mobile-nav a{ font-size:1.17rem; padding:14px 14px; }
 }
+
 
 
     /* === HIGHLIGHT/CARD STYLE FOR ALL SECTIONS === */
