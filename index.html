@@ -945,7 +945,7 @@ header{
       <span class="ticker-sep">•</span>
       <span class="ticker-pill">Launch ₹15 ($0.17)</span>
       <span class="ticker-sep">•</span>
-      <a class="ticker-link" href="https://ra-atum-wallet.vercel.app/" target="_blank" rel="noopener">Presale Live – Buy Now</a>
+      <a class="ticker-link" href="https://wallet.raatumtoken.com/" target="_blank" rel="noopener">Presale Live – Buy Now</a>
     </div>
     <!-- Row B (duplicate for seamless scroll) -->
     <div class="ticker-row" aria-hidden="true">
@@ -955,7 +955,7 @@ header{
       <span class="ticker-sep">•</span>
       <span class="ticker-pill">Launch ₹15 ($0.17)</span>
       <span class="ticker-sep">•</span>
-      <a class="ticker-link" href="https://ra-atum-wallet.vercel.app/" target="_blank" rel="noopener">Presale Live – Buy Now</a>
+      <a class="ticker-link" href="https://wallet.raatumtoken.com/" target="_blank" rel="noopener">Presale Live – Buy Now</a>
     </div>
   </div>
 </div>
@@ -975,6 +975,7 @@ header{
   <a href="https://wallet.raatumtoken.com/" class="connect-wallet-btn" target="_blank">CONNECT WALLET</a>
 </nav>
 
+<<<<<<< HEAD
 <!-- DESKTOP badge (separate from nav so it never gets cut) -->
 <div class="header-right">
   <a class="chain-badge"
@@ -984,6 +985,12 @@ header{
     <span class="chain-badge-text">Powered by <b>BNB Smart Chain</b></span>
   </a>
 </div>
+=======
+      <a href="THOTH-VPS-VPN.html">THOTH VPS VPN</a>
+      
+      <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
+      <a href="https://wallet.raatumtoken.com/" class="connect-wallet-btn" target="_blank">CONNECT WALLET</a>
+>>>>>>> d5bded5 (Webhook Live Update Test)
 
 <div class="mobile-nav-overlay" id="mobile-nav-overlay">
   <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
@@ -998,6 +1005,7 @@ header{
     <a href="https://wallet.raatumtoken.com/" class="CONNECT-WALLET-btn" target="_blank">CONNECT WALLET</a>
     <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html" target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
 
+<<<<<<< HEAD
     <!-- MOBILE-ONLY badge (must live INSIDE .mobile-nav) -->
     <a class="chain-badge chain-badge--mobile"
        href="https://www.bnbchain.org/en/bnb-smart-chain"
@@ -1006,6 +1014,12 @@ header{
       <span class="chain-badge-text">Powered by <b>BNB Smart Chain</b></span>
     </a>
   </div>
+=======
+  <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" onclick="closeMobileNav()">DAPP</a>
+  <a href="https://wallet.raatumtoken.com/" class="CONNECT-WALLET-btn" target="_blank">CONNECT WALLET</a>
+
+  <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html" target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
+>>>>>>> d5bded5 (Webhook Live Update Test)
 </div>
 
     </div>  
@@ -1022,7 +1036,7 @@ header{
       <span id="presale-raised">Raised: Coming Soon</span>
     </div>
    <div class="buy-form">
-  <a href="https://ra-atum-wallet.vercel.app/" target="_blank" id="buy-btn-link" class="buy-token-btn">Buy RA Tokens</a>
+  <a href="https://wallet.raatumtoken.com/" target="_blank" id="buy-btn-link" class="buy-token-btn">Buy RA Tokens</a>
 </div>
 
     <div class="buy-message" id="buy-message"></div>
@@ -1472,6 +1486,100 @@ typeFooterLine();
 
 
 
+  <!-- BEGIN: wallet ref forward -->
+  <script>
+    (function () {
+      try {
+        var u = new URL(window.location.href);
+        var ref = u.searchParams.get('ref');
+        var valid = /^0x[a-fA-F0-9]{40}$/.test(ref || '');
+        if (!valid) return;
+        document.querySelectorAll('a[href^="https://wallet.raatumtoken.com"]').forEach(function (a) {
+          try {
+            var t = new URL(a.href);
+            if (!t.searchParams.get('ref')) {
+              t.searchParams.set('ref', ref);
+              a.href = t.toString();
+            }
+          } catch (e) {}
+        });
+      } catch (e) {}
+    })();
+  </script>
+  <!-- END: wallet ref forward -->
+  <!-- BEGIN: capture ref on main site -->
+  <script>
+    (function () {
+      try {
+        var url = new URL(window.location.href);
+        var ref = url.searchParams.get('ref');
+        if (ref && /^0x[a-fA-F0-9]{40}$/.test(ref)) {
+          var maxAge = 60 * 60 * 24 * 30; // 30 days
+          document.cookie = "ra_ref=" + ref + "; path=/; max-age=" + maxAge + "; domain=.raatumtoken.com; samesite=Lax";
+          try { localStorage.setItem('ra_ref', ref); } catch (e) {}
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <!-- END: capture ref on main site -->
+  <!-- BEGIN: wallet ref forward -->
+  <script>
+    (function () {
+      function getRef() {
+        try {
+          // cookie first
+          var m = document.cookie.match(/(?:^|;\s*)ra_ref=([^;]+)/);
+          if (m) return decodeURIComponent(m[1]);
+          // localStorage fallback
+          try {
+            var ls = localStorage.getItem('ra_ref');
+            if (ls) return ls;
+          } catch (e) {}
+          // or URL
+          var url = new URL(window.location.href);
+          var q = url.searchParams.get('ref');
+          if (q && /^0x[a-fA-F0-9]{40}$/.test(q)) return q;
+        } catch (e) {}
+        return null;
+      }
+
+      function appendRef(href, ref) {
+        try {
+          var u = new URL(href, window.location.origin);
+          if (!u.searchParams.has('ref')) u.searchParams.set('ref', ref);
+          return u.toString();
+        } catch (e) {
+          return href;
+        }
+      }
+
+      var ref = getRef();
+      if (!ref) return;
+
+      // Update existing links on DOM load
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('a[href]').forEach(function (a) {
+          var isWalletHost = a.hostname === 'wallet.raatumtoken.com';
+          var isLocalWallet = a.getAttribute('href') === '/wallet.html';
+          if (isWalletHost || isLocalWallet) {
+            a.href = appendRef(a.href, ref);
+          }
+        });
+      });
+
+      // Intercept clicks (covers dynamically added links)
+      document.addEventListener('click', function (ev) {
+        var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+        if (!a) return;
+        var isWalletHost = a.hostname === 'wallet.raatumtoken.com';
+        var isLocalWallet = a.getAttribute('href') === '/wallet.html';
+        if (isWalletHost || isLocalWallet) {
+          a.href = appendRef(a.href, ref);
+        }
+      }, { capture: true });
+    })();
+  </script>
+  <!-- END: wallet ref forward -->
 </body>
 </html>
 
