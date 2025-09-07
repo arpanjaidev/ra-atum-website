@@ -960,70 +960,55 @@ header{
   </div>
 </div>
   <header>
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+    <i class="fas fa-bars"></i>
+  </button>
 
+  <nav>
+    <a href="#features">FEATURES</a>
+    <a href="#roadmap">ROADMAP</a>
+    <a href="nft-gallery.html">NFT GALLERY</a>
+    <a href="tokenomics.html">TOKENOMICS</a>
+    <a href="THOTH-VPS-VPN.html">THOTH VPS VPN</a>
+    <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" rel="noopener">DAPP</a>
+    <a href="https://wallet.raatumtoken.com/" class="connect-wallet-btn" target="_blank" rel="noopener">CONNECT WALLET</a>
+  </nav>
 
-    <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
-      <i class="fas fa-bars"></i>
-    </button>
-<nav>
-  <a href="#features">FEATURES</a>
-  <a href="#roadmap">ROADMAP</a>
-  <a href="nft-gallery.html">NFT GALLERY</a>
-  <a href="tokenomics.html">TOKENOMICS</a>
-  <a href="THOTH-VPS-VPN.html">THOTH VPS VPN</a>
-  <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
-  <a href="https://wallet.raatumtoken.com/" class="connect-wallet-btn" target="_blank">CONNECT WALLET</a>
-</nav>
-
-<<<<<<< HEAD
-<!-- DESKTOP badge (separate from nav so it never gets cut) -->
-<div class="header-right">
-  <a class="chain-badge"
-     href="https://www.bnbchain.org/en/bnb-smart-chain"
-     target="_blank" rel="noopener" aria-label="Powered by BNB Smart Chain">
-    <img src="./bnb-chain-binance-smart-chain-logo.png" alt="BNB Smart Chain logo" class="bnb-logo">
-    <span class="chain-badge-text">Powered by <b>BNB Smart Chain</b></span>
-  </a>
-</div>
-=======
-      <a href="THOTH-VPS-VPN.html">THOTH VPS VPN</a>
-      
-      <a href="https://ra-wallet-dapp.vercel.app/" target="_blank">DAPP</a>
-      <a href="https://wallet.raatumtoken.com/" class="connect-wallet-btn" target="_blank">CONNECT WALLET</a>
->>>>>>> d5bded5 (Webhook Live Update Test)
-
-<div class="mobile-nav-overlay" id="mobile-nav-overlay">
-  <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
-
-  <div class="mobile-nav">
-    <a href="#features" onclick="closeMobileNav()">FEATURES</a>
-    <a href="#roadmap" onclick="closeMobileNav()">ROADMAP</a>
-    <a href="nft-gallery.html" onclick="closeMobileNav()">NFT GALLERY</a>
-    <a href="tokenomics.html" onclick="closeMobileNav()">TOKENOMICS</a>
-    <a href="THOTH-VPS-VPN.html" onclick="closeMobileNav()">THOTH VPS VPN</a>
-    <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" onclick="closeMobileNav()">DAPP</a>
-    <a href="https://wallet.raatumtoken.com/" class="CONNECT-WALLET-btn" target="_blank">CONNECT WALLET</a>
-    <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html" target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
-
-<<<<<<< HEAD
-    <!-- MOBILE-ONLY badge (must live INSIDE .mobile-nav) -->
-    <a class="chain-badge chain-badge--mobile"
+  <!-- DESKTOP badge (separate from nav so it never gets cut) -->
+  <div class="header-right">
+    <a class="chain-badge"
        href="https://www.bnbchain.org/en/bnb-smart-chain"
-       target="_blank" rel="noopener">
+       target="_blank" rel="noopener" aria-label="Powered by BNB Smart Chain">
       <img src="./bnb-chain-binance-smart-chain-logo.png" alt="BNB Smart Chain logo" class="bnb-logo">
       <span class="chain-badge-text">Powered by <b>BNB Smart Chain</b></span>
     </a>
   </div>
-=======
-  <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" onclick="closeMobileNav()">DAPP</a>
-  <a href="https://wallet.raatumtoken.com/" class="CONNECT-WALLET-btn" target="_blank">CONNECT WALLET</a>
 
-  <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html" target="_blank" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
->>>>>>> d5bded5 (Webhook Live Update Test)
-</div>
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <button class="mobile-nav-close" id="close-mobile-nav" aria-label="Close menu">&times;</button>
 
-    </div>  
-  </header>
+    <div class="mobile-nav">
+      <a href="#features" onclick="closeMobileNav()">FEATURES</a>
+      <a href="#roadmap" onclick="closeMobileNav()">ROADMAP</a>
+      <a href="nft-gallery.html" onclick="closeMobileNav()">NFT GALLERY</a>
+      <a href="tokenomics.html" onclick="closeMobileNav()">TOKENOMICS</a>
+      <a href="THOTH-VPS-VPN.html" onclick="closeMobileNav()">THOTH VPS VPN</a>
+      <a href="https://ra-wallet-dapp.vercel.app/" target="_blank" rel="noopener" onclick="closeMobileNav()">DAPP</a>
+      <a href="https://wallet.raatumtoken.com/" class="connect-wallet-btn" target="_blank" rel="noopener" onclick="closeMobileNav()">CONNECT WALLET</a>
+      <a href="https://metamask.app.link/dapp/ra-atum-website.vercel.app/index.html"
+         target="_blank" rel="noopener" class="open-metamask-link" onclick="closeMobileNav()">Open in MetaMask Browser</a>
+
+      <!-- MOBILE-ONLY badge (lives INSIDE .mobile-nav) -->
+      <a class="chain-badge chain-badge--mobile"
+         href="https://www.bnbchain.org/en/bnb-smart-chain"
+         target="_blank" rel="noopener">
+        <img src="./bnb-chain-binance-smart-chain-logo.png" alt="BNB Smart Chain logo" class="bnb-logo">
+        <span class="chain-badge-text">Powered by <b>BNB Smart Chain</b></span>
+      </a>
+    </div>
+  </div>
+</header>
+
   
   <!-- BUY RA TOKENS (PRESALE) SECTION -->
   <section id="buy-section">
