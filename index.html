@@ -1032,6 +1032,26 @@ img[src$="RAROBO.png"]{
 /* extra: remove focus ring on image (some browsers) */
 .mid-banner img:focus{ outline: 0 !important; }
 
+    /* RAROBO image: only the PNG, kill any global rings/underlines/outlines */
+.rarobo-only{
+  display:block;
+  margin:16px auto;
+  width:150px;                  /* adjust if you want it bigger */
+  height:auto;
+  background:transparent !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  filter:none !important;
+  -webkit-filter:none !important;
+  text-decoration:none !important;
+}
+
+/* if some global styles use pseudo-elements for borders, disable them */
+.rarobo-only::before,
+.rarobo-only::after{ content:none !important; display:none !important; }
+
+
 
 
 
@@ -1079,15 +1099,9 @@ img[src$="RAROBO.png"]{
   </nav>
 
 
-   <!-- HERO SECTION -->
+ 
   
-<!-- HERO SECTION -->
-<section class="hero">
-<!-- RAROBO banner (between header and hero) -->
-<div class="mid-banner">
- <img src="RAROBO.png?v=2" alt="RA Atum – RAROBO" loading="lazy">
 
-</div>
   
 
   <!-- DESKTOP badge (separate from nav so it never gets cut) -->
@@ -1128,12 +1142,10 @@ img[src$="RAROBO.png"]{
 </header>
 
 
+  <img class="rarobo-only" src="RAROBO.png?v=6" alt="RA Atum – RAROBO" loading="lazy" decoding="async">
+
+
   
-
- 
-
-
-
   
   <!-- BUY RA TOKENS (PRESALE) SECTION -->
   <section id="buy-section">
