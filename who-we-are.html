@@ -6,18 +6,31 @@
 <title>Who We Are – RA ATUM</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#101015">
+
 <style>
   :root{ --blue:#00b4fa; --blue2:#23e6ff; --sand:#e7d7b6; --text:#f6e7c1; }
   *{ box-sizing:border-box; font-family:'Share Tech Mono', monospace !important; }
   html,body{ height:100%; margin:0 }
-  body{ color:var(--text); background: radial-gradient(1200px 800px at 50% 0%, #0b0e15 0%, #0b0e15 40%, #101827 100%); }
-  body::before{ content:""; position:fixed; inset:0; pointer-events:none; opacity:.18;
-    background:repeating-linear-gradient(180deg, #00b4fa11 0 2px, transparent 2px 6px); mix-blend-mode:screen; }
+  body{
+    color:var(--text);
+    background: radial-gradient(1200px 800px at 50% 0%, #0b0e15 0%, #0b0e15 40%, #101827 100%);
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.18;
+    background:repeating-linear-gradient(180deg, #00b4fa11 0 2px, transparent 2px 6px);
+    mix-blend-mode:screen;
+  }
 
-  /* Header with Connect Wallet button */
-  header{ position:sticky; top:0; z-index:10; padding:14px 3vw; background:#11161cf5; border-bottom:1px solid #00b4fa55;
-          display:flex; align-items:center; justify-content:space-between; gap:12px; box-shadow:0 2px 18px #00b4fa44; }
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:10; padding:14px 3vw;
+    background:#11161cf5; border-bottom:1px solid #00b4fa55;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    box-shadow:0 2px 18px #00b4fa44;
+  }
   header a.back{ color:var(--blue); font-weight:800; text-decoration:none; }
+
+  /* Connect Wallet button */
   .connect-btn{
     border:none; cursor:pointer; font-weight:900; letter-spacing:.5px;
     padding:10px 16px; border-radius:999px;
@@ -27,35 +40,37 @@
   }
   .connect-btn .dot{ width:9px; height:9px; border-radius:50%; background:#0aff7a; box-shadow:0 0 10px #0aff7a; }
   .connect-btn.is-disconnected .dot{ background:#ff6a6a; box-shadow:0 0 10px #ff6a6a; }
-  .connect-btn small{ opacity:.9; font-weight:800 }
 
   main{ max-width:1120px; margin:40px auto; padding:0 4vw; }
-  .card{ background:linear-gradient(120deg,#0f1830 0%, #172a40 100%);
-         border:2px solid #00b4fa; border-radius:18px; box-shadow:0 8px 30px #00b4fa33;
-         padding:26px; margin:24px 0; position:relative; }
-  h1{ margin:0 0 12px; text-transform:uppercase; letter-spacing:2px; font-size:2.2rem;
-      background:linear-gradient(90deg,#fff 8%, var(--blue) 60%, var(--blue2) 98%);
-      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .card{
+    background:linear-gradient(120deg,#0f1830 0%, #172a40 100%);
+    border:2px solid #00b4fa; border-radius:18px; box-shadow:0 8px 30px #00b4fa33;
+    padding:26px; margin:24px 0; position:relative;
+  }
+  h1{
+    margin:0 0 12px; text-transform:uppercase; letter-spacing:2px; font-size:2.2rem;
+    background:linear-gradient(90deg,#fff 8%, var(--blue) 60%, var(--blue2) 98%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
   .lead{ color:var(--sand); line-height:1.6; font-size:1.06rem; }
 
-  /* GRID */
+  /* GRID (Profile/Holo first) */
   .holo-grid{ display:grid; grid-template-columns: 1.05fr 1.1fr 0.85fr; gap:18px; }
-  @media (max-width:980px){ .holo-grid{ grid-template-columns:1fr; } }
+  @media (max-width:980px){
+    .holo-grid{ grid-template-columns:1fr; }
+  }
 
   /* PROFILE panel */
-  .profile-panel{ background:#0b152be6; border:1.8px solid #00b4fa66; border-radius:16px; padding:18px; position:relative; overflow:hidden; }
+  .profile-panel{
+    background:#0b152be6; border:1.8px solid #00b4fa66; border-radius:16px; padding:18px; position:relative; overflow:hidden;
+  }
   .profile-title{ display:flex; align-items:center; gap:10px; margin-bottom:12px; font-weight:900; letter-spacing:1.5px; color:#cfeaff; }
   .profile-title .dot{ width:8px; height:8px; border-radius:50%; background:var(--blue); box-shadow:0 0 14px var(--blue); }
 
-  /* avatar + uploader */
-  .avatar-wrap{ display:flex; align-items:center; gap:12px; margin-bottom:10px; }
-  .avatar{ width:84px; height:84px; border-radius:50%; overflow:hidden; border:2px solid #3ca9ff; box-shadow:0 0 18px #00b4fa66; background:#0a213a; }
-  .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .upload-btn{
-    display:inline-block; padding:7px 11px; border-radius:10px; cursor:pointer; user-select:none;
-    background:#102a4d; color:#cfeaff; border:1px solid #2c4c72; font-weight:800;
-  }
-  .upload-btn:hover{ background:#14335e; border-color:#3da8ff; color:#fff; }
+  /* avatar (locked: only via code path) */
+  .avatar-wrap{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .avatar{ width:88px; height:88px; border-radius:50%; overflow:hidden; border:2px solid #3ca9ff; box-shadow:0 0 18px #00b4fa66; background:#0a213a; }
+  .avatar img{ width:100%; height:100%; object-fit:cover; display:block; user-select:none; pointer-events:none; } /* no UI change */
 
   .kv{ display:grid; grid-template-columns:110px 1fr; gap:8px 10px; font-size:.98rem; }
   .kv b{ color:#9edcff }
@@ -84,10 +99,16 @@
 
   /* SWITCHER */
   .switcher{ display:flex; flex-direction:column; gap:10px; }
-  .role-btn{ background:#0b152be6; border:1.6px solid #2c4c72; color:#cfeaff;
-             padding:12px 14px; border-radius:12px; cursor:pointer; text-align:left;
-             box-shadow:0 6px 18px #00b4fa22; transition:transform .14s, border-color .14s, background .14s, color .14s;
-             font-weight:800; letter-spacing:.6px; }
+  @media (max-width:980px){
+    .switcher{ flex-direction:row; overflow-x:auto; padding-bottom:6px; }
+    .switcher::-webkit-scrollbar{ height:6px; } .switcher::-webkit-scrollbar-thumb{ background:#00b4fa44; border-radius:999px; }
+  }
+  .role-btn{
+    background:#0b152be6; border:1.6px solid #2c4c72; color:#cfeaff;
+    padding:12px 14px; border-radius:12px; cursor:pointer; text-align:left;
+    box-shadow:0 6px 18px #00b4fa22; transition:transform .14s, border-color .14s, background .14s, color .14s;
+    font-weight:800; letter-spacing:.6px; white-space:nowrap;
+  }
   .role-btn small{ display:block; opacity:.75; font-weight:700 }
   .role-btn.active,.role-btn:hover{ border-color:#00b4fa; background:#11274a; color:#fff; transform:translateY(-2px); }
 
@@ -99,42 +120,24 @@
 <body>
 <header>
   <a class="back" href="index.html">⟵ Back to Home</a>
-
-  <!-- Beautiful Connect Wallet button -->
   <button id="connectBtn" class="connect-btn is-disconnected" onclick="connectWallet()">
     <span class="dot"></span><span id="connectText">Connect Wallet</span>
   </button>
 </header>
 
 <main>
-  <!-- Our Team text -->
-  <section class="card">
-    <h1>Who We Are</h1>
-    <p class="lead"><b>Our Team.</b><br>
-      At RA, we are powered by innovation, compassion, and a mission to reshape how children’s fashion and technology come together. Behind the scenes, a strong team of 30 expert engineers drives our ecosystem — combining creativity, code, and care to support every branch of our brand.<br><br>
-      From our stylish, quality kidswear and curated toys to our socially driven donation-for-reward system, our team is building more than a store — we’re building a platform for purpose.<br><br>
-      Our engineers manage everything from smart contract development to backend infrastructure using secure VPS hosting, VPN-protected environments, and scalable cloud systems. Whether it's handling blockchain integration for RA Atum Token, or managing our secure wallet connections, automated token rewards, and presale systems, we keep our operations safe, fast, and future-ready.<br><br>
-      We’re not just growing a brand — we’re nurturing a tech-enabled, child-focused ecosystem with ethics, security, and innovation at its heart. Every project we launch, every donor we reward, and every product we ship is a result of teamwork, precision, and passion.
-    </p>
-  </section>
 
-  <!-- Hologram + Profile + Switcher -->
+  <!-- 1) PROFILE / TEAM (first) -->
   <section class="card">
     <div class="holo-grid">
       <!-- PROFILE -->
       <aside class="profile-panel">
         <div class="profile-title"><span class="dot"></span><span>PROFILE</span></div>
 
-        <!-- Avatar + upload -->
         <div class="avatar-wrap">
           <div class="avatar"><img id="p-photo" alt="Profile Photo"></div>
-          <label class="upload-btn">
-            <input id="photo-input" type="file" accept="image/*" hidden>
-            Change Photo
-          </label>
         </div>
 
-        <!-- Key/Value -->
         <div class="kv">
           <b>Role</b>     <span id="p-role">CEO / Founder</span>
           <b>Name</b>     <span id="p-name">A. Sharma</span>
@@ -185,6 +188,17 @@
         <button class="role-btn" onclick="selectRole(4)"><span>Community Lead</span><small>S. Iyer</small></button>
       </nav>
     </div>
+  </section>
+
+  <!-- 2) WHO WE ARE (second) -->
+  <section class="card">
+    <h1>Who We Are</h1>
+    <p class="lead"><b>Our Team.</b><br>
+      At RA, we are powered by innovation, compassion, and a mission to reshape how children’s fashion and technology come together. Behind the scenes, a strong team of 30 expert engineers drives our ecosystem — combining creativity, code, and care to support every branch of our brand.<br><br>
+      From our stylish, quality kidswear and curated toys to our socially driven donation-for-reward system, our team is building more than a store — we’re building a platform for purpose.<br><br>
+      Our engineers manage everything from smart contract development to backend infrastructure using secure VPS hosting, VPN-protected environments, and scalable cloud systems. Whether it's handling blockchain integration for RA Atum Token, or managing our secure wallet connections, automated token rewards, and presale systems, we keep our operations safe, fast, and future-ready.<br><br>
+      We’re not just growing a brand — we’re nurturing a tech-enabled, child-focused ecosystem with ethics, security, and innovation at its heart. Every project we launch, every donor we reward, and every product we ship is a result of teamwork, precision, and passion.
+    </p>
   </section>
 
   <footer>
@@ -238,53 +252,57 @@
 </div>
 
 <script>
-/* ========= Connect Wallet (MetaMask) ========= */
+/* ======= CHANGE PHOTOS HERE (locked; only via code) ======= */
+/* Put your images on the server and set these paths. */
+var PHOTOS = {
+  ceo:       "assets/team/ceo.jpg",
+  techlead:  "assets/team/techlead.jpg",
+  smc:       "assets/team/smc.jpg",
+  devops:    "assets/team/devops.jpg",
+  community: "assets/team/community.jpg"
+};
+/* (Tip: keep them 600×600 JPG or PNG, centered, to fit the round avatar.) */
+
+/* ======= Connect Wallet ======= */
 function shorten(addr){ return addr ? addr.slice(0,6)+'…'+addr.slice(-4) : ''; }
 async function connectWallet(){
   var btn = document.getElementById('connectBtn'), text = document.getElementById('connectText');
   if(!window.ethereum){ text.textContent = 'Install MetaMask'; btn.classList.add('is-disconnected'); return; }
   try{
     var accts = await window.ethereum.request({ method:'eth_requestAccounts' });
-    if(accts && accts[0]){
-      text.textContent = shorten(accts[0]);
-      btn.classList.remove('is-disconnected');
-    }
+    if(accts && accts[0]){ text.textContent = shorten(accts[0]); btn.classList.remove('is-disconnected'); }
   }catch(e){ text.textContent = 'Connect Wallet'; btn.classList.add('is-disconnected'); }
 }
 
-/* ========= Roles / Holograms ========= */
+/* ======= Roles / Holograms / Profile ======= */
 var ROLES = [
-  {title:"CEO / Founder", name:"A. Sharma", focus:"Vision, Partnerships, Growth",
+  {key:"ceo", title:"CEO / Founder", name:"A. Sharma", focus:"Vision, Partnerships, Growth",
    stack:"Strategy · Tokenomics · Legal", loc:"Global", skills:[92,60,70],
-   tags:["Leadership","Investor Relations","Roadmap","Compliance"], svgId:"svg-ceo", photo:null},
-  {title:"Tech Lead", name:"R. Mehta", focus:"Architecture & Scaling",
+   tags:["Leadership","Investor Relations","Roadmap","Compliance"], svgId:"svg-ceo"},
+  {key:"techlead", title:"Tech Lead", name:"R. Mehta", focus:"Architecture & Scaling",
    stack:"Node.js · EVM · React · Cloud", loc:"Remote / Hybrid", skills:[85,88,72],
-   tags:["System Design","APIs","Monitoring","Performance"], svgId:"svg-tech", photo:null},
-  {title:"Smart-Contract Engineer", name:"N. Khan", focus:"Solidity & Auditable Code",
+   tags:["System Design","APIs","Monitoring","Performance"], svgId:"svg-tech"},
+  {key:"smc", title:"Smart-Contract Engineer", name:"N. Khan", focus:"Solidity & Auditable Code",
    stack:"Solidity · Hardhat · Ethers · BSC", loc:"Remote", skills:[95,62,86],
-   tags:["ERC/BEP","Gas Optimization","Testing","Audits"], svgId:"svg-dev", photo:null},
-  {title:"Backend / DevOps", name:"P. Gupta", focus:"APIs, VPS, VPN, Security",
+   tags:["ERC/BEP","Gas Optimization","Testing","Audits"], svgId:"svg-dev"},
+  {key:"devops", title:"Backend / DevOps", name:"P. Gupta", focus:"APIs, VPS, VPN, Security",
    stack:"Node.js · Nginx · MongoDB · CI/CD", loc:"THOTH VPS", skills:[70,92,88],
-   tags:["VPS Hardening","Backups","SSL/Ingress","Autoscale"], svgId:"svg-ops", photo:null},
-  {title:"Community Lead", name:"S. Iyer", focus:"Content, Campaigns, Support",
+   tags:["VPS Hardening","Backups","SSL/Ingress","Autoscale"], svgId:"svg-ops"},
+  {key:"community", title:"Community Lead", name:"S. Iyer", focus:"Content, Campaigns, Support",
    stack:"Discord · Telegram · X · Analytics", loc:"Global", skills:[58,55,60],
-   tags:["Airdrops","Referral Ops","Moderation","Campaigns"], svgId:"svg-comms", photo:null}
+   tags:["Airdrops","Referral Ops","Moderation","Campaigns"], svgId:"svg-comms"}
 ];
-var current = 0;
 
 function setBar(el, pct){ el.style.width = Math.max(0, Math.min(100,pct)) + "%"; }
 function setText(id, val){ var el = document.getElementById(id); if(el) el.textContent = val; }
-function renderPhoto(){
+function setPhoto(path){
   var img = document.getElementById('p-photo');
-  if(ROLES[current].photo){ img.src = ROLES[current].photo; }
-  else{
-    // simple placeholder SVG data URL
-    img.src = 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect width="100%" height="100%" fill="%230a213a"/><circle cx="60" cy="46" r="20" fill="%2338a3ff"/><rect x="25" y="70" width="70" height="30" rx="14" fill="%232a6fb8"/></svg>');
-  }
+  img.onerror = function(){ this.src = 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect width="100%" height="100%" fill="%230a213a"/><circle cx="60" cy="46" r="20" fill="%2338a3ff"/><rect x="25" y="70" width="70" height="30" rx="14" fill="%232a6fb8"/></svg>'); };
+  img.src = path;
 }
+
 function selectRole(idx){
   var r = ROLES[idx]; if(!r) return;
-  current = idx;
 
   setText("p-role", r.title); setText("p-name", r.name); setText("p-focus", r.focus);
   setText("p-stack", r.stack); setText("p-loc", r.loc);
@@ -296,31 +314,24 @@ function selectRole(idx){
   var chips = document.getElementById("p-tags"); chips.innerHTML = "";
   for(var i=0;i<r.tags.length;i++){ var span = document.createElement("span"); span.className="chip"; span.textContent=r.tags[i]; chips.appendChild(span); }
 
-  // Swap holo SVG
+  // Swap hologram
   var charWrap = document.getElementById("char");
   var tpl = document.getElementById(r.svgId);
   if(charWrap && tpl){ charWrap.innerHTML = tpl.outerHTML; }
 
-  // Photo
-  renderPhoto();
+  // Set locked photo from code mapping
+  var photoPath = PHOTOS[r.key] || "";
+  setPhoto(photoPath);
 
-  // Active button marking
+  // Mark active button
   var btns = document.querySelectorAll(".role-btn");
   for(var j=0;j<btns.length;j++){ btns[j].classList.remove("active"); }
   btns[idx].classList.add("active");
 }
 
-/* Photo uploader (saved per-role while page is open) */
-document.getElementById('photo-input').addEventListener('change', function(e){
-  var f = e.target.files && e.target.files[0]; if(!f) return;
-  var reader = new FileReader();
-  reader.onload = function(ev){ ROLES[current].photo = ev.target.result; renderPhoto(); };
-  reader.readAsDataURL(f);
-});
-
-/* Start */
+/* Init */
 document.addEventListener('DOMContentLoaded', function(){
-  selectRole(0); // populate everything and ensure default photo is visible
+  selectRole(0); // show Profile first
 });
 </script>
 </body>
