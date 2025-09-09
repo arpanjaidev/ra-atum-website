@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Who We Are – RA Atum</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#101015">
+
+<style>
+  :root{
+    --sand:#e7d7b6; --sand-dark:#bda76a;
+    --blue:#00b4fa; --blue-dark:#004aad;
+    --black:#171818; --text-main:#f6e7c1;
+    --main-bg:linear-gradient(120deg,#101015 0%,#22212a 65%,#1d2b3a 100%);
+    --card:#232224e6; --border:2.5px solid #00b4fa;
+    --glow:0 2px 32px #00b4fa33, 0 0 0 4px #191a2433;
+    --font:'Share Tech Mono', monospace;
+  }
+  *{box-sizing:border-box; font-family:var(--font), monospace !important;}
+  html,body{height:100%;margin:0}
+  body{
+    color:var(--text-main);
+    background:url('https://e1.pxfuel.com/desktop-wallpaper/767/930/desktop-wallpaper-printed-circuit-board-video-motherboard-blue-and-purple-digital-circuit-board-background.jpg') center/cover fixed;
+  }
+  body::before{
+    content:""; position:fixed; inset:0;
+    background:linear-gradient(115deg,#0c0c10bb 0%, #191a24b7 90%);
+    mix-blend-mode:multiply; pointer-events:none;
+  }
+
+  header{
+    position:sticky; top:0; z-index:10;
+    background:#171818f5; padding:14px 3vw; box-shadow:0 2px 18px #00b4fa44;
+    display:flex; gap:12px; align-items:center; justify-content:space-between;
+  }
+  header a{color:var(--blue); text-decoration:none; font-weight:800;}
+  header .back{display:inline-flex; gap:10px; align-items:center;}
+  header .back i{font-style:normal}
+
+  main{
+    max-width:1100px; margin:40px auto; padding:0 4vw;
+  }
+
+  /* Section wrapper cards */
+  .card{
+    background:linear-gradient(100deg,#111a33 0%, #1b344a 98%);
+    border:var(--border); border-radius:18px; box-shadow:var(--glow);
+    padding:26px; margin:24px 0; position:relative; z-index:1;
+  }
+  h1,h2{margin:0 0 12px 0; text-transform:uppercase; letter-spacing:2px;}
+  h1{
+    font-size:2.1rem;
+    background:linear-gradient(90deg,#fff 8%, #00b4fa 60%, #23e6ff 98%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    text-shadow:0 2px 18px #22213855, 0 0 8px #00315580, 0 0 18px #00b4fa99;
+  }
+  .lead{color:var(--sand); line-height:1.6; font-size:1.06rem;}
+
+  /* === HOLO STAGE LAYOUT === */
+  .holo-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 1.1fr 0.8fr;
+    gap:18px;
+  }
+  @media (max-width:980px){
+    .holo-grid{ grid-template-columns:1fr; }
+  }
+
+  /* Left PROFILE panel */
+  .profile-panel{
+    background:#0f1830e6; border:1.8px solid #00b4fa66; border-radius:16px;
+    padding:18px; position:relative; overflow:hidden;
+  }
+  .profile-title{
+    display:flex; align-items:center; gap:10px; margin-bottom:10px;
+    font-weight:900; letter-spacing:1.5px;
+  }
+  .profile-title .dot{width:8px; height:8px; border-radius:50%; background:var(--blue); box-shadow:0 0 14px #00b4fa;}
+  .kv{display:grid; grid-template-columns:110px 1fr; gap:8px 10px; font-size:.98rem;}
+  .kv b{color:#9edcff}
+  .divider{height:1px; background:linear-gradient(90deg,transparent, #00b4fa66, transparent); margin:10px 0;}
+
+  /* Bars */
+  .bar{height:8px; background:#14243d; border:1px solid #27486f; border-radius:999px; overflow:hidden}
+  .bar > span{display:block; height:100%; background:linear-gradient(90deg,#00b4fa,#23e6ff); width:0%;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+  .chip{background:#13243e; border:1px solid #2c4c72; border-radius:999px; padding:6px 10px; font-size:.9rem}
+
+  /* Center hologram */
+  .stage{
+    position:relative; min-height:560px; display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(120px 60px at 50% 85%, #00b4fa55, transparent 70%);
+    border:1.8px solid #00b4fa44; border-radius:16px; overflow:hidden;
+  }
+  @media (max-width:980px){ .stage{ min-height:420px; } }
+
+  .beam{
+    position:absolute; inset:auto 0 80px 0; margin:auto; width:70%; height:70%;
+    background:radial-gradient(closest-side, rgba(0,180,250,.30), transparent 70%);
+    filter:blur(6px);
+  }
+  .ring-top, .ring-base{
+    position:absolute; left:50%; transform:translateX(-50%);
+    border-radius:50%; pointer-events:none;
+    box-shadow:0 0 18px #00b4fa88, inset 0 0 28px #00b4fa44;
+  }
+  .ring-top{ top:24px; width:78%; height:110px; border:2px dashed #23e6ff99; animation:spin 14s linear infinite;}
+  .ring-base{ bottom:20px; width:88%; height:56px; border:2px solid #00b4fa66; filter:blur(.2px);}
+  @keyframes spin{ from{transform:translateX(-50%) rotate(0)} to{transform:translateX(-50%) rotate(360deg)} }
+
+  .character{
+    position:relative; z-index:2; width:min(320px,52vw); aspect-ratio:3/4;
+    background:
+      radial-gradient(50% 18% at 50% 5%, rgba(35,230,255,.45), transparent 80%),
+      radial-gradient(65% 45% at 50% 95%, rgba(0,180,250,.55), transparent 70%);
+    border-radius:20px; display:flex; align-items:flex-end; justify-content:center;
+  }
+  .character img{
+    max-width:88%; max-height:92%; object-fit:contain; filter:drop-shadow(0 18px 40px rgba(0,180,250,.55));
+    transition:transform .5s ease, filter .5s ease, opacity .4s ease;
+  }
+  .character.tint-pink img{ filter: hue-rotate(300deg) saturate(1.2) drop-shadow(0 18px 40px rgba(255,120,240,.55)); }
+  .character.tint-green img{ filter: hue-rotate(110deg) saturate(1.2) drop-shadow(0 18px 40px rgba(80,255,200,.55)); }
+  .character.tint-gold  img{ filter: hue-rotate(40deg)  saturate(1.2) drop-shadow(0 18px 40px rgba(250,210,80,.55)); }
+
+  /* Right role switcher */
+  .switcher{
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .role-btn{
+    background:#0f1830e6; border:1.6px solid #2c4c72; color:#cfeaff;
+    padding:12px 14px; border-radius:12px; cursor:pointer; text-align:left;
+    box-shadow:0 6px 18px #00b4fa22; transition:transform .14s, border-color .14s, background .14s, color .14s;
+    font-weight:800; letter-spacing:.6px;
+  }
+  .role-btn small{display:block; opacity:.75; font-weight:700}
+  .role-btn.active, .role-btn:hover{
+    border-color:#00b4fa; background:#11274a; color:#fff; transform:translateY(-2px);
+  }
+
+  /* Footer mini */
+  footer{ text-align:center; padding:30px 12px 40px; color:#8fbcff; font-size:.95rem; }
+  a.cta{display:inline-block; margin-top:10px; padding:10px 16px; border-radius:10px;
+        background:linear-gradient(90deg,#004aad,#00b4fa); color:#fff; text-decoration:none; font-weight:900}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="back"><a href="index.html">⟵ Back to Home</a></div>
+  <a href="https://wallet.raatumtoken.com/" target="_blank" rel="noopener">Connect Wallet</a>
+</header>
+
+<main>
+  <!-- Intro / Your text -->
+  <section class="card">
+    <h1>Who We Are</h1>
+    <p class="lead"><b>Our Team.</b><br>
+      At RA, we are powered by innovation, compassion, and a mission to reshape how children’s fashion and technology come together. Behind the scenes, a strong team of 30 expert engineers drives our ecosystem — combining creativity, code, and care to support every branch of our brand.<br><br>
+      From our stylish, quality kidswear and curated toys to our socially driven donation-for-reward system, our team is building more than a store — we’re building a platform for purpose.<br><br>
+      Our engineers manage everything from smart contract development to backend infrastructure using secure VPS hosting, VPN-protected environments, and scalable cloud systems. Whether it's handling blockchain integration for RA Atum Token, or managing our secure wallet connections, automated token rewards, and presale systems, we keep our operations safe, fast, and future-ready.<br><br>
+      We’re not just growing a brand — we’re nurturing a tech-enabled, child-focused ecosystem with ethics, security, and innovation at its heart. Every project we launch, every donor we reward, and every product we ship is a result of teamwork, precision, and passion.
+    </p>
+  </section>
+
+  <!-- Hologram Profile -->
+  <section class="card">
+    <div class="holo-grid">
+
+      <!-- Left: Profile info -->
+      <aside class="profile-panel">
+        <div class="profile-title"><span class="dot"></span><span>PROFILE</span></div>
+        <div class="kv">
+          <b>Role</b>     <span id="p-role">—</span>
+          <b>Name</b>     <span id="p-name">—</span>
+          <b>Focus</b>    <span id="p-focus">—</span>
+          <b>Stack</b>    <span id="p-stack">—</span>
+          <b>Location</b> <span id="p-loc">—</span>
+        </div>
+
+        <div class="divider"></div>
+        <div style="display:grid; gap:10px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:.9rem;">
+              <span>Blockchain</span><span id="s1v">0%</span>
+            </div>
+            <div class="bar"><span id="s1"></span></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:.9rem;">
+              <span>Backend</span><span id="s2v">0%</span>
+            </div>
+            <div class="bar"><span id="s2"></span></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:.9rem;">
+              <span>Security</span><span id="s3v">0%</span>
+            </div>
+            <div class="bar"><span id="s3"></span></div>
+          </div>
+        </div>
+
+        <div class="chips" id="p-tags"></div>
+      </aside>
+
+      <!-- Center: Hologram stage -->
+      <div class="stage">
+        <div class="ring-top"></div>
+        <div class="beam"></div>
+        <div class="character" id="char" class="tint-pink">
+          <!-- TIP: Replace src with your own character PNGs. Default uses your provided image file. -->
+          <img id="char-img" src="assets/team/holo-base.png" alt="Hologram Character">
+        </div>
+        <div class="ring-base"></div>
+      </div>
+
+      <!-- Right: Role switcher -->
+      <nav class="switcher" id="switcher">
+        <!-- Buttons inserted by JS -->
+      </nav>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 RA Atum • Building an ethical, secure & innovative ecosystem
+    <div><a class="cta" href="https://wallet.raatumtoken.com/" target="_blank" rel="noopener">Launch DApp</a></div>
+  </footer>
+</main>
+
+<script>
+/**
+ * NOTE ON CHARACTER IMAGES
+ * ------------------------
+ * Put your 5 character PNGs (transparent background) here:
+ *   assets/team/ceo.png
+ *   assets/team/tech-lead.png
+ *   assets/team/smc-eng.png
+ *   assets/team/devops.png
+ *   assets/team/community.png
+ *
+ * For now, the code falls back to "assets/team/holo-base.png" if a file is missing.
+ * You can start with one image (the one you sent) and add more later—colors/tints change per role.
+ */
+
+const FALLBACK_IMG = "assets/team/holo-base.png"; // use your uploaded image here
+const ROLES = [
+  {
+    key: "ceo",
+    title: "CEO / Founder",
+    name: "A. Sharma",
+    focus: "Vision, Partnerships, Growth",
+    stack: "Strategy · Tokenomics · Legal",
+    loc: "Global",
+    skills: [92, 60, 70],  // chain, backend, security
+    tags: ["Leadership","Investor Relations","Roadmap","Compliance"],
+    img: "assets/team/ceo.png",
+    tint: "tint-gold"
+  },
+  {
+    key: "techlead",
+    title: "Tech Lead",
+    name: "R. Mehta",
+    focus: "Architecture & Scaling",
+    stack: "Node.js · EVM · React · Cloud",
+    loc: "Remote / Hybrid",
+    skills: [85, 88, 72],
+    tags: ["System Design","SLA/Monitoring","Cost Optimization","APIs"],
+    img: "assets/team/tech-lead.png",
+    tint: "tint-green"
+  },
+  {
+    key: "smc",
+    title: "Smart-Contract Engineer",
+    name: "N. Khan",
+    focus: "Solidity & Auditable Code",
+    stack: "Solidity · Hardhat · Ethers · BSC",
+    loc: "Remote",
+    skills: [95, 62, 86],
+    tags: ["ERC/BEP Standards","Gas Optimization","Test Suites","Audits"],
+    img: "assets/team/smc-eng.png",
+    tint: "tint-pink"
+  },
+  {
+    key: "devops",
+    title: "Backend / DevOps",
+    name: "P. Gupta",
+    focus: "APIs, VPS, VPN, Security",
+    stack: "Node.js · Nginx · MongoDB · CI/CD",
+    loc: "THOTH VPS",
+    skills: [70, 92, 88],
+    tags: ["VPS Hardening","Backups","SSL/Ingress","Autoscale"],
+    img: "assets/team/devops.png",
+    tint: "tint-green"
+  },
+  {
+    key: "community",
+    title: "Community Lead",
+    name: "S. Iyer",
+    focus: "Content, Campaigns, Support",
+    stack: "Discord · Telegram · X · Analytics",
+    loc: "Global",
+    skills: [58, 55, 60],
+    tags: ["Airdrops","Referral Ops","Moderation","Campaigns"],
+    img: "assets/team/community.png",
+    tint: "tint-gold"
+  }
+];
+
+const els = {
+  role:  document.getElementById('p-role'),
+  name:  document.getElementById('p-name'),
+  focus: document.getElementById('p-focus'),
+  stack: document.getElementById('p-stack'),
+  loc:   document.getElementById('p-loc'),
+  s1:    document.getElementById('s1'),
+  s2:    document.getElementById('s2'),
+  s3:    document.getElementById('s3'),
+  s1v:   document.getElementById('s1v'),
+  s2v:   document.getElementById('s2v'),
+  s3v:   document.getElementById('s3v'),
+  tags:  document.getElementById('p-tags'),
+  char:  document.getElementById('char'),
+  img:   document.getElementById('char-img'),
+  sw:    document.getElementById('switcher')
+};
+
+function safeImg(src){
+  const i = new Image();
+  i.src = src;
+  return new Promise(resolve=>{
+    i.onload = () => resolve(src);
+    i.onerror = () => resolve(FALLBACK_IMG);
+  });
+}
+
+function setBar(el, pct){ el.style.width = Math.max(0, Math.min(100,pct)) + "%"; }
+function setProfile(r){
+  els.role.textContent  = r.title;
+  els.name.textContent  = r.name;
+  els.focus.textContent = r.focus;
+  els.stack.textContent = r.stack;
+  els.loc.textContent   = r.loc;
+
+  setBar(els.s1, r.skills[0]); els.s1v.textContent = r.skills[0] + "%";
+  setBar(els.s2, r.skills[1]); els.s2v.textContent = r.skills[1] + "%";
+  setBar(els.s3, r.skills[2]); els.s3v.textContent = r.skills[2] + "%";
+
+  els.tags.innerHTML = "";
+  r.tags.forEach(t=>{
+    const chip = document.createElement("span");
+    chip.className = "chip"; chip.textContent = t;
+    els.tags.appendChild(chip);
+  });
+
+  // tint + image swap with little animation
+  els.char.classList.remove("tint-pink","tint-green","tint-gold");
+  els.char.classList.add(r.tint);
+  els.img.style.opacity = .3;
+  els.img.style.transform = "translateY(6px) scale(0.98)";
+  safeImg(r.img).then(src=>{
+    els.img.src = src;
+    els.img.onload = ()=>{
+      els.img.style.opacity = 1;
+      els.img.style.transform = "translateY(0) scale(1)";
+    };
+  });
+}
+
+function buildSwitcher(){
+  els.sw.innerHTML = "";
+  ROLES.forEach((r,idx)=>{
+    const b = document.createElement("button");
+    b.className = "role-btn";
+    b.dataset.idx = idx;
+    b.innerHTML = `<span>${r.title}</span><small>${r.name}</small>`;
+    b.onclick = ()=> {
+      document.querySelectorAll(".role-btn").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      setProfile(r);
+      current = idx;
+      resetAutoplay();
+    };
+    els.sw.appendChild(b);
+  });
+  // set first active
+  const first = els.sw.querySelector(".role-btn");
+  if (first){ first.classList.add("active"); setProfile(ROLES[0]); }
+}
+
+let current = 0, timer = null;
+function autoplay(){
+  timer = setInterval(()=>{
+    current = (current + 1) % ROLES.length;
+    const btn = els.sw.querySelector(`.role-btn[data-idx="${current}"]`);
+    if (btn) btn.click();
+  }, 6000);
+}
+function resetAutoplay(){ clearInterval(timer); autoplay(); }
+
+// Pause on hover over stage or switcher
+["switcher","char"].forEach(id=>{
+  const el = id==="char" ? els.char : els.sw;
+  el.addEventListener("mouseenter", ()=>clearInterval(timer));
+  el.addEventListener("mouseleave", resetAutoplay);
+});
+
+buildSwitcher();
+autoplay();
+</script>
+</body>
+</html>
