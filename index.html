@@ -987,20 +987,50 @@ header{
 
 /* === RAROBO banner: image only (no background/border/shadow) === */
 /* RAROBO image: force true transparency & remove any global image styles */
-.mid-banner,
-.mid-banner * { background: transparent !important; }
-
-.mid-banner img,
-    
-
-img[src$="RAROBO.png"]{
+/* === RAROBO: only the PNG, no lines/borders/shadows/background === */
+.mid-banner{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin: 16px auto;
+  padding: 0;
   background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.mid-banner::before,
+.mid-banner::after{ content:none !important; }
 
-  transform: none !important;
-  opacity: 1 !important;
-  width: min(150px, 200vw) !important;
+/* if the image is ever wrapped in a link, kill underlines & outlines */
+.mid-banner a,
+.mid-banner a:link,
+.mid-banner a:visited,
+.mid-banner a:hover,
+.mid-banner a:active{
+  text-decoration: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+/* the image itself */
+.mid-banner img,
+img[src$="RAROBO.png"]{
+  display: block;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  text-decoration: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  width: min(150px, 200vw) !important; /* your chosen size */
   height: auto !important;
 }
+
+/* extra: remove focus ring on image (some browsers) */
+.mid-banner img:focus{ outline: 0 !important; }
 
 
 
