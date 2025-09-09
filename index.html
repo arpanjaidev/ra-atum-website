@@ -1052,6 +1052,23 @@ img[src$="RAROBO.png"]{
 .rarobo-only::after{ content:none !important; display:none !important; }
 
 
+/* RAROBO video: only the video, no line/border/shadow/background */
+.rarobo-video{
+  display:block;
+  margin:16px auto;
+  width:min(420px, 94vw);  /* change this to resize */
+  height:auto;
+  background:transparent !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  filter:none !important;
+}
+.rarobo-video::before,
+.rarobo-video::after{ content:none !important; display:none !important; }
+
+    
+
 
 
 
@@ -1147,6 +1164,19 @@ img[src$="RAROBO.png"]{
 
     
 </header>
+  
+
+<video class="rarobo-video"
+       src="RAROBO.mp4?v=1"
+       autoplay
+       muted
+       loop
+       playsinline
+       preload="auto"
+       aria-label="RA Atum — RAROBO animation">
+</video>
+
+  
 
 
 
