@@ -986,25 +986,20 @@ header{
 
 
 /* === RAROBO banner: image only (no background/border/shadow) === */
-.mid-banner{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin: 20px auto;          /* tidy spacing */
-  padding: 0;
+/* RAROBO image: force true transparency & remove any global image styles */
+.mid-banner,
+.mid-banner * { background: transparent !important; }
+
+.mid-banner img,
+img[src$="RAROBO.png"]{
   background: transparent !important;
-}
-.mid-banner img{
-  width: min(980px, 94vw);
-  height: auto;
-  display: block;
+  box-shadow: none !important;
   border: 0 !important;
   border-radius: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
-}
-@media (max-width: 640px){
-  .mid-banner{ margin: 14px auto; }
+  transform: none !important;
+  opacity: 1 !important;
+  width: min(980px, 94vw) !important;
+  height: auto !important;
 }
 
 
@@ -1089,13 +1084,15 @@ header{
 </header>
 
   <!-- HERO SECTION -->
-<!-- RAROBO banner (between header and hero) -->
-<div class="mid-banner">
-  <img src="RAROBO.png" alt="RA Atum – RAROBO" loading="lazy">
-</div>
-
+  
 <!-- HERO SECTION -->
 <section class="hero">
+<!-- RAROBO banner (between header and hero) -->
+<div class="mid-banner">
+ <img src="RAROBO.png?v=2" alt="RA Atum – RAROBO" loading="lazy">
+
+</div>
+
 
 
 
