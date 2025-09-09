@@ -985,30 +985,27 @@ header{
 }
 
 
-
-    /* === RAROBO banner between header and hero === */
+/* === RAROBO banner: image only (no background/border/shadow) === */
 .mid-banner{
   display:flex;
   justify-content:center;
   align-items:center;
-  margin: 28px auto -6px auto;     /* small overlap toward hero */
+  margin: 20px auto;          /* tidy spacing */
   padding: 0;
-  z-index: 2;
+  background: transparent !important;
 }
 .mid-banner img{
   width: min(980px, 94vw);
   height: auto;
-  display:block;
-  border-radius: 16px;
-  border: 2px solid #00b4fa55;
-  box-shadow: 0 10px 36px #00b4fa33, 0 0 0 5px #191a2440;
-  background: #111a;
+  display: block;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 @media (max-width: 640px){
-  .mid-banner{ margin: 18px auto -4px auto; }
-  .mid-banner img{ border-radius: 12px; }
+  .mid-banner{ margin: 14px auto; }
 }
-
 
 
 
