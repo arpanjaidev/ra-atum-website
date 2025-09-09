@@ -987,12 +987,15 @@ header{
 
 /* === RAROBO banner: image only (no background/border/shadow) === */
 /* RAROBO image: force true transparency & remove any global image styles */
+.mid-banner,
+.mid-banner * { background: transparent !important; }
+
+.mid-banner img,
+    
 
 img[src$="RAROBO.png"]{
   background: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  border-radius: 0 !important;
+
   transform: none !important;
   opacity: 1 !important;
   width: min(150px, 200vw) !important;
