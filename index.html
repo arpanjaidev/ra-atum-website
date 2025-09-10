@@ -1166,17 +1166,13 @@ img[src$="RAROBO.png"]{
 </header>
   
 
-<video class="rarobo-video"
-       src="RAROBO.mp4?v=1"
-       autoplay
-       muted
-       loop
-       playsinline
-       preload="auto"
-       aria-label="RA Atum — RAROBO animation">
+<video class="rarobo-video" autoplay muted loop playsinline preload="auto" aria-label="RA Atum — RAROBO animation">
+  <!-- If you have a transparent WebM, put it first -->
+  <source src="RAROBO.webm?v=1" type="video/webm">
+  <!-- MP4 fallback -->
+  <source src="RAROBO.mp4?v=1" type="video/mp4">
 </video>
 
-  
 
 
 
