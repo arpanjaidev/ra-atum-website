@@ -1052,31 +1052,54 @@ img[src$="RAROBO.png"]{
 .rarobo-only::after{ content:none !important; display:none !important; }
 
 
-/* RAROBO video: only the video, no line/border/shadow/background */
-/* RAROBO video: clear, above any overlays, no dim or lines */
-.rarobo-video{
-  display:block;
+/* wrapper: no borders/glow/background */
+.rarobo-wrap{
+  position:relative;
   margin:16px auto;
-  width:min(720px, 94vw);   /* bump size for clarity; adjust as you like */
-  height:auto;
-
-  /* kill any site-wide effects */
+  width:min(720px, 94vw);
   background:transparent !important;
   border:0 !important;
-  outline:0 !important;
   box-shadow:none !important;
+  outline:0 !important;
+  isolation:isolate;
+  z-index:300;
+}
+.rarobo-wrap::before,
+.rarobo-wrap::after{ content:none !important; display:none !important; }
+
+/* video: crystal clear */
+.rarobo-video{
+  display:block;
+  width:100%;
+  height:auto;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  outline:0 !important;
   filter:none !important;
   opacity:1 !important;
-  mix-blend-mode: normal !important;
-
-  /* sit above hero/background overlays */
-  position:relative;
-  z-index:300;
-  isolation:isolate;  /* prevents parent blend/filters from affecting it */
+  mix-blend-mode:normal !important;
 }
-.rarobo-video::before,
-.rarobo-video::after{ content:none !important; display:none !important; }
 
+/* unmute button */
+.unmute-btn{
+  position:absolute;
+  right:12px; bottom:12px;
+  padding:8px 12px;
+  font-weight:700; font-size:14px;
+  background:#0c111aee;
+  color:#e9f6ff;
+  border:2px solid #00b4fa;
+  border-radius:999px;
+  box-shadow:none !important;
+  outline:0 !important;
+  cursor:pointer;
+}
+.unmute-btn.hide{ opacity:0; pointer-events:none; transition:opacity .25s ease; }
+@media (max-width:640px){
+  .rarobo-wrap{ width:min(480px, 94vw); }
+  .unmute-btn{ right:10px; bottom:10px; font-size:13px; padding:7px 10px; }
+}
 
 
 
@@ -1174,12 +1197,14 @@ img[src$="RAROBO.png"]{
 </header>
   
 
-<video class="rarobo-video" autoplay muted loop playsinline preload="auto" aria-label="RA Atum — RAROBO animation">
-  <!-- If you have a transparent WebM, put it first -->
-  <source src="RAROBO.webm?v=1" type="video/webm">
-  <!-- MP4 fallback -->
-  <source src="RAROBO.mp4?v=1" type="video/mp4">
-</video>
+<div class="rarobo-wrap">
+  <video id="raroboVideo" class="rarobo-video" autoplay muted loop playsinline preload="auto"
+         aria-label="RA Atum — RAROBO animation">
+    <source src="RAROBO.webm?v=2" type="video/webm">
+    <source src="RAROBO.mp4?v=2"   type="video/mp4">
+  </video>
+  <button id="raroboUnmute" class="unmute-btn" type="button" aria-label="Unmute video">🔊 Tap to Unmute</button>
+</div>
 
 
 
