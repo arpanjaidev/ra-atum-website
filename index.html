@@ -1053,21 +1053,29 @@ img[src$="RAROBO.png"]{
 
 
 /* RAROBO video: only the video, no line/border/shadow/background */
+/* RAROBO video: clear, above any overlays, no dim or lines */
 .rarobo-video{
   display:block;
   margin:16px auto;
-  width:min(420px, 94vw);  /* change this to resize */
+  width:min(720px, 94vw);   /* bump size for clarity; adjust as you like */
   height:auto;
+
+  /* kill any site-wide effects */
   background:transparent !important;
   border:0 !important;
   outline:0 !important;
   box-shadow:none !important;
   filter:none !important;
+  opacity:1 !important;
+  mix-blend-mode: normal !important;
+
+  /* sit above hero/background overlays */
+  position:relative;
+  z-index:300;
+  isolation:isolate;  /* prevents parent blend/filters from affecting it */
 }
 .rarobo-video::before,
 .rarobo-video::after{ content:none !important; display:none !important; }
-
-    
 
 
 
