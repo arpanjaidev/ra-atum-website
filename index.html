@@ -1067,39 +1067,24 @@ img[src$="RAROBO.png"]{
 .rarobo-wrap::before,
 .rarobo-wrap::after{ content:none !important; display:none !important; }
 
-/* video: crystal clear */
+/* RAROBO video: crystal clear, no borders/glow/background */
 .rarobo-video{
   display:block;
-  width:100%;
+  margin:16px auto;
+  width:min(720px,94vw);  /* tweak size if needed */
   height:auto;
   background:transparent !important;
   border:0 !important;
-  box-shadow:none !important;
   outline:0 !important;
+  box-shadow:none !important;
   filter:none !important;
   opacity:1 !important;
   mix-blend-mode:normal !important;
+  cursor:pointer; /* shows it's tappable to unmute */
 }
+.rarobo-video::before,
+.rarobo-video::after{ content:none !important; display:none !important; }
 
-/* unmute button */
-.unmute-btn{
-  position:absolute;
-  right:12px; bottom:12px;
-  padding:8px 12px;
-  font-weight:700; font-size:14px;
-  background:#0c111aee;
-  color:#e9f6ff;
-  border:2px solid #00b4fa;
-  border-radius:999px;
-  box-shadow:none !important;
-  outline:0 !important;
-  cursor:pointer;
-}
-.unmute-btn.hide{ opacity:0; pointer-events:none; transition:opacity .25s ease; }
-@media (max-width:640px){
-  .rarobo-wrap{ width:min(480px, 94vw); }
-  .unmute-btn{ right:10px; bottom:10px; font-size:13px; padding:7px 10px; }
-}
 
 
 
@@ -1197,14 +1182,12 @@ img[src$="RAROBO.png"]{
 </header>
   
 
-<div class="rarobo-wrap">
-  <video id="raroboVideo" class="rarobo-video" autoplay muted loop playsinline preload="auto"
-         aria-label="RA Atum — RAROBO animation">
-    <source src="RAROBO.webm?v=2" type="video/webm">
-    <source src="RAROBO.mp4?v=2"   type="video/mp4">
-  </video>
-  <button id="raroboUnmute" class="unmute-btn" type="button" aria-label="Unmute video">🔊 Tap to Unmute</button>
-</div>
+<!-- RAROBO banner video — tap video to unmute (no button/controls) -->
+<video id="raroboVideo" class="rarobo-video" autoplay muted loop playsinline preload="auto"
+       aria-label="RA Atum — RAROBO animation">
+  <source src="RAROBO.webm?v=3" type="video/webm">
+  <source src="RAROBO.mp4?v=3"   type="video/mp4">
+</video>
 
 
 
@@ -1765,6 +1748,27 @@ typeFooterLine();
       }, { capture: true });
     })();
   </script>
+
+  
+<script>
+  (function () {
+    const v = document.getElementById('raroboVideo');
+
+    // First tap/click unmutes and keeps playing with audio
+    function unmute() {
+      v.muted = false;
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+      v.removeEventListener('click', unmute);
+      v.removeEventListener('touchstart', unmute);
+    }
+
+    v.addEventListener('click', unmute, { once: true });
+    v.addEventListener('touchstart', unmute, { once: true });
+  })();
+</script>
+
+  
   <!-- END: wallet ref forward -->
 </body>
 </html>
