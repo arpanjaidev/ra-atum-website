@@ -1068,11 +1068,10 @@ img[src$="RAROBO.png"]{
 .rarobo-wrap::after{ content:none !important; display:none !important; }
 
 /* RAROBO video: crystal clear, no borders/glow/background */
-.rarobo-video{
-  display:block;
-  margin:16px auto;
-  width:min(720px,94vw);  /* tweak size if needed */
-  height:auto;
+/* Bulletproof: only affects this video */
+#raroboVideo,
+#raroboVideo::before,
+#raroboVideo::after{
   background:transparent !important;
   border:0 !important;
   outline:0 !important;
@@ -1080,11 +1079,7 @@ img[src$="RAROBO.png"]{
   filter:none !important;
   opacity:1 !important;
   mix-blend-mode:normal !important;
-  cursor:pointer; /* shows it's tappable to unmute */
 }
-.rarobo-video::before,
-.rarobo-video::after{ content:none !important; display:none !important; }
-
 
 
 
@@ -1183,13 +1178,17 @@ img[src$="RAROBO.png"]{
   
 
 <!-- RAROBO banner video — tap video to unmute (no button/controls) -->
-<video id="raroboVideo" class="rarobo-video" autoplay muted loop playsinline preload="auto"
-       aria-label="RA Atum — RAROBO animation">
-  <source src="RAROBO.webm?v=3" type="video/webm">
-  <source src="RAROBO.mp4?v=3"   type="video/mp4">
+<video id="raroboVideo"
+       class="rarobo-video"
+       autoplay muted loop playsinline preload="auto"
+       aria-label="RA Atum — RAROBO animation"
+       style="display:block;margin:16px auto;width:min(720px,94vw);height:auto;
+              background:transparent;border:0;outline:0;box-shadow:none;
+              filter:none;opacity:1;mix-blend-mode:normal;position:relative;
+              z-index:1000;isolation:isolate;transform:none;">
+  <source src="RAROBO.webm?v=4" type="video/webm">
+  <source src="RAROBO.mp4?v=4"   type="video/mp4">
 </video>
-
-
 
 
   
@@ -1753,20 +1752,12 @@ typeFooterLine();
 <script>
   (function () {
     const v = document.getElementById('raroboVideo');
-
-    // First tap/click unmutes and keeps playing with audio
-    function unmute() {
-      v.muted = false;
-      const p = v.play();
-      if (p && p.catch) p.catch(() => {});
-      v.removeEventListener('click', unmute);
-      v.removeEventListener('touchstart', unmute);
-    }
-
-    v.addEventListener('click', unmute, { once: true });
-    v.addEventListener('touchstart', unmute, { once: true });
+    const unmute = () => { v.muted = false; v.play().catch(()=>{}); };
+    v.addEventListener('click', unmute, { once:true });
+    v.addEventListener('touchstart', unmute, { once:true });
   })();
 </script>
+
 
   
   <!-- END: wallet ref forward -->
