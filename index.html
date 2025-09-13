@@ -1069,16 +1069,64 @@ img[src$="RAROBO.png"]{
 
 /* RAROBO video: crystal clear, no borders/glow/background */
 /* Bulletproof: only affects this video */
-#raroboVideo,
-#raroboVideo::before,
-#raroboVideo::after{
+/* --- RAROBO video card --- */
+.rarobo-card{
+  position: relative;
+  margin: 16px auto 10px;
+  width: min(720px, 94vw);
+  background: transparent !important;   /* no bg */
+  border-radius: 18px;
+  z-index: 50;                           /* stays BELOW sticky header/ticker */
+  isolation: isolate;                    /* ignore parent blend/filters */
+}
+
+/* Blue outline to match theme (outer glow ring, no inner bg) */
+.rarobo-card::before{
+  content:"";
+  position:absolute;
+  inset:-3px;                            /* outline thickness */
+  border-radius: 20px;
+  pointer-events:none;
+  box-shadow:
+    0 0 0 2px #00b4fa,                  /* sharp cyan rim */
+    0 8px 26px rgba(0,180,250,.35);     /* soft glow */
+}
+
+/* Video: crystal clear, no dim/outline/shadow */
+.rarobo-video{
+  display:block;
+  width:100%;
+  height:auto;
   background:transparent !important;
   border:0 !important;
   outline:0 !important;
   box-shadow:none !important;
   filter:none !important;
   opacity:1 !important;
-  mix-blend-mode:normal !important;
+  mix-blend-mode: normal !important;
+  border-radius: 16px;
+}
+
+/* Mute/Unmute pill button (bottom-right) */
+.rarobo-mute{
+  position:absolute;
+  right:10px; bottom:10px;
+  padding:6px 10px;
+  font-weight:800; font-size:13px;
+  line-height:1;
+  background:#0b111aee;                 /* dark pill */
+  color:#e9f6ff;
+  border:2px solid #00b4fa;
+  border-radius:999px;
+  cursor:pointer;
+  box-shadow:none !important;
+  outline:0 !important;
+}
+.rarobo-mute:focus{ outline:0 !important; }
+
+@media (max-width:640px){
+  .rarobo-card{ width:min(480px, 94vw); }
+  .rarobo-mute{ right:8px; bottom:8px; font-size:12px; padding:6px 9px; }
 }
 
 
@@ -1178,17 +1226,16 @@ img[src$="RAROBO.png"]{
   
 
 <!-- RAROBO banner video — tap video to unmute (no button/controls) -->
-<video id="raroboVideo"
-       class="rarobo-video"
-       autoplay muted loop playsinline preload="auto"
-       aria-label="RA Atum — RAROBO animation"
-       style="display:block;margin:16px auto;width:min(720px,94vw);height:auto;
-              background:transparent;border:0;outline:0;box-shadow:none;
-              filter:none;opacity:1;mix-blend-mode:normal;position:relative;
-              z-index:1000;isolation:isolate;transform:none;">
-  <source src="RAROBO.webm?v=4" type="video/webm">
-  <source src="RAROBO.mp4?v=4"   type="video/mp4">
-</video>
+<div class="rarobo-card">
+  <video id="raroboVideo" class="rarobo-video" autoplay muted loop playsinline preload="auto"
+         aria-label="RA Atum — RAROBO animation">
+    <source src="RAROBO.webm?v=5" type="video/webm">
+    <source src="RAROBO.mp4?v=5"   type="video/mp4">
+  </video>
+  <button id="raroboMute" class="rarobo-mute" type="button" aria-label="Unmute video" title="Unmute">
+    🔇
+  </button>
+</div>
 
 
   
@@ -1749,14 +1796,37 @@ typeFooterLine();
   </script>
 
   
+
 <script>
   (function () {
-    const v = document.getElementById('raroboVideo');
-    const unmute = () => { v.muted = false; v.play().catch(()=>{}); };
-    v.addEventListener('click', unmute, { once:true });
-    v.addEventListener('touchstart', unmute, { once:true });
+    const v   = document.getElementById('raroboVideo');
+    const btn = document.getElementById('raroboMute');
+
+    // ensure video starts (muted) everywhere
+    const ensurePlay = () => { const p = v.play(); if (p && p.catch) p.catch(()=>{}); };
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) ensurePlay(); });
+    ensurePlay();
+
+    // toggle mute on click
+    function toggleMute(){
+      v.muted = !v.muted;
+      ensurePlay();
+      // update icon & aria
+      if (v.muted){
+        btn.textContent = '🔇';
+        btn.setAttribute('aria-label','Unmute video');
+        btn.title = 'Unmute';
+      } else {
+        btn.textContent = '🔊';
+        btn.setAttribute('aria-label','Mute video');
+        btn.title = 'Mute';
+      }
+    }
+    btn.addEventListener('click', toggleMute);
   })();
 </script>
+
+  
 
 
   
